@@ -1,0 +1,11 @@
+c:\Users\Daniele\documents\visual studio 2013\Projects\BLL\BusinessTest\bin\Debug\BusinessTest.dll
+c:\Users\Daniele\documents\visual studio 2013\Projects\BLL\BusinessTest\bin\Debug\BusinessTest.pdb
+c:\Users\Daniele\documents\visual studio 2013\Projects\BLL\BusinessTest\bin\Debug\BLL.dll
+c:\Users\Daniele\documents\visual studio 2013\Projects\BLL\BusinessTest\bin\Debug\UnitOfWork.dll
+c:\Users\Daniele\documents\visual studio 2013\Projects\BLL\BusinessTest\bin\Debug\Models.dll
+c:\Users\Daniele\documents\visual studio 2013\Projects\BLL\BusinessTest\bin\Debug\EntityFramework.dll
+c:\Users\Daniele\documents\visual studio 2013\Projects\BLL\BusinessTest\bin\Debug\BLL.pdb
+c:\Users\Daniele\documents\visual studio 2013\Projects\BLL\BusinessTest\bin\Debug\EntityFramework.xml
+c:\Users\Daniele\documents\visual studio 2013\Projects\BLL\BusinessTest\obj\Debug\BusinessTest.csprojResolveAssemblyReference.cache
+c:\Users\Daniele\documents\visual studio 2013\Projects\BLL\BusinessTest\obj\Debug\BusinessTest.dll
+c:\Users\Daniele\documents\visual studio 2013\Projects\BLL\BusinessTest\obj\Debug\BusinessTest.pdb

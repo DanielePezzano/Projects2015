@@ -1,0 +1,12 @@
+c:\users\daniele\documents\visual studio 2013\Projects\BLL\BLL\bin\Debug\BLL.dll.config
+c:\users\daniele\documents\visual studio 2013\Projects\BLL\BLL\bin\Debug\BLL.dll
+c:\users\daniele\documents\visual studio 2013\Projects\BLL\BLL\bin\Debug\BLL.pdb
+c:\users\daniele\documents\visual studio 2013\Projects\BLL\BLL\bin\Debug\EntityFramework.dll
+c:\users\daniele\documents\visual studio 2013\Projects\BLL\BLL\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\daniele\documents\visual studio 2013\Projects\BLL\BLL\bin\Debug\Models.dll
+c:\users\daniele\documents\visual studio 2013\Projects\BLL\BLL\bin\Debug\UnitOfWork.dll
+c:\users\daniele\documents\visual studio 2013\Projects\BLL\BLL\bin\Debug\EntityFramework.xml
+c:\users\daniele\documents\visual studio 2013\Projects\BLL\BLL\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\daniele\documents\visual studio 2013\Projects\BLL\BLL\obj\Debug\BLL.dll
+c:\users\daniele\documents\visual studio 2013\Projects\BLL\BLL\obj\Debug\BLL.pdb
+c:\users\daniele\documents\visual studio 2013\Projects\BLL\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache

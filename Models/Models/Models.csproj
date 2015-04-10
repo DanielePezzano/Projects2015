@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0309E052-C6A1-4C0F-ADFD-6FD8B4C1CD2A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Models</RootNamespace>
+    <AssemblyName>Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\BaseBuildingEntity.cs" />
+    <Compile Include="Base\BaseEntity.cs" />
+    <Compile Include="Base\BaseSatellite.cs" />
+    <Compile Include="Base\Enum\TaxLevel.cs" />
+    <Compile Include="Base\Interfaces\IBaseBuilding.cs" />
+    <Compile Include="Base\Interfaces\IBaseCost.cs" />
+    <Compile Include="Base\Production.cs" />
+    <Compile Include="Base\SatelliteSocials.cs" />
+    <Compile Include="Base\Spaces.cs" />
+    <Compile Include="Buildings\Building.cs" />
+    <Compile Include="Buildings\BuildingSpec.cs" />
+    <Compile Include="Buildings\Enums\BuildingType.cs" />
+    <Compile Include="Fleets\Fleet.cs" />
+    <Compile Include="Fleets\ShipClasses\Armors\Armor.cs" />
+    <Compile Include="Fleets\ShipClasses\Base\BaseShipEntity.cs" />
+    <Compile Include="Fleets\ShipClasses\Base\PartShipEntity.cs" />
+    <Compile Include="Fleets\ShipClasses\Base\BaseWeaponEntity.cs" />
+    <Compile Include="Fleets\ShipClasses\Engines\Engine.cs" />
+    <Compile Include="Fleets\ShipClasses\Enums\HullType.cs" />
+    <Compile Include="Fleets\ShipClasses\Enums\SystemType.cs" />
+    <Compile Include="Fleets\ShipClasses\Hulls\Hull.cs" />
+    <Compile Include="Fleets\ShipClasses\Shields\Shield.cs" />
+    <Compile Include="Fleets\ShipClasses\ShipClass.cs" />
+    <Compile Include="Fleets\ShipClasses\System\ShipSystem.cs" />
+    <Compile Include="Fleets\ShipClasses\Weapons\AntiPlanetWeapon.cs" />
+    <Compile Include="Fleets\ShipClasses\Weapons\AntiShipWeapon.cs" />
+    <Compile Include="Base\BaseLog.cs" />
+    <Compile Include="Logs\Enum\GalaxyLogType.cs" />
+    <Compile Include="Logs\Enum\UserLogType.cs" />
+    <Compile Include="Logs\GalaxyLog.cs" />
+    <Compile Include="Base\Interfaces\IBaseLog.cs" />
+    <Compile Include="Logs\UserLog.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Base\BaseQueue.cs" />
+    <Compile Include="Queues\BuildingQueue.cs" />
+    <Compile Include="Queues\Enum\MissionType.cs" />
+    <Compile Include="Queues\Enum\QueueStatus.cs" />
+    <Compile Include="Queues\FleetQueue.cs" />
+    <Compile Include="Base\Interfaces\IBase.cs" />
+    <Compile Include="Base\Interfaces\IBaseQueue.cs" />
+    <Compile Include="Queues\Position.cs" />
+    <Compile Include="Queues\ResearchQueue.cs" />
+    <Compile Include="Queues\Transport.cs" />
+    <Compile Include="Races\Enums\RaceTraitsBonuses.cs" />
+    <Compile Include="Races\Enums\RaceTraitsType.cs" />
+    <Compile Include="Races\RaceBonus.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Tech\Enum\BonusType.cs" />
+    <Compile Include="Tech\Enum\TechnologyField.cs" />
+    <Compile Include="Tech\TechBonus.cs" />
+    <Compile Include="Tech\Technology.cs" />
+    <Compile Include="Tech\TechRequisiteNode.cs" />
+    <Compile Include="Universe\Enum\SatelliteStatus.cs" />
+    <Compile Include="Universe\Enum\StarColor.cs" />
+    <Compile Include="Universe\Enum\StarType.cs" />
+    <Compile Include="Universe\OrbitDetail.cs" />
+    <Compile Include="Universe\Planet.cs" />
+    <Compile Include="Universe\Universe.cs" />
+    <Compile Include="Users\Enum\UserStatus.cs" />
+    <Compile Include="Users\InternalMail.cs" />
+    <Compile Include="Universe\Satellite.cs" />
+    <Compile Include="Universe\Star.cs" />
+    <Compile Include="Users\User.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Administration\Log\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,14 @@
+c:\users\daniele\documents\visual studio 2012\Projects\Models\Models\bin\Debug\Models.dll
+c:\users\daniele\documents\visual studio 2012\Projects\Models\Models\bin\Debug\Models.pdb
+c:\users\daniele\documents\visual studio 2012\Projects\Models\Models\obj\Debug\Models.dll
+c:\users\daniele\documents\visual studio 2012\Projects\Models\Models\obj\Debug\Models.pdb
+c:\users\daniele\documents\visual studio 2012\Projects\Models\Models\obj\Debug\Models.Resources.resources
+c:\users\daniele\documents\visual studio 2012\Projects\Models\Models\obj\Debug\Models.csproj.GenerateResource.Cache
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\Models\Models\obj\Debug\Models.Resources.resources
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\Models\Models\obj\Debug\Models.csproj.GenerateResource.Cache
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\Models\Models\obj\Debug\Models.dll
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\Models\Models\obj\Debug\Models.pdb
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\Models\Models\bin\Debug\Models.dll
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\Models\Models\bin\Debug\Models.pdb
+C:\Users\daniele\Documents\Visual Studio 2012\Projects\Models\Models\bin\Debug\Models.dll.CodeAnalysisLog.xml
+C:\Users\daniele\Documents\Visual Studio 2012\Projects\Models\Models\bin\Debug\Models.dll.lastcodeanalysissucceeded

@@ -1,0 +1,13 @@
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.dll.config
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.dll
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.pdb
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.dll.CodeAnalysisLog.xml
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.dll.lastcodeanalysissucceeded
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin\Release\EntityFramework.dll
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin\Release\Models.dll
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin\Release\EntityFramework.xml
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.dll
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.pdb
+C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.csprojResolveAssemblyReference.cache
