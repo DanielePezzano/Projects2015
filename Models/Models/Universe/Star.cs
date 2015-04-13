@@ -1,5 +1,6 @@
 ﻿using Models.Base;
 using Models.Universe.Enum;
+using Models.Universe.Strcut;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -24,14 +25,16 @@ namespace Models.Universe
         public int SurfaceTemp { get; set; }
         [Required]
         [Display(Name = "Mass", ResourceType = typeof(Resources))]
-        public float Mass { get; set; }
+        public double Mass { get; set; }
         [Required]
         [Display(Name = "Radius", ResourceType = typeof(Resources))]
-        public float Radius { get; set; }
+        public double Radius { get; set; }
         [Required]
         [Range(1,10)]
         [Display(Name = "RadiationLevel", ResourceType = typeof(Resources))]
         public int RadiationLevel { get; set; }
+        [Required]
+        public Coordinates Coordinate { get; set; }
 
         public List<Satellite> Satellites { get; set; }
         public virtual Galaxy Universe { get; set; }

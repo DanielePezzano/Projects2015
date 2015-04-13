@@ -101,6 +101,7 @@
     <Compile Include="Universe\Enum\StarType.cs" />
     <Compile Include="Universe\OrbitDetail.cs" />
     <Compile Include="Universe\Planet.cs" />
+    <Compile Include="Universe\Strcut\Coordinates.cs" />
     <Compile Include="Universe\Universe.cs" />
     <Compile Include="Users\Enum\UserStatus.cs" />
     <Compile Include="Users\InternalMail.cs" />

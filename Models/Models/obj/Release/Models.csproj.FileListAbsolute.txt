@@ -10,3 +10,9 @@ C:\Users\Daniele\Documents\Visual Studio 2013\Projects\Models\Models\obj\Release
 C:\Users\Daniele\Documents\Visual Studio 2013\Projects\Models\Models\obj\Release\Models.csproj.GenerateResource.Cache
 C:\Users\Daniele\Documents\Visual Studio 2013\Projects\Models\Models\obj\Release\Models.dll
 C:\Users\Daniele\Documents\Visual Studio 2013\Projects\Models\Models\obj\Release\Models.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\Models\Models\obj\Release\Models.Resources.resources
+C:\Users\daniele\Documents\GitHub\Projects2015\Models\Models\obj\Release\Models.csproj.GenerateResource.Cache
+C:\Users\daniele\Documents\GitHub\Projects2015\Models\Models\obj\Release\Models.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\Models\Models\bin\Release\Models.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\Models\Models\bin\Release\Models.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\Models\Models\obj\Release\Models.pdb

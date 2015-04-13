@@ -11,3 +11,16 @@ C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin
 C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.dll
 C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.pdb
 C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.csprojResolveAssemblyReference.cache
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.dll.config
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.dll.CodeAnalysisLog.xml
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.dll.lastcodeanalysissucceeded
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\EntityFramework.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\Models.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\EntityFramework.xml
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.csprojResolveAssemblyReference.cache
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.pdb

@@ -35,9 +35,9 @@ namespace Models.Base
         public int SurfaceTemp { get; set; }
         [Required]
         [Display(Name = "Mass", ResourceType = typeof(Resources))]
-        public float Mass { get; set; }
+        public double Mass { get; set; }
         [Required]
         [Display(Name = "Radius", ResourceType = typeof(Resources))]
-        public float Radius { get; set; }
+        public double Radius { get; set; }
     }
 }

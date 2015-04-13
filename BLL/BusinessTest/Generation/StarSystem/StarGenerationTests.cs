@@ -15,11 +15,5 @@ namespace BLL.Generation.StarSystem.Tests
         {
             Assert.Fail();
         }
-
-        [TestMethod()]
-        public void CreateNewStarTest()
-        {
-            Assert.Fail();
-        }
     }
 }
