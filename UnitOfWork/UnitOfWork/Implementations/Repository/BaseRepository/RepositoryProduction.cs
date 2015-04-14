@@ -49,7 +49,7 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
         /// <param name="orderBy">es. q => q.OrderBy(s => s.LastName)</param>
         /// <param name="includeProperties">es. Student,StudentInfo</param>
         /// <returns></returns>
-        public virtual IEnumerable<T> Get(
+        public IEnumerable<T> Get(
             Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "")
@@ -112,5 +112,9 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             return dbSet.Count(predicate);
         }
 
+        public void CustomDbset(List<T> setter)
+        {
+            
+        }
     }
 }

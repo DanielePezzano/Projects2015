@@ -10,5 +10,11 @@ namespace Models.Universe.Strcut
         public int X;
         [Required()]
         public int Y;
+
+        public Coordinates(int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
     }
 }

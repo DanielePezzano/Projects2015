@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models.Universe
 {
-    public class Star : BaseEntity
+    public class Star : BaseEntity, IStar
     {
         [Required]
         [EnumDataType(typeof(StarType))]

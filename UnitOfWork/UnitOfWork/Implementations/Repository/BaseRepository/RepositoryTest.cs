@@ -19,6 +19,13 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
         public RepositoryTest(TestContext context, DalCache cache, string repoEntitySign)
         {
             this.Context = context;
+            this.RepoCache = cache;
+            var cached = RepoCache.GetMyCachedItem(repoEntitySign);            
+        }
+
+        public void CustomDbset(List<T> setter)
+        {
+            dbSet = setter;
         }
 
         public IQueryable<T> GetAll()
@@ -36,7 +43,7 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             throw new NotImplementedException();
         }
 
-        public virtual IEnumerable<T> Get(
+        public IEnumerable<T> Get(
             Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "")
@@ -88,7 +95,7 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
 
         public int Count(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return dbSet.Count(predicate.Compile());
         }
     }
 }

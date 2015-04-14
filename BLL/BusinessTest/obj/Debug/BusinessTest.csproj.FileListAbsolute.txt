@@ -20,3 +20,5 @@ C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Entity
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\obj\Debug\BusinessTest.csprojResolveAssemblyReference.cache
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\obj\Debug\BusinessTest.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\obj\Debug\BusinessTest.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Moq.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Moq.xml

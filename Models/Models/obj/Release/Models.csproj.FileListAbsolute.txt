@@ -16,3 +16,4 @@ C:\Users\daniele\Documents\GitHub\Projects2015\Models\Models\obj\Release\Models.
 C:\Users\daniele\Documents\GitHub\Projects2015\Models\Models\bin\Release\Models.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\Models\Models\bin\Release\Models.pdb
 C:\Users\daniele\Documents\GitHub\Projects2015\Models\Models\obj\Release\Models.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\Models\Models\obj\Release\Models.csprojResolveAssemblyReference.cache

@@ -99,6 +99,8 @@
     <Compile Include="Universe\Enum\SatelliteStatus.cs" />
     <Compile Include="Universe\Enum\StarColor.cs" />
     <Compile Include="Universe\Enum\StarType.cs" />
+    <Compile Include="Universe\IGalaxy.cs" />
+    <Compile Include="Universe\IStar.cs" />
     <Compile Include="Universe\OrbitDetail.cs" />
     <Compile Include="Universe\Planet.cs" />
     <Compile Include="Universe\Strcut\Coordinates.cs" />
