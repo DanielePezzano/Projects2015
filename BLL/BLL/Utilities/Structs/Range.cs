@@ -12,4 +12,16 @@ namespace BLL.Utilities.Structs
             this.Max = max;
         }
     }
+
+    public struct DoubleRange
+    {
+        public double Min;
+        public double Max;
+
+        public DoubleRange(double min, double max)
+        {
+            this.Min = min;
+            this.Max = max;
+        }
+    }
 }

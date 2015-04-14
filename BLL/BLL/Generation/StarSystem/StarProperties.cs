@@ -11,6 +11,9 @@ namespace BLL.Generation.StarSystem
 {
     public static class StarProperties
     {
+        public const int MinBaseRange = 0;
+        public const int MaxBaseRange = 10;
+
         public static StarColor DetermineStarColor(int seed)
         {
             if (seed >= 0 && seed <= 50) return StarColor.Red;
@@ -55,16 +58,29 @@ namespace BLL.Generation.StarSystem
             return result;
         }
 
-        public static int CalculateResultInRange(int seed, int min, int max, int minResult)
+        /// <summary>
+        /// Given a minimum and maximum range
+        /// </summary>
+        /// <param name="seed"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <param name="minResult"></param>
+        /// <returns></returns>
+        public static double CalculateResultInRange(int seed, double min, double max, int minResult)
         {
-            int result = minResult;
-            using (RangeConversion rangeConverter = new RangeConversion(0, 10, min, max, new ScaleConversion(10, max - min)))
+            double result = minResult;
+            using (RangeConversion rangeConverter = new RangeConversion(MinBaseRange, MaxBaseRange, min, max, new ScaleConversion(10, max - min)))
             {
-                result = (int)rangeConverter.DoConversion(seed);
+                result = rangeConverter.DoConversion(seed);
             }
             return result;
         }
-
+        /// <summary>
+        /// Based on starcolor and type, determine the surface temperature range
+        /// </summary>
+        /// <param name="starcolor"></param>
+        /// <param name="starType"></param>
+        /// <returns></returns>
         public static IntRange CalculateTemperatureRange(StarColor starcolor, StarType starType)
         {
             IntRange result = new IntRange(2800, 3000);
@@ -100,7 +116,11 @@ namespace BLL.Generation.StarSystem
             }
             return result;
         }
-
+        /// <summary>
+        /// Based on star color, determine the star radiation range
+        /// </summary>
+        /// <param name="starcolor"></param>
+        /// <returns></returns>
         private static IntRange CalculateRadiationRange(StarColor starcolor)
         {
             IntRange range = new IntRange(0, 10);
@@ -124,12 +144,48 @@ namespace BLL.Generation.StarSystem
             }
             return range;
         }
+        /// <summary>
+        /// Based on star color and star type, determine the star mass range
+        /// </summary>
+        /// <param name="starcolor"></param>
+        /// <param name="starType"></param>
+        /// <returns></returns>
+        private static DoubleRange CalculateMassRange(StarColor starcolor, StarType starType)
+        {
+            DoubleRange result = new DoubleRange(0.08, 1.0);
+            switch (starcolor)
+            {
+                case StarColor.Blue:
+                    if (starType == StarType.Dwarf) { result.Min = 90; result.Max =150; }
+                    if (starType == StarType.Giant) { result.Min = 150; result.Max = 200; }
+                    if (starType == StarType.HyperGiant) { result.Min = 200; result.Max = 300; }
+                    break;
+                case StarColor.Orange:
+                case StarColor.Yellow:
+                    if (starType == StarType.Dwarf) { result.Min = 0.45; result.Max = 0.8; }
+                    if (starType == StarType.Giant) { result.Min = 0.8; result.Max = 10; }
+                    if (starType == StarType.HyperGiant) { result.Min = 10; result.Max = 100; }
+                    break;
+                case StarColor.Red:
+                    if (starType == StarType.Dwarf) { result.Min = 0.08; result.Max = 0.5; }
+                    if (starType == StarType.Giant) { result.Min = 0.5; result.Max = 10; }
+                    if (starType == StarType.HyperGiant) { result.Min = 10; result.Max = 100; }
+                    break;
+                case StarColor.White:
+                    if (starType == StarType.Dwarf) { result.Min = 1.4; result.Max = 2.1; }
+                    if (starType == StarType.Giant) { result.Min = 2.1; result.Max = 10; }
+                    if (starType == StarType.HyperGiant) { result.Min = 10; result.Max = 150; }
+                    break;                
+                default:
+                    break;
+            }
+            return result;
+        }
 
         public static int DetermineSurfaceTemp(StarColor starColor, StarType starType, int seed)
         {
             IntRange temperature = CalculateTemperatureRange(starColor, starType);
-            int result = CalculateResultInRange(seed, temperature.Min, temperature.Max, 2800);
-            return result;
+            return (int)CalculateResultInRange(seed, temperature.Min, temperature.Max, 2800);
         }
         /// <summary>
         /// 
@@ -140,29 +196,13 @@ namespace BLL.Generation.StarSystem
         public static int DetermineStarRadiation(StarColor starColor, int seed)
         {
             IntRange radiationRange = CalculateRadiationRange(starColor);
-            int result = CalculateResultInRange(seed, radiationRange.Min, radiationRange.Max, 3);
-            return result;
+            return (int)CalculateResultInRange(seed, radiationRange.Min, radiationRange.Max, 3);
         }
 
         public static double DetermineStarMass(StarType starType, StarColor starColor, int seed)
         {
-            double result = 0.08;
-            switch (starColor)
-            {
-                case StarColor.Blue:
-                    break;
-                case StarColor.Orange:
-                    break;
-                case StarColor.Red:
-                    break;
-                case StarColor.White:
-                    break;
-                case StarColor.Yellow:
-                    break;
-                default:
-                    break;
-            }
-            return result;
+            DoubleRange mass = CalculateMassRange(starColor, starType);
+            return CalculateResultInRange(seed, mass.Min, mass.Max, 1);
         }
     }
 }

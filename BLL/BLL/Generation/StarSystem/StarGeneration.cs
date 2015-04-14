@@ -25,13 +25,13 @@ namespace BLL.Generation.StarSystem
             Star result = new Star();
             result.CreatedAt = DateTime.Now;
             result.UpdatedAt = DateTime.Now;
-            result.Name = "Str-" + DateTime.Now.GetHashCode();
-            result.StarColor = StarProperties.DetermineStarColor(_Rnd.Next(0, 100));
-            result.StarType = StarProperties.DetermineStarType(result.StarColor, _Rnd.Next(0,100));
-            result.SurfaceTemp = StarProperties.DetermineSurfaceTemp(result.StarColor, result.StarType, _Rnd.Next(0, 10));
-            result.Mass = StarProperties.DetermineStarMass(result.StarType, result.StarColor, _Rnd.Next(0, 100));
-            result.RadiationLevel = StarProperties.DetermineStarRadiation(result.StarColor, _Rnd.Next(0, 10));
-
+            result.Name = "Str-" + DateTime.Now.ToFileTimeUtc();
+            result.StarColor = StarProperties.DetermineStarColor(_Rnd.Next(StarProperties.MinBaseRange, 100));
+            result.StarType = StarProperties.DetermineStarType(result.StarColor, _Rnd.Next(StarProperties.MinBaseRange, 100));
+            result.SurfaceTemp = StarProperties.DetermineSurfaceTemp(result.StarColor, result.StarType, _Rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
+            result.Mass = StarProperties.DetermineStarMass(result.StarType, result.StarColor, _Rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
+            result.RadiationLevel = StarProperties.DetermineStarRadiation(result.StarColor, _Rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
+            
             result.Universe = this._Galaxy;
             result.Satellites = new List<Satellite>();
             return result;

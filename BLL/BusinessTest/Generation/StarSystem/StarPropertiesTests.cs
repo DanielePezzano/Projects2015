@@ -43,5 +43,11 @@ namespace BLL.Generation.StarSystem.Tests
             Assert.AreEqual(3450, StarProperties.DetermineSurfaceTemp(StarColor.Red, StarType.HyperGiant, 5));
             Assert.AreEqual(40000, StarProperties.DetermineSurfaceTemp(StarColor.Blue, StarType.HyperGiant, 10));
         }
+
+        [TestMethod]
+        public void TestDetermineStarMass()
+        {
+            Assert.AreEqual(150, StarProperties.DetermineStarMass(StarType.Dwarf, StarColor.Blue, 10));
+        }
     }
 }
