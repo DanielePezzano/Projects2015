@@ -181,14 +181,57 @@ namespace BLL.Generation.StarSystem
             }
             return result;
         }
-
+        /// <summary>
+        /// Based on star color and star type, determine the star radius range
+        /// </summary>
+        /// <param name="starColor"></param>
+        /// <param name="starType"></param>
+        /// <returns></returns>
+        private static DoubleRange CalculateRadiusRange(StarColor starColor, StarType starType)
+        {
+            DoubleRange result = new DoubleRange(0.08, 1.0);
+            switch (starColor)
+            {
+                case StarColor.Blue:
+                    if (starType == StarType.Dwarf) { result.Min = 6.6; result.Max = 18; }
+                    if (starType == StarType.Giant) { result.Min = 18; result.Max = 50; }
+                    if (starType == StarType.HyperGiant) { result.Min = 50; result.Max = 350; }
+                    break;
+                case StarColor.Orange:
+                case StarColor.Yellow:
+                    if (starType == StarType.Dwarf) { result.Min = 0.45; result.Max = 0.8; }
+                    if (starType == StarType.Giant) { result.Min = 0.8; result.Max = 10; }
+                    if (starType == StarType.HyperGiant) { result.Min = 10; result.Max = 100; }
+                    break;
+                case StarColor.Red:
+                    if (starType == StarType.Dwarf) { result.Min = 0.08; result.Max = 0.5; }
+                    if (starType == StarType.Giant) { result.Min = 0.5; result.Max = 10; }
+                    if (starType == StarType.HyperGiant) { result.Min = 10; result.Max = 100; }
+                    break;
+                case StarColor.White:
+                    if (starType == StarType.Dwarf) { result.Min = 1.4; result.Max = 2.1; }
+                    if (starType == StarType.Giant) { result.Min = 2.1; result.Max = 10; }
+                    if (starType == StarType.HyperGiant) { result.Min = 10; result.Max = 150; }
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
+        /// <summary>
+        /// Determine Star SurfaceTemperature
+        /// </summary>
+        /// <param name="starColor"></param>
+        /// <param name="starType"></param>
+        /// <param name="seed"></param>
+        /// <returns></returns>
         public static int DetermineSurfaceTemp(StarColor starColor, StarType starType, int seed)
         {
             IntRange temperature = CalculateTemperatureRange(starColor, starType);
             return (int)CalculateResultInRange(seed, temperature.Min, temperature.Max, 2800);
         }
         /// <summary>
-        /// 
+        /// Determine star radiation level
         /// </summary>
         /// <param name="starColor"></param>
         /// <param name="seed">number between 0,10</param>
@@ -198,11 +241,30 @@ namespace BLL.Generation.StarSystem
             IntRange radiationRange = CalculateRadiationRange(starColor);
             return (int)CalculateResultInRange(seed, radiationRange.Min, radiationRange.Max, 3);
         }
-
+        /// <summary>
+        /// Determine STar Mass
+        /// </summary>
+        /// <param name="starType"></param>
+        /// <param name="starColor"></param>
+        /// <param name="seed"></param>
+        /// <returns></returns>
         public static double DetermineStarMass(StarType starType, StarColor starColor, int seed)
         {
             DoubleRange mass = CalculateMassRange(starColor, starType);
             return CalculateResultInRange(seed, mass.Min, mass.Max, 1);
         }
+        /// <summary>
+        /// Determine StarRadius
+        /// </summary>
+        /// <param name="starColor"></param>
+        /// <param name="starType"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public static double DetermineStarRadius(StarColor starColor, StarType starType, int seed)
+        {
+            DoubleRange radius = CalculateRadiusRange(starColor, starType);
+            return CalculateResultInRange(seed, radius.Min, radius.Max, 1);
+        }
+
     }
 }

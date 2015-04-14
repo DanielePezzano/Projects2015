@@ -79,6 +79,7 @@ namespace BusinessTest.Generation.StarSystem
                 {
                     try
                     {
+                        uow.StarRepository.CustomDbset(new List<Star>());
                         MockRepository repo = new MockRepository(MockBehavior.Default);
                         Mock<IGalaxy> galaxy = repo.Create<IGalaxy>().SetupProperty(x => x.Name, "First Galaxy");
 
@@ -86,8 +87,15 @@ namespace BusinessTest.Generation.StarSystem
                         Mock<IStar> star2 = repo.Create<IStar>().SetupProperty(x => x.Coordinate, new Coordinates(90, 42)).SetupProperty(x => x.Universe, galaxy.Object);
                         Mock<IStar> star3 = repo.Create<IStar>().SetupProperty(x => x.Coordinate, new Coordinates(23, 100)).SetupProperty(x => x.Universe, galaxy.Object);
                         Mock<IStar> star4 = repo.Create<IStar>().SetupProperty(x => x.Coordinate, new Coordinates(0, 0)).SetupProperty(x => x.Universe, galaxy.Object);
+                        uow.StarRepository.Add(star1.Object as Star);
+                        uow.StarRepository.Add(star2.Object as Star);
+                        uow.StarRepository.Add(star3.Object as Star);
+                        uow.StarRepository.Add(star4.Object as Star);
 
+                        StarGeneration generator = new StarGeneration();
+                        Star generated = generator.CreateBrandNewStar();
                         StarPlacer placer = new StarPlacer(uow, galaxy.Object);
+                        placer.Place(generated);
                     }
                     catch (System.Exception ex)
                     {
