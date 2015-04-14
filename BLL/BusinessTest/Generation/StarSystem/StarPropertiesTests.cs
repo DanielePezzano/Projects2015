@@ -28,6 +28,20 @@ namespace BLL.Generation.StarSystem.Tests
             Assert.IsTrue(StarProperties.DetermineStarType(StarColor.Orange, 87) == Models.Universe.Enum.StarType.Giant);
             Assert.IsTrue(StarProperties.DetermineStarType(StarColor.Orange, 100) == Models.Universe.Enum.StarType.HyperGiant);
         }
+        
+        [TestMethod]
+        public void TestDetermineStarRadiationBlue()
+        {
+            Assert.AreEqual(14, StarProperties.DetermineStarRadiation(StarColor.Blue, 8));
+            Assert.AreEqual(10, StarProperties.DetermineStarRadiation(StarColor.Blue, 0));
+            Assert.AreEqual(15, StarProperties.DetermineStarRadiation(StarColor.Blue, 10));
+        }
 
+        [TestMethod]
+        public void TestDetermineSurfaceTemp()
+        {
+            Assert.AreEqual(3450, StarProperties.DetermineSurfaceTemp(StarColor.Red, StarType.HyperGiant, 5));
+            Assert.AreEqual(40000, StarProperties.DetermineSurfaceTemp(StarColor.Blue, StarType.HyperGiant, 10));
+        }
     }
 }

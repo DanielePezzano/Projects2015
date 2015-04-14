@@ -28,9 +28,9 @@ namespace BLL.Generation.StarSystem
             result.Name = "Str-" + DateTime.Now.GetHashCode();
             result.StarColor = StarProperties.DetermineStarColor(_Rnd.Next(0, 100));
             result.StarType = StarProperties.DetermineStarType(result.StarColor, _Rnd.Next(0,100));
-            result.SurfaceTemp = StarProperties.DetermineSurfaceTemp(result.StarColor, result.StarType, _Rnd);
+            result.SurfaceTemp = StarProperties.DetermineSurfaceTemp(result.StarColor, result.StarType, _Rnd.Next(0, 10));
             result.Mass = StarProperties.DetermineStarMass(result.StarType, result.StarColor, _Rnd.Next(0, 100));
-            result.RadiationLevel = StarProperties.DetermineStarRadiation(result.StarColor, _Rnd);
+            result.RadiationLevel = StarProperties.DetermineStarRadiation(result.StarColor, _Rnd.Next(0, 10));
 
             result.Universe = this._Galaxy;
             result.Satellites = new List<Satellite>();

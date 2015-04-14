@@ -1,4 +1,6 @@
-﻿using Models.Universe.Enum;
+﻿using BLL.Utilities;
+using BLL.Utilities.Structs;
+using Models.Universe.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,23 +29,23 @@ namespace BLL.Generation.StarSystem
             {
                 case StarColor.Blue:
                     if (seed <= 40) result = StarType.Dwarf;
-                    if (seed >40 && seed <= 90) result = StarType.Giant;
+                    if (seed > 40 && seed <= 90) result = StarType.Giant;
                     if (seed > 90) result = StarType.HyperGiant;
                     break;
                 case StarColor.Red:
                     if (seed <= 70) result = StarType.Dwarf;
-                    if (seed >70 && seed <= 90) result = StarType.Giant;
+                    if (seed > 70 && seed <= 90) result = StarType.Giant;
                     if (seed > 90) result = StarType.HyperGiant;
                     break;
                 case StarColor.White:
                     if (seed <= 80) result = StarType.Dwarf;
-                    if (seed >80 && seed <= 90) result = StarType.Giant;
+                    if (seed > 80 && seed <= 90) result = StarType.Giant;
                     if (seed > 90) result = StarType.HyperGiant;
                     break;
                 case StarColor.Orange:
                 case StarColor.Yellow:
                     if (seed <= 60) result = StarType.Dwarf;
-                    if (seed >60 && seed <= 90) result = StarType.Giant;
+                    if (seed > 60 && seed <= 90) result = StarType.Giant;
                     if (seed > 90) result = StarType.HyperGiant;
                     break;
                 default:
@@ -53,80 +55,45 @@ namespace BLL.Generation.StarSystem
             return result;
         }
 
-        public static int DetermineSurfaceTemp(StarColor starColor, StarType starType, Random rnd)
+        public static int CalculateResultInRange(int seed, int min, int max, int minResult)
         {
-            int result = 2800;
-            switch (starColor)
+            int result = minResult;
+            using (RangeConversion rangeConverter = new RangeConversion(0, 10, min, max, new ScaleConversion(10, max - min)))
+            {
+                result = (int)rangeConverter.DoConversion(seed);
+            }
+            return result;
+        }
+
+        public static IntRange CalculateTemperatureRange(StarColor starcolor, StarType starType)
+        {
+            IntRange result = new IntRange(2800, 3000);
+            switch (starcolor)
             {
                 case StarColor.Blue:
-                    if (starType == StarType.Dwarf)
-                    {
-                        result = rnd.Next(10000, 20000);
-                    }
-                    if (starType == StarType.Giant)
-                    {
-                        result = rnd.Next(10000, 20000);
-                    }
-                    if (starType == StarType.HyperGiant)
-                    {
-                        result = rnd.Next(20000, 40000);
-                    }
+                    if (starType == StarType.Dwarf) { result.Min = 10000; result.Max = 20000; }
+                    if (starType == StarType.Giant) { result.Min = 15000; result.Max = 30000; }
+                    if (starType == StarType.HyperGiant) { result.Min = 25000; result.Max = 40000; }
                     break;
                 case StarColor.Orange:
-                    if (starType == StarType.Dwarf)
-                    {
-                        result = rnd.Next(3700, 4000);
-                    }
-                    if (starType == StarType.Giant)
-                    {
-                        result = rnd.Next(4000, 5000);
-                    }
-                    if (starType == StarType.HyperGiant)
-                    {
-                        result = rnd.Next(5000, 5200);
-                    }
+                    if (starType == StarType.Dwarf) { result.Min = 3700; result.Max = 4000; }
+                    if (starType == StarType.Giant) { result.Min = 4000; result.Max = 5000; }
+                    if (starType == StarType.HyperGiant) { result.Min = 5000; result.Max = 5200; }
                     break;
                 case StarColor.Red:
-                    if (starType == StarType.Dwarf)
-                    {
-                        result = rnd.Next(2800, 3000);
-                    }
-                    if (starType == StarType.Giant)
-                    {
-                        result = rnd.Next(3000, 3200);
-                    }
-                    if (starType == StarType.HyperGiant)
-                    {
-                        result = rnd.Next(3200, 3700);
-                    }
+                    if (starType == StarType.Dwarf) { result.Min = 2800; result.Max = 3000; }
+                    if (starType == StarType.Giant) { result.Min = 3000; result.Max = 3200; }
+                    if (starType == StarType.HyperGiant) { result.Min = 3200; result.Max = 3700; }
                     break;
                 case StarColor.White:
-                    if (starType == StarType.Dwarf)
-                    {
-                        result = rnd.Next(7500, 9000);
-                    }
-                    if (starType == StarType.Giant)
-                    {
-                        result = rnd.Next(9000, 9500);
-                    }
-                    if (starType == StarType.HyperGiant)
-                    {
-                        result = rnd.Next(9500, 10000);
-                    }
+                    if (starType == StarType.Dwarf) { result.Min = 7500; result.Max = 9000; }
+                    if (starType == StarType.Giant) { result.Min = 9000; result.Max = 9500; }
+                    if (starType == StarType.HyperGiant) { result.Min = 9500; result.Max = 12000; }
                     break;
                 case StarColor.Yellow:
-                    if (starType == StarType.Dwarf)
-                    {
-                        result = rnd.Next(5200, 5500);
-                    }
-                    if (starType == StarType.Giant)
-                    {
-                        result = rnd.Next(5500, 5800);
-                    }
-                    if (starType == StarType.HyperGiant)
-                    {
-                        result = rnd.Next(5800, 6000);
-                    }
+                    if (starType == StarType.Dwarf) { result.Min = 5200; result.Max = 5500; }
+                    if (starType == StarType.Giant) { result.Min = 5500; result.Max = 5800; }
+                    if (starType == StarType.HyperGiant) { result.Min = 5800; result.Max = 6000; }
                     break;
                 default:
                     break;
@@ -134,33 +101,50 @@ namespace BLL.Generation.StarSystem
             return result;
         }
 
-        public static int DetermineStarRadiation(StarColor starColor, Random rnd)
+        private static IntRange CalculateRadiationRange(StarColor starcolor)
         {
-            int result = 3;
-            switch (starColor)
+            IntRange range = new IntRange(0, 10);
+            switch (starcolor)
             {
                 case StarColor.Blue:
-                    result = rnd.Next(10, 15);
+                    range.Min = 10; range.Max = 15;
                     break;
                 case StarColor.Orange:
-                    result = rnd.Next(3, 5);
+                case StarColor.Yellow:
+                    range.Min = 3; range.Max = 5;
                     break;
                 case StarColor.Red:
-                    result = rnd.Next(5, 7);
+                    range.Min = 5; range.Max = 7;
                     break;
                 case StarColor.White:
-                    result = rnd.Next(7, 10);
-                    break;
-                case StarColor.Yellow:
-                    result = rnd.Next(3, 4);
+                    range.Min = 7; range.Max = 11;
                     break;
                 default:
                     break;
             }
+            return range;
+        }
+
+        public static int DetermineSurfaceTemp(StarColor starColor, StarType starType, int seed)
+        {
+            IntRange temperature = CalculateTemperatureRange(starColor, starType);
+            int result = CalculateResultInRange(seed, temperature.Min, temperature.Max, 2800);
+            return result;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="starColor"></param>
+        /// <param name="seed">number between 0,10</param>
+        /// <returns></returns>
+        public static int DetermineStarRadiation(StarColor starColor, int seed)
+        {
+            IntRange radiationRange = CalculateRadiationRange(starColor);
+            int result = CalculateResultInRange(seed, radiationRange.Min, radiationRange.Max, 3);
             return result;
         }
 
-        public static double DetermineStarMass(StarType starType, StarColor starColor, int p)
+        public static double DetermineStarMass(StarType starType, StarColor starColor, int seed)
         {
             double result = 0.08;
             switch (starColor)
