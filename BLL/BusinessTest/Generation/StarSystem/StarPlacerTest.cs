@@ -45,7 +45,7 @@ namespace BusinessTest.Generation.StarSystem
         public void TestCoordinatesGeneration()
         {
             StarPlacer placer = new StarPlacer(null, null);
-            Coordinates coord = placer.GenerateRandomCoordinatesTest(230, 400);
+            Coordinates coord = placer.GenerateRandomCoordinatesTest(230, 400, 230, 400);
             Assert.IsTrue(coord.X > 0);
             Assert.IsTrue(coord.Y > 0);
             Assert.IsTrue(coord.X >= 230);
@@ -66,7 +66,7 @@ namespace BusinessTest.Generation.StarSystem
                     
                     Mock<Galaxy> galaxy = repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
                     StarPlacer placer = new StarPlacer(uow, galaxy.Object);
-                    Coordinates coord = placer.GenerateRandomCoordinatesTest(230, 400);
+                    Coordinates coord = placer.GenerateRandomCoordinatesTest(230, 400, 230, 400);
                     Assert.IsTrue(placer.ValidPlaceTest(coord));
                 }
             }
@@ -79,11 +79,11 @@ namespace BusinessTest.Generation.StarSystem
             {
                 using (MainUow uow = new MainUow(cf, new DalCache()))
                 {
+                    #region Prepare object for test
                     uow.StarRepository.CustomDbset(new List<Star>());
                     MockRepository repo = new MockRepository(MockBehavior.Default);
                     Mock<Galaxy> galaxy = repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
 
-                    //Mock<Star> star1 = repo.Create<Star>().SetupProperty(x => x.Coordinate, new Coordinates(50, 50)).SetupProperty(x => x.Universe, galaxy.Object);
                     Mock<Star> star1 = repo.Create<Star>().SetupProperty(x => x.Universe, galaxy.Object);
                     Mock<Star> star2 = repo.Create<Star>().SetupProperty(x => x.Universe, galaxy.Object);
                     Mock<Star> star3 = repo.Create<Star>().SetupProperty(x => x.Universe, galaxy.Object);
@@ -95,20 +95,18 @@ namespace BusinessTest.Generation.StarSystem
                     star4.Object.Coordinate = new Coordinates(0, 0);
 
                     galaxy.SetupProperty(x => x.Stars, new List<Star>() { star1.Object, star2.Object, star3.Object, star4.Object });
+                    uow.StarRepository.Add(star1.Object);
+                    uow.StarRepository.Add(star2.Object);
+                    uow.StarRepository.Add(star3.Object);
+                    uow.StarRepository.Add(star4.Object);
+                    StarGeneration generator = new StarGeneration();
+                    Star generated = generator.CreateBrandNewStar(); 
+                    #endregion
 
-                    try
-                    {
-                                             
+                    StarPlacer placer = new StarPlacer(uow, galaxy.Object);
+                    placer.Place(generated, 40, 90, 40, 90);
 
-                        StarGeneration generator = new StarGeneration();
-                        Star generated = generator.CreateBrandNewStar();
-                        StarPlacer placer = new StarPlacer(uow, galaxy.Object);
-                        placer.Place(generated);
-                    }
-                    catch (System.Exception ex)
-                    {
-                        var q = ex.Message;
-                    }
+                    Assert.IsInstanceOfType(generated.Coordinate, typeof(Coordinates));
                 }
             }
         }
