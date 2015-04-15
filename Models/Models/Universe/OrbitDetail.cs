@@ -13,10 +13,10 @@ namespace Models.Universe
         public double TetaZero { get; set; }
         [Required]
         [Display(Name = "PeriodOfRevolution", ResourceType = typeof(Resources))]
-        public int PeriodOfRevolution { get; set; }
+        public double PeriodOfRevolution { get; set; }
         [Required]
         [Display(Name = "PeriodOfRotation", ResourceType = typeof(Resources))]
-        public int PeriodOfRotation { get; set; }
+        public double PeriodOfRotation { get; set; }
         [Required()]
         public double DistanceR { get; set; }
     }

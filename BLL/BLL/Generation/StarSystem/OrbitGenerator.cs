@@ -31,7 +31,10 @@ namespace BLL.Generation.StarSystem
             this._CloseRange = closeRange;
             _Rnd = new Random();
         }
-
+        /// <summary>
+        /// Calculate the distance expressed in UA)
+        /// </summary>
+        /// <returns></returns>
         private double CalculateDistance()
         {
             double result = 0.8;
@@ -47,11 +50,15 @@ namespace BLL.Generation.StarSystem
             }
             return result;
         }
-
-        private int CalculatePeriodOfRevolution(double distance)
+        /// <summary>
+        /// Calculate the period of revolution in days
+        /// </summary>
+        /// <param name="distance"></param>
+        /// <returns></returns>
+        private double CalculatePeriodOfRevolution(double distance)
         {
             double totalSunDistance = distance + (_Star.Radius * _StarRadToUaRate);
-            return (int) Math.Truncate(Math.Sqrt(Math.Pow(totalSunDistance, 3)) * 0.78);
+            return (Math.Truncate(Math.Sqrt(Math.Pow(totalSunDistance, 3)) * 0.78)*100)/100;
         }
 
         #region Wrapper for private methods test
@@ -60,7 +67,7 @@ namespace BLL.Generation.StarSystem
             return this.CalculateDistance();
         }
 
-        public int CalculatePeriodOfRevolutionTest(double distance)
+        public double CalculatePeriodOfRevolutionTest(double distance)
         {
             return this.CalculatePeriodOfRevolution(distance);
         }
@@ -77,6 +84,7 @@ namespace BLL.Generation.StarSystem
             OrbitDetail orbit = new OrbitDetail();
             orbit.DistanceR = this.CalculateDistance();
             orbit.Eccentricity = Math.Truncate(RandomNumbers.RandomDouble(_MinEcc, _MaxEccc, _Rnd) * 100) / 100;
+            orbit.PeriodOfRevolution = this.CalculatePeriodOfRevolution(orbit.DistanceR);
             
             throw new NotImplementedException();
         }
