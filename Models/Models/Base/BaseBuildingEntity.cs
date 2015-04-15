@@ -1,10 +1,9 @@
-﻿using Models.Base.Interfaces;
-using Models.Buildings.Enums;
+﻿using Models.Buildings.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models.Base
 {
-    public class BaseBuildingEntity:BaseEntity,IBaseBuilding,IBaseCost
+    public class BaseBuildingEntity:BaseEntity
     {
         [Display(Name = "BuildingType", ResourceType = typeof(Resources))]
         public BuildingType BuildingType { get; set; }

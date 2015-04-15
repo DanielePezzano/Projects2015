@@ -13,11 +13,11 @@ namespace BLL.Generation.StarSystem
     public sealed class StarPlacer
     {
         private MainUow _Uow = null;
-        private IGalaxy _Galaxy;
+        private Galaxy _Galaxy;
         private const int _MinDistance = 25;
         private static Random _Rnd;
 
-        public StarPlacer(IUnitOfWork uow, IGalaxy galaxy)
+        public StarPlacer(IUnitOfWork uow, Galaxy galaxy)
         {
             this._Galaxy = galaxy;
             this._Uow = (MainUow)uow;
@@ -38,6 +38,7 @@ namespace BLL.Generation.StarSystem
             return result;
         }
 
+        #region Wrapper for testing private methods
         public bool ValidPlaceTest(Coordinates coordinate)
         {
             return this.ValidPlace(coordinate);
@@ -46,7 +47,8 @@ namespace BLL.Generation.StarSystem
         public Coordinates GenerateRandomCoordinatesTest(int min, int max)
         {
             return this.GenerateRandomCoordinates(min, max);
-        }
+        } 
+        #endregion
 
         public void Place(Star star)
         {

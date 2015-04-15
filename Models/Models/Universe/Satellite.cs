@@ -15,7 +15,6 @@ namespace Models.Universe
 
         [Display(Name = "Buildings", ResourceType = typeof(Resources))]
         public virtual ICollection<Building> Buildings { get; set; }
-
         public virtual Planet Planet { get; set; }
         public virtual User User { get; set; }
     }
