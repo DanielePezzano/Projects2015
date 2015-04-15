@@ -67,5 +67,28 @@ namespace BusinessTest.Generation.StarSystem
             PlanetGenerator generator = new PlanetGenerator(null);
             Assert.IsInstanceOfType(generator.CreateBrandNewPlanet(), typeof(Planet));
         }
+
+        [TestMethod]
+        public void TestCalculateRadiationLevel()
+        {
+            PlanetGenerator generator = new PlanetGenerator(null);
+            int radiationLevel = generator.CalculateRadiationLevelTest(false, 4, 1.4);
+            Assert.IsTrue(radiationLevel > 3);
+            radiationLevel = generator.CalculateRadiationLevelTest(true, 4, 1.4);
+            Assert.IsTrue(radiationLevel < 3);
+            radiationLevel = generator.CalculateRadiationLevelTest(false, 15, 1.4);
+            Assert.IsTrue(radiationLevel >= 10);
+            radiationLevel = generator.CalculateRadiationLevelTest(true, 15, 1.4);
+            Assert.IsTrue(radiationLevel < 10);
+
+            radiationLevel = generator.CalculateRadiationLevelTest(true, 15, 0.5);
+            Assert.IsTrue(radiationLevel < 9);
+            radiationLevel = generator.CalculateRadiationLevelTest(false, 15, 0.5);
+            Assert.IsTrue(radiationLevel >=8);
+            radiationLevel = generator.CalculateRadiationLevelTest(true, 15, 11.4);
+            Assert.IsTrue(radiationLevel < 3);
+            radiationLevel = generator.CalculateRadiationLevelTest(false, 15, 11.4);
+            Assert.IsTrue(radiationLevel > 3);
+        }
     }
 }

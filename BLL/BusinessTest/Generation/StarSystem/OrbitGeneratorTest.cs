@@ -51,17 +51,17 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestGenerateType()
         {
-            OrbitGenerator generator = new OrbitGenerator(star.Object, 0.4, 0.8, new DoubleRange(0.1, 0.6));
+            OrbitGenerator generator = new OrbitGenerator(star.Object, 0.4, 0.8, new DoubleRange(0.1, 0.6), 4.5);
             Assert.IsInstanceOfType(generator.Generate(), typeof(OrbitDetail));
         }
 
         [TestMethod]
         public void TestCalculateDistanceTest()
         {
-            OrbitGenerator generator = new OrbitGenerator(star.Object, 0.4, 0.8, new DoubleRange(0.1, 0.6));
+            OrbitGenerator generator = new OrbitGenerator(star.Object, 0.4, 0.8, new DoubleRange(0.1, 0.6), 4.5);
             double distance = generator.CalculateDistanceTest();
             Assert.IsTrue(distance >= 0.7);
-            generator = new OrbitGenerator(star.Object, 0.04, 0.6, new DoubleRange(0.1, 0.6));
+            generator = new OrbitGenerator(star.Object, 0.04, 0.6, new DoubleRange(0.1, 0.6), 4.5);
             distance = generator.CalculateDistanceTest();
             Assert.IsTrue(distance >= 0.1 && distance<=0.6);
         }
@@ -69,7 +69,7 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestCalculatePeriodOfRevolutionTest()
         {
-            OrbitGenerator generator = new OrbitGenerator(star.Object, 0.4, 0.8, new DoubleRange(0.1, 0.6));
+            OrbitGenerator generator = new OrbitGenerator(star.Object, 0.4, 0.8, new DoubleRange(0.1, 0.6), 4.5);
             double revolution = generator.CalculatePeriodOfRevolutionTest(5.2);
         }
     }
