@@ -11,16 +11,25 @@ namespace BLL.Generation.StarSystem
     {
         private Star _Star;
         private bool _ForceLiving = false;
+        private double _MediumDensity = 5.5; //densità media terrestre --> se densità calcolata <=3 probabilmente è gassoso
+        private static Random _Rnd;
 
         public PlanetGenerator(Star star, bool force = false)
         {
             this._Star = star;
             this._ForceLiving = force;
+            _Rnd = new Random();
         }
 
-        public Planet Generate()
+        public Planet CreateBrandNewPlanet()
         {
-            throw new NotImplementedException();
+            Planet result = new Planet();
+            result.CreatedAt = DateTime.Now;
+            result.UpdatedAt = DateTime.Now;
+            result.Star = _Star;
+            result.Name = "PL" + DateTime.Now.ToFileTimeUtc();
+            
+            return result;
         }
     }
 }

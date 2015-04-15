@@ -70,6 +70,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Generation\StarSystem\OrbitGeneratorTest.cs" />
     <Compile Include="Generation\StarSystem\PlanetGeneratorTest.cs" />
     <Compile Include="Generation\StarSystem\StarGenerationTests.cs" />
     <Compile Include="Generation\StarSystem\StarPlacerTest.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\RangeConversionTest.cs" />
     <Compile Include="Utilities\ScaleConversionTest.cs" />
+    <Compile Include="Utilities\TimeConverterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

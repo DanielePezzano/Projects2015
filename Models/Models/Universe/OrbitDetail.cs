@@ -17,7 +17,7 @@ namespace Models.Universe
         [Required]
         [Display(Name = "PeriodOfRotation", ResourceType = typeof(Resources))]
         public int PeriodOfRotation { get; set; }
-
-        public int DistanceR { get; set; }
+        [Required()]
+        public double DistanceR { get; set; }
     }
 }

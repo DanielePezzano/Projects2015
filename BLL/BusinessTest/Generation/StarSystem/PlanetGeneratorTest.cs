@@ -64,9 +64,8 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestGeneratePlanet()
         {
-            Planet toTest = null;
             PlanetGenerator generator = new PlanetGenerator(null);
-            Assert.IsInstanceOfType(generator.Generate(), typeof(Planet));
+            Assert.IsInstanceOfType(generator.CreateBrandNewPlanet(), typeof(Planet));
         }
     }
 }
