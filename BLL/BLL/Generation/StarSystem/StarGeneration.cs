@@ -32,7 +32,7 @@ namespace BLL.Generation.StarSystem
             result.Mass = StarProperties.DetermineStarMass(result.StarType, result.StarColor, _Rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
             result.RadiationLevel = StarProperties.DetermineStarRadiation(result.StarColor, _Rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
             result.Radius = StarProperties.DetermineStarRadius(result.StarColor, result.StarType, _Rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
-            result.Satellites = new List<Satellite>();
+            result.Planets = new List<Planet>();
             return result;
         }
         #endregion
