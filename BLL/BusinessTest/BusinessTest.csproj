@@ -70,6 +70,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Generation\StarSystem\PlanetGeneratorTest.cs" />
     <Compile Include="Generation\StarSystem\StarGenerationTests.cs" />
     <Compile Include="Generation\StarSystem\StarPlacerTest.cs" />
     <Compile Include="Generation\StarSystem\StarPropertiesTests.cs" />

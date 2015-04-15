@@ -1,16 +1,14 @@
 ﻿using Models.Universe;
-using Models.Universe.Enum;
 using System;
 using System.Collections.Generic;
-using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace BLL.Generation.StarSystem
 {
-    public sealed class StarGeneration
+    public sealed class StarGenerator
     {
         private static Random _Rnd;
 
-        public StarGeneration()
+        public StarGenerator()
         {
             _Rnd = new Random();
         }

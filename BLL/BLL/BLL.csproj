@@ -56,7 +56,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generation\StarSystem\StarGeneration.cs" />
+    <Compile Include="Generation\StarSystem\PlanetGenerator.cs" />
+    <Compile Include="Generation\StarSystem\StarGenerator.cs" />
     <Compile Include="Generation\StarSystem\StarPlacer.cs" />
     <Compile Include="Generation\StarSystem\StarProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

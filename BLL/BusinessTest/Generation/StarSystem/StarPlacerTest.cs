@@ -99,7 +99,7 @@ namespace BusinessTest.Generation.StarSystem
                     uow.StarRepository.Add(star2.Object);
                     uow.StarRepository.Add(star3.Object);
                     uow.StarRepository.Add(star4.Object);
-                    StarGeneration generator = new StarGeneration();
+                    StarGenerator generator = new StarGenerator();
                     Star generated = generator.CreateBrandNewStar(); 
                     #endregion
 
