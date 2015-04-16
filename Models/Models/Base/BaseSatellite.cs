@@ -1,4 +1,8 @@
-﻿using Models.Universe.Enum;
+﻿using Models.Buildings;
+using Models.Queues;
+using Models.Universe;
+using Models.Universe.Enum;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,7 +17,7 @@ namespace Models.Base
         [Required]
         [EnumDataType(typeof(SatelliteStatus))]
         [Display(Name = "SatelliteStatus", ResourceType = typeof(Resources))]
-        SatelliteStatus SatelliteStatus { get; set; }
+        public SatelliteStatus SatelliteStatus { get; set; }
         [Range(0, 10)]
         [Display(Name ="RadiationLevel" , ResourceType = typeof(Resources))]
         public int RadiationLevel { get; set; }
@@ -21,7 +25,7 @@ namespace Models.Base
         public Spaces Spaces { get; set; }        
         [NotMapped]
         [Display(Name = "MaxPopulation", ResourceType = typeof(Resources))]
-        public int MaxPopulation { get { return Spaces.HabitableSpaces * 2; } }
+        public int MaxPopulation { get { return (Spaces != null) ? Spaces.HabitableSpaces * 2 : 0; } }
         [Display(Name="SatelliteSocial", ResourceType= typeof(Resources))]
         public SatelliteSocials SatelliteSocial { get; set; }
         [Display(Name="SatelliteProduction", ResourceType= typeof(Resources))]
@@ -39,5 +43,11 @@ namespace Models.Base
         [Required]
         [Display(Name = "Radius", ResourceType = typeof(Resources))]
         public double Radius { get; set; }
+        [Required]
+        [Display(Name = "OrbitDetails", ResourceType = typeof(Resources))]
+        public OrbitDetail Orbit { get; set; }
+                
+        [Display(Name = "Buildings", ResourceType = typeof(Resources))]
+        public virtual ICollection<Building> Buildings { get; set; }
     }
 }

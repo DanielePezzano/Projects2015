@@ -10,6 +10,8 @@ namespace BLL.Generation.StarSystem
 {
     public static class PlanetProperties
     {
+        public const double _MinSatelliteDistance = 0.8;
+        public const double _MaxSatelliteDistance = 2.5;
         /// <summary>
         /// Determine planet Space Structure
         /// </summary>
@@ -37,16 +39,36 @@ namespace BLL.Generation.StarSystem
             
             return result;
         }
-
-        public static Production CalculateProduction()
+        /// <summary>
+        /// This will calculate production for planet
+        /// </summary>
+        /// <param name="planetSpaces"></param>
+        /// <param name="density"></param>
+        /// <param name="earthDensity"></param>
+        /// <returns></returns>
+        public static Production CalculateProduction(Spaces planetSpaces, double density, double earthDensity)
         {
             Production result = new Production();
             result.ActivePopOnFoodProduction = 0;
             result.ActivePopOnOreProduction = 0;
             result.ActivePopOnResProduction = 0;
-            //result.FoodProduction = 0000;
-            //result.OreProduction = 00000;
-            //result.ResearchPointProduction = 0000;
+
+            double baseWaterProduction = 0.24;
+            double baseGroundProduction = 0.14;
+            double baseMineralProduction = 0.2 * density / earthDensity;
+            double baseMineralProdOnRad = baseMineralProduction + baseMineralProduction * 0.25;
+
+            double percWater = (double)planetSpaces.WaterSpaces/ (double)planetSpaces.Totalspaces;
+            double percWaterRad = (double)planetSpaces.WaterRadiatedSpaces / (double)planetSpaces.Totalspaces;
+            double percGround = (double)planetSpaces.GroundSpaces / (double)planetSpaces.Totalspaces;
+            double percGroundRad = 100 - percWater - percWaterRad - percGround;
+
+            double FoodProd = (baseGroundProduction * percGround) + baseWaterProduction * percWater;
+            double OreProd = (baseMineralProduction * percGround) + baseMineralProduction * percWater +
+                (baseMineralProdOnRad * percGroundRad) + (baseMineralProdOnRad * percWaterRad);
+            result.FoodProduction = (int)FoodProd;
+            result.OreProduction = (int)OreProd;
+            result.ResearchPointProduction = 10;
             return result;
         }
 
@@ -71,9 +93,9 @@ namespace BLL.Generation.StarSystem
             }
 
             double percRad = 0;
-            if (radiationLevel > 5)
+            if (radiationLevel > 3)
             {
-                percRad = (double)radiationLevel / 15.00;
+                percRad = (double)radiationLevel / 10.00;
                 if (!hasWater)
                     percRad = (percRad + percRad * 0.5);
                 if (hasAtmosphere) percRad = (percRad - percRad * 0.5);

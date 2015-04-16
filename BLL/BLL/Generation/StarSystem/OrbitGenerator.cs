@@ -16,6 +16,7 @@ namespace BLL.Generation.StarSystem
         private double _PlanetRadius;
         private bool _ForceLiving;
         private DoubleRange _CloseRange;
+        private DoubleRange _SatelliteRange;
         private const double _StarRadToUaRate = 0.04;
         private const double _MinEcc = 0.8;
         private const double _MaxEccc = 1.1;
@@ -29,24 +30,25 @@ namespace BLL.Generation.StarSystem
             this._PlanetRadius = planetRadius;
             this._ForceLiving = forceLiving;
             this._CloseRange = closeRange;
+            this._SatelliteRange = new DoubleRange(PlanetProperties._MinSatelliteDistance, PlanetProperties._MaxSatelliteDistance);
             _Rnd = new Random();
         }
         /// <summary>
         /// Calculate the distance expressed in UA
         /// </summary>
         /// <returns></returns>
-        private double CalculateDistance()
+        private double CalculateDistance(DoubleRange range, bool forceLiving)
         {
-            double result = 0.8;
-            if (_ForceLiving) return (result + RandomNumbers.RandomDouble(_CloseRange.Min, _CloseRange.Max, _Rnd));
+            double result = range.Min;
+            if (forceLiving) return (result + RandomNumbers.RandomDouble(range.Min, range.Max, _Rnd));
             if (this._PlanetMass <= 0.05)
             {
                 //place it very close!
-                result = RandomNumbers.RandomDouble(_CloseRange.Min, _CloseRange.Max, _Rnd);
+                result = RandomNumbers.RandomDouble(range.Min, range.Max, _Rnd);
             }
             else
             {
-                result = RandomNumbers.RandomDouble(_CloseRange.Max, 40, _Rnd);
+                result = RandomNumbers.RandomDouble(range.Max, 40, _Rnd);
             }
             return result;
         }
@@ -55,13 +57,14 @@ namespace BLL.Generation.StarSystem
         /// </summary>
         /// <param name="distance"></param>
         /// <returns></returns>
-        private double CalculatePeriodOfRevolution(double distance)
+        private double CalculatePeriodOfRevolution(double distance, double radius, double rate)
         {
-            double totalSunDistance = distance + (_Star.Radius * _StarRadToUaRate);
-            return (Math.Truncate(Math.Sqrt(Math.Pow(totalSunDistance, 3)) * 0.78)*100)/100;
+            double totalDistance = distance + (radius * rate);
+            return Math.Truncate((Math.Sqrt(Math.Pow(totalDistance, 3)) * 0.78) * 100) / 100;
         }
         /// <summary>
         /// Calculate the period of rotation
+        /// es 0.45, 0.2, 4.9 50 - 100
         /// </summary>
         /// <param name="distance"></param>
         /// <param name="revolution"></param>
@@ -72,7 +75,7 @@ namespace BLL.Generation.StarSystem
             bool isRetro = (RandomNumbers.RandomInt(0, 10, _Rnd) == 0) ? true : false;
             if (distance <= _CloseRange.Max)
             {
-                result = Math.Truncate(revolution * 670) / 100;
+                result = Math.Truncate(((20 * revolution / distance) * density) * 100) / 100;
             }
             else
             {
@@ -92,12 +95,12 @@ namespace BLL.Generation.StarSystem
         #region Wrapper for private methods test
         public double CalculateDistanceTest()
         {
-            return this.CalculateDistance();
+            return this.CalculateDistance(this._CloseRange, this._ForceLiving);
         }
 
         public double CalculatePeriodOfRevolutionTest(double distance)
         {
-            return this.CalculatePeriodOfRevolution(distance);
+            return this.CalculatePeriodOfRevolution(distance, this._Star.Radius, _StarRadToUaRate);
         }
         #endregion
 
@@ -110,9 +113,22 @@ namespace BLL.Generation.StarSystem
         public OrbitDetail Generate()
         {
             OrbitDetail orbit = new OrbitDetail();
-            orbit.DistanceR = this.CalculateDistance();
+            orbit.DistanceR = this.CalculateDistance(this._CloseRange, this._ForceLiving);
             orbit.Eccentricity = RandomNumbers.RandomDouble(_MinEcc, _MaxEccc, _Rnd);
-            orbit.PeriodOfRevolution = this.CalculatePeriodOfRevolution(orbit.DistanceR);            
+            orbit.PeriodOfRevolution = this.CalculatePeriodOfRevolution(orbit.DistanceR, this._Star.Radius, _StarRadToUaRate);
+            orbit.TetaZero = RandomNumbers.RandomDouble(0.1, 3, _Rnd);
+            return orbit;
+        }
+        /// <summary>
+        /// Calculate satellite main orbit
+        /// </summary>
+        /// <returns></returns>
+        public OrbitDetail GenerateSatellite()
+        {
+            OrbitDetail orbit = new OrbitDetail();
+            orbit.DistanceR = this.CalculateDistance(this._SatelliteRange, false);
+            orbit.Eccentricity = RandomNumbers.RandomDouble(_MinEcc, _MaxEccc, _Rnd);
+            orbit.PeriodOfRevolution = this.CalculatePeriodOfRevolution(orbit.DistanceR, this._PlanetRadius, 0);
             orbit.TetaZero = RandomNumbers.RandomDouble(0.1, 3, _Rnd);
             return orbit;
         }

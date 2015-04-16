@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
 using BLL.Generation.StarSystem;
 using Moq;
+using BLL.Utilities.Structs;
 
 namespace BusinessTest.Generation.StarSystem
 {
@@ -14,30 +15,18 @@ namespace BusinessTest.Generation.StarSystem
     [TestClass]
     public class PlanetGeneratorTest
     {
-        //public PlanetGeneratorTest()
-        //{
-        //    //
-        //    // TODO: Add constructor logic here
-        //    //
-        //}
 
-        //private TestContext testContextInstance;
+        private MockRepository _Repo;
+        private Mock<Star> star;
 
-        ///// <summary>
-        /////Gets or sets the test context which provides
-        /////information about and functionality for the current test run.
-        /////</summary>
-        //public TestContext TestContext
-        //{
-        //    get
-        //    {
-        //        return testContextInstance;
-        //    }
-        //    set
-        //    {
-        //        testContextInstance = value;
-        //    }
-        //}
+        public PlanetGeneratorTest()
+        {
+            _Repo = new MockRepository(MockBehavior.Default);
+            star = _Repo.Create<Star>();
+            star.Object.Mass = 0.03;
+            star.Object.Radius = 10;
+            star.Object.RadiationLevel = 7;
+        }
 
         #region Additional test attributes
         //
@@ -64,8 +53,13 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestGeneratePlanet()
         {
-            PlanetGenerator generator = new PlanetGenerator(null);
-            Assert.IsInstanceOfType(generator.CreateBrandNewPlanet(), typeof(Planet));
+            PlanetGenerator generator = new PlanetGenerator(this.star.Object);
+            Planet firstPlanet = generator.CreateBrandNewPlanet();
+            Assert.IsInstanceOfType(firstPlanet, typeof(Planet));
+            DoubleRange closeRange = new DoubleRange(0.1,0.7);
+            generator.CompletePlanetGeneration(firstPlanet, new OrbitGenerator(this.star.Object, firstPlanet.Mass, 0, closeRange), closeRange);
+
+            Assert.IsInstanceOfType(firstPlanet.Orbit, typeof(OrbitDetail));
         }
 
         [TestMethod]
@@ -94,11 +88,11 @@ namespace BusinessTest.Generation.StarSystem
         public void TestAssignTotalSpaces()
         {
             PlanetGenerator generator = new PlanetGenerator(null);
-            int spaces = generator.AssignTotalSpacesTest(1.0,  5.53);
+            int spaces = generator.AssignTotalSpacesTest(1.0,  5.53,false);
             Assert.IsTrue(spaces<=100 && spaces>=99);
-            spaces = generator.AssignTotalSpacesTest(0.05, 5.43);
+            spaces = generator.AssignTotalSpacesTest(0.05, 5.43, false);
             Assert.IsTrue(spaces <= 5 && spaces >= 4);
-            spaces = generator.AssignTotalSpacesTest(755, 0.70);
+            spaces = generator.AssignTotalSpacesTest(755, 0.70, false);
         }
     }
 }

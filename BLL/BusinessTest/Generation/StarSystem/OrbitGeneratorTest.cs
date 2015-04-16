@@ -72,5 +72,12 @@ namespace BusinessTest.Generation.StarSystem
             OrbitGenerator generator = new OrbitGenerator(star.Object, 0.4, 0.8, new DoubleRange(0.1, 0.6));
             double revolution = generator.CalculatePeriodOfRevolutionTest(5.2);
         }
+        [TestMethod]
+        public void TestCalculatePeriodOfRotation()
+        {
+            OrbitGenerator generator = new OrbitGenerator(star.Object, 0.07, 0.22, new DoubleRange(0.1, 0.6));
+            double rotation = generator.CalculatePeriodOfRotation(0.45, 0.2, 4.9);
+            Assert.IsTrue(Math.Abs(rotation) > 40 && Math.Abs(rotation) < 100);
+        }
     }
 }
