@@ -24,7 +24,7 @@ namespace BLL.Utilities
         /// <returns></returns>
         public static double RandomDouble(double min, double max, Random rnd)
         {
-            return rnd.NextDouble() * (max - min) + min;
+            return Math.Truncate((rnd.NextDouble() * (max - min) + min)*100)/100;
         }
     }
 }

@@ -90,5 +90,15 @@ namespace BusinessTest.Generation.StarSystem
             radiationLevel = generator.CalculateRadiationLevelTest(false, 15, 11.4);
             Assert.IsTrue(radiationLevel > 3);
         }
+        [TestMethod]
+        public void TestAssignTotalSpaces()
+        {
+            PlanetGenerator generator = new PlanetGenerator(null);
+            int spaces = generator.AssignTotalSpacesTest(1.0,  5.53);
+            Assert.IsTrue(spaces<=100 && spaces>=99);
+            spaces = generator.AssignTotalSpacesTest(0.05, 5.43);
+            Assert.IsTrue(spaces <= 5 && spaces >= 4);
+            spaces = generator.AssignTotalSpacesTest(755, 0.70);
+        }
     }
 }

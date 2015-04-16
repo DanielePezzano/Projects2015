@@ -14,7 +14,6 @@ namespace BLL.Generation.StarSystem
         private Star _Star;
         private double _PlanetMass;
         private double _PlanetRadius;
-        private double _MediumDensity;
         private bool _ForceLiving;
         private DoubleRange _CloseRange;
         private const double _StarRadToUaRate = 0.04;
@@ -23,14 +22,13 @@ namespace BLL.Generation.StarSystem
 
         private static Random _Rnd;
 
-        public OrbitGenerator(Star star, double planetMass, double planetRadius, DoubleRange closeRange,double density, bool forceLiving = false)
+        public OrbitGenerator(Star star, double planetMass, double planetRadius, DoubleRange closeRange, bool forceLiving = false)
         {
             this._Star = star;
             this._PlanetMass = planetMass;
             this._PlanetRadius = planetRadius;
             this._ForceLiving = forceLiving;
             this._CloseRange = closeRange;
-            this._MediumDensity = density;
             _Rnd = new Random();
         }
         /// <summary>
@@ -44,11 +42,11 @@ namespace BLL.Generation.StarSystem
             if (this._PlanetMass <= 0.05)
             {
                 //place it very close!
-                result = Math.Truncate(RandomNumbers.RandomDouble(_CloseRange.Min, _CloseRange.Max, _Rnd) * 100) / 100;
+                result = RandomNumbers.RandomDouble(_CloseRange.Min, _CloseRange.Max, _Rnd);
             }
             else
             {
-                result = Math.Truncate(RandomNumbers.RandomDouble(_CloseRange.Max, 40, _Rnd) * 100) / 100;
+                result = RandomNumbers.RandomDouble(_CloseRange.Max, 40, _Rnd);
             }
             return result;
         }
@@ -68,7 +66,7 @@ namespace BLL.Generation.StarSystem
         /// <param name="distance"></param>
         /// <param name="revolution"></param>
         /// <returns></returns>
-        private double CalculatePeriodOfRotation(double distance, double revolution)
+        public double CalculatePeriodOfRotation(double distance, double revolution, double density)
         {
             double result = 1;
             bool isRetro = (RandomNumbers.RandomInt(0, 10, _Rnd) == 0) ? true : false;
@@ -78,14 +76,14 @@ namespace BLL.Generation.StarSystem
             }
             else
             {
-                if (_MediumDensity <= 3)
+                if (density <= 3)
                 {
                     // High velocity
-                    result = Math.Truncate(RandomNumbers.RandomDouble(0.4, 0.7, _Rnd) * 100) / 100;
+                    result = RandomNumbers.RandomDouble(0.4, 0.7, _Rnd);
                 }
                 else
                 {
-                    result = Math.Truncate(RandomNumbers.RandomDouble(1, 7, _Rnd) * 100) / 100;
+                    result = RandomNumbers.RandomDouble(1, 7, _Rnd);
                 }
             }
             return (isRetro) ? (result * -1) : result;
@@ -113,10 +111,9 @@ namespace BLL.Generation.StarSystem
         {
             OrbitDetail orbit = new OrbitDetail();
             orbit.DistanceR = this.CalculateDistance();
-            orbit.Eccentricity = Math.Truncate(RandomNumbers.RandomDouble(_MinEcc, _MaxEccc, _Rnd) * 100) / 100;
-            orbit.PeriodOfRevolution = this.CalculatePeriodOfRevolution(orbit.DistanceR);
-            orbit.PeriodOfRotation = this.CalculatePeriodOfRotation(orbit.DistanceR, orbit.PeriodOfRevolution);
-            orbit.TetaZero = Math.Truncate(RandomNumbers.RandomDouble(0.1, 3, _Rnd));
+            orbit.Eccentricity = RandomNumbers.RandomDouble(_MinEcc, _MaxEccc, _Rnd);
+            orbit.PeriodOfRevolution = this.CalculatePeriodOfRevolution(orbit.DistanceR);            
+            orbit.TetaZero = RandomNumbers.RandomDouble(0.1, 3, _Rnd);
             return orbit;
         }
     }
