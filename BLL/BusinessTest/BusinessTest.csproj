@@ -75,7 +75,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Generation\StarSystem\DataContractJsonSerializer.cs" />
     <Compile Include="Generation\StarSystem\OrbitGeneratorTest.cs" />
     <Compile Include="Generation\StarSystem\PlanetGeneratorTest.cs" />
     <Compile Include="Generation\StarSystem\StarGenerationTests.cs" />

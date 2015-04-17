@@ -223,7 +223,9 @@ namespace BLL.Generation.StarSystem
 
             if (result < 100)
             {
-                result = RandomNumbers.RandomInt(100, 273, rnd);
+                if (!AtmpspherePresent) result = RandomNumbers.RandomInt(100, 273, rnd);
+                else
+                    result = RandomNumbers.RandomInt(100, 500, rnd);
             }
 
             return result;
