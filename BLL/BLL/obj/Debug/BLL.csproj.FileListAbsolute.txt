@@ -21,3 +21,4 @@ C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\EntityFramework
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\obj\Debug\BLL.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\obj\Debug\BLL.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
