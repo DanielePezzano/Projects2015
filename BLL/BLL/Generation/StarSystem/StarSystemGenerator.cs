@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnitOfWork.Implementations.Uows;
 
 namespace BLL.Generation.StarSystem
 {
@@ -184,6 +185,17 @@ namespace BLL.Generation.StarSystem
                 }
             }
             return star;
+        }
+
+        public void GenerateAndInsert(Random _rnd, MainUow uow, Galaxy galaxy)
+        {
+            Star generatedStarSystem = this.Generate(_rnd);
+            if (generatedStarSystem != null)
+            {
+                generatedStarSystem.Universe = galaxy;
+                uow.StarRepository.Add(generatedStarSystem);                
+                uow.Save();
+            }
         }
     }
 }
