@@ -20,10 +20,7 @@ namespace Models.Base
         public int WaterSpaces { get; set; }
         [Display(Name = "TotalSpaces", Description = "TotalSpacesHint", ResourceType = typeof(Resources))]
         [NotMapped]
-        public int Totalspaces { get { return GroundRadiatedSpaces + WaterRadiatedSpaces + GroundSpaces + WaterSpaces; } }
-        [NotMapped]
-        [Display(Name = "GravityCompared", Description = "GravityComparedHint", ResourceType = typeof(Resources))]
-        public double GravityEarthCompared { get { return (Totalspaces == 0) ? 1 : (100 / Totalspaces); } } // gravità rispetto alla terra (che si decide abbia 100 spazi come paragone)
+        public int Totalspaces { get { return GroundRadiatedSpaces + WaterRadiatedSpaces + GroundSpaces + WaterSpaces; } }        
         [NotMapped]
         [Display(Name = "HabitableSpaces", Description = "HabitableSpacesHint", ResourceType = typeof(Resources))]
         public int HabitableSpaces { get { return WaterSpaces + GroundSpaces; } }

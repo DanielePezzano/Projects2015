@@ -90,6 +90,7 @@
     <Compile Include="Tech\TechBonus.cs" />
     <Compile Include="Tech\Technology.cs" />
     <Compile Include="Tech\TechRequisiteNode.cs" />
+    <Compile Include="Universe\BasicConstants.cs" />
     <Compile Include="Universe\Enum\SatelliteStatus.cs" />
     <Compile Include="Universe\Enum\StarColor.cs" />
     <Compile Include="Universe\Enum\StarType.cs" />

@@ -17,15 +17,36 @@ namespace BusinessTest.Generation.StarSystem
     {
 
         private MockRepository _Repo;
-        private Mock<Star> star;
+        private Mock<Star> _Star;
+        private Mock<Planet> _PlanetHostile;
+        private Mock<Planet> _PlanetHabitable;
+        private Mock<OrbitDetail> _CloseOrbit;
+        private Mock<OrbitDetail> _MediumOrbit;
 
         public PlanetGeneratorTest()
         {
             _Repo = new MockRepository(MockBehavior.Default);
-            star = _Repo.Create<Star>();
-            star.Object.Mass = 0.03;
-            star.Object.Radius = 10;
-            star.Object.RadiationLevel = 7;
+            _Star = _Repo.Create<Star>();
+            _Star.Object.Mass = 0.03;
+            _Star.Object.Radius = 10;
+            _Star.Object.RadiationLevel = 7;
+            _Star.Object.SurfaceTemp = 5778;
+
+            _PlanetHostile = _Repo.Create<Planet>();
+            _PlanetHabitable = _Repo.Create<Planet>();
+            _PlanetHostile.SetupProperty(c => c.Star, _Star.Object);
+            _PlanetHabitable.SetupProperty(c => c.Star, _Star.Object);
+
+            _CloseOrbit = _Repo.Create<OrbitDetail>();
+            _CloseOrbit.Object.DistanceR = 0.3;
+            _MediumOrbit = _Repo.Create<OrbitDetail>();
+            _MediumOrbit.Object.DistanceR = 1.4;
+
+            _PlanetHostile.Object.AtmospherePresent = false;
+            _PlanetHostile.Object.Orbit = _CloseOrbit.Object;
+
+            _PlanetHabitable.Object.AtmospherePresent = true;
+            _PlanetHabitable.Object.Orbit = _MediumOrbit.Object;
         }
 
         #region Additional test attributes
@@ -51,14 +72,22 @@ namespace BusinessTest.Generation.StarSystem
         #endregion
 
         [TestMethod]
+        public void TestAssignSurfaceTemperature()
+        {
+            PlanetGenerator generator = new PlanetGenerator(this._Star.Object);
+            int temp_1 = generator.AssignSurfaceTemperatureTest(_PlanetHostile.Object.Orbit.DistanceR, _PlanetHostile.Object.AtmospherePresent, _Star.Object.SurfaceTemp);
+            Assert.AreEqual<int>(570, temp_1, "Temp non uguali: atteso: 570, ottenuto : " + temp_1);
+        }
+
+        [TestMethod]
         public void TestGeneratePlanet()
         {
-            PlanetGenerator generator = new PlanetGenerator(this.star.Object);
+            PlanetGenerator generator = new PlanetGenerator(this._Star.Object);
             Planet firstPlanet = generator.CreateBrandNewPlanet();
             Assert.IsInstanceOfType(firstPlanet, typeof(Planet));
             DoubleRange closeRange = new DoubleRange(0.1,0.7);
-            generator.CompletePlanetGeneration(firstPlanet, new OrbitGenerator(this.star.Object, firstPlanet.Mass, 0, closeRange), closeRange);
-
+            generator.CompletePlanetGeneration(firstPlanet, new OrbitGenerator(this._Star.Object, firstPlanet.Mass, 0, closeRange), closeRange);
+            Assert.IsTrue(firstPlanet.GravityEarthCompared == firstPlanet.Mass);
             Assert.IsInstanceOfType(firstPlanet.Orbit, typeof(OrbitDetail));
         }
 

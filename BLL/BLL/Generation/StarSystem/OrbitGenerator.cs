@@ -9,17 +9,16 @@ using BLL.Utilities.Structs;
 
 namespace BLL.Generation.StarSystem
 {
-    public sealed class OrbitGenerator
+    public sealed class OrbitGenerator : IDisposable
     {
         private Star _Star;
         private double _PlanetMass;
         private double _PlanetRadius;
         private bool _ForceLiving;
+        private bool _disposed = false;
         private DoubleRange _CloseRange;
         private DoubleRange _SatelliteRange;
-        private const double _StarRadToUaRate = 0.04;
-        private const double _MinEcc = 0.8;
-        private const double _MaxEccc = 1.1;
+        
 
         private static Random _Rnd;
 
@@ -100,7 +99,7 @@ namespace BLL.Generation.StarSystem
 
         public double CalculatePeriodOfRevolutionTest(double distance)
         {
-            return this.CalculatePeriodOfRevolution(distance, this._Star.Radius, _StarRadToUaRate);
+            return this.CalculatePeriodOfRevolution(distance, this._Star.Radius, BasicConstants._StarRadToUaRate);
         }
         #endregion
 
@@ -114,8 +113,8 @@ namespace BLL.Generation.StarSystem
         {
             OrbitDetail orbit = new OrbitDetail();
             orbit.DistanceR = this.CalculateDistance(this._CloseRange, this._ForceLiving);
-            orbit.Eccentricity = RandomNumbers.RandomDouble(_MinEcc, _MaxEccc, _Rnd);
-            orbit.PeriodOfRevolution = this.CalculatePeriodOfRevolution(orbit.DistanceR, this._Star.Radius, _StarRadToUaRate);
+            orbit.Eccentricity = RandomNumbers.RandomDouble(BasicConstants._MinEcc, BasicConstants._MaxEccc, _Rnd);
+            orbit.PeriodOfRevolution = this.CalculatePeriodOfRevolution(orbit.DistanceR, this._Star.Radius, BasicConstants._StarRadToUaRate);
             orbit.TetaZero = RandomNumbers.RandomDouble(0.1, 3, _Rnd);
             return orbit;
         }
@@ -127,10 +126,21 @@ namespace BLL.Generation.StarSystem
         {
             OrbitDetail orbit = new OrbitDetail();
             orbit.DistanceR = this.CalculateDistance(this._SatelliteRange, false);
-            orbit.Eccentricity = RandomNumbers.RandomDouble(_MinEcc, _MaxEccc, _Rnd);
+            orbit.Eccentricity = RandomNumbers.RandomDouble(BasicConstants._MinEcc, BasicConstants._MaxEccc, _Rnd);
             orbit.PeriodOfRevolution = this.CalculatePeriodOfRevolution(orbit.DistanceR, this._PlanetRadius, 0);
             orbit.TetaZero = RandomNumbers.RandomDouble(0.1, 3, _Rnd);
             return orbit;
+        }
+
+        public void Dispose()
+        {
+            if (!_disposed)
+            {
+                _disposed = true;
+                _CloseRange = new DoubleRange();
+                _SatelliteRange = new DoubleRange();
+            }
+            GC.SuppressFinalize(this);
         }
     }
 }

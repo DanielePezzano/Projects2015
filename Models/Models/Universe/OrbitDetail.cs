@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Models.Universe
 {
     [ComplexType]
-    public sealed class OrbitDetail
+    public class OrbitDetail
     {
         [Range(0,1)]
         [Required]

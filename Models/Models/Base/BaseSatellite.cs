@@ -46,6 +46,9 @@ namespace Models.Base
         [Required]
         [Display(Name = "OrbitDetails", ResourceType = typeof(Resources))]
         public OrbitDetail Orbit { get; set; }
+        [NotMapped]
+        [Display(Name = "GravityCompared", Description = "GravityComparedHint", ResourceType = typeof(Resources))]
+        public double GravityEarthCompared { get { return Mass; } } // gravità rispetto alla terra (che si decide abbia 100 spazi come paragone)
                 
         [Display(Name = "Buildings", ResourceType = typeof(Resources))]
         public virtual ICollection<Building> Buildings { get; set; }
