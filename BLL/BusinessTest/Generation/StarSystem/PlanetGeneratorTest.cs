@@ -25,6 +25,7 @@ namespace BusinessTest.Generation.StarSystem
 
         public PlanetGeneratorTest()
         {
+            if (OrbitGeneratorTest._Rnd == null) OrbitGeneratorTest._Rnd = new Random(Environment.TickCount);
             _Repo = new MockRepository(MockBehavior.Default);
             _Star = _Repo.Create<Star>();
             _Star.Object.Mass = 0.03;
@@ -83,10 +84,10 @@ namespace BusinessTest.Generation.StarSystem
         public void TestGeneratePlanet()
         {
             PlanetGenerator generator = new PlanetGenerator(this._Star.Object);
-            Planet firstPlanet = generator.CreateBrandNewPlanet();
+            Planet firstPlanet = generator.CreateBrandNewPlanet(OrbitGeneratorTest._Rnd);
             Assert.IsInstanceOfType(firstPlanet, typeof(Planet));
-            DoubleRange closeRange = new DoubleRange(0.1,0.7);
-            generator.CompletePlanetGeneration(firstPlanet, new OrbitGenerator(this._Star.Object, firstPlanet.Mass, 0, closeRange), closeRange);
+            DoubleRange closeRange = new DoubleRange(0.1, 0.7);
+            generator.CompletePlanetGeneration(firstPlanet, new OrbitGenerator(this._Star.Object, firstPlanet.Mass, 0, closeRange), closeRange, OrbitGeneratorTest._Rnd);
             Assert.IsTrue(firstPlanet.GravityEarthCompared == firstPlanet.Mass);
             Assert.IsInstanceOfType(firstPlanet.Orbit, typeof(OrbitDetail));
         }
@@ -107,7 +108,7 @@ namespace BusinessTest.Generation.StarSystem
             radiationLevel = generator.CalculateRadiationLevelTest(true, 15, 0.5);
             Assert.IsTrue(radiationLevel < 9);
             radiationLevel = generator.CalculateRadiationLevelTest(false, 15, 0.5);
-            Assert.IsTrue(radiationLevel >=8);
+            Assert.IsTrue(radiationLevel >= 8);
             radiationLevel = generator.CalculateRadiationLevelTest(true, 15, 11.4);
             Assert.IsTrue(radiationLevel < 3);
             radiationLevel = generator.CalculateRadiationLevelTest(false, 15, 11.4);
@@ -117,8 +118,8 @@ namespace BusinessTest.Generation.StarSystem
         public void TestAssignTotalSpaces()
         {
             PlanetGenerator generator = new PlanetGenerator(null);
-            int spaces = generator.AssignTotalSpacesTest(1.0,  5.53,false);
-            Assert.IsTrue(spaces<=100 && spaces>=99);
+            int spaces = generator.AssignTotalSpacesTest(1.0, 5.53, false);
+            Assert.IsTrue(spaces <= 100 && spaces >= 99);
             spaces = generator.AssignTotalSpacesTest(0.05, 5.43, false);
             Assert.IsTrue(spaces <= 5 && spaces >= 4);
             spaces = generator.AssignTotalSpacesTest(755, 0.70, false);

@@ -21,10 +21,12 @@ namespace BusinessTest.Generation.StarSystem
             star = _Repo.Create<Star>();
             star.Object.Mass = 0.03;
             star.Object.Radius = 10;
+            if (OrbitGeneratorTest._Rnd == null) OrbitGeneratorTest._Rnd = new Random(Environment.TickCount);
         }
 
         private MockRepository _Repo;
         private Mock<Star> star;
+        public static Random _Rnd;
 
         #region Additional test attributes
         //
@@ -52,7 +54,7 @@ namespace BusinessTest.Generation.StarSystem
         public void TestGenerateType()
         {
             OrbitGenerator generator = new OrbitGenerator(star.Object, 0.4, 0.8, new DoubleRange(0.1, 0.6));
-            Assert.IsInstanceOfType(generator.Generate(), typeof(OrbitDetail));
+            Assert.IsInstanceOfType(generator.Generate(_Rnd), typeof(OrbitDetail));
         }
 
         [TestMethod]
@@ -61,9 +63,6 @@ namespace BusinessTest.Generation.StarSystem
             OrbitGenerator generator = new OrbitGenerator(star.Object, 0.4, 0.8, new DoubleRange(0.1, 0.6));
             double distance = generator.CalculateDistanceTest();
             Assert.IsTrue(distance >= 0.7);
-            generator = new OrbitGenerator(star.Object, 0.04, 0.6, new DoubleRange(0.1, 0.6));
-            distance = generator.CalculateDistanceTest();
-            Assert.IsTrue(distance >= 0.1 && distance<=0.6);
         }
 
         [TestMethod]
@@ -76,7 +75,7 @@ namespace BusinessTest.Generation.StarSystem
         public void TestCalculatePeriodOfRotation()
         {
             OrbitGenerator generator = new OrbitGenerator(star.Object, 0.07, 0.22, new DoubleRange(0.1, 0.6));
-            double rotation = generator.CalculatePeriodOfRotation(0.45, 0.2, 4.9);
+            double rotation = generator.CalculatePeriodOfRotation(0.45, 0.2, 4.9, _Rnd);
             Assert.IsTrue(Math.Abs(rotation) > 40 && Math.Abs(rotation) < 100);
         }
     }

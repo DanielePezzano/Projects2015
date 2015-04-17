@@ -46,7 +46,7 @@ namespace BLL.Generation.StarSystem
         /// <param name="density"></param>
         /// <param name="earthDensity"></param>
         /// <returns></returns>
-        public static Production CalculateProduction(Spaces planetSpaces, double density, double earthDensity)
+        public static Production CalculateProduction(Spaces planetSpaces, double density, double earthDensity, bool mineralRich, bool mineralPoor, bool foodRich, bool foodPoor)
         {
             Production result = new Production();
             result.ActivePopOnFoodProduction = 0;
@@ -57,6 +57,26 @@ namespace BLL.Generation.StarSystem
             double baseGroundProduction = 0.14;
             double baseMineralProduction = 0.2 * density / earthDensity;
             double baseMineralProdOnRad = baseMineralProduction + baseMineralProduction * 0.25;
+
+            if (mineralRich) { 
+                baseMineralProdOnRad += baseMineralProdOnRad * 0.5;
+                baseMineralProduction += baseMineralProduction * 0.5;
+            }
+            if (mineralPoor)
+            {
+                baseMineralProdOnRad -= baseMineralProdOnRad * 0.5;
+                baseMineralProduction -= baseMineralProduction * 0.5;
+            }
+            if (foodRich)
+            {
+                baseWaterProduction += baseWaterProduction * 0.5;
+                baseGroundProduction += baseGroundProduction * 0.5;
+            }
+            if (foodPoor)
+            {
+                baseWaterProduction -= baseWaterProduction * 0.5;
+                baseGroundProduction -= baseGroundProduction * 0.5;
+            }
 
             double percWater = (double)planetSpaces.WaterSpaces/ (double)planetSpaces.Totalspaces;
             double percWaterRad = (double)planetSpaces.WaterRadiatedSpaces / (double)planetSpaces.Totalspaces;

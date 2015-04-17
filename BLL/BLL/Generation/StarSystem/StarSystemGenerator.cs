@@ -12,7 +12,6 @@ namespace BLL.Generation.StarSystem
     public sealed class StarSystemGenerator
     {
         private StarGenerator _StarGenerator;
-        private PlanetGenerator _PlanetGenerator;
         private StarPlacer _StarPlacer;
         private bool _ForceLiving;
         private bool _ForceWater;
@@ -26,7 +25,6 @@ namespace BLL.Generation.StarSystem
         private int _MinY;
         private int _MaxY;
         private DoubleRange _CloseRange = new DoubleRange(0.1, 0.7);
-        private static Random _Rnd;
 
         public StarSystemGenerator(StarGenerator starGenerator,
             StarPlacer starPlacer, bool forceLiving, bool forceWater, bool mostlyWater
@@ -49,9 +47,6 @@ namespace BLL.Generation.StarSystem
             this._MineralProductionRich = mineralProductionRich;
             this._FoodProductionPoor = foodProductionPoor;
             this._FoodProductionRich = foodProductionRich;
-
-
-            _Rnd = new Random();
         }
         /// <summary>
         /// Determine the probability range of planet existence, based on the star color
@@ -89,7 +84,7 @@ namespace BLL.Generation.StarSystem
         /// </summary>
         /// <param name="planetProb"></param>
         /// <returns></returns>
-        private bool HasPlanets(IntRange planetProb)
+        private bool HasPlanets(IntRange planetProb, Random _Rnd)
         {
             int seed = RandomNumbers.RandomInt(0, 100, _Rnd);
             return (seed <= planetProb.Max) ? true : false;
@@ -99,12 +94,12 @@ namespace BLL.Generation.StarSystem
         /// </summary>
         /// <param name="planetRage"></param>
         /// <returns></returns>
-        private int CalculateNumberOfPlanets(IntRange planetRage)
+        private int CalculateNumberOfPlanets(IntRange planetRage, Random _Rnd)
         {
             int result = 0;
             using (ScaleConversion conversion = new ScaleConversion(100, (planetRage.Max - planetRage.Min)))
             {
-                result = (int)conversion.Convert(RandomNumbers.RandomInt(planetRage.Min, planetRage.Max, _Rnd));
+                result = (int)conversion.Convert(RandomNumbers.RandomInt(0, 100, _Rnd));
             }
             return result;
         }
@@ -148,16 +143,16 @@ namespace BLL.Generation.StarSystem
         /// <param name="foodProductionRich"></param>
         /// <param name="mineralProductionPoor"></param>
         /// <param name="foodProductionPoor"></param>
-        private void GeneratePlanet(Star star, bool forceLiving, bool forceWater, bool mostlyWater, bool mineralProductionRich, bool foodProductionRich, bool mineralProductionPoor, bool foodProductionPoor)
+        private void GeneratePlanet(Star star, bool forceLiving, bool forceWater, bool mostlyWater, bool mineralProductionRich, bool foodProductionRich, bool mineralProductionPoor, bool foodProductionPoor, Random _Rnd)
         {
             using (PlanetGenerator generator = new PlanetGenerator(star, forceLiving, forceWater, mostlyWater, mineralProductionRich, foodProductionRich, mineralProductionPoor, foodProductionPoor))
             {
-                Planet habitablePlanet = generator.CreateBrandNewPlanet();
+                Planet habitablePlanet = generator.CreateBrandNewPlanet(_Rnd);
                 if (habitablePlanet != null)
                 {
                     using (OrbitGenerator orbigGenerator = new OrbitGenerator(star, habitablePlanet.Mass, habitablePlanet.Radius, _CloseRange, _ForceLiving))
                     {
-                        generator.CompletePlanetGeneration(habitablePlanet, orbigGenerator, _CloseRange);
+                        generator.CompletePlanetGeneration(habitablePlanet, orbigGenerator, _CloseRange, _Rnd);
                     }
                     star.Planets.Add(habitablePlanet);
                 }
@@ -167,7 +162,7 @@ namespace BLL.Generation.StarSystem
         /// This Generate a complete new star system
         /// </summary>
         /// <returns></returns>
-        public Star Generate()
+        public Star Generate(Random _Rnd)
         {
             Star star = this._StarGenerator.CreateBrandNewStar();
             _StarPlacer.Place(star, this._MinX, this._MaxX, this._MinY, this._MaxY);
@@ -175,17 +170,17 @@ namespace BLL.Generation.StarSystem
             IntRange maxNumberOfPlanets = this.CalculateMaxNumberOfPlanet(star);
             IntRange planetProbability = this.CalculatePlanetProbability(star);
 
-            if (this.HasPlanets(planetProbability) || _ForceLiving)
+            if (this.HasPlanets(planetProbability, _Rnd) || _ForceLiving)
             {
-                int numberOfPlanets = this.CalculateNumberOfPlanets(maxNumberOfPlanets);
+                int numberOfPlanets = this.CalculateNumberOfPlanets(maxNumberOfPlanets, _Rnd);
                 if (_ForceLiving)
                 {
-                    this.GeneratePlanet(star, _ForceLiving, _ForceWater, _MostlyWater, _MineralProductionRich, _FoodProductionRich, _MineralProductionPoor, _FoodProductionPoor);
+                    this.GeneratePlanet(star, _ForceLiving, _ForceWater, _MostlyWater, _MineralProductionRich, _FoodProductionRich, _MineralProductionPoor, _FoodProductionPoor, _Rnd);
                     numberOfPlanets = (numberOfPlanets - 1 < 0) ? 0 : numberOfPlanets - 1;
                 }
                 for (int index = 0; index < numberOfPlanets; index++)
                 {
-                    this.GeneratePlanet(star, false, false, false, false, false, false, false);
+                    this.GeneratePlanet(star, false, false, false, false, false, false, false, _Rnd);
                 }
             }
             return star;

@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 namespace BLL.Generation.StarSystem
 {
-    public sealed class StarGenerator
+    public sealed class StarGenerator : IDisposable
     {
         private static Random _Rnd;
+        private bool _disposed;
 
         public StarGenerator()
         {
@@ -34,5 +35,14 @@ namespace BLL.Generation.StarSystem
             return result;
         }
         #endregion
+
+        public void Dispose()
+        {
+            if (!_disposed)
+            {
+                _disposed = true;
+            }
+            GC.SuppressFinalize(this);
+        }
     }
 }

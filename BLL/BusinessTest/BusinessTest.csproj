@@ -52,6 +52,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
     <Reference Include="UnitOfWork, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\BLL\Lib\UnitOfWork.dll</HintPath>
@@ -70,12 +75,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Generation\StarSystem\DataContractJsonSerializer.cs" />
     <Compile Include="Generation\StarSystem\OrbitGeneratorTest.cs" />
     <Compile Include="Generation\StarSystem\PlanetGeneratorTest.cs" />
     <Compile Include="Generation\StarSystem\StarGenerationTests.cs" />
     <Compile Include="Generation\StarSystem\StarPlacerTest.cs" />
     <Compile Include="Generation\StarSystem\StarPropertiesTests.cs" />
     <Compile Include="Generation\StarSystem\PlanetPropertiesTest.cs" />
+    <Compile Include="Generation\StarSystem\StarSystemGeneratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\RangeConversionTest.cs" />
     <Compile Include="Utilities\ScaleConversionTest.cs" />
