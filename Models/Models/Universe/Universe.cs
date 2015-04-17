@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models.Universe
 {
-    public class Galaxy : BaseEntity, Models.Universe.IGalaxy
+    public class Galaxy : BaseEntity
     {
         [Required()]
         [Display(Name = "Name", ResourceType = typeof(Resources))]

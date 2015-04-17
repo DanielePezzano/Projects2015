@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models.Universe
 {
-    public class Star : BaseEntity, IStar
+    public class Star : BaseEntity
     {
         [Required]
         [EnumDataType(typeof(StarType))]
@@ -36,7 +36,7 @@ namespace Models.Universe
         [Required]
         public Coordinates Coordinate { get; set; }
 
-        public List<Satellite> Satellites { get; set; }
+        public virtual ICollection<Planet> Planets { get; set; }
         public virtual Galaxy Universe { get; set; }
     }
 }

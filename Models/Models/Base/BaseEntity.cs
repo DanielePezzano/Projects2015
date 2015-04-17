@@ -1,10 +1,9 @@
-﻿using Models.Base.Interfaces;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models.Base
 {
-    public class BaseEntity : IBase
+    public class BaseEntity
     {
         [Required()]
         public int Id { get; set; }

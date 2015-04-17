@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Models.Universe
 {
     [ComplexType]
-    public sealed class OrbitDetail
+    public class OrbitDetail
     {
         [Range(0,1)]
         [Required]
@@ -13,11 +13,11 @@ namespace Models.Universe
         public double TetaZero { get; set; }
         [Required]
         [Display(Name = "PeriodOfRevolution", ResourceType = typeof(Resources))]
-        public int PeriodOfRevolution { get; set; }
+        public double PeriodOfRevolution { get; set; }
         [Required]
         [Display(Name = "PeriodOfRotation", ResourceType = typeof(Resources))]
-        public int PeriodOfRotation { get; set; }
-
-        public int DistanceR { get; set; }
+        public double PeriodOfRotation { get; set; }
+        [Required()]
+        public double DistanceR { get; set; }
     }
 }

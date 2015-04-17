@@ -1,15 +1,14 @@
 ﻿using Models.Base;
-using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
-using Models.Universe;
-using Models.Tech;
-using Models.Queues;
-using Models.Logs;
-using Models.Universe;
-using Models.Races;
-using Models.Users.Enum;
-using Models.Fleets.ShipClasses;
 using Models.Fleets;
+using Models.Fleets.ShipClasses;
+using Models.Logs;
+using Models.Queues;
+using Models.Races;
+using Models.Tech;
+using Models.Universe;
+using Models.Users.Enum;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.Users

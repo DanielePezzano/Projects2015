@@ -1,11 +1,10 @@
 ﻿using Models.Base;
-using Models.Base.Interfaces;
 using Models.Tech;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models.Fleets.ShipClasses.Base
 {
-    public class PartShipEntity : BaseShipEntity, IBaseCost
+    public class PartShipEntity : BaseShipEntity
     {
         [Display(Name = "OreCost", ResourceType = typeof(Resources))]
         public int OreCost { get; set; }

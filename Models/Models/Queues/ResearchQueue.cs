@@ -9,6 +9,7 @@ namespace Models.Queues
     {
         public virtual User User { get; set; }
         public virtual Technology Technology { get; set; }
-        public virtual Planet Planet { get; set; }
+        public int? PlanetId { get; set; }
+        public int? SatelliteId { get; set; }
     }
 }

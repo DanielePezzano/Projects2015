@@ -1,5 +1,6 @@
 ﻿using Models.Fleets.ShipClasses;
 using Models.Fleets.ShipClasses.Base;
+using Models.Universe.Strcut;
 using Models.Users;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,9 @@ namespace Models.Fleets
         [Display(Name = "OreMaintenanceCost", ResourceType = typeof(Resources))]
         [NotMapped()]
         public int OreMaintenanceCost { get { return GetOreMaintCost(); } }
+        [Required()]
+        [Display(Name = "Position", ResourceType = typeof(Resources))]
+        public Coordinates Position { get; set; }
 
         public virtual ICollection<ShipClass> ShipClasses { get; set; }
         public virtual User User { get; set; }

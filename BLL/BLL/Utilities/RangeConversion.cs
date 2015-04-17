@@ -33,7 +33,7 @@ namespace BLL.Utilities
         public double DoConversion(double number)
         {
             double temp = this._ScaleConv.Convert(number);
-            return temp + this._MinRangeTo;
+            return Math.Truncate((temp + this._MinRangeTo) * 100) / 100;
         }
 
         public void Dispose()

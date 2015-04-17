@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BLL.Generation.StarSystem;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models.Universe;
 namespace BLL.Generation.StarSystem.Tests
 {
     [TestClass()]
     public class StarGenerationTests
     {
         [TestMethod()]
-        public void StarGenerationTest()
+        public void CreateBrandNewStarTest()
         {
-            Assert.Fail();
+            StarGenerator generator = new StarGenerator();
+            Assert.IsInstanceOfType(generator.CreateBrandNewStar(), typeof(Star));
         }
     }
 }

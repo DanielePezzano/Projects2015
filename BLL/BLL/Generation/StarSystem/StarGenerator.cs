@@ -1,16 +1,15 @@
 ﻿using Models.Universe;
-using Models.Universe.Enum;
 using System;
 using System.Collections.Generic;
-using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace BLL.Generation.StarSystem
 {
-    public sealed class StarGeneration
+    public sealed class StarGenerator : IDisposable
     {
         private static Random _Rnd;
+        private bool _disposed;
 
-        public StarGeneration()
+        public StarGenerator()
         {
             _Rnd = new Random();
         }
@@ -32,9 +31,18 @@ namespace BLL.Generation.StarSystem
             result.Mass = StarProperties.DetermineStarMass(result.StarType, result.StarColor, _Rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
             result.RadiationLevel = StarProperties.DetermineStarRadiation(result.StarColor, _Rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
             result.Radius = StarProperties.DetermineStarRadius(result.StarColor, result.StarType, _Rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
-            result.Satellites = new List<Satellite>();
+            result.Planets = new List<Planet>();
             return result;
         }
         #endregion
+
+        public void Dispose()
+        {
+            if (!_disposed)
+            {
+                _disposed = true;
+            }
+            GC.SuppressFinalize(this);
+        }
     }
 }

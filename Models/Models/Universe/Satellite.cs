@@ -9,13 +9,6 @@ namespace Models.Universe
 {
     public class Satellite : BaseSatellite
     {
-        [Required]
-        [Display(Name = "OrbitDetails", ResourceType = typeof(Resources))]
-        public OrbitDetail Orbit { get; set; }
-
-        [Display(Name = "Buildings", ResourceType = typeof(Resources))]
-        public virtual ICollection<Building> Buildings { get; set; }
-
         public virtual Planet Planet { get; set; }
         public virtual User User { get; set; }
     }

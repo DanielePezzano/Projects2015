@@ -1,11 +1,6 @@
 ﻿using BLL.Utilities;
 using BLL.Utilities.Structs;
 using Models.Universe.Enum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Generation.StarSystem
 {
@@ -69,7 +64,7 @@ namespace BLL.Generation.StarSystem
         public static double CalculateResultInRange(int seed, double min, double max, int minResult)
         {
             double result = minResult;
-            using (RangeConversion rangeConverter = new RangeConversion(MinBaseRange, MaxBaseRange, min, max, new ScaleConversion(10, max - min)))
+            using (RangeConversion rangeConverter = new RangeConversion(MinBaseRange, MaxBaseRange, min, max, new ScaleConversion((MaxBaseRange-MinBaseRange), max - min)))
             {
                 result = rangeConverter.DoConversion(seed);
             }

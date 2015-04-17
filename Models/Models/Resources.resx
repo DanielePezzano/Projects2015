@@ -945,4 +945,12 @@
     <value>Bianca</value>
     <comment>Colori delle stelle</comment>
   </data>
+  <data name="Destination" xml:space="preserve">
+    <value>Destinazione</value>
+    <comment>Code</comment>
+  </data>
+  <data name="StartPoint" xml:space="preserve">
+    <value>Punto di Partenza</value>
+    <comment>Code</comment>
+  </data>
 </root>

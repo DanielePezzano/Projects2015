@@ -22,9 +22,9 @@ namespace BLL.Utilities
         /// <param name="max"></param>
         /// <param name="rnd"></param>
         /// <returns></returns>
-        public static double RandomDouble(int min, int max, Random rnd)
+        public static double RandomDouble(double min, double max, Random rnd)
         {
-            return rnd.NextDouble() * (max - min) + min;
+            return Math.Truncate((rnd.NextDouble() * (max - min) + min)*100)/100;
         }
     }
 }

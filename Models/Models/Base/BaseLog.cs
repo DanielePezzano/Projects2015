@@ -1,10 +1,9 @@
-﻿using Models.Base.Interfaces;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models.Base
 {
-    public class BaseLogEntity : BaseEntity,IBaseLog
+    public class BaseLogEntity : BaseEntity
     {
         public string MethodCaller { get; set; }
         [Display(Name="Description", ResourceType=typeof(Resources))]
