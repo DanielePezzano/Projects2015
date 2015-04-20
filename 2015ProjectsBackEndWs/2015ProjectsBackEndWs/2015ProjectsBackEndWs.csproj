@@ -83,6 +83,7 @@
     <Content Include="Lib\BLL.dll" />
     <Content Include="Lib\Models.dll" />
     <Content Include="Lib\UnitOfWork.dll" />
+    <Content Include="Universe.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -91,9 +92,13 @@
     <Compile Include="DTO\Universe\BuildingSpecsDto.cs" />
     <Compile Include="DTO\Universe\PlanetDto.cs" />
     <Compile Include="DTO\Universe\StarDto.cs" />
+    <Compile Include="DTO\UtilityDto\PlanetGenerationDto.cs" />
     <Compile Include="IUniverse.cs" />
     <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Universe.svc.cs">
+      <DependentUpon>Universe.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
