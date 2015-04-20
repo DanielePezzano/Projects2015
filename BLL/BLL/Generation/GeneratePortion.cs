@@ -5,13 +5,11 @@ using Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnitOfWork.Implementations.Uows;
 
 namespace BLL.Generation
 {
-    public class GeneratePortion
+    public sealed class GeneratePortion
     {
         private IntRange _RangeX;
         private IntRange _RangeY;

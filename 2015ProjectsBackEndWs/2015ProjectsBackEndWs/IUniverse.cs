@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using _2015ProjectsBackEndWs.DTO.UtilityDto;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using System.Text;
 
 namespace _2015ProjectsBackEndWs
 {
@@ -17,7 +13,6 @@ namespace _2015ProjectsBackEndWs
         string GetUniversePortion(int minX, int minY, int maxX, int maxY);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "json/{minX}/{minY}/{maxX}/{maxY}")]
-        void GeneratePortion(int minX, int minY, int maxX, int maxY);
+        void GeneratePortion(PlanetGenerationDto generationData);
     }
 }
