@@ -166,7 +166,7 @@ namespace BLL.Generation.StarSystem
         public Star Generate(Random _Rnd)
         {
             Star star = this._StarGenerator.CreateBrandNewStar();
-            _StarPlacer.Place(star, this._MinX, this._MaxX, this._MinY, this._MaxY);
+            _StarPlacer.Place(star, this._MinX, this._MaxX, this._MinY, this._MaxY,_Rnd);
 
             IntRange maxNumberOfPlanets = this.CalculateMaxNumberOfPlanet(star);
             IntRange planetProbability = this.CalculatePlanetProbability(star);

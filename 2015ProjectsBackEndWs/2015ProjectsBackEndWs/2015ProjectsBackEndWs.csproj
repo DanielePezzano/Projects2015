@@ -84,7 +84,9 @@
     <Content Include="Lib\Models.dll" />
     <Content Include="Lib\UnitOfWork.dll" />
     <Content Include="Universe.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\BaseDto.cs" />

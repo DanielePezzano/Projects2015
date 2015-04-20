@@ -9,6 +9,7 @@ using BLL.Generation.StarSystem;
 using Models.Universe.Strcut;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace BusinessTest.Generation.StarSystem
 {
@@ -18,6 +19,12 @@ namespace BusinessTest.Generation.StarSystem
     [TestClass]
     public class StarPlacerTest
     {
+        private static Random rnd;
+
+        public StarPlacerTest()
+        {
+            if (rnd == null) rnd = new Random();
+        }
        
         #region Additional test attributes
         //
@@ -45,7 +52,7 @@ namespace BusinessTest.Generation.StarSystem
         public void TestCoordinatesGeneration()
         {
             StarPlacer placer = new StarPlacer(null, null);
-            Coordinates coord = placer.GenerateRandomCoordinatesTest(230, 400, 230, 400);
+            Coordinates coord = placer.GenerateRandomCoordinatesTest(230, 400, 230, 400, rnd);
             Assert.IsTrue(coord.X > 0);
             Assert.IsTrue(coord.Y > 0);
             Assert.IsTrue(coord.X >= 230);
@@ -66,7 +73,7 @@ namespace BusinessTest.Generation.StarSystem
                     
                     Mock<Galaxy> galaxy = repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
                     StarPlacer placer = new StarPlacer(uow, galaxy.Object);
-                    Coordinates coord = placer.GenerateRandomCoordinatesTest(230, 400, 230, 400);
+                    Coordinates coord = placer.GenerateRandomCoordinatesTest(230, 400, 230, 400, rnd);
                     Assert.IsTrue(placer.ValidPlaceTest(coord));
                 }
             }
@@ -104,7 +111,7 @@ namespace BusinessTest.Generation.StarSystem
                     #endregion
 
                     StarPlacer placer = new StarPlacer(uow, galaxy.Object);
-                    placer.Place(generated, 40, 90, 40, 90);
+                    placer.Place(generated, 40, 90, 40, 90, rnd);
 
                     Assert.IsInstanceOfType(generated.Coordinate, typeof(Coordinates));
                 }

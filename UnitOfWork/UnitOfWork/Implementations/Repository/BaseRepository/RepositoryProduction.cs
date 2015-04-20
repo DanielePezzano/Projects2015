@@ -104,7 +104,17 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
 
         public int Count()
         {
-            return dbSet.Count();
+            int result = 0;
+            try
+            {
+                result =dbSet.Count();
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+                throw;
+            }
+            return result;
         }
 
         public int Count(Expression<Func<T, bool>> predicate)

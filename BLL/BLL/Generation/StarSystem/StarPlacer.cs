@@ -11,16 +11,14 @@ namespace BLL.Generation.StarSystem
         private MainUow _Uow = null;
         private Galaxy _Galaxy;
         private const int _MinDistance = 25;
-        private static Random _Rnd;
 
         public StarPlacer(IUnitOfWork uow, Galaxy galaxy)
         {
             this._Galaxy = galaxy;
             this._Uow = (MainUow)uow;
-            _Rnd = new Random();
         }
 
-        private Coordinates GenerateRandomCoordinates(int minX, int maxX, int minY, int maxY)
+        private Coordinates GenerateRandomCoordinates(int minX, int maxX, int minY, int maxY,Random _Rnd)
         {
             return new Coordinates(_Rnd.Next(minX, maxX), _Rnd.Next(minY, maxY));
         }
@@ -45,9 +43,9 @@ namespace BLL.Generation.StarSystem
             return this.ValidPlace(coordinate);
         }
 
-        public Coordinates GenerateRandomCoordinatesTest(int minX, int maxX,int minY, int maxY)
+        public Coordinates GenerateRandomCoordinatesTest(int minX, int maxX,int minY, int maxY,Random _Rnd)
         {
-            return this.GenerateRandomCoordinates(minX, maxX, minY, maxY);
+            return this.GenerateRandomCoordinates(minX, maxX, minY, maxY,_Rnd);
         } 
         #endregion
         /// <summary>
@@ -60,10 +58,10 @@ namespace BLL.Generation.StarSystem
         /// <param name="maxX"></param>
         /// <param name="minY"></param>
         /// <param name="maxY"></param>
-        public void Place(Star star, int minX, int maxX, int minY, int maxY)
+        public void Place(Star star, int minX, int maxX, int minY, int maxY,Random _Rnd)
         {
             int invalidPlaceCounter = 0;           
-            Coordinates coord = this.GenerateRandomCoordinates(minX, maxX, minY, maxY);
+            Coordinates coord = this.GenerateRandomCoordinates(minX, maxX, minY, maxY,_Rnd);
             bool validCoordinates = this.ValidPlace(coord);
 
             while (!validCoordinates)
@@ -76,7 +74,7 @@ namespace BLL.Generation.StarSystem
                     minY -= _MinDistance;
                     maxX += _MinDistance;
                 }
-                coord = this.GenerateRandomCoordinates(minX, maxX, minY, maxY);
+                coord = this.GenerateRandomCoordinates(minX, maxX, minY, maxY,_Rnd);
                 validCoordinates = this.ValidPlace(coord);
             }
             star.Coordinate = coord;
