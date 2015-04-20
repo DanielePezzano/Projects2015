@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{21205F33-94CB-4686-BC35-93111E3A9067}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessTest", "BusinessTest\BusinessTest.csproj", "{BAA15F10-125A-43BC-A37F-66A406D80D46}"
@@ -20,8 +18,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{21205F33-94CB-4686-BC35-93111E3A9067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21205F33-94CB-4686-BC35-93111E3A9067}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21205F33-94CB-4686-BC35-93111E3A9067}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{21205F33-94CB-4686-BC35-93111E3A9067}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{21205F33-94CB-4686-BC35-93111E3A9067}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21205F33-94CB-4686-BC35-93111E3A9067}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BAA15F10-125A-43BC-A37F-66A406D80D46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

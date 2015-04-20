@@ -1,0 +1,13 @@
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\Lib\Models.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\Lib\UnitOfWork.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\BLL.dll.config
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\BLL.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\BLL.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramework.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\Models.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\UnitOfWork.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramework.xml
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.pdb

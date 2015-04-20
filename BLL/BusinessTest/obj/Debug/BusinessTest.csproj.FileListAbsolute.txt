@@ -25,3 +25,5 @@ C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Entity
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\EntityFramework.xml
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Lib\Models.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Lib\UnitOfWork.dll
