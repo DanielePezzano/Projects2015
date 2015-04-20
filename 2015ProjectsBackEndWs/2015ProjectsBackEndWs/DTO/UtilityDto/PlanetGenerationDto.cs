@@ -25,8 +25,12 @@ namespace _2015ProjectsBackEndWs.DTO.UtilityDto
         [DataMember]
         public bool MostlyWater { get; set; }
         [DataMember]
-        public IntRange RangeX { get; set; }
+        public int MinX { get; set; }
         [DataMember]
-        public IntRange RangeY { get; set; }
+        public int MaxX { get; set; }
+        [DataMember]
+        public int MinY { get; set; }
+        [DataMember]
+        public int MaxY { get; set; }
     }
 }

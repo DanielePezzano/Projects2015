@@ -14,6 +14,6 @@ namespace Models.Users
         public User Sender { get; set; }
         [Required]
         [Display(Name = "Receiver", ResourceType = typeof(Resources))]
-        public User Receiver { get; set; }
+        public int Receiver { get; set; }
     }
 }

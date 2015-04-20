@@ -1,0 +1,6 @@
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\bin\Debug\WcfTester.exe.config
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\bin\Debug\WcfTester.exe
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\bin\Debug\WcfTester.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\obj\Debug\WcfTester.csprojResolveAssemblyReference.cache
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\obj\Debug\WcfTester.exe
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\obj\Debug\WcfTester.pdb

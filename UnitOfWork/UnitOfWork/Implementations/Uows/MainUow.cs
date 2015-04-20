@@ -14,6 +14,7 @@ using Models.Tech;
 using Models.Universe;
 using Models.Users;
 using System;
+using System.Data.Entity.Infrastructure;
 using System.Transactions;
 using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Context;
@@ -62,7 +63,24 @@ namespace UnitOfWork.Implementations.Uows
         public MainUow(IContextFactory contextFactory,DalCache cache)
         {
             _Context = contextFactory.Retrieve();
+            if (_Context.IsTest == false) CheckInitialization();
             _Cache = cache;
+        }
+
+        private void CheckInitialization()
+        {
+            if (!(_Context as ProductionContext).Database.Exists())
+            {
+                try
+                {
+                    ((IObjectContextAdapter)(_Context as ProductionContext)).ObjectContext.CreateDatabase();
+                }
+                catch (Exception ex)
+                {
+                    var message = ex.Message;
+                    throw;
+                }
+            }
         }
 
         #region Repositories properties
@@ -520,10 +538,11 @@ namespace UnitOfWork.Implementations.Uows
                 catch (Exception ex)
                 {
                     result = false;
+                    var message = ex.Message;
+                    throw;
                 }
             }
             return result;
-            throw new NotImplementedException();
         }
     }
 }
