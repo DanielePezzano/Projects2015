@@ -21,24 +21,42 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
         {
             this.Context = context;
             this.RepoCache = cache;
-            var cached = RepoCache.GetMyCachedItem(repoEntitySign);
-            if (cached == null)
+            this.dbSet = this.Context.Set<T>();
+        }
+
+        public IQueryable<T> GetAll(string cacheKey)
+        {
+            IQueryable<T> result = null;
+            if (!string.IsNullOrEmpty(cacheKey))
             {
-                RepoCache.AddToMyCache(repoEntitySign, this.Context.Set<T>(),Cache.Enum.DalCachePriority.Default);
-                cached = RepoCache.GetMyCachedItem(repoEntitySign);
+                var cached = RepoCache.GetMyCachedItem(cacheKey);
+                if (cached == null)
+                {
+                    result = this.dbSet;
+                    RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
+                }
+                else
+                    result = (IQueryable<T>)cached;
             }
-            this.dbSet = (DbSet<T>)cached;
+            else result = this.dbSet;
+            return result;
         }
 
-        public IQueryable<T> GetAll()
+        public T GetByKey(int id, string cacheKey)
         {
-            
-            return this.dbSet;
-        }
-
-        public T GetByKey(int id)
-        {
-            return this.dbSet.FirstOrDefault(c => c.Id == id);
+            T result = null;
+            if (!string.IsNullOrEmpty(cacheKey))
+            {
+                var cached = RepoCache.GetMyCachedItem(cacheKey);
+                if (cached == null)
+                {
+                    result = this.dbSet.FirstOrDefault(c => c.Id == id);
+                    RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
+                }
+                else result = (T)cached;
+            }
+            else result = this.dbSet.FirstOrDefault(c => c.Id == id);
+            return result;
         }
 
         /// <summary>
@@ -50,9 +68,31 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
         /// <param name="includeProperties">es. Student,StudentInfo</param>
         /// <returns></returns>
         public IEnumerable<T> Get(
+            string cacheKey,
             Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "")
+        {
+            IEnumerable<T> result = null;
+            if (!string.IsNullOrEmpty(cacheKey))
+            {
+                var cached = RepoCache.GetMyCachedItem(cacheKey);
+                if (cached == null)
+                {
+                    result = ProcessGet(filter, orderBy, includeProperties, result);
+                    RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
+                }
+                else
+                    result = (IEnumerable<T>)cached;
+            }
+            else
+            {
+                result = ProcessGet(filter, orderBy, includeProperties, result);
+            }
+            return result;            
+        }
+
+        private IEnumerable<T> ProcessGet(Expression<Func<T, bool>> filter, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy, string includeProperties, IEnumerable<T> result)
         {
             IQueryable<T> query = dbSet;
 
@@ -69,17 +109,41 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                result = orderBy(query).ToList();
             }
             else
             {
-                return query.ToList();
+                result = query.ToList();
             }
+            return result;
         }
 
-        public IQueryable<T> FindBy(Expression<System.Func<T, bool>> predicate)
+        public IQueryable<T> FindBy(Expression<System.Func<T, bool>> predicate, string cacheKey)
         {
-            return this.dbSet.Where(predicate);
+            IQueryable<T> result = null;
+            try
+            {
+                if (!string.IsNullOrEmpty(cacheKey))
+                {
+                    var cached = RepoCache.GetMyCachedItem(cacheKey);
+                    if (cached == null)
+                    {
+                        result = this.dbSet.Where(predicate);
+                        RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
+                    }
+                    else
+                        result = (IQueryable<T>)cached;
+                }
+                else
+                    result = this.dbSet.Where(predicate);
+            }
+            catch (Exception ex)
+            {
+                 //DAFARE : CREARE UN PROGETTO LOGGER CHE SI OCCUPI DI PRENDERE LE ECCEZIONI E SCRIVERLE IN UN FILE APPOSITO
+                var message = ex.Message;
+                throw;
+            }
+            return result;
         }
 
         public void Add(T entity)
@@ -102,24 +166,59 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             Context.Entry(entity).State = EntityState.Modified;
         }
 
-        public int Count()
+        public int Count(string cacheKey)
         {
             int result = 0;
             try
             {
-                result =dbSet.Count();
+                if (!string.IsNullOrEmpty(cacheKey))
+                {
+                    var cached = RepoCache.GetMyCachedItem(cacheKey);
+                    if (cached == null)
+                    {
+                        result = dbSet.Count();
+                        RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
+                    }
+                    else result = (int)cached;
+                }
+                else
+                    result = dbSet.Count();
             }
             catch (Exception ex)
             {
+                //DAFARE : CREARE UN PROGETTO LOGGER CHE SI OCCUPI DI PRENDERE LE ECCEZIONI E SCRIVERLE IN UN FILE APPOSITO
                 var message = ex.Message;
                 throw;
             }
             return result;
         }
 
-        public int Count(Expression<Func<T, bool>> predicate)
+        public int Count(Expression<Func<T, bool>> predicate, string cacheKey)
         {
-            return dbSet.Count(predicate);
+            int result = 0;
+            try
+            {
+                if (!string.IsNullOrEmpty(cacheKey))
+                {
+                    var cached = RepoCache.GetMyCachedItem(cacheKey);
+                    if (cached == null)
+                    {
+                        result = dbSet.Count(predicate);
+                        RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
+                    }
+                    else
+                        result = (int)cached;
+                }
+                else
+                    result = dbSet.Count(predicate);
+            }
+            catch (Exception ex)
+            {
+                //DAFARE : CREARE UN PROGETTO LOGGER CHE SI OCCUPI DI PRENDERE LE ECCEZIONI E SCRIVERLE IN UN FILE APPOSITO
+                var message = ex.Message;
+                throw;
+            }
+            return result;
         }
 
         public void CustomDbset(List<T> setter)

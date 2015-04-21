@@ -28,22 +28,23 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             dbSet = setter;
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<T> GetAll(string cacheKey)
         {
             return (IQueryable<T>)dbSet;
         }
 
-        public T GetByKey(int id)
+        public T GetByKey(int id, string cacheKey)
         {
             return dbSet.FirstOrDefault(c => c.Id == id);
         }
 
-        public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
+        public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string cacheKey)
         {
             throw new NotImplementedException();
         }
 
         public IEnumerable<T> Get(
+            string cacheKey,
             Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "")
@@ -88,12 +89,12 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             dbSet.Add(entity);
         }
 
-        public int Count()
+        public int Count(string cacheKey)
         {
             return dbSet.Count;
         }
 
-        public int Count(Expression<Func<T, bool>> predicate)
+        public int Count(Expression<Func<T, bool>> predicate, string cacheKey)
         {
             return dbSet.Count(predicate.Compile());
         }

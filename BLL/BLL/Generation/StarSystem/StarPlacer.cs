@@ -2,6 +2,7 @@
 using Models.Universe.Strcut;
 using System;
 using UnitOfWork.Implementations.Uows;
+using System.Linq;
 using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace BLL.Generation.StarSystem
@@ -28,19 +29,24 @@ namespace BLL.Generation.StarSystem
         /// </summary>
         /// <param name="coord"></param>
         /// <returns></returns>
-        private bool ValidPlace(Coordinates coord)
+        private bool ValidPlace(Coordinates coord,string cacheKey)
         {
             //find the stars within minimum distance
             bool result = false;
-            int count = this._Uow.StarRepository.Count(x =>x.Coordinate.X >= (coord.X - _MinDistance) && x.Coordinate.X <= (coord.X + _MinDistance) && x.Coordinate.Y >= (coord.Y - _MinDistance) && x.Coordinate.Y <= (coord.Y + _MinDistance));
+            int count = this._Uow.StarRepository.Count(s => s.CoordinateX >= (coord.X - _MinDistance) && s.CoordinateX <= (coord.X + _MinDistance) && s.CoordinateX >= (coord.Y - _MinDistance) && s.CoordinateX <= (coord.Y + _MinDistance), cacheKey);
             result = (count > 0) ? false : true;
             return result;
+        }
+
+        private bool ValidPlace(Coordinates coord, string cacheKey, UnitOfWork.Implementations.Context.ProductionContext context)
+        {
+            return context.Stars.Any(s => s.CoordinateX >= (coord.X - _MinDistance) && s.CoordinateX <= (coord.X + _MinDistance) && s.CoordinateX >= (coord.Y - _MinDistance) && s.CoordinateX <= (coord.Y + _MinDistance));
         }
 
         #region Wrapper for testing private methods
         public bool ValidPlaceTest(Coordinates coordinate)
         {
-            return this.ValidPlace(coordinate);
+            return this.ValidPlace(coordinate, string.Empty);
         }
 
         public Coordinates GenerateRandomCoordinatesTest(int minX, int maxX,int minY, int maxY,Random _Rnd)
@@ -58,11 +64,13 @@ namespace BLL.Generation.StarSystem
         /// <param name="maxX"></param>
         /// <param name="minY"></param>
         /// <param name="maxY"></param>
-        public void Place(Star star, int minX, int maxX, int minY, int maxY,Random _Rnd)
+        /// <param name="_Rnd">Random Seeder</param>
+        /// <param name="cacheKey">Valid Place Cache Key</param>
+        public void Place(Star star, int minX, int maxX, int minY, int maxY,Random _Rnd,string cacheKey)
         {
             int invalidPlaceCounter = 0;           
             Coordinates coord = this.GenerateRandomCoordinates(minX, maxX, minY, maxY,_Rnd);
-            bool validCoordinates = this.ValidPlace(coord);
+            bool validCoordinates = this.ValidPlace(coord, cacheKey);
 
             while (!validCoordinates)
             {
@@ -75,9 +83,35 @@ namespace BLL.Generation.StarSystem
                     maxX += _MinDistance;
                 }
                 coord = this.GenerateRandomCoordinates(minX, maxX, minY, maxY,_Rnd);
-                validCoordinates = this.ValidPlace(coord);
+                validCoordinates = this.ValidPlace(coord, string.Empty);
             }
-            star.Coordinate = coord;
+            star.CoordinateX = coord.X;
+            star.CoordinateY = coord.Y;
         }
+
+        internal void Place(Star star, int minX, int maxX, int minY, int maxY, Random _Rnd, string cacheKey, UnitOfWork.Implementations.Context.ProductionContext context)
+        {
+            int invalidPlaceCounter = 0;
+            Coordinates coord = this.GenerateRandomCoordinates(minX, maxX, minY, maxY, _Rnd);
+            bool validCoordinates = this.ValidPlace(coord, cacheKey, context);
+
+            while (!validCoordinates)
+            {
+                invalidPlaceCounter++;
+                if (invalidPlaceCounter >= 10)
+                {
+                    minX -= _MinDistance;
+                    maxX += _MinDistance;
+                    minY -= _MinDistance;
+                    maxX += _MinDistance;
+                }
+                coord = this.GenerateRandomCoordinates(minX, maxX, minY, maxY, _Rnd);
+                validCoordinates = this.ValidPlace(coord, string.Empty);
+            }
+            star.CoordinateX = coord.X;
+            star.CoordinateY = coord.Y;
+        }
+
+        
     }
 }

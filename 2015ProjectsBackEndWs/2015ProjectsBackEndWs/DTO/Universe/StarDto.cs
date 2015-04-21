@@ -24,11 +24,11 @@ namespace _2015ProjectsBackEndWs.DTO.Universe
             return result;
         }
         [DataMember]
-        public int GalaxyId { get { return Model.Universe.Id; } }
+        public int GalaxyId { get { return Model.Galaxy.Id; } }
         [DataMember]
-        public int PositionX { get { return Model.Coordinate.X; } }
+        public int PositionX { get { return Model.CoordinateX; } }
         [DataMember]
-        public int PositgionY { get { return Model.Coordinate.Y; } }
+        public int PositgionY { get { return Model.CoordinateY; } }
         [DataMember]
         public double Mass { get { return Model.Mass; } }
         [DataMember]

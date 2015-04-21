@@ -8,18 +8,19 @@ namespace UnitOfWork.Interfaces.Repository
 {
     public interface IRepository<T> where T : BaseEntity
     {
-        IQueryable<T> GetAll();
-        T GetByKey(int id);
+        IQueryable<T> GetAll(string cacheKey);
+        T GetByKey(int id, string cacheKey);
         void CustomDbset(List<T> setter);
-        IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
+        IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string cacheKey);
         IEnumerable<T> Get(
+            string cacheKey,
             Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "");
         void Add(T entity);
         void Delete(T entity);
         void Edit(T entity);
-        int Count();
-        int Count(Expression<Func<T, bool>> predicate);
+        int Count(string cacheKey);
+        int Count(Expression<Func<T, bool>> predicate, string cacheKey);
     }
 }

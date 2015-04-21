@@ -77,6 +77,7 @@ namespace UnitOfWork.Implementations.Uows
                 }
                 catch (Exception ex)
                 {
+                    //DAFARE : CREARE UN PROGETTO LOGGER CHE SI OCCUPI DI PRENDERE LE ECCEZIONI E SCRIVERLE IN UN FILE APPOSITO
                     var message = ex.Message;
                     throw;
                 }
@@ -93,7 +94,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _AntiPlanetWeaponRepo = factory.GetAntiPlanetWeaponRepository();
+                        _AntiPlanetWeaponRepo = factory.GetAntiPlanetWeaponRepository(this._Context);
                     }
                 }
                 return _AntiPlanetWeaponRepo;
@@ -108,7 +109,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _AntiShipWeaponRepo = factory.GetAntiShipWeaponRepository();
+                        _AntiShipWeaponRepo = factory.GetAntiShipWeaponRepository(this._Context);
                     }
                 }
                 return _AntiShipWeaponRepo;
@@ -123,7 +124,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _ShipSystemRepo = factory.GetShipSystemRepository();
+                        _ShipSystemRepo = factory.GetShipSystemRepository(this._Context);
                     }
                 }
                 return _ShipSystemRepo;
@@ -138,7 +139,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _ShieldRepo = factory.GetShieldRepository();
+                        _ShieldRepo = factory.GetShieldRepository(this._Context);
                     }
                 }
                 return _ShieldRepo;
@@ -153,7 +154,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _HullRepo = factory.GetHullRepository();
+                        _HullRepo = factory.GetHullRepository(this._Context);
                     }
                 }
                 return _HullRepo;
@@ -169,7 +170,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _EngineRepo = factory.GetEngineRepository();
+                        _EngineRepo = factory.GetEngineRepository(this._Context);
                     }
                 }
                 return _EngineRepo;
@@ -184,7 +185,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _ArmorRepo = factory.GetArmorRepository();
+                        _ArmorRepo = factory.GetArmorRepository(this._Context);
                     }
                 }
                 return _ArmorRepo;
@@ -199,7 +200,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _ShipClassRepo = factory.GetShipClasstRepository();
+                        _ShipClassRepo = factory.GetShipClasstRepository(this._Context);
                     }
                 }
                 return _ShipClassRepo;
@@ -214,7 +215,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _FleetRepo = factory.GetFleetRepository();
+                        _FleetRepo = factory.GetFleetRepository(this._Context);
                     }
                 }
                 return _FleetRepo;
@@ -229,7 +230,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _BuildingSpecRepo = factory.GetBuildingSpecRepository();
+                        _BuildingSpecRepo = factory.GetBuildingSpecRepository(this._Context);
                     }
                 }
                 return _BuildingSpecRepo;
@@ -244,7 +245,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _BuildingRepo = factory.GetBuildingRepository();
+                        _BuildingRepo = factory.GetBuildingRepository(this._Context);
                     }
                 }
                 return _BuildingRepo;
@@ -259,7 +260,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _GalaxyLogRepo = factory.GalaxyLogRepository();
+                        _GalaxyLogRepo = factory.GalaxyLogRepository(this._Context);
                     }
                 }
                 return _GalaxyLogRepo;
@@ -274,7 +275,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _UserLogRepo = factory.GetUserLogRepository();
+                        _UserLogRepo = factory.GetUserLogRepository(this._Context);
                     }
                 }
                 return _UserLogRepo;
@@ -289,7 +290,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _BuildingQueueRepo = factory.GetBuildingQueueRepository();
+                        _BuildingQueueRepo = factory.GetBuildingQueueRepository(this._Context);
                     }
                 }
                 return _BuildingQueueRepo;
@@ -304,7 +305,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _FleetQueueRepo = factory.GetFleetQueueRepository();
+                        _FleetQueueRepo = factory.GetFleetQueueRepository(this._Context);
                     }
                 }
                 return _FleetQueueRepo;
@@ -319,7 +320,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _ResQueueRepo = factory.GetResearchQueueRepository();
+                        _ResQueueRepo = factory.GetResearchQueueRepository(this._Context);
                     }
                 }
                 return _ResQueueRepo;
@@ -334,7 +335,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _RaceBonusRepo = factory.GetRaceBonusRepository();
+                        _RaceBonusRepo = factory.GetRaceBonusRepository(this._Context);
                     }
                 }
                 return _RaceBonusRepo;
@@ -349,7 +350,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _TechNodeRepo = factory.GetTechNodeRepository();
+                        _TechNodeRepo = factory.GetTechNodeRepository(this._Context);
                     }
                 }
                 return _TechNodeRepo;
@@ -364,7 +365,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _TechnologyRepo = factory.GetTechnologyRepository();
+                        _TechnologyRepo = factory.GetTechnologyRepository(this._Context);
                     }
                 }
                 return _TechnologyRepo;
@@ -379,7 +380,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _TechBonusRepo = factory.GetTechBonusRepository();
+                        _TechBonusRepo = factory.GetTechBonusRepository(this._Context);
                     }
                 }
                 return _TechBonusRepo;
@@ -394,7 +395,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _InternalMailRepo = factory.GetInternalMailRepository();
+                        _InternalMailRepo = factory.GetInternalMailRepository(this._Context);
                     }
                 }
                 return _InternalMailRepo;
@@ -409,7 +410,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _PlanetRepo = factory.GetPlanetRepository();
+                        _PlanetRepo = factory.GetPlanetRepository(this._Context);
                     }
                 }
                 return _PlanetRepo;
@@ -424,7 +425,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _SatelliteRepo = factory.GetSatelliteRepository();
+                        _SatelliteRepo = factory.GetSatelliteRepository(this._Context);
                     }
                 }
                 return _SatelliteRepo;
@@ -439,7 +440,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _StarRepo = factory.GetStarRepository();
+                        _StarRepo = factory.GetStarRepository(this._Context);
                     }
                 }
                 return _StarRepo;
@@ -454,7 +455,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _GalaxyRepo = factory.GetGalaxyRepository();
+                        _GalaxyRepo = factory.GetGalaxyRepository(this._Context);
                     }
                 }
                 return _GalaxyRepo;
@@ -469,7 +470,7 @@ namespace UnitOfWork.Implementations.Uows
                 {
                     using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
                     {
-                        _UserRepo = factory.GetUserRepository();
+                        _UserRepo = factory.GetUserRepository(this._Context);
                     }
                 }
                 return _UserRepo;
@@ -537,6 +538,7 @@ namespace UnitOfWork.Implementations.Uows
                 }
                 catch (Exception ex)
                 {
+                    //DAFARE : CREARE UN PROGETTO LOGGER CHE SI OCCUPI DI PRENDERE LE ECCEZIONI E SCRIVERLE IN UN FILE APPOSITO
                     result = false;
                     var message = ex.Message;
                     throw;

@@ -56,15 +56,19 @@ namespace BusinessTest.Generation.StarSystem
         {
             _Repo = new MockRepository(MockBehavior.Default);
             _Galaxy = _Repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
-            _Star1 = _Repo.Create<Star>().SetupProperty(x => x.Universe, _Galaxy.Object);
-            _Star2 = _Repo.Create<Star>().SetupProperty(x => x.Universe, _Galaxy.Object);
-            _Star3 = _Repo.Create<Star>().SetupProperty(x => x.Universe, _Galaxy.Object);
-            _Star4 = _Repo.Create<Star>().SetupProperty(x => x.Universe, _Galaxy.Object);
+            _Star1 = _Repo.Create<Star>().SetupProperty(x => x.Galaxy, _Galaxy.Object);
+            _Star2 = _Repo.Create<Star>().SetupProperty(x => x.Galaxy, _Galaxy.Object);
+            _Star3 = _Repo.Create<Star>().SetupProperty(x => x.Galaxy, _Galaxy.Object);
+            _Star4 = _Repo.Create<Star>().SetupProperty(x => x.Galaxy, _Galaxy.Object);
 
-            _Star1.Object.Coordinate = new Coordinates(50, 50);
-            _Star2.Object.Coordinate = new Coordinates(90, 42);
-            _Star3.Object.Coordinate = new Coordinates(23, 100);
-            _Star4.Object.Coordinate = new Coordinates(0, 0);
+            _Star1.Object.CoordinateX = 50;// = new Coordinates(50, 50);
+            _Star1.Object.CoordinateY = 50;
+            _Star2.Object.CoordinateX = 90;//
+            _Star2.Object.CoordinateY = 42;//= new Coordinates(90, 42);
+            _Star3.Object.CoordinateX = 23; //
+            _Star3.Object.CoordinateY = 100; //= new Coordinates(23, 100);
+            _Star4.Object.CoordinateX = 0; // = new Coordinates(0, 0);
+            _Star4.Object.CoordinateY = 0;
 
             _Galaxy.SetupProperty(x => x.Stars, new List<Star>() { _Star2.Object, _Star3.Object, _Star1.Object, _Star4.Object });
             _ContextFactory = new ContextFactory(true);
@@ -89,7 +93,7 @@ namespace BusinessTest.Generation.StarSystem
                 new StarGenerator(),
                 new StarPlacer(_uow, _Galaxy.Object), false, false, false, 40, 90, 40, 90, false, false, false, false);
 
-            Star starWithSystem = systemGenerator.Generate(OrbitGeneratorTest._Rnd);
+            Star starWithSystem = systemGenerator.Generate(OrbitGeneratorTest._Rnd,string.Empty);
 
             Assert.IsInstanceOfType(starWithSystem, typeof(Star));
                         

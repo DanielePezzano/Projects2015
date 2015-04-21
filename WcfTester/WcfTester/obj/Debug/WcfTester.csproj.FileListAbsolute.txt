@@ -3,3 +3,4 @@ C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\bin\Debug\Wcf
 C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\bin\Debug\WcfTester.pdb
 C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\obj\Debug\WcfTester.exe
 C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\obj\Debug\WcfTester.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\obj\Debug\WcfTester.csprojResolveAssemblyReference.cache

@@ -49,6 +49,10 @@ namespace UnitOfWork.Implementations.Context
         public DbSet<AntiShipWeapon> AntiShipWeapons { get; set; }
         public DbSet<AntiPlanetWeapon> AntiPlanetWeapons { get; set; }
 
+        public ProductionContext():base("UniverseConnection")
+        {
+
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

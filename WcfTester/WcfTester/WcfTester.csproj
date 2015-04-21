@@ -45,22 +45,24 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\UniverseService\Reference.cs">
+    <Compile Include="Service References\UniverseWcf\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="Service References\UniverseService\Universe.wsdl" />
-    <None Include="Service References\UniverseService\Universe.xsd">
+    <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UniverseService\Universe1.xsd">
+    <None Include="Service References\UniverseWcf\Universe.wsdl" />
+    <None Include="Service References\UniverseWcf\Universe.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UniverseService\Universe2.xsd">
+    <None Include="Service References\UniverseWcf\Universe1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -68,19 +70,19 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\UniverseService\" />
+    <WCFMetadataStorage Include="Service References\UniverseWcf\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UniverseService\Universe.disco" />
+    <None Include="Service References\UniverseWcf\Universe.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UniverseService\configuration91.svcinfo" />
+    <None Include="Service References\UniverseWcf\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UniverseService\configuration.svcinfo" />
+    <None Include="Service References\UniverseWcf\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UniverseService\Reference.svcmap">
+    <None Include="Service References\UniverseWcf\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

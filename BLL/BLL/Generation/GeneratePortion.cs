@@ -5,6 +5,7 @@ using Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Uows;
 
 namespace BLL.Generation
@@ -21,6 +22,7 @@ namespace BLL.Generation
         private bool _FoodRich = false;
         private bool _FoodPoor = false;
         private bool _MostlyWater = false;
+        private const string _GalaxyCountKey = "GALAXYGLOBALCOUNT"; // al refactoring, trovare un sistema migliore
 
         public GeneratePortion(int minX, int maxX, int minY, int MaxY, MainUow uow, bool forceLiving,bool forceWater, bool mostlyWater, bool mineralPoor, bool mineralrich, bool foodPoor, bool foodRich)
         {
@@ -36,64 +38,71 @@ namespace BLL.Generation
             this._FoodRich = foodRich;            
         }
 
-        private bool GalaxyToBeGenerated()
+        private bool GalaxyToBeGenerated(ProductionContext context)
         {
-            return this._Uow.GalaxyRepository.Count() == 0 ? true : false;
+            return context.Galaxys.Count() == 0 ? true : false;
+            //return this._Uow.GalaxyRepository.Count(_GalaxyCountKey) == 0 ? true : false;
         }
 
-        private Galaxy GenerateGalaxyFirst()
+        private Galaxy GenerateGalaxyFirst(ProductionContext context)
         {
             Galaxy toAdd = new Galaxy();
             toAdd.CreatedAt = DateTime.Now;
             toAdd.UpdatedAt = DateTime.Now;
             toAdd.Users = new List<User>();
             toAdd.Stars = new List<Star>();
-            toAdd.Name = "Galaxy - " + DateTime.UtcNow.ToString();
+            toAdd.Name = "Galaxy - " + +DateTime.Now.ToFileTimeUtc();
 
-            this._Uow.GalaxyRepository.Add(toAdd);
-            this._Uow.Save();
+            //this._Uow.GalaxyRepository.Add(toAdd);
+            //this._Uow.Save();
+            context.Galaxys.Add(toAdd);
+            context.SaveChanges();
             return toAdd;
         }
         /// <summary>
         /// METTERE A POSTO SE IL METODO FUNZIONA!
         /// </summary>
         /// <returns></returns>
-        public bool Generate(Random _Rnd)
+        public bool Generate(Random _Rnd,string cacheKey="")
         {
-            Galaxy referredGalaxy = null;
             bool result = false;
-            if (this.GalaxyToBeGenerated())
-                referredGalaxy = this.GenerateGalaxyFirst();
-            else
-                referredGalaxy = _Uow.GalaxyRepository.GetAll().FirstOrDefault();
-
-            if (referredGalaxy != null)
+            using (ProductionContext context = new ProductionContext())
             {
-                try
-                {
-                    StarSystemGenerator generator = new StarSystemGenerator(
-                                new StarGenerator(),
-                                new StarPlacer(this._Uow, referredGalaxy),
-                                this._ForceLiving,
-                                this._ForceWater,
-                                this._MostlyWater,
-                                this._RangeX.Min,
-                                this._RangeX.Max,
-                                this._RangeY.Min,
-                                this._RangeY.Max,
-                                this._MineralRich,
-                                this._MineralPoor,
-                                this._FoodRich,
-                                this._FoodPoor);
+                Galaxy referredGalaxy = null;
 
-                    generator.GenerateAndInsert(_Rnd, this._Uow, referredGalaxy);
-                    result = true;
-                }
-                catch (Exception ex)
+                if (this.GalaxyToBeGenerated(context))
+                    referredGalaxy = this.GenerateGalaxyFirst(context);
+                else
+                    //referredGalaxy = _Uow.GalaxyRepository.GetAll(cacheKey).FirstOrDefault(); // <-- questa cachekey quando rivedremo il codice dovrà esser sostituita!
+                    referredGalaxy = context.Galaxys.FirstOrDefault();
+                if (referredGalaxy != null)
                 {
-                    result = false;
-                }
+                    try
+                    {
+                        StarSystemGenerator generator = new StarSystemGenerator(
+                                    new StarGenerator(),
+                                    new StarPlacer(this._Uow, referredGalaxy),
+                                    this._ForceLiving,
+                                    this._ForceWater,
+                                    this._MostlyWater,
+                                    this._RangeX.Min,
+                                    this._RangeX.Max,
+                                    this._RangeY.Min,
+                                    this._RangeY.Max,
+                                    this._MineralRich,
+                                    this._MineralPoor,
+                                    this._FoodRich,
+                                    this._FoodPoor);
 
+                        generator.GenerateAndInsert(_Rnd, this._Uow, referredGalaxy, cacheKey, context);
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        result = false;
+                    }
+
+                }
             }
             return result;
         }

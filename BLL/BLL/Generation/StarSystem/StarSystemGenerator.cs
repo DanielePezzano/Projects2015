@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Uows;
 
 namespace BLL.Generation.StarSystem
@@ -160,13 +161,15 @@ namespace BLL.Generation.StarSystem
             }
         }
         /// <summary>
-        /// This Generate a complete new star system
+        /// this Generate a completly new star system
         /// </summary>
+        /// <param name="_Rnd">Random Seeder</param>
+        /// <param name="cacheKey">Placer query cachekey</param>
         /// <returns></returns>
-        public Star Generate(Random _Rnd)
+        public Star Generate(Random _Rnd,string cacheKey,ProductionContext context)
         {
             Star star = this._StarGenerator.CreateBrandNewStar();
-            _StarPlacer.Place(star, this._MinX, this._MaxX, this._MinY, this._MaxY,_Rnd);
+            _StarPlacer.Place(star, this._MinX, this._MaxX, this._MinY, this._MaxY, _Rnd, cacheKey, context);
 
             IntRange maxNumberOfPlanets = this.CalculateMaxNumberOfPlanet(star);
             IntRange planetProbability = this.CalculatePlanetProbability(star);
@@ -187,15 +190,28 @@ namespace BLL.Generation.StarSystem
             return star;
         }
 
-        public void GenerateAndInsert(Random _rnd, MainUow uow, Galaxy galaxy)
+        public int GenerateAndInsert(Random _rnd, MainUow uow, Galaxy galaxy,string cacheKey,ProductionContext context)
         {
-            Star generatedStarSystem = this.Generate(_rnd);
+            int rows = 0;
+            Star generatedStarSystem = this.Generate(_rnd, cacheKey, context);
             if (generatedStarSystem != null)
             {
-                generatedStarSystem.Universe = galaxy;
-                uow.StarRepository.Add(generatedStarSystem);                
-                uow.Save();
+                generatedStarSystem.Galaxy = galaxy;
+                context.Stars.Add(generatedStarSystem);
+                //uow.StarRepository.Add(generatedStarSystem);
+                //foreach (Planet planet in generatedStarSystem.Planets)
+                //{
+                //    uow.PlanetRepository.Add(planet);
+                //    foreach (Satellite satellite in planet.Satellites)
+                //    {
+                //        uow.SatelliteRepository.Add(satellite);
+                //    }
+                //}
+                //uow.Save();
+                rows = context.SaveChanges();
             }
+
+            return rows;
         }
     }
 }

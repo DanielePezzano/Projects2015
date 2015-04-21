@@ -28,174 +28,172 @@ namespace UnitOfWork.Implementations.Repository
 {
     public sealed class RepositoryFactory : IDisposable
     {
-        private IContext _Context = null;
         private bool _Production = false;
         private DalCache _Cache = null;
         private bool disposed = false;
 
         public RepositoryFactory(IContext context,DalCache cache)
         {
-            this._Context = context;
-            if (_Context as ProductionContext != null) this._Production = true;
+            if (context as ProductionContext != null) this._Production = true;
             this._Cache = cache;
         }
 
         #region Get Repositories
-        public IRepository<User> GetUserRepository()
+        public IRepository<User> GetUserRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<User>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<User>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<User>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<User>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<Galaxy> GetGalaxyRepository()
+        public IRepository<Galaxy> GetGalaxyRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<Galaxy>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<Galaxy>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<Galaxy>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<Galaxy>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<Satellite> GetSatelliteRepository()
+        public IRepository<Satellite> GetSatelliteRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<Satellite>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<Satellite>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<Satellite>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<Satellite>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<Star> GetStarRepository()
+        public IRepository<Star> GetStarRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<Star>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<Star>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<Star>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<Star>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<Planet> GetPlanetRepository()
+        public IRepository<Planet> GetPlanetRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<Planet>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<Planet>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<Planet>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<Planet>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<InternalMail> GetInternalMailRepository()
+        public IRepository<InternalMail> GetInternalMailRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<InternalMail>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<InternalMail>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<InternalMail>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<InternalMail>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<TechBonus> GetTechBonusRepository()
+        public IRepository<TechBonus> GetTechBonusRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<TechBonus>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<TechBonus>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<TechBonus>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<TechBonus>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<Technology> GetTechnologyRepository()
+        public IRepository<Technology> GetTechnologyRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<Technology>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<Technology>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<Technology>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<Technology>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<TechRequisiteNode> GetTechNodeRepository()
+        public IRepository<TechRequisiteNode> GetTechNodeRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<TechRequisiteNode>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<TechRequisiteNode>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<TechRequisiteNode>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<TechRequisiteNode>(context as TestContext, _Cache, string.Empty);
         }
 
 
-        public IRepository<RaceBonus> GetRaceBonusRepository()
+        public IRepository<RaceBonus> GetRaceBonusRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<RaceBonus>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<RaceBonus>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<RaceBonus>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<RaceBonus>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<ResearchQueue> GetResearchQueueRepository()
+        public IRepository<ResearchQueue> GetResearchQueueRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<ResearchQueue>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<ResearchQueue>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<ResearchQueue>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<ResearchQueue>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<FleetQueue> GetFleetQueueRepository()
+        public IRepository<FleetQueue> GetFleetQueueRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<FleetQueue>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<FleetQueue>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<FleetQueue>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<FleetQueue>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<BuildingQueue> GetBuildingQueueRepository()
+        public IRepository<BuildingQueue> GetBuildingQueueRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<BuildingQueue>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<BuildingQueue>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<BuildingQueue>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<BuildingQueue>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<UserLog> GetUserLogRepository()
+        public IRepository<UserLog> GetUserLogRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<UserLog>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<UserLog>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<UserLog>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<UserLog>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<GalaxyLog> GalaxyLogRepository()
+        public IRepository<GalaxyLog> GalaxyLogRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<GalaxyLog>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<GalaxyLog>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<GalaxyLog>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<GalaxyLog>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<Building> GetBuildingRepository()
+        public IRepository<Building> GetBuildingRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<Building>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<Building>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<Building>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<Building>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<BuildingSpec> GetBuildingSpecRepository()
+        public IRepository<BuildingSpec> GetBuildingSpecRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<BuildingSpec>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<BuildingSpec>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<BuildingSpec>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<BuildingSpec>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<Fleet> GetFleetRepository()
+        public IRepository<Fleet> GetFleetRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<Fleet>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<Fleet>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<Fleet>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<Fleet>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<ShipClass> GetShipClasstRepository()
+        public IRepository<ShipClass> GetShipClasstRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<ShipClass>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<ShipClass>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<ShipClass>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<ShipClass>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<Hull> GetHullRepository()
+        public IRepository<Hull> GetHullRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<Hull>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<Hull>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<Hull>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<Hull>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<Engine> GetEngineRepository()
+        public IRepository<Engine> GetEngineRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<Engine>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<Engine>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<Engine>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<Engine>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<Armor> GetArmorRepository()
+        public IRepository<Armor> GetArmorRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<Armor>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<Armor>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<Armor>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<Armor>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<Shield> GetShieldRepository()
+        public IRepository<Shield> GetShieldRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<Shield>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<Shield>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<Shield>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<Shield>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<ShipSystem> GetShipSystemRepository()
+        public IRepository<ShipSystem> GetShipSystemRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<ShipSystem>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<ShipSystem>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<ShipSystem>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<ShipSystem>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<AntiShipWeapon> GetAntiShipWeaponRepository()
+        public IRepository<AntiShipWeapon> GetAntiShipWeaponRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<AntiShipWeapon>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<AntiShipWeapon>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<AntiShipWeapon>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<AntiShipWeapon>(context as TestContext, _Cache, string.Empty);
         }
 
-        public IRepository<AntiPlanetWeapon> GetAntiPlanetWeaponRepository()
+        public IRepository<AntiPlanetWeapon> GetAntiPlanetWeaponRepository(IContext context)
         {
-            if (_Production) return new RepositoryProduction<AntiPlanetWeapon>(this._Context as ProductionContext, _Cache, string.Empty);
-            else return new RepositoryTest<AntiPlanetWeapon>(this._Context as TestContext, _Cache, string.Empty);
+            if (_Production) return new RepositoryProduction<AntiPlanetWeapon>(context as ProductionContext, _Cache, string.Empty);
+            else return new RepositoryTest<AntiPlanetWeapon>(context as TestContext, _Cache, string.Empty);
         }
         #endregion
 
@@ -211,7 +209,6 @@ namespace UnitOfWork.Implementations.Repository
             {
                 if (disposing)
                 {
-                    this._Context = null;
                 }
             }
         }

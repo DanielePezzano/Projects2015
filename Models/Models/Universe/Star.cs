@@ -33,10 +33,12 @@ namespace Models.Universe
         [Range(1,10)]
         [Display(Name = "RadiationLevel", ResourceType = typeof(Resources))]
         public int RadiationLevel { get; set; }
-        [Required]
-        public Coordinates Coordinate { get; set; }
+        [Required()]
+        public int CoordinateX { get; set; }
+        [Required()]
+        public int CoordinateY { get; set; }
 
         public virtual ICollection<Planet> Planets { get; set; }
-        public virtual Galaxy Universe { get; set; }
+        public virtual Galaxy Galaxy { get; set; }
     }
 }
