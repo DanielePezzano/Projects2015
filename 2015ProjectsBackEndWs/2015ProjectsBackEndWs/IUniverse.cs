@@ -1,4 +1,6 @@
-﻿using _2015ProjectsBackEndWs.DTO.UtilityDto;
+﻿using _2015ProjectsBackEndWs.DTO.Universe;
+using _2015ProjectsBackEndWs.DTO.UtilityDto;
+using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
@@ -10,11 +12,11 @@ namespace _2015ProjectsBackEndWs
     public interface IUniverse
     {
         [OperationContract]
-        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "json/{minX}/{minY}/{maxX}/{maxY}")]
-        string GetUniversePortion(string minX, string minY, string maxX, string maxY);
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetUniversePortion")]
+        List<StarDto> GetUniversePortion(UniverseRangeDto universeRage);
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GeneratePortion")]
-        string GeneratePortion(PlanetGenerationDto generationData);
+        string GenerateStarSystem(PlanetGenerationDto generationData);
     }
 }

@@ -6,6 +6,12 @@ using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Uows;
 using UnitOfWork.Interfaces.Context;
 using UnitOfWork.Implementations.Uows.UowDto;
+using BLL.Generation;
+using BLL.Information;
+using System.Collections.Generic;
+using Models.Universe;
+using _2015ProjectsBackEndWs.DataMapper;
+using _2015ProjectsBackEndWs.DTO.Universe;
 
 namespace _2015ProjectsBackEndWs
 {
@@ -20,13 +26,8 @@ namespace _2015ProjectsBackEndWs
         {
             if (_Rnd == null) _Rnd = new Random();
         }
-
-        public string GetUniversePortion(string minX, string minY, string maxX, string maxY)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GeneratePortion(PlanetGenerationDto generationData)
+        
+        public string GenerateStarSystem(PlanetGenerationDto generationData)
         {
             IntRange RangeX = new IntRange(generationData.MinX, generationData.MaxX);
             IntRange RangeY = new IntRange(generationData.MinY, generationData.MaxY);
@@ -41,7 +42,7 @@ namespace _2015ProjectsBackEndWs
                 {
                     using (MainUow uow = new MainUow(context,cache,repoFactory))
                     {
-                        BLL.Generation.GeneratePortion generator = new BLL.Generation.GeneratePortion(
+                        GeneratePortion generator = new GeneratePortion(
                             RangeX.Min,
                             RangeX.Max,
                             RangeY.Min,
@@ -61,6 +62,30 @@ namespace _2015ProjectsBackEndWs
             }
 
             return result + ((generationResult) ? " OK status" : " KO status");
+        }
+
+        public List<StarDto> GetUniversePortion(UniverseRangeDto universeRage)
+        {
+            IntRange rangeX = new IntRange(universeRage.MinX, universeRage.MaxX);
+            IntRange rangeY = new IntRange(universeRage.MinY, universeRage.MaxY);
+            List<StarDto> stars = new List<StarDto>();
+            using (ContextFactory factory = new ContextFactory())
+            {
+                IContext context = factory.Retrieve();
+                UowRepositories repositories = factory.CreateRepositories();
+                DalCache cache = factory.CreateCache();
+                using (UowRepositoryFactories repoFactory = new UowRepositoryFactories(context, cache, repositories))
+                {
+                    using (MainUow uow = new MainUow(context, cache, repoFactory))
+                    {
+                        RetrieveInformations Retrieve = new RetrieveInformations(uow, rangeX, rangeY);
+                        string cacheKey = rangeX.Min+"_x_"+rangeX.Max+";"+rangeY.Min+"_y_"+rangeY.Max;
+                        StarEntityMapper mapper = new StarEntityMapper();
+                        stars = mapper.EntityListToModel(Retrieve.StarsInRange(cacheKey));
+                    }
+                }
+            }
+            return stars;
         }
     }
 }

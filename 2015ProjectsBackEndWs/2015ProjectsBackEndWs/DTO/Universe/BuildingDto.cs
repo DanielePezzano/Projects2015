@@ -1,4 +1,5 @@
-﻿using Models.Buildings;
+﻿using _2015ProjectsBackEndWs.DataMapper;
+using Models.Buildings;
 using Models.Buildings.Enums;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -36,18 +37,8 @@ namespace _2015ProjectsBackEndWs.DTO.Universe
         public BuildingDto(Building model)
             : base(model)
         {
-            this.Details = this.ConvertModelListToDto(model.BuildingSpecs);
-        }
-
-        private List<BuildingSpecsDto> ConvertModelListToDto(ICollection<BuildingSpec> specs)
-        {
-            List<BuildingSpecsDto> result = new List<BuildingSpecsDto>();
-            foreach (BuildingSpec spec in specs)
-            {
-                BuildingSpecsDto toAdd = new BuildingSpecsDto(spec);
-                result.Add(toAdd);
-            }
-            return result;
+            BuildingSpecEntityMapper mapper = new BuildingSpecEntityMapper();
+            this.Details = mapper.EntityListToModel((List<BuildingSpec>)model.BuildingSpecs);
         }
     }
 }

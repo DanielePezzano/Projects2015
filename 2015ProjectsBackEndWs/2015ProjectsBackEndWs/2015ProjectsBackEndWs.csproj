@@ -89,12 +89,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataMapper\BuildingEntityMapper.cs" />
+    <Compile Include="DataMapper\BuildingSpecEntityMapper.cs" />
+    <Compile Include="DataMapper\Interface\IDataMapper.cs" />
+    <Compile Include="DataMapper\PlanetEntityMapper.cs" />
+    <Compile Include="DataMapper\StarEntityMapper.cs" />
     <Compile Include="DTO\BaseDto.cs" />
     <Compile Include="DTO\Universe\BuildingDto.cs" />
     <Compile Include="DTO\Universe\BuildingSpecsDto.cs" />
     <Compile Include="DTO\Universe\PlanetDto.cs" />
     <Compile Include="DTO\Universe\StarDto.cs" />
     <Compile Include="DTO\UtilityDto\PlanetGenerationDto.cs" />
+    <Compile Include="DTO\UtilityDto\UniverseRangeDto.cs" />
     <Compile Include="IUniverse.cs" />
     <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

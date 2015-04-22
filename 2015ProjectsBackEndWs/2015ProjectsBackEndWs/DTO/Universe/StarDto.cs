@@ -1,4 +1,5 @@
-﻿using Models.Universe;
+﻿using _2015ProjectsBackEndWs.DataMapper;
+using Models.Universe;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -10,18 +11,8 @@ namespace _2015ProjectsBackEndWs.DTO.Universe
         public StarDto(Star model)
             : base(model)
         {
-            this.Planets = ConvertModelListToDto(model.Planets);
-        }
-
-        private List<PlanetDto> ConvertModelListToDto(ICollection<Planet> collection)
-        {
-            List<PlanetDto> result = new List<PlanetDto>();
-            foreach (Planet planet in collection)
-            {
-                PlanetDto toAdd = new PlanetDto(planet);
-                result.Add(toAdd);
-            }
-            return result;
+            PlanetEntityMapper planetMapper = new PlanetEntityMapper();
+            this.Planets = planetMapper.EntityListToModel((List<Planet>)model.Planets);
         }
         [DataMember]
         public int GalaxyId { get { return Model.Galaxy.Id; } }

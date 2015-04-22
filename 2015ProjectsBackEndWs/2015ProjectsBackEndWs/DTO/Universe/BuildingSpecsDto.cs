@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace _2015ProjectsBackEndWs.DTO.Universe
 {
-    [DataContract]
+   [DataContract]
     public class BuildingSpecsDto : BaseDto<BuildingSpec>
     {
         [DataMember]

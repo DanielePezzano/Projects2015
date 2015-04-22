@@ -49,11 +49,11 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "")
         {
-            IQueryable<T> query = (IQueryable<T>)dbSet;
+            List<T> query = dbSet;
 
             if (filter != null)
             {
-                query = query.Where(filter);
+                query = query.Where(filter.Compile()).ToList();
             }
 
             //foreach (var includeProperty in includeProperties.Split
@@ -62,14 +62,15 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             //    query = query.Include(includeProperty);
             //}
 
-            if (orderBy != null)
-            {
-                return orderBy(query).ToList();
-            }
-            else
-            {
-                return query.ToList();
-            }
+            //if (orderBy != null)
+            //{
+            //    return order
+            //}
+            //else
+            //{
+            //    return query.ToList();
+            //}
+            return query;
         }
 
         public void Add(T entity)

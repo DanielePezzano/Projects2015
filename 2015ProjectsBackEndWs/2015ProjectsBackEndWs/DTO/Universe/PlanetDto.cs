@@ -1,4 +1,6 @@
-﻿using Models.Base.Enum;
+﻿using _2015ProjectsBackEndWs.DataMapper;
+using Models.Base.Enum;
+using Models.Buildings;
 using Models.Universe;
 using Models.Universe.Enum;
 using System.Collections.Generic;
@@ -77,23 +79,14 @@ namespace _2015ProjectsBackEndWs.DTO.Universe
         public double TetaZero { get { return Model.Orbit.TetaZero; } }
         [DataMember]
         public double GravityEarthCompared { get { return Mass; } } // gravità rispetto alla terra (che si decide abbia 100 spazi come paragone)
+        [DataMember]
+        public List<BuildingDto> Buildings { get; set; }
 
-        public virtual List<BuildingDto> Buildings { get; set; }
-
-        private List<BuildingDto> ConvertModelListToDto(ICollection<Models.Buildings.Building> collection)
+        public PlanetDto(Planet model)
+            : base(model)
         {
-            List<BuildingDto> result = new List<BuildingDto>();
-            foreach (var item in collection)
-            {
-                BuildingDto toAdd = new BuildingDto(item);
-                result.Add(toAdd);
-            }
-            return result;
-        }
-
-        public PlanetDto(Planet model):base(model)
-        {
-            this.Buildings = ConvertModelListToDto(model.Buildings);
+            BuildingEntityMapper mapper = new BuildingEntityMapper();
+            this.Buildings = mapper.EntityListToModel((List<Building>)model.Buildings);
         }
     }
 }
