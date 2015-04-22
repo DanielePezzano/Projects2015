@@ -62,6 +62,8 @@
     <Compile Include="Implementations\Repository\BaseRepository\RepositoryTest.cs" />
     <Compile Include="Implementations\Repository\RepositoryFactory.cs" />
     <Compile Include="Implementations\Uows\MainUow.cs" />
+    <Compile Include="Implementations\Uows\UowDto\UowRepositories.cs" />
+    <Compile Include="Implementations\Uows\UowDto\UowRepositoryFactories.cs" />
     <Compile Include="Interfaces\Context\IContext.cs" />
     <Compile Include="Interfaces\Context\IContextFactory.cs" />
     <Compile Include="Interfaces\Repository\IRepository.cs" />

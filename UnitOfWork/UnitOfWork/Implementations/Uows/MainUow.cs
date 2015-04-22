@@ -18,8 +18,7 @@ using System.Data.Entity.Infrastructure;
 using System.Transactions;
 using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Context;
-using UnitOfWork.Implementations.Repository;
-using UnitOfWork.Interfaces;
+using UnitOfWork.Implementations.Uows.UowDto;
 using UnitOfWork.Interfaces.Context;
 using UnitOfWork.Interfaces.Repository;
 using UnitOfWork.Interfaces.UnitOfWork;
@@ -32,43 +31,20 @@ namespace UnitOfWork.Implementations.Uows
         private DalCache _Cache = null;
         private bool disposed = false;
 
-        private IRepository<User> _UserRepo = null;
-        private IRepository<InternalMail> _InternalMailRepo = null;
-        private IRepository<Galaxy> _GalaxyRepo = null;
-        private IRepository<Star> _StarRepo = null;
-        private IRepository<Satellite> _SatelliteRepo = null;
-        private IRepository<Planet> _PlanetRepo = null;
-        private IRepository<TechBonus> _TechBonusRepo = null;
-        private IRepository<Technology> _TechnologyRepo = null;
-        private IRepository<TechRequisiteNode> _TechNodeRepo = null;
-        private IRepository<RaceBonus> _RaceBonusRepo = null;
-        private IRepository<ResearchQueue> _ResQueueRepo = null;
-        private IRepository<FleetQueue> _FleetQueueRepo = null;
-        private IRepository<BuildingQueue> _BuildingQueueRepo = null;
-        private IRepository<UserLog> _UserLogRepo = null;
-        private IRepository<GalaxyLog> _GalaxyLogRepo = null;
+        private UowRepositoryFactories _RepoFactories = null;
 
-        private IRepository<Building> _BuildingRepo = null;
-        private IRepository<BuildingSpec> _BuildingSpecRepo = null;
-        private IRepository<Fleet> _FleetRepo = null;
-        private IRepository<ShipClass> _ShipClassRepo = null;
-        private IRepository<Armor> _ArmorRepo = null;
-        private IRepository<Engine> _EngineRepo = null;
-        private IRepository<Hull> _HullRepo = null;
-        private IRepository<Shield> _ShieldRepo = null;
-        private IRepository<ShipSystem> _ShipSystemRepo = null;
-        private IRepository<AntiShipWeapon> _AntiShipWeaponRepo = null;
-        private IRepository<AntiPlanetWeapon> _AntiPlanetWeaponRepo = null;
-
-        public MainUow(IContextFactory contextFactory,DalCache cache)
+        public MainUow(IContext context, DalCache cache, UowRepositoryFactories repoFactories)
         {
-            _Context = contextFactory.Retrieve();
+            if (context != null) _Context = context; else throw new ArgumentNullException("context");
+            if (cache != null) _Cache = cache; else throw new ArgumentNullException("cache");
+            if (repoFactories != null) _RepoFactories = repoFactories; else throw new ArgumentNullException("repoFactories");
+
             if (_Context.IsTest == false) CheckInitialization();
-            _Cache = cache;
         }
 
         private void CheckInitialization()
         {
+
             if (!(_Context as ProductionContext).Database.Exists())
             {
                 try
@@ -90,14 +66,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_AntiPlanetWeaponRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _AntiPlanetWeaponRepo = factory.GetAntiPlanetWeaponRepository(this._Context);
-                    }
-                }
-                return _AntiPlanetWeaponRepo;
+                return _RepoFactories.Repositories.AntiPlanetWeaponRepo;
             }
         }
 
@@ -105,14 +74,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_AntiShipWeaponRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _AntiShipWeaponRepo = factory.GetAntiShipWeaponRepository(this._Context);
-                    }
-                }
-                return _AntiShipWeaponRepo;
+                return _RepoFactories.Repositories.AntiShipWeaponRepo;
             }
         }
 
@@ -120,14 +82,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_ShipSystemRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _ShipSystemRepo = factory.GetShipSystemRepository(this._Context);
-                    }
-                }
-                return _ShipSystemRepo;
+                return _RepoFactories.Repositories.ShipSystemRepo;
             }
         }
 
@@ -135,14 +90,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_ShieldRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _ShieldRepo = factory.GetShieldRepository(this._Context);
-                    }
-                }
-                return _ShieldRepo;
+                return _RepoFactories.Repositories.ShieldRepo;
             }
         }
 
@@ -150,30 +98,15 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_HullRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _HullRepo = factory.GetHullRepository(this._Context);
-                    }
-                }
-                return _HullRepo;
+                return _RepoFactories.Repositories.HullRepo;
             }
         }
-
 
         public IRepository<Engine> EngineRepository
         {
             get
             {
-                if (_EngineRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _EngineRepo = factory.GetEngineRepository(this._Context);
-                    }
-                }
-                return _EngineRepo;
+                return _RepoFactories.Repositories.EngineRepo;
             }
         }
 
@@ -181,14 +114,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_ArmorRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _ArmorRepo = factory.GetArmorRepository(this._Context);
-                    }
-                }
-                return _ArmorRepo;
+                return _RepoFactories.Repositories.ArmorRepo;
             }
         }
 
@@ -196,14 +122,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_ShipClassRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _ShipClassRepo = factory.GetShipClasstRepository(this._Context);
-                    }
-                }
-                return _ShipClassRepo;
+                return _RepoFactories.Repositories.ShipClassRepo;
             }
         }
 
@@ -211,14 +130,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_FleetRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _FleetRepo = factory.GetFleetRepository(this._Context);
-                    }
-                }
-                return _FleetRepo;
+                return _RepoFactories.Repositories.FleetRepo;
             }
         }
 
@@ -226,14 +138,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_BuildingSpecRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _BuildingSpecRepo = factory.GetBuildingSpecRepository(this._Context);
-                    }
-                }
-                return _BuildingSpecRepo;
+                return _RepoFactories.Repositories.BuildingSpecRepo;
             }
         }
 
@@ -241,14 +146,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_BuildingRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _BuildingRepo = factory.GetBuildingRepository(this._Context);
-                    }
-                }
-                return _BuildingRepo;
+                return _RepoFactories.Repositories.BuildingRepo;
             }
         }
 
@@ -256,14 +154,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_GalaxyLogRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _GalaxyLogRepo = factory.GalaxyLogRepository(this._Context);
-                    }
-                }
-                return _GalaxyLogRepo;
+                return _RepoFactories.Repositories.GalaxyLogRepo;
             }
         }
 
@@ -271,14 +162,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_UserLogRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _UserLogRepo = factory.GetUserLogRepository(this._Context);
-                    }
-                }
-                return _UserLogRepo;
+                return _RepoFactories.Repositories.UserLogRepo;
             }
         }
 
@@ -286,14 +170,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_BuildingQueueRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _BuildingQueueRepo = factory.GetBuildingQueueRepository(this._Context);
-                    }
-                }
-                return _BuildingQueueRepo;
+                return _RepoFactories.Repositories.BuildingQueueRepo;
             }
         }
 
@@ -301,14 +178,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_FleetQueueRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _FleetQueueRepo = factory.GetFleetQueueRepository(this._Context);
-                    }
-                }
-                return _FleetQueueRepo;
+                return _RepoFactories.Repositories.FleetQueueRepo;
             }
         }
 
@@ -316,14 +186,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_ResQueueRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _ResQueueRepo = factory.GetResearchQueueRepository(this._Context);
-                    }
-                }
-                return _ResQueueRepo;
+                return _RepoFactories.Repositories.ResQueueRepo;
             }
         }
 
@@ -331,29 +194,15 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_RaceBonusRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _RaceBonusRepo = factory.GetRaceBonusRepository(this._Context);
-                    }
-                }
-                return _RaceBonusRepo;
+                return _RepoFactories.Repositories.RaceBonusRepo;
             }
         }
-        
+
         public IRepository<TechRequisiteNode> TechNodesRepository
         {
             get
             {
-                if (_TechNodeRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _TechNodeRepo = factory.GetTechNodeRepository(this._Context);
-                    }
-                }
-                return _TechNodeRepo;
+                return _RepoFactories.Repositories.TechNodeRepo;
             }
         }
 
@@ -361,14 +210,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_TechnologyRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _TechnologyRepo = factory.GetTechnologyRepository(this._Context);
-                    }
-                }
-                return _TechnologyRepo;
+                return _RepoFactories.Repositories.TechnologyRepo;
             }
         }
 
@@ -376,14 +218,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_TechBonusRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _TechBonusRepo = factory.GetTechBonusRepository(this._Context);
-                    }
-                }
-                return _TechBonusRepo;
+                return _RepoFactories.Repositories.TechBonusRepo;
             }
         }
 
@@ -391,14 +226,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_InternalMailRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _InternalMailRepo = factory.GetInternalMailRepository(this._Context);
-                    }
-                }
-                return _InternalMailRepo;
+                return _RepoFactories.Repositories.InternalMailRepo;
             }
         }
 
@@ -406,14 +234,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_PlanetRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _PlanetRepo = factory.GetPlanetRepository(this._Context);
-                    }
-                }
-                return _PlanetRepo;
+                return _RepoFactories.Repositories.PlanetRepo;
             }
         }
 
@@ -421,14 +242,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_SatelliteRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _SatelliteRepo = factory.GetSatelliteRepository(this._Context);
-                    }
-                }
-                return _SatelliteRepo;
+                return _RepoFactories.Repositories.SatelliteRepo;
             }
         }
 
@@ -436,14 +250,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_StarRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _StarRepo = factory.GetStarRepository(this._Context);
-                    }
-                }
-                return _StarRepo;
+                return _RepoFactories.Repositories.StarRepo;
             }
         }
 
@@ -451,14 +258,7 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_GalaxyRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _GalaxyRepo = factory.GetGalaxyRepository(this._Context);
-                    }
-                }
-                return _GalaxyRepo;
+                return _RepoFactories.Repositories.GalaxyRepo;
             }
         }
 
@@ -466,16 +266,9 @@ namespace UnitOfWork.Implementations.Uows
         {
             get
             {
-                if (_UserRepo == null)
-                {
-                    using (RepositoryFactory factory = new RepositoryFactory(this._Context, _Cache))
-                    {
-                        _UserRepo = factory.GetUserRepository(this._Context);
-                    }
-                }
-                return _UserRepo;
+                return _RepoFactories.Repositories.UserRepo;
             }
-        } 
+        }
         #endregion
 
         protected virtual void Dispose(bool disposing)
@@ -485,35 +278,7 @@ namespace UnitOfWork.Implementations.Uows
                 if (disposing)
                 {
                     this._Context = null;
-                    this._UserRepo = null;
-                    this._AntiPlanetWeaponRepo = null;
-                    this._AntiShipWeaponRepo = null;
-                    this._ArmorRepo = null;
-                    this._BuildingQueueRepo = null;
-                    this._BuildingRepo = null;
-                    this._BuildingSpecRepo = null;
-                    this._Cache = null;
-                    this._Context = null;
-                    this._EngineRepo = null;
-                    this._FleetQueueRepo = null;
-                    this._FleetRepo = null;
-                    this._GalaxyLogRepo = null;
-                    this._GalaxyRepo = null;
-                    this._HullRepo = null;
-                    this._InternalMailRepo = null;
-                    this._PlanetRepo = null;
-                    this._RaceBonusRepo = null;
-                    this._ResQueueRepo = null;
-                    this._SatelliteRepo = null;
-                    this._ShieldRepo = null;
-                    this._ShipClassRepo = null;
-                    this._ShipSystemRepo = null;
-                    this._StarRepo = null;
-                    this._TechBonusRepo = null;
-                    this._TechNodeRepo = null;
-                    this._TechnologyRepo = null;
-                    this._UserLogRepo = null;
-                    this._UserRepo = null;
+                    this._RepoFactories.Dispose();
                 }
             }
             this.disposed = true;
@@ -527,24 +292,27 @@ namespace UnitOfWork.Implementations.Uows
 
         public bool Save()
         {
-            bool result = true;
-            using (TransactionScope t = new TransactionScope())
-            {                
-                try
-                {
-                    if (_Context as ProductionContext != null)
-                        (_Context as ProductionContext).SaveChanges();
-                    else result = true;
-                }
-                catch (Exception ex)
-                {
-                    //DAFARE : CREARE UN PROGETTO LOGGER CHE SI OCCUPI DI PRENDERE LE ECCEZIONI E SCRIVERLE IN UN FILE APPOSITO
-                    result = false;
-                    var message = ex.Message;
-                    throw;
-                }
+           ProductionContext context = _Context as ProductionContext;
+
+           return DoSaving(context) >= 0 ? true : false;
+        }
+
+        private int DoSaving(ProductionContext context)
+        {
+            int rowsAffected = -1;
+            try
+            {
+                if (context != null)
+                   rowsAffected = context.SaveChanges();
+                else rowsAffected = 1;
             }
-            return result;
+            catch (Exception ex)
+            {
+                //DAFARE : CREARE UN PROGETTO LOGGER CHE SI OCCUPI DI PRENDERE LE ECCEZIONI E SCRIVERLE IN UN FILE APPOSITO
+                var message = ex.Message;
+                throw;
+            }
+            return rowsAffected;
         }
     }
 }

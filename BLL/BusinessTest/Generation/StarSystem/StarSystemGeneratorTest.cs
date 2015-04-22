@@ -11,6 +11,8 @@ using UnitOfWork.Cache;
 using BLL.Generation.StarSystem;
 using System.Runtime.Serialization.Json;
 using System.IO;
+using UnitOfWork.Interfaces.Context;
+using UnitOfWork.Implementations.Uows.UowDto;
 
 namespace BusinessTest.Generation.StarSystem
 {
@@ -72,12 +74,17 @@ namespace BusinessTest.Generation.StarSystem
 
             _Galaxy.SetupProperty(x => x.Stars, new List<Star>() { _Star2.Object, _Star3.Object, _Star1.Object, _Star4.Object });
             _ContextFactory = new ContextFactory(true);
-            _uow = new MainUow(_ContextFactory, new DalCache());
+            IContext context = _ContextFactory.Retrieve();
+            DalCache cache = new DalCache();
+            UowRepositories repos = new UowRepositories();
+            UowRepositoryFactories repoFactories = new UowRepositoryFactories(context, cache, repos);
+            _uow = new MainUow(context, cache, repoFactories);
 
             _uow.StarRepository.Add(_Star1.Object);
             _uow.StarRepository.Add(_Star2.Object);
             _uow.StarRepository.Add(_Star3.Object);
             _uow.StarRepository.Add(_Star4.Object);
+
         }
 
         // Use TestCleanup to run code after each test has run

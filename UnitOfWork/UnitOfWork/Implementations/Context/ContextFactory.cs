@@ -1,4 +1,6 @@
 ﻿using System;
+using UnitOfWork.Cache;
+using UnitOfWork.Implementations.Uows.UowDto;
 using UnitOfWork.Interfaces.Context;
 
 namespace UnitOfWork.Implementations.Context
@@ -33,6 +35,17 @@ namespace UnitOfWork.Implementations.Context
                 if (_Context != null) _Context = null;
             }
             disposed = true;
+        }
+
+
+        public UowRepositories CreateRepositories()
+        {
+            return new UowRepositories();
+        }
+
+        public DalCache CreateCache()
+        {
+            return new DalCache();
         }
     }
 }

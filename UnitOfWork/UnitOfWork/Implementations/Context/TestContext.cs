@@ -51,5 +51,10 @@ namespace UnitOfWork.Implementations.Context
         public List<ShipSystem> ShipSystems { get; set; }
         public List<AntiShipWeapon> AntiShipWeapons { get; set; }
         public List<AntiPlanetWeapon> AntiPlanetWeapons { get; set; }
+
+        public TestContext()
+        {
+            this.IsTest = true;
+        }
     }
 }

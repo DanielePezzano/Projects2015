@@ -86,8 +86,8 @@ namespace BLL.Generation.StarSystem
             double FoodProd = (baseGroundProduction * percGround) + baseWaterProduction * percWater;
             double OreProd = (baseMineralProduction * percGround) + baseMineralProduction * percWater +
                 (baseMineralProdOnRad * percGroundRad) + (baseMineralProdOnRad * percWaterRad);
-            result.FoodProduction = (int)FoodProd;
-            result.OreProduction = (int)OreProd;
+            result.FoodProduction = ((int)FoodProd >= 0) ? (int)FoodProd : 0;
+            result.OreProduction = ((int)OreProd >= 0) ? (int)OreProd : 0;
             result.ResearchPointProduction = 10;
             return result;
         }

@@ -5,7 +5,6 @@ using Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Uows;
 
 namespace BLL.Generation
@@ -38,13 +37,12 @@ namespace BLL.Generation
             this._FoodRich = foodRich;            
         }
 
-        private bool GalaxyToBeGenerated(ProductionContext context)
+        private bool GalaxyToBeGenerated()
         {
-            return context.Galaxys.Count() == 0 ? true : false;
-            //return this._Uow.GalaxyRepository.Count(_GalaxyCountKey) == 0 ? true : false;
+            return this._Uow.GalaxyRepository.Count(_GalaxyCountKey) == 0 ? true : false;
         }
 
-        private Galaxy GenerateGalaxyFirst(ProductionContext context)
+        private Galaxy GenerateGalaxyFirst()
         {
             Galaxy toAdd = new Galaxy();
             toAdd.CreatedAt = DateTime.Now;
@@ -53,10 +51,8 @@ namespace BLL.Generation
             toAdd.Stars = new List<Star>();
             toAdd.Name = "Galaxy - " + +DateTime.Now.ToFileTimeUtc();
 
-            //this._Uow.GalaxyRepository.Add(toAdd);
-            //this._Uow.Save();
-            context.Galaxys.Add(toAdd);
-            context.SaveChanges();
+            this._Uow.GalaxyRepository.Add(toAdd);
+            this._Uow.Save();
             return toAdd;
         }
         /// <summary>
@@ -65,44 +61,40 @@ namespace BLL.Generation
         /// <returns></returns>
         public bool Generate(Random _Rnd,string cacheKey="")
         {
+            Galaxy referredGalaxy = null;
             bool result = false;
-            using (ProductionContext context = new ProductionContext())
+            if (this.GalaxyToBeGenerated())
+                referredGalaxy = this.GenerateGalaxyFirst();
+            else
+                referredGalaxy = _Uow.GalaxyRepository.GetAll(cacheKey).FirstOrDefault(); // <-- questa cachekey quando rivedremo il codice dovrà esser sostituita!
+
+            if (referredGalaxy != null)
             {
-                Galaxy referredGalaxy = null;
-
-                if (this.GalaxyToBeGenerated(context))
-                    referredGalaxy = this.GenerateGalaxyFirst(context);
-                else
-                    //referredGalaxy = _Uow.GalaxyRepository.GetAll(cacheKey).FirstOrDefault(); // <-- questa cachekey quando rivedremo il codice dovrà esser sostituita!
-                    referredGalaxy = context.Galaxys.FirstOrDefault();
-                if (referredGalaxy != null)
+                try
                 {
-                    try
-                    {
-                        StarSystemGenerator generator = new StarSystemGenerator(
-                                    new StarGenerator(),
-                                    new StarPlacer(this._Uow, referredGalaxy),
-                                    this._ForceLiving,
-                                    this._ForceWater,
-                                    this._MostlyWater,
-                                    this._RangeX.Min,
-                                    this._RangeX.Max,
-                                    this._RangeY.Min,
-                                    this._RangeY.Max,
-                                    this._MineralRich,
-                                    this._MineralPoor,
-                                    this._FoodRich,
-                                    this._FoodPoor);
+                    StarSystemGenerator generator = new StarSystemGenerator(
+                                new StarGenerator(),
+                                new StarPlacer(this._Uow, referredGalaxy),
+                                this._ForceLiving,
+                                this._ForceWater,
+                                this._MostlyWater,
+                                this._RangeX.Min,
+                                this._RangeX.Max,
+                                this._RangeY.Min,
+                                this._RangeY.Max,
+                                this._MineralRich,
+                                this._MineralPoor,
+                                this._FoodRich,
+                                this._FoodPoor);
 
-                        generator.GenerateAndInsert(_Rnd, this._Uow, referredGalaxy, cacheKey, context);
-                        result = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        result = false;
-                    }
-
+                    generator.GenerateAndInsert(_Rnd, this._Uow, referredGalaxy, cacheKey);
+                    result = true;
                 }
+                catch (Exception ex)
+                {
+                    result = false;
+                }
+
             }
             return result;
         }

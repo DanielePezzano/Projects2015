@@ -1,8 +1,11 @@
 ﻿using _2015ProjectsBackEndWs.DTO.UtilityDto;
 using BLL.Utilities.Structs;
 using System;
+using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Uows;
+using UnitOfWork.Interfaces.Context;
+using UnitOfWork.Implementations.Uows.UowDto;
 
 namespace _2015ProjectsBackEndWs
 {
@@ -31,24 +34,30 @@ namespace _2015ProjectsBackEndWs
             string result = "Generation ended with: ";
             using (ContextFactory factory = new ContextFactory())
             {
-                using (MainUow uow = new MainUow(factory, new UnitOfWork.Cache.DalCache()))
+                IContext context = factory.Retrieve();
+                UowRepositories repositories = factory.CreateRepositories();
+                DalCache cache = factory.CreateCache();
+                using (UowRepositoryFactories repoFactory = new UowRepositoryFactories(context,cache,repositories))
                 {
-                    BLL.Generation.GeneratePortion generator = new BLL.Generation.GeneratePortion(
-                        RangeX.Min,
-                        RangeX.Max,
-                        RangeY.Min,
-                        RangeY.Max,
-                        uow,
-                        generationData.ForceLiving,
-                        generationData.ForceWater,
-                        generationData.MostlyWater,
-                        generationData.MineralPoor,
-                        generationData.MineralRich,
-                        generationData.FoodPoor,
-                        generationData.FoodRich);
+                    using (MainUow uow = new MainUow(context,cache,repoFactory))
+                    {
+                        BLL.Generation.GeneratePortion generator = new BLL.Generation.GeneratePortion(
+                            RangeX.Min,
+                            RangeX.Max,
+                            RangeY.Min,
+                            RangeY.Max,
+                            uow,
+                            generationData.ForceLiving,
+                            generationData.ForceWater,
+                            generationData.MostlyWater,
+                            generationData.MineralPoor,
+                            generationData.MineralRich,
+                            generationData.FoodPoor,
+                            generationData.FoodRich);
 
-                    generationResult = generator.Generate(_Rnd);
-                }
+                        generationResult = generator.Generate(_Rnd);
+                    }
+                }                
             }
 
             return result + ((generationResult) ? " OK status" : " KO status");
