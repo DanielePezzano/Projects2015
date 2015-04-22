@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Tech
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class TechRequisiteNode : BaseEntity
     {
         [DataMember]

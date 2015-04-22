@@ -1,11 +1,20 @@
 ﻿using Models.Base;
+using Models.Fleets.ShipClasses.Armors;
+using Models.Fleets.ShipClasses.Engines;
+using Models.Fleets.ShipClasses.Shields;
+using Models.Fleets.ShipClasses.System;
 using Models.Tech;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace Models.Fleets.ShipClasses.Base
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
+    [KnownType(typeof(Armor))]
+    [KnownType(typeof(BaseWeaponEntity))]
+    [KnownType(typeof(Engine))]
+    [KnownType(typeof(Shield))]
+    [KnownType(typeof(ShipSystem))]
     public class PartShipEntity : BaseShipEntity
     {
         [Display(Name = "OreCost", ResourceType = typeof(Resources))]

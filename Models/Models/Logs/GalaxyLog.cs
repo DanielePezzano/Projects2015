@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Logs
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class GalaxyLog : BaseLogEntity
     {
         [DataMember]

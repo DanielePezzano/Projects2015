@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Fleets.ShipClasses.Armors
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class Armor : PartShipEntity
     {
         [Display(Name = "Protection", ResourceType = typeof(Resources))]

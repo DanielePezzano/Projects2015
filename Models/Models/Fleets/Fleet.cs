@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Models.Fleets
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class Fleet : BaseShipEntity
     {
         [NotMapped()]

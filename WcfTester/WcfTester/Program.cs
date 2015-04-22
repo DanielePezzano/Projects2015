@@ -31,7 +31,8 @@ namespace WcfTester
             string result = string.Empty;
             using (UniverseClient client = new UniverseClient())
             {
-                StarDto[] stars = client.GetUniversePortion(new UniverseRangeDto() { MinX = 30, MaxX = 200, MinY = 0, MaxY = 100 });
+                
+                _2015ProjectsBackEndWsDTOUniverseStarDto[] stars = client.GetUniversePortion(new UniverseRangeDto() { MinX = 30, MaxX = 200, MinY = 0, MaxY = 100 });
             }
             Console.Write(result);
             Console.Read();

@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Queues
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class ResearchQueue : BaseQueueEntity
     {
         [DataMember]

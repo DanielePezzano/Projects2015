@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Races
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class RaceBonus : BaseEntity
     {
         [Display(Name = "RaceBonus", ResourceType = typeof(Resources))]

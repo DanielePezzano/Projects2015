@@ -1,10 +1,12 @@
-﻿using Models.Buildings.Enums;
+﻿using Models.Buildings;
+using Models.Buildings.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace Models.Base
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
+    [KnownType(typeof(Building))]
     public class BaseBuildingEntity : BaseEntity
     {
         [Display(Name = "BuildingType", ResourceType = typeof(Resources))]

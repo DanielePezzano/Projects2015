@@ -14,7 +14,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Users
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class User : BaseEntity
     {
         private const int _TotalPoints = 10;

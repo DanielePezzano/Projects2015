@@ -4,17 +4,13 @@ using System.Runtime.Serialization;
 
 namespace _2015ProjectsBackEndWs.DTO.Universe
 {
-   [DataContract]
-    public class BuildingSpecsDto : BaseDto<BuildingSpec>
+    [DataContract]
+    public class BuildingSpecsDto
     {
         [DataMember]
-        public BonusType Bonus { get { return Model.Bonus; } set { Model.Bonus = value; } }
+        public BonusType Bonus { get; set; }
         [DataMember]
-        public int Value { get { return Model.Value; } set { Model.Value = value; } }
+        public int Value { get; set; }
 
-        public BuildingSpecsDto(BuildingSpec model):base(model)
-        {
-
-        }
     }
 }

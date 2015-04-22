@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Fleets.ShipClasses.System
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class ShipSystem : PartShipEntity
     {
         [Display(Name="EnergyBonus", ResourceType=typeof(Resources))]

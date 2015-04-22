@@ -1,5 +1,4 @@
-﻿using _2015ProjectsBackEndWs.DataMapper.Interface;
-using _2015ProjectsBackEndWs.DTO;
+﻿using _2015ProjectsBackEndWs.DTO;
 using _2015ProjectsBackEndWs.DTO.Universe;
 using Models.Universe;
 using System;
@@ -7,16 +6,29 @@ using System.Collections.Generic;
 
 namespace _2015ProjectsBackEndWs.DataMapper
 {
-    public class StarEntityMapper : IDataMapper<Star>
+    public class StarEntityMapper
     {
         /// <summary>
         /// Map an entity to the correspondent DTO
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public BaseDto<Star> EntityToModel(Star entity)
+        public StarDto EntityToModel(Star entity)
         {
-            return new StarDto(entity);
+            StarDto result = new StarDto();
+            PlanetEntityMapper mapper = new PlanetEntityMapper();
+            result.GalaxyId = entity.Galaxy.Id;
+            result.Mass = entity.Mass;
+            result.Name = entity.Name;
+            result.Planets = mapper.EntityListToModel(entity.Planets);
+            result.PositgionY = entity.CoordinateY;
+            result.PositionX = entity.CoordinateX;
+            result.RadiationLevel = entity.RadiationLevel;
+            result.Radius = entity.Radius;
+            result.StarColor = entity.StarColor.ToString();
+            result.StarType = entity.StarType.ToString();
+            result.SurfaceTemp = entity.SurfaceTemp;
+            return result;
         }
         /// <summary>
         /// Map an entity List to the correspondent DTO List
@@ -28,7 +40,7 @@ namespace _2015ProjectsBackEndWs.DataMapper
             List<StarDto> result = new List<StarDto>();
             foreach (Star star in stars)
             {
-                result.Add((StarDto)EntityToModel(star));
+                result.Add(EntityToModel(star));
             }
             return result;
         }

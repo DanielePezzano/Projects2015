@@ -9,84 +9,77 @@ using System.Runtime.Serialization;
 namespace _2015ProjectsBackEndWs.DTO.Universe
 {
     [DataContract]
-    public class PlanetDto : BaseDto<Planet>
+    public class PlanetDto
     {
         [DataMember]
-        public int Id { get { return Model.Id; } }
+        public int Id { get; set; }
         [DataMember]
-        public string Name { get { return Model.Name; } set { Model.Name = value; } }
+        public string Name { get; set; }
         [DataMember]
-        public SatelliteStatus Status { get { return Model.SatelliteStatus; } set { Model.SatelliteStatus = value; } }
+        public SatelliteStatus Status { get; set; }
         [DataMember]
-        public int RadiationLevel { get { return Model.RadiationLevel; } set { Model.RadiationLevel = value; } }
+        public int RadiationLevel { get; set; }
         [DataMember]
-        public int GroundRadiatedSpaces { get { return Model.Spaces.GroundRadiatedSpaces; } set { Model.Spaces.GroundRadiatedSpaces = value; } }
+        public int GroundRadiatedSpaces { get; set; }
         [DataMember]
-        public int WaterRadiatedSpaces { get { return Model.Spaces.WaterRadiatedSpaces; } set { Model.Spaces.WaterRadiatedSpaces = value; } }
+        public int WaterRadiatedSpaces { get; set; }
         [DataMember]
-        public int GroundSpaces { get { return Model.Spaces.GroundSpaces; } set { Model.Spaces.GroundSpaces = value; } }
+        public int GroundSpaces { get; set; }
         [DataMember]
-        public int WaterSpaces { get { return Model.Spaces.WaterSpaces; } set { Model.Spaces.WaterSpaces = value; } }
+        public int WaterSpaces { get; set; }
         [DataMember]
-        public int Totalspaces { get { return Model.Spaces.Totalspaces; } }
+        public int Totalspaces { get; set; }
         [DataMember]
-        public int HabitableSpaces { get { return Model.Spaces.HabitableSpaces; } }
+        public int HabitableSpaces { get; set; }
         [DataMember]
-        public int WaterUsedSpaces { get { return Model.Spaces.WaterUsedSpaces; } set { Model.Spaces.WaterUsedSpaces = value; } }
+        public int WaterUsedSpaces { get; set; }
         [DataMember]
-        public int WaterSpacesLeft { get { return Model.Spaces.WaterSpacesLeft; } }
+        public int WaterSpacesLeft { get; set; }
         [DataMember]
-        public int GroundUsedSpaces { get { return Model.Spaces.GroudUsedSpaces; } set { Model.Spaces.GroudUsedSpaces = value; } }
+        public int GroundUsedSpaces { get; set; }
         [DataMember]
-        public int GroundSpacesLeft { get { return Model.Spaces.GroudSpacesLeft; } }
+        public int GroundSpacesLeft { get; set; }
         [DataMember]
-        public int MaxPopulation { get { return Model.MaxPopulation; } }
+        public int MaxPopulation { get; set; }
         [DataMember]
-        public int Population { get { return Model.SatelliteSocial.Population; } set { Model.SatelliteSocial.Population = value; } }
+        public int Population { get; set; }
         [DataMember]
-        public TaxLevel TaxLevel { get { return Model.SatelliteSocial.TaxLevel; } set { Model.SatelliteSocial.TaxLevel = value; } }
+        public TaxLevel TaxLevel { get; set; }
         [DataMember]
-        public double ActivePopOnFoodProduction { get { return Model.SatelliteProduction.ActivePopOnFoodProduction; } set { Model.SatelliteProduction.ActivePopOnFoodProduction = value; } }
+        public double ActivePopOnFoodProduction { get; set; }
         [DataMember]
-        public double ActivePopOnOreProduction { get { return Model.SatelliteProduction.ActivePopOnOreProduction; } set { Model.SatelliteProduction.ActivePopOnOreProduction = value; } }
+        public double ActivePopOnOreProduction { get; set; }
         [DataMember]
-        public double ActivePopOnResProduction { get { return Model.SatelliteProduction.ActivePopOnResProduction; } set { Model.SatelliteProduction.ActivePopOnResProduction = value; } }
+        public double ActivePopOnResProduction { get; set; }
         [DataMember]
-        public int FoodProduction { get { return Model.SatelliteProduction.FoodProduction; } set { Model.SatelliteProduction.FoodProduction = value; } }
+        public int FoodProduction { get; set; }
         [DataMember]
-        public int OreProduction { get { return Model.SatelliteProduction.OreProduction; } set { Model.SatelliteProduction.OreProduction = value; } }
+        public int OreProduction { get; set; }
         [DataMember]
-        public int ResearchPointProduction { get { return Model.SatelliteProduction.ResearchPointProduction; } set { Model.SatelliteProduction.ResearchPointProduction = value; } }
+        public int ResearchPointProduction { get; set; }
         [DataMember]
-        public bool AtmospherePresent { get { return Model.AtmospherePresent; } set { Model.AtmospherePresent = value; } }
+        public bool AtmospherePresent { get; set; }
         [DataMember]
-        public bool RingsPresent { get { return Model.RingsPresent; } }
+        public bool RingsPresent { get; set; }
         [DataMember]
-        public int SurfaceTemp { get { return Model.SurfaceTemp; } set { Model.SurfaceTemp = value; } }
+        public int SurfaceTemp { get; set; }
         [DataMember]
-        public double Mass { get { return Model.Mass; } }
+        public double Mass { get; set; }
         [DataMember]
-        public double Radius { get { return Model.Radius; } }
+        public double Radius { get; set; }
         [DataMember]
-        public double DistanceR { get { return Model.Orbit.DistanceR; } }
+        public double DistanceR { get; set; }
         [DataMember]
-        public double Eccentricity { get { return Model.Orbit.Eccentricity; } }
+        public double Eccentricity { get; set; }
         [DataMember]
-        public double PeriodOfRevolution { get { return Model.Orbit.PeriodOfRevolution; } }
+        public double PeriodOfRevolution { get; set; }
         [DataMember]
-        public double PeriodOfRotation { get { return Model.Orbit.PeriodOfRotation; } }
+        public double PeriodOfRotation { get; set; }
         [DataMember]
-        public double TetaZero { get { return Model.Orbit.TetaZero; } }
+        public double TetaZero { get; set; }
         [DataMember]
-        public double GravityEarthCompared { get { return Mass; } } // gravità rispetto alla terra (che si decide abbia 100 spazi come paragone)
+        public double GravityEarthCompared { get; set; } // gravità rispetto alla terra (che si decide abbia 100 spazi come paragone)
         [DataMember]
         public List<BuildingDto> Buildings { get; set; }
-
-        public PlanetDto(Planet model)
-            : base(model)
-        {
-            BuildingEntityMapper mapper = new BuildingEntityMapper();
-            this.Buildings = mapper.EntityListToModel((List<Building>)model.Buildings);
-        }
     }
 }

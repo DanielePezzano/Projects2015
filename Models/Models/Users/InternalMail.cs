@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Users
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class InternalMail : BaseEntity
     {
         [Required]

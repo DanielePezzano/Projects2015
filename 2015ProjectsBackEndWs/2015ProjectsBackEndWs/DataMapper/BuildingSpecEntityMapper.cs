@@ -1,5 +1,4 @@
-﻿using _2015ProjectsBackEndWs.DataMapper.Interface;
-using _2015ProjectsBackEndWs.DTO;
+﻿using _2015ProjectsBackEndWs.DTO;
 using _2015ProjectsBackEndWs.DTO.Universe;
 using Models.Buildings;
 using System;
@@ -9,16 +8,19 @@ using System.Web;
 
 namespace _2015ProjectsBackEndWs.DataMapper
 {
-    public class BuildingSpecEntityMapper : IDataMapper<BuildingSpec>
+    public class BuildingSpecEntityMapper 
     {
         /// <summary>
         /// Map an entity to the correspondent DTO
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public BaseDto<BuildingSpec> EntityToModel(BuildingSpec entity)
+        public BuildingSpecsDto EntityToModel(BuildingSpec entity)
         {
-            return new BuildingSpecsDto(entity);
+            BuildingSpecsDto result = new BuildingSpecsDto();
+            result.Bonus = entity.Bonus;
+            result.Value = entity.Value;
+            return result;
         }
 
         /// <summary>
@@ -26,12 +28,12 @@ namespace _2015ProjectsBackEndWs.DataMapper
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public List<BuildingSpecsDto> EntityListToModel(List<BuildingSpec> items)
+        public List<BuildingSpecsDto> EntityListToModel(ICollection<BuildingSpec> items)
         {
             List<BuildingSpecsDto> result = new List<BuildingSpecsDto>();
             foreach (BuildingSpec item in items)
             {
-                result.Add((BuildingSpecsDto)EntityToModel(item));
+                result.Add(EntityToModel(item));
             }
             return result;
         }

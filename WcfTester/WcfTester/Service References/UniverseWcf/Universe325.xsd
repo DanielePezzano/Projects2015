@@ -1,116 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Base" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Base" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd17" namespace="http://schemas.datacontract.org/2004/07/Models.Queues.Enum" />
-  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd19" namespace="http://schemas.datacontract.org/2004/07/Models.Buildings.Enums" />
-  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd18" namespace="http://schemas.datacontract.org/2004/07/Models.Buildings" />
-  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Models.Universe" />
-  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd22" namespace="http://schemas.datacontract.org/2004/07/Models.Universe.Enum" />
-  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd21" namespace="http://schemas.datacontract.org/2004/07/Models.Base.Enum" />
-  <xs:complexType name="BaseEntity">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CreatedAt" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="UpdatedAt" type="xs:dateTime" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="BaseEntity" nillable="true" type="tns:BaseEntity" />
-  <xs:complexType name="BaseQueueEntity">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseEntity">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="FinishAt" type="xs:dateTime" />
-          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Models.Queues.Enum" minOccurs="0" name="Status" type="q1:QueueStatus" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BaseQueueEntity" nillable="true" type="tns:BaseQueueEntity" />
-  <xs:complexType name="BaseBuildingEntity">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseEntity">
-        <xs:sequence>
-          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Models.Buildings.Enums" minOccurs="0" name="BuildingType" type="q2:BuildingType" />
-          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="MoneyCost" type="xs:int" />
-          <xs:element minOccurs="0" name="MoneyMaintenanceCost" type="xs:int" />
-          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Number" type="xs:int" />
-          <xs:element minOccurs="0" name="OreCost" type="xs:int" />
-          <xs:element minOccurs="0" name="OreMaintenanceCost" type="xs:int" />
-          <xs:element minOccurs="0" name="SpaceNeeded" type="xs:int" />
-          <xs:element minOccurs="0" name="UsedSpaces" type="xs:int" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BaseBuildingEntity" nillable="true" type="tns:BaseBuildingEntity" />
-  <xs:complexType name="BaseSatellite">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseEntity">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="AtmospherePresent" type="xs:boolean" />
-          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Models.Buildings" minOccurs="0" name="Buildings" nillable="true" type="q3:ArrayOfBuilding" />
-          <xs:element minOccurs="0" name="GravityEarthCompared" type="xs:double" />
-          <xs:element minOccurs="0" name="Mass" type="xs:double" />
-          <xs:element minOccurs="0" name="MaxPopulation" type="xs:int" />
-          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Models.Universe" minOccurs="0" name="Orbit" nillable="true" type="q4:OrbitDetail" />
-          <xs:element minOccurs="0" name="RadiationLevel" type="xs:int" />
-          <xs:element minOccurs="0" name="Radius" type="xs:double" />
-          <xs:element minOccurs="0" name="RingsPresent" type="xs:boolean" />
-          <xs:element minOccurs="0" name="SatelliteProduction" nillable="true" type="tns:Production" />
-          <xs:element minOccurs="0" name="SatelliteSocial" nillable="true" type="tns:SatelliteSocials" />
-          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Models.Universe.Enum" minOccurs="0" name="SatelliteStatus" type="q5:SatelliteStatus" />
-          <xs:element minOccurs="0" name="Spaces" nillable="true" type="tns:Spaces" />
-          <xs:element minOccurs="0" name="SurfaceTemp" type="xs:int" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BaseSatellite" nillable="true" type="tns:BaseSatellite" />
-  <xs:complexType name="Production">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ActivePopOnFoodProduction" type="xs:double" />
-      <xs:element minOccurs="0" name="ActivePopOnOreProduction" type="xs:double" />
-      <xs:element minOccurs="0" name="ActivePopOnResProduction" type="xs:double" />
-      <xs:element minOccurs="0" name="FoodProduction" type="xs:int" />
-      <xs:element minOccurs="0" name="OreProduction" type="xs:int" />
-      <xs:element minOccurs="0" name="ResearchPointProduction" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Production" nillable="true" type="tns:Production" />
-  <xs:complexType name="SatelliteSocials">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Population" type="xs:int" />
-      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Models.Base.Enum" minOccurs="0" name="TaxLevel" type="q6:TaxLevel" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="SatelliteSocials" nillable="true" type="tns:SatelliteSocials" />
-  <xs:complexType name="Spaces">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="GroudSpacesLeft" type="xs:int" />
-      <xs:element minOccurs="0" name="GroudUsedSpaces" type="xs:int" />
-      <xs:element minOccurs="0" name="GroundRadiatedSpaces" type="xs:int" />
-      <xs:element minOccurs="0" name="GroundSpaces" type="xs:int" />
-      <xs:element minOccurs="0" name="HabitableSpaces" type="xs:int" />
-      <xs:element minOccurs="0" name="Totalspaces" type="xs:int" />
-      <xs:element minOccurs="0" name="WaterRadiatedSpaces" type="xs:int" />
-      <xs:element minOccurs="0" name="WaterSpaces" type="xs:int" />
-      <xs:element minOccurs="0" name="WaterSpacesLeft" type="xs:int" />
-      <xs:element minOccurs="0" name="WaterUsedSpaces" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Spaces" nillable="true" type="tns:Spaces" />
-  <xs:complexType name="BaseLogEntity">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseEntity">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="MethodCaller" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ParametersValue" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BaseLogEntity" nillable="true" type="tns:BaseLogEntity" />
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Universe.Enum" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Universe.Enum" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="SatelliteStatus">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Uncolonizable">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Uncolonized">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Colonized">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Blocked">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Starvation">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Revolt">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Optimum">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Abandoned">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="SatelliteStatus" nillable="true" type="tns:SatelliteStatus" />
 </xs:schema>

@@ -24,7 +24,18 @@ namespace BLL.Information
 
         public List<Star> StarsInRange(string cacheKey)
         {
-            return this._MainUow.StarRepository.Get(cacheKey, c => c.CoordinateX >= _RangeX.Min && c.CoordinateY <= _RangeX.Max && c.CoordinateY >= _RangeY.Min && c.CoordinateY <= _RangeY.Max, c => c.OrderBy(x => x.Id), "Planet").ToList();
+            List<Star> result = new List<Star>();
+            try
+            {
+                result = this._MainUow.StarRepository.FindBy(c => c.CoordinateX >= _RangeX.Min && c.CoordinateY <= _RangeX.Max && c.CoordinateY >= _RangeY.Min && c.CoordinateY <= _RangeY.Max, cacheKey).OrderBy(c => c.Id).ToList();
+            }
+            catch (Exception ex)
+            {
+                var e = ex.Message;
+                throw;
+            }
+            return result;
+            //return this._MainUow.StarRepository.Get(cacheKey, , "Planet").ToList();
         }
     }
 }

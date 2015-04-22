@@ -1,10 +1,15 @@
 ﻿using Models.Base;
+using Models.Fleets.ShipClasses.Hulls;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace Models.Fleets.ShipClasses.Base
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
+    [KnownType(typeof(Fleet))]
+    [KnownType(typeof(PartShipEntity))]
+    [KnownType(typeof(Hull))]
+    [KnownType(typeof(ShipClass))]
     public class BaseShipEntity : BaseEntity
     {
         [Display(Name = "Name", ResourceType = typeof(Resources))]

@@ -1,11 +1,15 @@
 ﻿using Models.Base.Enum;
+using Models.Queues;
 using Models.Queues.Enum;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 namespace Models.Base
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
+    [KnownType(typeof(BuildingQueue))]
+    [KnownType(typeof(FleetQueue))]
+    [KnownType(typeof(ResearchQueue))]
     public class BaseQueueEntity : BaseEntity
     {
         [Display(Name = "Status", ResourceType = typeof(Resources))]

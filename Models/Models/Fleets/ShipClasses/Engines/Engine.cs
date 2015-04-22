@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Fleets.ShipClasses.Engines
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class Engine : PartShipEntity
     {
         [Display(Name = "CombatSpeed", ResourceType = typeof(Resources))]

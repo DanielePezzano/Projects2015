@@ -15,7 +15,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Tech
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class Technology : BaseEntity
     {
         private const int _OreWeigt = 23;

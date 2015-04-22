@@ -1,8 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Models.Fleets.ShipClasses.Weapons;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 namespace Models.Fleets.ShipClasses.Base
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
+    [KnownType(typeof(AntiPlanetWeapon))]
+    [KnownType(typeof(AntiShipWeapon))]
     public class BaseWeaponEntity : PartShipEntity
     {
         [Display(Name = "RateOfFire", Description = "RateOfFireHint", ResourceType = typeof(Resources))]

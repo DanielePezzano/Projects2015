@@ -69,6 +69,8 @@ namespace _2015ProjectsBackEndWs
             IntRange rangeX = new IntRange(universeRage.MinX, universeRage.MaxX);
             IntRange rangeY = new IntRange(universeRage.MinY, universeRage.MaxY);
             List<StarDto> stars = new List<StarDto>();
+            List<Star> starEntities = new List<Star>();
+            StarEntityMapper mapper = new StarEntityMapper();
             using (ContextFactory factory = new ContextFactory())
             {
                 IContext context = factory.Retrieve();
@@ -79,12 +81,14 @@ namespace _2015ProjectsBackEndWs
                     using (MainUow uow = new MainUow(context, cache, repoFactory))
                     {
                         RetrieveInformations Retrieve = new RetrieveInformations(uow, rangeX, rangeY);
-                        string cacheKey = rangeX.Min+"_x_"+rangeX.Max+";"+rangeY.Min+"_y_"+rangeY.Max;
-                        StarEntityMapper mapper = new StarEntityMapper();
-                        stars = mapper.EntityListToModel(Retrieve.StarsInRange(cacheKey));
+                        string cacheKey = rangeX.Min+"_x_"+rangeX.Max+";"+rangeY.Min+"_y_"+rangeY.Max;                        
+                        starEntities = Retrieve.StarsInRange(cacheKey);
+                        
                     }
                 }
             }
+            if (starEntities!=null)
+                stars = mapper.EntityListToModel(starEntities);
             return stars;
         }
     }

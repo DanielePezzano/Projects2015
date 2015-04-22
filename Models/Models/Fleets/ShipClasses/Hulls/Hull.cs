@@ -13,7 +13,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Fleets.ShipClasses.Hulls
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class Hull : BaseShipEntity
     {
         [Required()]

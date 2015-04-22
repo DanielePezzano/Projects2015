@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Universe
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class Galaxy : BaseEntity
     {
         [Required()]

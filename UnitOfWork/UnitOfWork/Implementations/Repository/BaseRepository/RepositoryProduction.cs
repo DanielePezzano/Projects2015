@@ -115,7 +115,8 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             //{
             //    result = query.ToList();
             //}
-            return result.ToList();
+            result = query.ToList();
+            return result;
         }
 
         public IQueryable<T> FindBy(Expression<System.Func<T, bool>> predicate, string cacheKey)

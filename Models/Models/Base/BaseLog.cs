@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Models.Logs;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace Models.Base
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
+    [KnownType(typeof(GalaxyLog))]
+    [KnownType(typeof(UserLog))]
     public class BaseLogEntity : BaseEntity
     {
         [DataMember]

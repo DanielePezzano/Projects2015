@@ -91,10 +91,8 @@
   <ItemGroup>
     <Compile Include="DataMapper\BuildingEntityMapper.cs" />
     <Compile Include="DataMapper\BuildingSpecEntityMapper.cs" />
-    <Compile Include="DataMapper\Interface\IDataMapper.cs" />
     <Compile Include="DataMapper\PlanetEntityMapper.cs" />
     <Compile Include="DataMapper\StarEntityMapper.cs" />
-    <Compile Include="DTO\BaseDto.cs" />
     <Compile Include="DTO\Universe\BuildingDto.cs" />
     <Compile Include="DTO\Universe\BuildingSpecsDto.cs" />
     <Compile Include="DTO\Universe\PlanetDto.cs" />
@@ -110,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DataMapper\Interface\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

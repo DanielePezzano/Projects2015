@@ -9,7 +9,9 @@ using System.Runtime.Serialization;
 
 namespace Models.Base
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
+    [KnownType(typeof(Planet))]
+    [KnownType(typeof(Satellite))]
     public class BaseSatellite : BaseEntity
     {
         [Required]

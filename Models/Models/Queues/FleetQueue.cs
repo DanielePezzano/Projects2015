@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Queues
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class FleetQueue : BaseQueueEntity
     {
         [Required()]

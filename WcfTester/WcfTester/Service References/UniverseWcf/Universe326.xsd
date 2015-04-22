@@ -1,89 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Universe" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Universe" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd22" namespace="http://schemas.datacontract.org/2004/07/Models.Universe.Enum" />
-  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Models.Base" />
-  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Models.Users" />
-  <xs:complexType name="Star">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Models.Base" base="q1:BaseEntity">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="CoordinateX" type="xs:int" />
-          <xs:element minOccurs="0" name="CoordinateY" type="xs:int" />
-          <xs:element minOccurs="0" name="Galaxy" nillable="true" type="tns:Galaxy" />
-          <xs:element minOccurs="0" name="Mass" type="xs:double" />
-          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Planets" nillable="true" type="tns:ArrayOfPlanet" />
-          <xs:element minOccurs="0" name="RadiationLevel" type="xs:int" />
-          <xs:element minOccurs="0" name="Radius" type="xs:double" />
-          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Models.Universe.Enum" minOccurs="0" name="StarColor" type="q2:StarColor" />
-          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Models.Universe.Enum" minOccurs="0" name="StarType" type="q3:StarType" />
-          <xs:element minOccurs="0" name="SurfaceTemp" type="xs:int" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Star" nillable="true" type="tns:Star" />
-  <xs:complexType name="Galaxy">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/Models.Base" base="q4:BaseEntity">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Stars" nillable="true" type="tns:ArrayOfStar" />
-          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Models.Users" minOccurs="0" name="Users" nillable="true" type="q5:ArrayOfUser" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Galaxy" nillable="true" type="tns:Galaxy" />
-  <xs:complexType name="ArrayOfStar">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Star" nillable="true" type="tns:Star" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfStar" nillable="true" type="tns:ArrayOfStar" />
-  <xs:complexType name="Planet">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/Models.Base" base="q6:BaseSatellite">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Satellites" nillable="true" type="tns:ArrayOfSatellite" />
-          <xs:element minOccurs="0" name="Star" nillable="true" type="tns:Star" />
-          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Models.Users" minOccurs="0" name="User" nillable="true" type="q7:User" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Planet" nillable="true" type="tns:Planet" />
-  <xs:complexType name="OrbitDetail">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="DistanceR" type="xs:double" />
-      <xs:element minOccurs="0" name="Eccentricity" type="xs:double" />
-      <xs:element minOccurs="0" name="PeriodOfRevolution" type="xs:double" />
-      <xs:element minOccurs="0" name="PeriodOfRotation" type="xs:double" />
-      <xs:element minOccurs="0" name="TetaZero" type="xs:double" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="OrbitDetail" nillable="true" type="tns:OrbitDetail" />
-  <xs:complexType name="ArrayOfSatellite">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Satellite" nillable="true" type="tns:Satellite" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfSatellite" nillable="true" type="tns:ArrayOfSatellite" />
-  <xs:complexType name="Satellite">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/Models.Base" base="q8:BaseSatellite">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Planet" nillable="true" type="tns:Planet" />
-          <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Models.Users" minOccurs="0" name="User" nillable="true" type="q9:User" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Satellite" nillable="true" type="tns:Satellite" />
-  <xs:complexType name="ArrayOfPlanet">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Planet" nillable="true" type="tns:Planet" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfPlanet" nillable="true" type="tns:ArrayOfPlanet" />
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Tech.Enum" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Tech.Enum" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="BonusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ATTACKBONUS" />
+      <xs:enumeration value="DEFENCEBONUS" />
+      <xs:enumeration value="ROFBONUS" />
+      <xs:enumeration value="ENERGYBONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="RESEARCHBONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="POPULATIONBONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TAXBONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SOCIALBONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ARMORBONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FOODBONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PLANETTYPEALLOWED">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">11</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="RANGE">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">12</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SCANNER_RANGE">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">13</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SHIELD_BONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">14</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ORE_BONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">15</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GOLD_BONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MAINT_BONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">17</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SPACE">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">18</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ARMOPIERCINGFACTOR">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">19</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TERRAFORMFACTOR">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">20</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SPATIALCOMPRESSIONFACTOR">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">21</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BATTLESPEEDBONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">22</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PREREQUISITO">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">23</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BONUSTIMETOBUILD">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">24</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SPYINGBONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">25</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PRECISIONBONUS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">26</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BonusType" nillable="true" type="tns:BonusType" />
 </xs:schema>

@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Universe
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class Satellite : BaseSatellite
     {
         [DataMember]

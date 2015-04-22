@@ -12,11 +12,9 @@ namespace _2015ProjectsBackEndWs
     public interface IUniverse
     {
         [OperationContract]
-        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetUniversePortion")]
         List<StarDto> GetUniversePortion(UniverseRangeDto universeRage);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GeneratePortion")]
         string GenerateStarSystem(PlanetGenerationDto generationData);
     }
 }

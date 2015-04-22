@@ -6,34 +6,10 @@
       <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto" />
       <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.Universe" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Models.Universe" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Models.Base" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Models.Users" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/Models.Universe.Strcut" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Hulls" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Weapons" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/Models.Tech" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Armors" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd16" namespace="http://schemas.datacontract.org/2004/07/Models.Queues" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd17" namespace="http://schemas.datacontract.org/2004/07/Models.Queues.Enum" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd18" namespace="http://schemas.datacontract.org/2004/07/Models.Buildings" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd19" namespace="http://schemas.datacontract.org/2004/07/Models.Buildings.Enums" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd20" namespace="http://schemas.datacontract.org/2004/07/Models.Tech.Enum" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd21" namespace="http://schemas.datacontract.org/2004/07/Models.Base.Enum" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd22" namespace="http://schemas.datacontract.org/2004/07/Models.Universe.Enum" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd23" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Engines" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd24" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Shields" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd25" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.System" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd26" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Enums" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd27" namespace="http://schemas.datacontract.org/2004/07/Models.Logs" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd28" namespace="http://schemas.datacontract.org/2004/07/Models.Logs.Enum" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd29" namespace="http://schemas.datacontract.org/2004/07/Models.Races" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd30" namespace="http://schemas.datacontract.org/2004/07/Models.Races.Enums" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd31" namespace="http://schemas.datacontract.org/2004/07/Models.Users.Enum" />
+      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Models.Buildings.Enums" />
+      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Models.Tech.Enum" />
+      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Models.Universe.Enum" />
+      <xsd:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Models.Base.Enum" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IUniverse_GetUniversePortion_InputMessage">

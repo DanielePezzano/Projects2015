@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Buildings
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class Building : BaseBuildingEntity
     {
         [DataMember]

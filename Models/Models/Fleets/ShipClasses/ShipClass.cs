@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Fleets.ShipClasses
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class ShipClass : BaseShipEntity
     {
         [NotMapped()]

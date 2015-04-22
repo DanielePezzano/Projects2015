@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Fleets.ShipClasses.Weapons
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class AntiPlanetWeapon : BaseWeaponEntity
     {
         /*

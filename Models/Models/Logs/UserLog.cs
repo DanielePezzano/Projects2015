@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace Models.Logs
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class UserLog : BaseLogEntity
     {
         [DataMember]

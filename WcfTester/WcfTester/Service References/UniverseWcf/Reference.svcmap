@@ -22,40 +22,16 @@
     <MetadataSource Address="http://localhost:51822/Universe.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Universe3.xsd" MetadataType="Schema" ID="4b9422f2-f3cf-4bff-8e35-671539ab569d" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd31" />
-    <MetadataFile FileName="Universe.disco" MetadataType="Disco" ID="1d1d47e8-d3c7-4172-9f7d-272c53959823" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?disco" />
     <MetadataFile FileName="Universe.xsd" MetadataType="Schema" ID="162c02f1-ffe2-476e-b3ad-0c4d49a5df10" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd2" />
-    <MetadataFile FileName="Universe31.xsd" MetadataType="Schema" ID="606781d0-a99d-40cd-af9e-2a3916f081fa" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd10" />
-    <MetadataFile FileName="Universe32.xsd" MetadataType="Schema" ID="131941dd-e90e-428a-85a3-ea0df9391854" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd11" />
-    <MetadataFile FileName="Universe33.xsd" MetadataType="Schema" ID="1dbfa3dc-0cc1-4ff7-ab93-61b6794af481" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd12" />
-    <MetadataFile FileName="Universe34.xsd" MetadataType="Schema" ID="7405e3a5-5335-4dd7-b1f2-d7f8bf0293a2" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd13" />
-    <MetadataFile FileName="Universe35.xsd" MetadataType="Schema" ID="1f986bd2-4345-4c0e-b56c-63f9a8afedf1" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd14" />
-    <MetadataFile FileName="Universe36.xsd" MetadataType="Schema" ID="1f9164ee-ebef-471d-911a-d924e402e0e1" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd15" />
-    <MetadataFile FileName="Universe37.xsd" MetadataType="Schema" ID="d065f53e-75a1-437c-adf0-c8365b580a67" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd16" />
-    <MetadataFile FileName="Universe38.xsd" MetadataType="Schema" ID="8aa647f4-f104-4c0d-b74a-86d8d4f4b765" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd17" />
-    <MetadataFile FileName="Universe39.xsd" MetadataType="Schema" ID="597ebc92-49cf-40ee-babe-bfe132bb4e26" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd18" />
-    <MetadataFile FileName="Universe310.xsd" MetadataType="Schema" ID="227d1d92-b3b8-49e2-9edf-cdcba93f5734" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd19" />
-    <MetadataFile FileName="Universe311.xsd" MetadataType="Schema" ID="84b0b38e-57c8-433a-bfad-61c3a237fac5" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd3" />
-    <MetadataFile FileName="Universe1.xsd" MetadataType="Schema" ID="e32310f8-e4a9-4733-8ce4-6599cfca5348" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd0" />
-    <MetadataFile FileName="Universe312.xsd" MetadataType="Schema" ID="ab3c9368-51a9-4467-ad59-2e8977ff2efd" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd20" />
-    <MetadataFile FileName="Universe313.xsd" MetadataType="Schema" ID="83811611-880a-4fb6-8d0b-d7f11870fb00" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd21" />
-    <MetadataFile FileName="Universe314.xsd" MetadataType="Schema" ID="4286db82-6ad5-4910-9c5c-fba87f9854e8" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd22" />
-    <MetadataFile FileName="Universe315.xsd" MetadataType="Schema" ID="1b55baa5-5d25-4043-b2ce-d25e048b10c6" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd23" />
-    <MetadataFile FileName="Universe316.xsd" MetadataType="Schema" ID="320d60e2-8268-44a0-a52f-a86b4d07bee8" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd24" />
-    <MetadataFile FileName="Universe317.xsd" MetadataType="Schema" ID="191d6aa3-1e97-461b-8ba6-17185d5020c9" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd25" />
-    <MetadataFile FileName="Universe318.xsd" MetadataType="Schema" ID="1a1b4b94-9ab4-4012-8010-0e1b1ed30ffc" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd26" />
-    <MetadataFile FileName="Universe319.xsd" MetadataType="Schema" ID="31d2a55a-2bcd-4fe5-bbbe-25ec78858f5b" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd27" />
-    <MetadataFile FileName="Universe320.xsd" MetadataType="Schema" ID="d88121ca-5217-4f10-9f99-ad30d616d681" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd28" />
-    <MetadataFile FileName="Universe321.xsd" MetadataType="Schema" ID="9d9d97a6-ca45-41b8-99d3-63af18866587" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd29" />
+    <MetadataFile FileName="Universe328.xsd" MetadataType="Schema" ID="06dcf396-acc8-436d-8987-33362ba86792" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd4" />
+    <MetadataFile FileName="Universe.wsdl" MetadataType="Wsdl" ID="ff73cf09-b1b0-4d6f-bca6-3f764f1566af" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?wsdl" />
     <MetadataFile FileName="Universe2.xsd" MetadataType="Schema" ID="308bfff0-5043-46b5-9b27-b7a142e532e0" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd1" />
-    <MetadataFile FileName="Universe322.xsd" MetadataType="Schema" ID="7b2e1589-f767-4fa3-abdb-b574ddccc8de" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd30" />
-    <MetadataFile FileName="Universe323.xsd" MetadataType="Schema" ID="dc0ddaf0-698e-47ba-ba56-72c416c671b8" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd8" />
+    <MetadataFile FileName="Universe311.xsd" MetadataType="Schema" ID="84b0b38e-57c8-433a-bfad-61c3a237fac5" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd3" />
+    <MetadataFile FileName="Universe326.xsd" MetadataType="Schema" ID="432a1358-a2c9-41fa-9210-04f5d5b84f7b" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd5" />
     <MetadataFile FileName="Universe324.xsd" MetadataType="Schema" ID="4751146f-0e37-42bc-b88d-c0f5cc1d4b7e" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd7" />
     <MetadataFile FileName="Universe325.xsd" MetadataType="Schema" ID="431b8cea-e290-4d2a-87b4-943f7b0fb974" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd6" />
-    <MetadataFile FileName="Universe326.xsd" MetadataType="Schema" ID="432a1358-a2c9-41fa-9210-04f5d5b84f7b" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd5" />
-    <MetadataFile FileName="Universe327.xsd" MetadataType="Schema" ID="fd479dcb-070f-48c2-b2c7-2e17f1c52823" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd9" />
-    <MetadataFile FileName="Universe328.xsd" MetadataType="Schema" ID="06dcf396-acc8-436d-8987-33362ba86792" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd4" />
-    <MetadataFile FileName="Universe.wsdl" MetadataType="Wsdl" ID="2e286e67-825f-468d-9935-67306af184ce" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?wsdl" />
+    <MetadataFile FileName="Universe.disco" MetadataType="Disco" ID="07c08133-2447-4b4f-9e0c-b431c36e1ec8" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?disco" />
+    <MetadataFile FileName="Universe1.xsd" MetadataType="Schema" ID="e32310f8-e4a9-4733-8ce4-6599cfca5348" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

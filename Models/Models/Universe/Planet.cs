@@ -8,7 +8,7 @@ using Models.Buildings;
 using System.Runtime.Serialization;
 namespace Models.Universe
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class Planet : BaseSatellite
     {
         [Display(Name = "Satellites", ResourceType = typeof(Resources))]
