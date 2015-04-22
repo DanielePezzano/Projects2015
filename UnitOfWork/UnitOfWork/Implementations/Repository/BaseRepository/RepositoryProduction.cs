@@ -107,15 +107,15 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
                 query = query.Include(includeProperty);
             }
 
-            if (orderBy != null)
-            {
-                result = orderBy(query).ToList();
-            }
-            else
-            {
-                result = query.ToList();
-            }
-            return result;
+            ////if (orderBy != null)
+            ////{
+            ////    result = orderBy(query).ToList();
+            ////}
+            //else
+            //{
+            //    result = query.ToList();
+            //}
+            return result.ToList();
         }
 
         public IQueryable<T> FindBy(Expression<System.Func<T, bool>> predicate, string cacheKey)

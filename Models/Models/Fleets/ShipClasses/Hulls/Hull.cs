@@ -9,62 +9,81 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace Models.Fleets.ShipClasses.Hulls
 {
+    [DataContract]
     public class Hull : BaseShipEntity
     {
         [Required()]
         [Display(Name = "TotalSpaces", Description = "TotalSpacesHint", ResourceType = typeof(Resources))]
+        [DataMember]
         public int TotalSpaces { get; set; }
         [NotMapped()]
         [Display(Name = "UsedSpaces", ResourceType = typeof(Resources))]
+        [DataMember]
         public int UsedSpaces { get { return GetTotalUsedSpaces(); } }
         [Required()]
         [Display(Name = "StructurePoints", Description = "StructurePointsHint", ResourceType = typeof(Resources))]
+        [DataMember]
         public int StructurePoints { get; set; }
         [NotMapped()]
         [Display(Name = "Armor", ResourceType = typeof(Resources))]
+        [DataMember]
         public int TotalArmor { get { return GetTotalArmor(); } }
         [NotMapped()]
         [Display(Name = "Shield", ResourceType = typeof(Resources))]
+        [DataMember]
         public int TotalShields { get { return GetTotalShields(); } }
         [NotMapped()]
         [Display(Name = "CombatSpeed", ResourceType = typeof(Resources))]
+        [DataMember]
         public int CombatSpeed { get { return GetCombatSpeed(); } }
         [NotMapped()]
         [Display(Name = "TravelSpeed", ResourceType = typeof(Resources))]
+        [DataMember]
         public int TravelSpeed { get { return GetTravelSpeed(); } }
         [NotMapped()]
         [Display(Name = "Range", Description = "RangeHint", ResourceType = typeof(Resources))]
+        [DataMember]
         public int EngineRadius { get { return GetEngineRadius(); } }
         [NotMapped()]
         [Display(Name = "BonusToHit", ResourceType = typeof(Resources))]
+        [DataMember]
         public int ToHitBonus { get { return GetTotalToHitBonus(); } }
-
-        
         [Display(Name = "MoneyCost", ResourceType = typeof(Resources))]
         [NotMapped()]
-        public int MoneyCost { get { return GetMoneyCost(); } }    
+        [DataMember]
+        public int MoneyCost { get { return GetMoneyCost(); } }
         [Display(Name = "OreCost", ResourceType = typeof(Resources))]
         [NotMapped()]
-        public int OreCost { get { return GetOreCost(); }}       
+        [DataMember]
+        public int OreCost { get { return GetOreCost(); } }
         [Display(Name = "MoneyMaintenanceCost", ResourceType = typeof(Resources))]
         [NotMapped()]
-        public int MoneyMaintenanceCost { get { return GetMoneyMaintCost(); }  }       
+        [DataMember]
+        public int MoneyMaintenanceCost { get { return GetMoneyMaintCost(); } }
         [Display(Name = "OreMaintenanceCost", ResourceType = typeof(Resources))]
         [NotMapped()]
+        [DataMember]
         public int OreMaintenanceCost { get { return GetOreMaintCost(); } }
-
+        [DataMember]
         [Required()]
         [EnumDataType(typeof(HullType))]
         [Display(Name = "HullType", ResourceType = typeof(Resources))]
         public HullType HullType { get; set; }
+        [DataMember]
         public virtual ICollection<Armor> Armors { get; set; }
+        [DataMember]
         public virtual ICollection<Engine> Engines { get; set; }
+        [DataMember]
         public virtual ICollection<AntiShipWeapon> AntiShipWeapons { get; set; }
+        [DataMember]
         public virtual ICollection<AntiPlanetWeapon> AntiPlanetWeapons { get; set; }
+        [DataMember]
         public virtual ICollection<ShipSystem> SubSystems { get; set; }
+        [DataMember]
         public virtual ICollection<Shield> Shields { get; set; }
 
 

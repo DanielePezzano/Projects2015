@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Models.Base" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/Models.Tech" />
+  <xs:complexType name="BaseShipEntity">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Models.Base" base="q1:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BaseShipEntity" nillable="true" type="tns:BaseShipEntity" />
+  <xs:complexType name="BaseWeaponEntity">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PartShipEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BonusToHit" type="xs:int" />
+          <xs:element minOccurs="0" name="Damage" type="xs:int" />
+          <xs:element minOccurs="0" name="RateOfFire" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BaseWeaponEntity" nillable="true" type="tns:BaseWeaponEntity" />
+  <xs:complexType name="PartShipEntity">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseShipEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MoneyCost" type="xs:int" />
+          <xs:element minOccurs="0" name="MoneyMaintenanceCost" type="xs:int" />
+          <xs:element minOccurs="0" name="OreCost" type="xs:int" />
+          <xs:element minOccurs="0" name="OreMaintenanceCost" type="xs:int" />
+          <xs:element minOccurs="0" name="SpacesNeeded" type="xs:int" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Models.Tech" minOccurs="0" name="Techonology" nillable="true" type="q2:Technology" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PartShipEntity" nillable="true" type="tns:PartShipEntity" />
+</xs:schema>

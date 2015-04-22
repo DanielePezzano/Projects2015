@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Engines" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Engines" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Hulls" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base" />
+  <xs:complexType name="ArrayOfEngine">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Engine" nillable="true" type="tns:Engine" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEngine" nillable="true" type="tns:ArrayOfEngine" />
+  <xs:complexType name="Engine">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base" base="q1:PartShipEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CombatSpeed" type="xs:int" />
+          <xs:element minOccurs="0" name="GeneratedEnergy" type="xs:int" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Hulls" minOccurs="0" name="Hull" nillable="true" type="q2:Hull" />
+          <xs:element minOccurs="0" name="TravelSpeed" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Engine" nillable="true" type="tns:Engine" />
+</xs:schema>

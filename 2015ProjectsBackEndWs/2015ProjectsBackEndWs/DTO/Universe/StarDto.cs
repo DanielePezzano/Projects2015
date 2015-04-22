@@ -34,7 +34,7 @@ namespace _2015ProjectsBackEndWs.DTO.Universe
         public string StarType { get { return Model.StarType.ToString(); } }
         [DataMember]
         public int SurfaceTemp { get { return Model.SurfaceTemp; } }
-        [DataMember]
+        
         public List<PlanetDto> Planets { get; set; }
     }
 }

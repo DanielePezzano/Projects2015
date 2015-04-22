@@ -15,6 +15,4873 @@ namespace WcfTester.UniverseWcf {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UniverseRangeDto", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto")]
+    [System.SerializableAttribute()]
+    public partial class UniverseRangeDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MaxXField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MaxYField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MinXField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MinYField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MaxX {
+            get {
+                return this.MaxXField;
+            }
+            set {
+                if ((this.MaxXField.Equals(value) != true)) {
+                    this.MaxXField = value;
+                    this.RaisePropertyChanged("MaxX");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MaxY {
+            get {
+                return this.MaxYField;
+            }
+            set {
+                if ((this.MaxYField.Equals(value) != true)) {
+                    this.MaxYField = value;
+                    this.RaisePropertyChanged("MaxY");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MinX {
+            get {
+                return this.MinXField;
+            }
+            set {
+                if ((this.MinXField.Equals(value) != true)) {
+                    this.MinXField = value;
+                    this.RaisePropertyChanged("MinX");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MinY {
+            get {
+                return this.MinYField;
+            }
+            set {
+                if ((this.MinYField.Equals(value) != true)) {
+                    this.MinYField = value;
+                    this.RaisePropertyChanged("MinY");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StarDto", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.Universe")]
+    [System.SerializableAttribute()]
+    public partial class StarDto : WcfTester.UniverseWcf.BaseDtoOfStar69M4is2r {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GalaxyIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double MassField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PositgionYField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PositionXField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RadiationLevelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double RadiusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StarColorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StarTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SurfaceTempField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GalaxyId {
+            get {
+                return this.GalaxyIdField;
+            }
+            set {
+                if ((this.GalaxyIdField.Equals(value) != true)) {
+                    this.GalaxyIdField = value;
+                    this.RaisePropertyChanged("GalaxyId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Mass {
+            get {
+                return this.MassField;
+            }
+            set {
+                if ((this.MassField.Equals(value) != true)) {
+                    this.MassField = value;
+                    this.RaisePropertyChanged("Mass");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PositgionY {
+            get {
+                return this.PositgionYField;
+            }
+            set {
+                if ((this.PositgionYField.Equals(value) != true)) {
+                    this.PositgionYField = value;
+                    this.RaisePropertyChanged("PositgionY");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PositionX {
+            get {
+                return this.PositionXField;
+            }
+            set {
+                if ((this.PositionXField.Equals(value) != true)) {
+                    this.PositionXField = value;
+                    this.RaisePropertyChanged("PositionX");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RadiationLevel {
+            get {
+                return this.RadiationLevelField;
+            }
+            set {
+                if ((this.RadiationLevelField.Equals(value) != true)) {
+                    this.RadiationLevelField = value;
+                    this.RaisePropertyChanged("RadiationLevel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Radius {
+            get {
+                return this.RadiusField;
+            }
+            set {
+                if ((this.RadiusField.Equals(value) != true)) {
+                    this.RadiusField = value;
+                    this.RaisePropertyChanged("Radius");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StarColor {
+            get {
+                return this.StarColorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StarColorField, value) != true)) {
+                    this.StarColorField = value;
+                    this.RaisePropertyChanged("StarColor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StarType {
+            get {
+                return this.StarTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StarTypeField, value) != true)) {
+                    this.StarTypeField = value;
+                    this.RaisePropertyChanged("StarType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SurfaceTemp {
+            get {
+                return this.SurfaceTempField;
+            }
+            set {
+                if ((this.SurfaceTempField.Equals(value) != true)) {
+                    this.SurfaceTempField = value;
+                    this.RaisePropertyChanged("SurfaceTemp");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseDtoOfStar69M4is2r", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.StarDto))]
+    public partial class BaseDtoOfStar69M4is2r : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Star ModelField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Star Model {
+            get {
+                return this.ModelField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ModelField, value) != true)) {
+                    this.ModelField = value;
+                    this.RaisePropertyChanged("Model");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Star", Namespace="http://schemas.datacontract.org/2004/07/Models.Universe")]
+    [System.SerializableAttribute()]
+    public partial class Star : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CoordinateXField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CoordinateYField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Galaxy GalaxyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double MassField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Planet[] PlanetsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RadiationLevelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double RadiusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.StarColor StarColorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.StarType StarTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SurfaceTempField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CoordinateX {
+            get {
+                return this.CoordinateXField;
+            }
+            set {
+                if ((this.CoordinateXField.Equals(value) != true)) {
+                    this.CoordinateXField = value;
+                    this.RaisePropertyChanged("CoordinateX");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CoordinateY {
+            get {
+                return this.CoordinateYField;
+            }
+            set {
+                if ((this.CoordinateYField.Equals(value) != true)) {
+                    this.CoordinateYField = value;
+                    this.RaisePropertyChanged("CoordinateY");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Galaxy Galaxy {
+            get {
+                return this.GalaxyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GalaxyField, value) != true)) {
+                    this.GalaxyField = value;
+                    this.RaisePropertyChanged("Galaxy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Mass {
+            get {
+                return this.MassField;
+            }
+            set {
+                if ((this.MassField.Equals(value) != true)) {
+                    this.MassField = value;
+                    this.RaisePropertyChanged("Mass");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Planet[] Planets {
+            get {
+                return this.PlanetsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlanetsField, value) != true)) {
+                    this.PlanetsField = value;
+                    this.RaisePropertyChanged("Planets");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RadiationLevel {
+            get {
+                return this.RadiationLevelField;
+            }
+            set {
+                if ((this.RadiationLevelField.Equals(value) != true)) {
+                    this.RadiationLevelField = value;
+                    this.RaisePropertyChanged("RadiationLevel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Radius {
+            get {
+                return this.RadiusField;
+            }
+            set {
+                if ((this.RadiusField.Equals(value) != true)) {
+                    this.RadiusField = value;
+                    this.RaisePropertyChanged("Radius");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.StarColor StarColor {
+            get {
+                return this.StarColorField;
+            }
+            set {
+                if ((this.StarColorField.Equals(value) != true)) {
+                    this.StarColorField = value;
+                    this.RaisePropertyChanged("StarColor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.StarType StarType {
+            get {
+                return this.StarTypeField;
+            }
+            set {
+                if ((this.StarTypeField.Equals(value) != true)) {
+                    this.StarTypeField = value;
+                    this.RaisePropertyChanged("StarType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SurfaceTemp {
+            get {
+                return this.SurfaceTempField;
+            }
+            set {
+                if ((this.SurfaceTempField.Equals(value) != true)) {
+                    this.SurfaceTempField = value;
+                    this.RaisePropertyChanged("SurfaceTemp");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseEntity", Namespace="http://schemas.datacontract.org/2004/07/Models.Base")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Technology))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.BaseShipEntity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.ShipClass))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Fleet))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.User))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.BaseLogEntity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.UserLog))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.InternalMail))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.BaseSatellite))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.BaseBuildingEntity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Building))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.BuildingSpec))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Satellite))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Planet))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.RaceBonus))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.BaseQueueEntity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.BuildingQueue))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.ResearchQueue))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Galaxy))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Hull))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.PartShipEntity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.BaseWeaponEntity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.AntiPlanetWeapon))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.TechBonus))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.TechRequisiteNode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Star))]
+    public partial class BaseEntity : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreatedAtField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime UpdatedAtField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CreatedAt {
+            get {
+                return this.CreatedAtField;
+            }
+            set {
+                if ((this.CreatedAtField.Equals(value) != true)) {
+                    this.CreatedAtField = value;
+                    this.RaisePropertyChanged("CreatedAt");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime UpdatedAt {
+            get {
+                return this.UpdatedAtField;
+            }
+            set {
+                if ((this.UpdatedAtField.Equals(value) != true)) {
+                    this.UpdatedAtField = value;
+                    this.RaisePropertyChanged("UpdatedAt");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Technology", Namespace="http://schemas.datacontract.org/2004/07/Models.Tech")]
+    [System.SerializableAttribute()]
+    public partial class Technology : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.AntiPlanetWeapon[] AntiPlanetWeaponsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.AntiShipWeapon[] AntiShipWeaponField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Armor[] ArmorsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.BuildingQueue[] BuildingQueuesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Building[] BuildingsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Engine[] EnginesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.TechnologyField FieldField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MoneyCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OreCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ResearchPointsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.ResearchQueue[] ResearchQueuesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Shield[] ShieldsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.ShipSystem[] ShipSystemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.TechnologySubField SubFieldField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.TechBonus[] TechBonusesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.TechRequisiteNode[] TechRequisitesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TimeToCompleteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.User[] UsersField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.AntiPlanetWeapon[] AntiPlanetWeapons {
+            get {
+                return this.AntiPlanetWeaponsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AntiPlanetWeaponsField, value) != true)) {
+                    this.AntiPlanetWeaponsField = value;
+                    this.RaisePropertyChanged("AntiPlanetWeapons");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.AntiShipWeapon[] AntiShipWeapon {
+            get {
+                return this.AntiShipWeaponField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AntiShipWeaponField, value) != true)) {
+                    this.AntiShipWeaponField = value;
+                    this.RaisePropertyChanged("AntiShipWeapon");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Armor[] Armors {
+            get {
+                return this.ArmorsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ArmorsField, value) != true)) {
+                    this.ArmorsField = value;
+                    this.RaisePropertyChanged("Armors");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.BuildingQueue[] BuildingQueues {
+            get {
+                return this.BuildingQueuesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BuildingQueuesField, value) != true)) {
+                    this.BuildingQueuesField = value;
+                    this.RaisePropertyChanged("BuildingQueues");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Building[] Buildings {
+            get {
+                return this.BuildingsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BuildingsField, value) != true)) {
+                    this.BuildingsField = value;
+                    this.RaisePropertyChanged("Buildings");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Engine[] Engines {
+            get {
+                return this.EnginesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EnginesField, value) != true)) {
+                    this.EnginesField = value;
+                    this.RaisePropertyChanged("Engines");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.TechnologyField Field {
+            get {
+                return this.FieldField;
+            }
+            set {
+                if ((this.FieldField.Equals(value) != true)) {
+                    this.FieldField = value;
+                    this.RaisePropertyChanged("Field");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MoneyCost {
+            get {
+                return this.MoneyCostField;
+            }
+            set {
+                if ((this.MoneyCostField.Equals(value) != true)) {
+                    this.MoneyCostField = value;
+                    this.RaisePropertyChanged("MoneyCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OreCost {
+            get {
+                return this.OreCostField;
+            }
+            set {
+                if ((this.OreCostField.Equals(value) != true)) {
+                    this.OreCostField = value;
+                    this.RaisePropertyChanged("OreCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ResearchPoints {
+            get {
+                return this.ResearchPointsField;
+            }
+            set {
+                if ((this.ResearchPointsField.Equals(value) != true)) {
+                    this.ResearchPointsField = value;
+                    this.RaisePropertyChanged("ResearchPoints");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.ResearchQueue[] ResearchQueues {
+            get {
+                return this.ResearchQueuesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ResearchQueuesField, value) != true)) {
+                    this.ResearchQueuesField = value;
+                    this.RaisePropertyChanged("ResearchQueues");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Shield[] Shields {
+            get {
+                return this.ShieldsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ShieldsField, value) != true)) {
+                    this.ShieldsField = value;
+                    this.RaisePropertyChanged("Shields");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.ShipSystem[] ShipSystems {
+            get {
+                return this.ShipSystemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ShipSystemsField, value) != true)) {
+                    this.ShipSystemsField = value;
+                    this.RaisePropertyChanged("ShipSystems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.TechnologySubField SubField {
+            get {
+                return this.SubFieldField;
+            }
+            set {
+                if ((this.SubFieldField.Equals(value) != true)) {
+                    this.SubFieldField = value;
+                    this.RaisePropertyChanged("SubField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.TechBonus[] TechBonuses {
+            get {
+                return this.TechBonusesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TechBonusesField, value) != true)) {
+                    this.TechBonusesField = value;
+                    this.RaisePropertyChanged("TechBonuses");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.TechRequisiteNode[] TechRequisites {
+            get {
+                return this.TechRequisitesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TechRequisitesField, value) != true)) {
+                    this.TechRequisitesField = value;
+                    this.RaisePropertyChanged("TechRequisites");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TimeToComplete {
+            get {
+                return this.TimeToCompleteField;
+            }
+            set {
+                if ((this.TimeToCompleteField.Equals(value) != true)) {
+                    this.TimeToCompleteField = value;
+                    this.RaisePropertyChanged("TimeToComplete");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.User[] Users {
+            get {
+                return this.UsersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
+                    this.UsersField = value;
+                    this.RaisePropertyChanged("Users");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseShipEntity", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.ShipClass))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Fleet))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Hull))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.PartShipEntity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.BaseWeaponEntity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.AntiPlanetWeapon))]
+    public partial class BaseShipEntity : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ShipClass", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses")]
+    [System.SerializableAttribute()]
+    public partial class ShipClass : WcfTester.UniverseWcf.BaseShipEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CombatSpeedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EngineRadiusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Fleet[] FleetsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Hull[] HullsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MoneyCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MoneyMaintenanceCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OreCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OreMaintenanceCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StructurePointsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ToHitBonusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalArmorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalShieldsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TravelSpeedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.User UserField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CombatSpeed {
+            get {
+                return this.CombatSpeedField;
+            }
+            set {
+                if ((this.CombatSpeedField.Equals(value) != true)) {
+                    this.CombatSpeedField = value;
+                    this.RaisePropertyChanged("CombatSpeed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EngineRadius {
+            get {
+                return this.EngineRadiusField;
+            }
+            set {
+                if ((this.EngineRadiusField.Equals(value) != true)) {
+                    this.EngineRadiusField = value;
+                    this.RaisePropertyChanged("EngineRadius");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Fleet[] Fleets {
+            get {
+                return this.FleetsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FleetsField, value) != true)) {
+                    this.FleetsField = value;
+                    this.RaisePropertyChanged("Fleets");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Hull[] Hulls {
+            get {
+                return this.HullsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HullsField, value) != true)) {
+                    this.HullsField = value;
+                    this.RaisePropertyChanged("Hulls");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MoneyCost {
+            get {
+                return this.MoneyCostField;
+            }
+            set {
+                if ((this.MoneyCostField.Equals(value) != true)) {
+                    this.MoneyCostField = value;
+                    this.RaisePropertyChanged("MoneyCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MoneyMaintenanceCost {
+            get {
+                return this.MoneyMaintenanceCostField;
+            }
+            set {
+                if ((this.MoneyMaintenanceCostField.Equals(value) != true)) {
+                    this.MoneyMaintenanceCostField = value;
+                    this.RaisePropertyChanged("MoneyMaintenanceCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OreCost {
+            get {
+                return this.OreCostField;
+            }
+            set {
+                if ((this.OreCostField.Equals(value) != true)) {
+                    this.OreCostField = value;
+                    this.RaisePropertyChanged("OreCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OreMaintenanceCost {
+            get {
+                return this.OreMaintenanceCostField;
+            }
+            set {
+                if ((this.OreMaintenanceCostField.Equals(value) != true)) {
+                    this.OreMaintenanceCostField = value;
+                    this.RaisePropertyChanged("OreMaintenanceCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StructurePoints {
+            get {
+                return this.StructurePointsField;
+            }
+            set {
+                if ((this.StructurePointsField.Equals(value) != true)) {
+                    this.StructurePointsField = value;
+                    this.RaisePropertyChanged("StructurePoints");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ToHitBonus {
+            get {
+                return this.ToHitBonusField;
+            }
+            set {
+                if ((this.ToHitBonusField.Equals(value) != true)) {
+                    this.ToHitBonusField = value;
+                    this.RaisePropertyChanged("ToHitBonus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalArmor {
+            get {
+                return this.TotalArmorField;
+            }
+            set {
+                if ((this.TotalArmorField.Equals(value) != true)) {
+                    this.TotalArmorField = value;
+                    this.RaisePropertyChanged("TotalArmor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalShields {
+            get {
+                return this.TotalShieldsField;
+            }
+            set {
+                if ((this.TotalShieldsField.Equals(value) != true)) {
+                    this.TotalShieldsField = value;
+                    this.RaisePropertyChanged("TotalShields");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TravelSpeed {
+            get {
+                return this.TravelSpeedField;
+            }
+            set {
+                if ((this.TravelSpeedField.Equals(value) != true)) {
+                    this.TravelSpeedField = value;
+                    this.RaisePropertyChanged("TravelSpeed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Fleet", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets")]
+    [System.SerializableAttribute()]
+    public partial class Fleet : WcfTester.UniverseWcf.BaseShipEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AtBayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MoneyCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MoneyMaintenanceCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OreCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OreMaintenanceCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Coordinates PositionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RangeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.ShipClass[] ShipClassesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TravelSpeedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.User UserField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool AtBay {
+            get {
+                return this.AtBayField;
+            }
+            set {
+                if ((this.AtBayField.Equals(value) != true)) {
+                    this.AtBayField = value;
+                    this.RaisePropertyChanged("AtBay");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MoneyCost {
+            get {
+                return this.MoneyCostField;
+            }
+            set {
+                if ((this.MoneyCostField.Equals(value) != true)) {
+                    this.MoneyCostField = value;
+                    this.RaisePropertyChanged("MoneyCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MoneyMaintenanceCost {
+            get {
+                return this.MoneyMaintenanceCostField;
+            }
+            set {
+                if ((this.MoneyMaintenanceCostField.Equals(value) != true)) {
+                    this.MoneyMaintenanceCostField = value;
+                    this.RaisePropertyChanged("MoneyMaintenanceCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OreCost {
+            get {
+                return this.OreCostField;
+            }
+            set {
+                if ((this.OreCostField.Equals(value) != true)) {
+                    this.OreCostField = value;
+                    this.RaisePropertyChanged("OreCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OreMaintenanceCost {
+            get {
+                return this.OreMaintenanceCostField;
+            }
+            set {
+                if ((this.OreMaintenanceCostField.Equals(value) != true)) {
+                    this.OreMaintenanceCostField = value;
+                    this.RaisePropertyChanged("OreMaintenanceCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Coordinates Position {
+            get {
+                return this.PositionField;
+            }
+            set {
+                if ((this.PositionField.Equals(value) != true)) {
+                    this.PositionField = value;
+                    this.RaisePropertyChanged("Position");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Range {
+            get {
+                return this.RangeField;
+            }
+            set {
+                if ((this.RangeField.Equals(value) != true)) {
+                    this.RangeField = value;
+                    this.RaisePropertyChanged("Range");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.ShipClass[] ShipClasses {
+            get {
+                return this.ShipClassesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ShipClassesField, value) != true)) {
+                    this.ShipClassesField = value;
+                    this.RaisePropertyChanged("ShipClasses");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TravelSpeed {
+            get {
+                return this.TravelSpeedField;
+            }
+            set {
+                if ((this.TravelSpeedField.Equals(value) != true)) {
+                    this.TravelSpeedField = value;
+                    this.RaisePropertyChanged("TravelSpeed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/Models.Users")]
+    [System.SerializableAttribute()]
+    public partial class User : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Fleet[] FleetsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.UserLog[] LogsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.InternalMail[] MailsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhotoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Planet[] PlanetsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.RaceBonus[] RaceBonusesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RaceNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RacePointsLeftField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RacePointsUsedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.ResearchQueue[] ResearchesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Satellite[] SatellitesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.ShipClass[] SchipClassesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ScoreConstructionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ScoreCulturalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ScoreMilitaryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ScoreResearchField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.UserStatus StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Technology[] TechnologiesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Galaxy UniverseField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Fleet[] Fleets {
+            get {
+                return this.FleetsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FleetsField, value) != true)) {
+                    this.FleetsField = value;
+                    this.RaisePropertyChanged("Fleets");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.UserLog[] Logs {
+            get {
+                return this.LogsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LogsField, value) != true)) {
+                    this.LogsField = value;
+                    this.RaisePropertyChanged("Logs");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.InternalMail[] Mails {
+            get {
+                return this.MailsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MailsField, value) != true)) {
+                    this.MailsField = value;
+                    this.RaisePropertyChanged("Mails");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Photo {
+            get {
+                return this.PhotoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhotoField, value) != true)) {
+                    this.PhotoField = value;
+                    this.RaisePropertyChanged("Photo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Planet[] Planets {
+            get {
+                return this.PlanetsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlanetsField, value) != true)) {
+                    this.PlanetsField = value;
+                    this.RaisePropertyChanged("Planets");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.RaceBonus[] RaceBonuses {
+            get {
+                return this.RaceBonusesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RaceBonusesField, value) != true)) {
+                    this.RaceBonusesField = value;
+                    this.RaisePropertyChanged("RaceBonuses");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RaceName {
+            get {
+                return this.RaceNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RaceNameField, value) != true)) {
+                    this.RaceNameField = value;
+                    this.RaisePropertyChanged("RaceName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RacePointsLeft {
+            get {
+                return this.RacePointsLeftField;
+            }
+            set {
+                if ((this.RacePointsLeftField.Equals(value) != true)) {
+                    this.RacePointsLeftField = value;
+                    this.RaisePropertyChanged("RacePointsLeft");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RacePointsUsed {
+            get {
+                return this.RacePointsUsedField;
+            }
+            set {
+                if ((this.RacePointsUsedField.Equals(value) != true)) {
+                    this.RacePointsUsedField = value;
+                    this.RaisePropertyChanged("RacePointsUsed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.ResearchQueue[] Researches {
+            get {
+                return this.ResearchesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ResearchesField, value) != true)) {
+                    this.ResearchesField = value;
+                    this.RaisePropertyChanged("Researches");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Satellite[] Satellites {
+            get {
+                return this.SatellitesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SatellitesField, value) != true)) {
+                    this.SatellitesField = value;
+                    this.RaisePropertyChanged("Satellites");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.ShipClass[] SchipClasses {
+            get {
+                return this.SchipClassesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SchipClassesField, value) != true)) {
+                    this.SchipClassesField = value;
+                    this.RaisePropertyChanged("SchipClasses");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ScoreConstruction {
+            get {
+                return this.ScoreConstructionField;
+            }
+            set {
+                if ((this.ScoreConstructionField.Equals(value) != true)) {
+                    this.ScoreConstructionField = value;
+                    this.RaisePropertyChanged("ScoreConstruction");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ScoreCultural {
+            get {
+                return this.ScoreCulturalField;
+            }
+            set {
+                if ((this.ScoreCulturalField.Equals(value) != true)) {
+                    this.ScoreCulturalField = value;
+                    this.RaisePropertyChanged("ScoreCultural");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ScoreMilitary {
+            get {
+                return this.ScoreMilitaryField;
+            }
+            set {
+                if ((this.ScoreMilitaryField.Equals(value) != true)) {
+                    this.ScoreMilitaryField = value;
+                    this.RaisePropertyChanged("ScoreMilitary");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ScoreResearch {
+            get {
+                return this.ScoreResearchField;
+            }
+            set {
+                if ((this.ScoreResearchField.Equals(value) != true)) {
+                    this.ScoreResearchField = value;
+                    this.RaisePropertyChanged("ScoreResearch");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.UserStatus Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Technology[] Technologies {
+            get {
+                return this.TechnologiesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TechnologiesField, value) != true)) {
+                    this.TechnologiesField = value;
+                    this.RaisePropertyChanged("Technologies");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Galaxy Universe {
+            get {
+                return this.UniverseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UniverseField, value) != true)) {
+                    this.UniverseField = value;
+                    this.RaisePropertyChanged("Universe");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseLogEntity", Namespace="http://schemas.datacontract.org/2004/07/Models.Base")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.UserLog))]
+    public partial class BaseLogEntity : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MethodCallerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ParametersValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MethodCaller {
+            get {
+                return this.MethodCallerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MethodCallerField, value) != true)) {
+                    this.MethodCallerField = value;
+                    this.RaisePropertyChanged("MethodCaller");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ParametersValue {
+            get {
+                return this.ParametersValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ParametersValueField, value) != true)) {
+                    this.ParametersValueField = value;
+                    this.RaisePropertyChanged("ParametersValue");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserLog", Namespace="http://schemas.datacontract.org/2004/07/Models.Logs")]
+    [System.SerializableAttribute()]
+    public partial class UserLog : WcfTester.UniverseWcf.BaseLogEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.UserLogType LogTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.User UserField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.UserLogType LogType {
+            get {
+                return this.LogTypeField;
+            }
+            set {
+                if ((this.LogTypeField.Equals(value) != true)) {
+                    this.LogTypeField = value;
+                    this.RaisePropertyChanged("LogType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InternalMail", Namespace="http://schemas.datacontract.org/2004/07/Models.Users")]
+    [System.SerializableAttribute()]
+    public partial class InternalMail : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BodyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ReceiverField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.User SenderField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Body {
+            get {
+                return this.BodyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BodyField, value) != true)) {
+                    this.BodyField = value;
+                    this.RaisePropertyChanged("Body");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Receiver {
+            get {
+                return this.ReceiverField;
+            }
+            set {
+                if ((this.ReceiverField.Equals(value) != true)) {
+                    this.ReceiverField = value;
+                    this.RaisePropertyChanged("Receiver");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.User Sender {
+            get {
+                return this.SenderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SenderField, value) != true)) {
+                    this.SenderField = value;
+                    this.RaisePropertyChanged("Sender");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseSatellite", Namespace="http://schemas.datacontract.org/2004/07/Models.Base")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Satellite))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Planet))]
+    public partial class BaseSatellite : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AtmospherePresentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Building[] BuildingsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double GravityEarthComparedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double MassField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MaxPopulationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.OrbitDetail OrbitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RadiationLevelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double RadiusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool RingsPresentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Production SatelliteProductionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.SatelliteSocials SatelliteSocialField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.SatelliteStatus SatelliteStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Spaces SpacesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SurfaceTempField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool AtmospherePresent {
+            get {
+                return this.AtmospherePresentField;
+            }
+            set {
+                if ((this.AtmospherePresentField.Equals(value) != true)) {
+                    this.AtmospherePresentField = value;
+                    this.RaisePropertyChanged("AtmospherePresent");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Building[] Buildings {
+            get {
+                return this.BuildingsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BuildingsField, value) != true)) {
+                    this.BuildingsField = value;
+                    this.RaisePropertyChanged("Buildings");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double GravityEarthCompared {
+            get {
+                return this.GravityEarthComparedField;
+            }
+            set {
+                if ((this.GravityEarthComparedField.Equals(value) != true)) {
+                    this.GravityEarthComparedField = value;
+                    this.RaisePropertyChanged("GravityEarthCompared");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Mass {
+            get {
+                return this.MassField;
+            }
+            set {
+                if ((this.MassField.Equals(value) != true)) {
+                    this.MassField = value;
+                    this.RaisePropertyChanged("Mass");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MaxPopulation {
+            get {
+                return this.MaxPopulationField;
+            }
+            set {
+                if ((this.MaxPopulationField.Equals(value) != true)) {
+                    this.MaxPopulationField = value;
+                    this.RaisePropertyChanged("MaxPopulation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.OrbitDetail Orbit {
+            get {
+                return this.OrbitField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OrbitField, value) != true)) {
+                    this.OrbitField = value;
+                    this.RaisePropertyChanged("Orbit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RadiationLevel {
+            get {
+                return this.RadiationLevelField;
+            }
+            set {
+                if ((this.RadiationLevelField.Equals(value) != true)) {
+                    this.RadiationLevelField = value;
+                    this.RaisePropertyChanged("RadiationLevel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Radius {
+            get {
+                return this.RadiusField;
+            }
+            set {
+                if ((this.RadiusField.Equals(value) != true)) {
+                    this.RadiusField = value;
+                    this.RaisePropertyChanged("Radius");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool RingsPresent {
+            get {
+                return this.RingsPresentField;
+            }
+            set {
+                if ((this.RingsPresentField.Equals(value) != true)) {
+                    this.RingsPresentField = value;
+                    this.RaisePropertyChanged("RingsPresent");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Production SatelliteProduction {
+            get {
+                return this.SatelliteProductionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SatelliteProductionField, value) != true)) {
+                    this.SatelliteProductionField = value;
+                    this.RaisePropertyChanged("SatelliteProduction");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.SatelliteSocials SatelliteSocial {
+            get {
+                return this.SatelliteSocialField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SatelliteSocialField, value) != true)) {
+                    this.SatelliteSocialField = value;
+                    this.RaisePropertyChanged("SatelliteSocial");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.SatelliteStatus SatelliteStatus {
+            get {
+                return this.SatelliteStatusField;
+            }
+            set {
+                if ((this.SatelliteStatusField.Equals(value) != true)) {
+                    this.SatelliteStatusField = value;
+                    this.RaisePropertyChanged("SatelliteStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Spaces Spaces {
+            get {
+                return this.SpacesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpacesField, value) != true)) {
+                    this.SpacesField = value;
+                    this.RaisePropertyChanged("Spaces");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SurfaceTemp {
+            get {
+                return this.SurfaceTempField;
+            }
+            set {
+                if ((this.SurfaceTempField.Equals(value) != true)) {
+                    this.SurfaceTempField = value;
+                    this.RaisePropertyChanged("SurfaceTemp");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseBuildingEntity", Namespace="http://schemas.datacontract.org/2004/07/Models.Base")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Building))]
+    public partial class BaseBuildingEntity : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.BuildingType BuildingTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MoneyCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MoneyMaintenanceCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OreCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OreMaintenanceCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SpaceNeededField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UsedSpacesField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.BuildingType BuildingType {
+            get {
+                return this.BuildingTypeField;
+            }
+            set {
+                if ((this.BuildingTypeField.Equals(value) != true)) {
+                    this.BuildingTypeField = value;
+                    this.RaisePropertyChanged("BuildingType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MoneyCost {
+            get {
+                return this.MoneyCostField;
+            }
+            set {
+                if ((this.MoneyCostField.Equals(value) != true)) {
+                    this.MoneyCostField = value;
+                    this.RaisePropertyChanged("MoneyCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MoneyMaintenanceCost {
+            get {
+                return this.MoneyMaintenanceCostField;
+            }
+            set {
+                if ((this.MoneyMaintenanceCostField.Equals(value) != true)) {
+                    this.MoneyMaintenanceCostField = value;
+                    this.RaisePropertyChanged("MoneyMaintenanceCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Number {
+            get {
+                return this.NumberField;
+            }
+            set {
+                if ((this.NumberField.Equals(value) != true)) {
+                    this.NumberField = value;
+                    this.RaisePropertyChanged("Number");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OreCost {
+            get {
+                return this.OreCostField;
+            }
+            set {
+                if ((this.OreCostField.Equals(value) != true)) {
+                    this.OreCostField = value;
+                    this.RaisePropertyChanged("OreCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OreMaintenanceCost {
+            get {
+                return this.OreMaintenanceCostField;
+            }
+            set {
+                if ((this.OreMaintenanceCostField.Equals(value) != true)) {
+                    this.OreMaintenanceCostField = value;
+                    this.RaisePropertyChanged("OreMaintenanceCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SpaceNeeded {
+            get {
+                return this.SpaceNeededField;
+            }
+            set {
+                if ((this.SpaceNeededField.Equals(value) != true)) {
+                    this.SpaceNeededField = value;
+                    this.RaisePropertyChanged("SpaceNeeded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UsedSpaces {
+            get {
+                return this.UsedSpacesField;
+            }
+            set {
+                if ((this.UsedSpacesField.Equals(value) != true)) {
+                    this.UsedSpacesField = value;
+                    this.RaisePropertyChanged("UsedSpaces");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Building", Namespace="http://schemas.datacontract.org/2004/07/Models.Buildings")]
+    [System.SerializableAttribute()]
+    public partial class Building : WcfTester.UniverseWcf.BaseBuildingEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.BuildingSpec[] BuildingSpecsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Planet PlanetField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Satellite SatelliteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Technology TechnologyField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.BuildingSpec[] BuildingSpecs {
+            get {
+                return this.BuildingSpecsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BuildingSpecsField, value) != true)) {
+                    this.BuildingSpecsField = value;
+                    this.RaisePropertyChanged("BuildingSpecs");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Planet Planet {
+            get {
+                return this.PlanetField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlanetField, value) != true)) {
+                    this.PlanetField = value;
+                    this.RaisePropertyChanged("Planet");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Satellite Satellite {
+            get {
+                return this.SatelliteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SatelliteField, value) != true)) {
+                    this.SatelliteField = value;
+                    this.RaisePropertyChanged("Satellite");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Technology Technology {
+            get {
+                return this.TechnologyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TechnologyField, value) != true)) {
+                    this.TechnologyField = value;
+                    this.RaisePropertyChanged("Technology");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BuildingSpec", Namespace="http://schemas.datacontract.org/2004/07/Models.Buildings")]
+    [System.SerializableAttribute()]
+    public partial class BuildingSpec : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.BonusType BonusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Building BuildingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.BonusType Bonus {
+            get {
+                return this.BonusField;
+            }
+            set {
+                if ((this.BonusField.Equals(value) != true)) {
+                    this.BonusField = value;
+                    this.RaisePropertyChanged("Bonus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Building Building {
+            get {
+                return this.BuildingField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BuildingField, value) != true)) {
+                    this.BuildingField = value;
+                    this.RaisePropertyChanged("Building");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((this.ValueField.Equals(value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Satellite", Namespace="http://schemas.datacontract.org/2004/07/Models.Universe")]
+    [System.SerializableAttribute()]
+    public partial class Satellite : WcfTester.UniverseWcf.BaseSatellite {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Planet PlanetField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.User UserField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Planet Planet {
+            get {
+                return this.PlanetField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlanetField, value) != true)) {
+                    this.PlanetField = value;
+                    this.RaisePropertyChanged("Planet");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Planet", Namespace="http://schemas.datacontract.org/2004/07/Models.Universe")]
+    [System.SerializableAttribute()]
+    public partial class Planet : WcfTester.UniverseWcf.BaseSatellite {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Satellite[] SatellitesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Star StarField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.User UserField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Satellite[] Satellites {
+            get {
+                return this.SatellitesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SatellitesField, value) != true)) {
+                    this.SatellitesField = value;
+                    this.RaisePropertyChanged("Satellites");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Star Star {
+            get {
+                return this.StarField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StarField, value) != true)) {
+                    this.StarField = value;
+                    this.RaisePropertyChanged("Star");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RaceBonus", Namespace="http://schemas.datacontract.org/2004/07/Models.Races")]
+    [System.SerializableAttribute()]
+    public partial class RaceBonus : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.RaceTraitsBonuses BonusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.User RaceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.RaceTraitsType TraitTypeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.RaceTraitsBonuses Bonus {
+            get {
+                return this.BonusField;
+            }
+            set {
+                if ((this.BonusField.Equals(value) != true)) {
+                    this.BonusField = value;
+                    this.RaisePropertyChanged("Bonus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.User Race {
+            get {
+                return this.RaceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RaceField, value) != true)) {
+                    this.RaceField = value;
+                    this.RaisePropertyChanged("Race");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.RaceTraitsType TraitType {
+            get {
+                return this.TraitTypeField;
+            }
+            set {
+                if ((this.TraitTypeField.Equals(value) != true)) {
+                    this.TraitTypeField = value;
+                    this.RaisePropertyChanged("TraitType");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseQueueEntity", Namespace="http://schemas.datacontract.org/2004/07/Models.Base")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.BuildingQueue))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.ResearchQueue))]
+    public partial class BaseQueueEntity : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime FinishAtField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.QueueStatus StatusField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime FinishAt {
+            get {
+                return this.FinishAtField;
+            }
+            set {
+                if ((this.FinishAtField.Equals(value) != true)) {
+                    this.FinishAtField = value;
+                    this.RaisePropertyChanged("FinishAt");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.QueueStatus Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BuildingQueue", Namespace="http://schemas.datacontract.org/2004/07/Models.Queues")]
+    [System.SerializableAttribute()]
+    public partial class BuildingQueue : WcfTester.UniverseWcf.BaseQueueEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> PlanetIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> SatelliteIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Technology TechnologyField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Number {
+            get {
+                return this.NumberField;
+            }
+            set {
+                if ((this.NumberField.Equals(value) != true)) {
+                    this.NumberField = value;
+                    this.RaisePropertyChanged("Number");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> PlanetId {
+            get {
+                return this.PlanetIdField;
+            }
+            set {
+                if ((this.PlanetIdField.Equals(value) != true)) {
+                    this.PlanetIdField = value;
+                    this.RaisePropertyChanged("PlanetId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> SatelliteId {
+            get {
+                return this.SatelliteIdField;
+            }
+            set {
+                if ((this.SatelliteIdField.Equals(value) != true)) {
+                    this.SatelliteIdField = value;
+                    this.RaisePropertyChanged("SatelliteId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Technology Technology {
+            get {
+                return this.TechnologyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TechnologyField, value) != true)) {
+                    this.TechnologyField = value;
+                    this.RaisePropertyChanged("Technology");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResearchQueue", Namespace="http://schemas.datacontract.org/2004/07/Models.Queues")]
+    [System.SerializableAttribute()]
+    public partial class ResearchQueue : WcfTester.UniverseWcf.BaseQueueEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> PlanetIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> SatelliteIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Technology TechnologyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.User UserField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> PlanetId {
+            get {
+                return this.PlanetIdField;
+            }
+            set {
+                if ((this.PlanetIdField.Equals(value) != true)) {
+                    this.PlanetIdField = value;
+                    this.RaisePropertyChanged("PlanetId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> SatelliteId {
+            get {
+                return this.SatelliteIdField;
+            }
+            set {
+                if ((this.SatelliteIdField.Equals(value) != true)) {
+                    this.SatelliteIdField = value;
+                    this.RaisePropertyChanged("SatelliteId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Technology Technology {
+            get {
+                return this.TechnologyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TechnologyField, value) != true)) {
+                    this.TechnologyField = value;
+                    this.RaisePropertyChanged("Technology");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Galaxy", Namespace="http://schemas.datacontract.org/2004/07/Models.Universe")]
+    [System.SerializableAttribute()]
+    public partial class Galaxy : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Star[] StarsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.User[] UsersField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Star[] Stars {
+            get {
+                return this.StarsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StarsField, value) != true)) {
+                    this.StarsField = value;
+                    this.RaisePropertyChanged("Stars");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.User[] Users {
+            get {
+                return this.UsersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
+                    this.UsersField = value;
+                    this.RaisePropertyChanged("Users");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Hull", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Hulls")]
+    [System.SerializableAttribute()]
+    public partial class Hull : WcfTester.UniverseWcf.BaseShipEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.AntiPlanetWeapon[] AntiPlanetWeaponsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.AntiShipWeapon[] AntiShipWeaponsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Armor[] ArmorsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CombatSpeedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EngineRadiusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Engine[] EnginesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.HullType HullTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MoneyCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MoneyMaintenanceCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OreCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OreMaintenanceCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Shield[] ShieldsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StructurePointsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.ShipSystem[] SubSystemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ToHitBonusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalArmorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalShieldsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalSpacesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TravelSpeedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UsedSpacesField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.AntiPlanetWeapon[] AntiPlanetWeapons {
+            get {
+                return this.AntiPlanetWeaponsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AntiPlanetWeaponsField, value) != true)) {
+                    this.AntiPlanetWeaponsField = value;
+                    this.RaisePropertyChanged("AntiPlanetWeapons");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.AntiShipWeapon[] AntiShipWeapons {
+            get {
+                return this.AntiShipWeaponsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AntiShipWeaponsField, value) != true)) {
+                    this.AntiShipWeaponsField = value;
+                    this.RaisePropertyChanged("AntiShipWeapons");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Armor[] Armors {
+            get {
+                return this.ArmorsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ArmorsField, value) != true)) {
+                    this.ArmorsField = value;
+                    this.RaisePropertyChanged("Armors");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CombatSpeed {
+            get {
+                return this.CombatSpeedField;
+            }
+            set {
+                if ((this.CombatSpeedField.Equals(value) != true)) {
+                    this.CombatSpeedField = value;
+                    this.RaisePropertyChanged("CombatSpeed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EngineRadius {
+            get {
+                return this.EngineRadiusField;
+            }
+            set {
+                if ((this.EngineRadiusField.Equals(value) != true)) {
+                    this.EngineRadiusField = value;
+                    this.RaisePropertyChanged("EngineRadius");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Engine[] Engines {
+            get {
+                return this.EnginesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EnginesField, value) != true)) {
+                    this.EnginesField = value;
+                    this.RaisePropertyChanged("Engines");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.HullType HullType {
+            get {
+                return this.HullTypeField;
+            }
+            set {
+                if ((this.HullTypeField.Equals(value) != true)) {
+                    this.HullTypeField = value;
+                    this.RaisePropertyChanged("HullType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MoneyCost {
+            get {
+                return this.MoneyCostField;
+            }
+            set {
+                if ((this.MoneyCostField.Equals(value) != true)) {
+                    this.MoneyCostField = value;
+                    this.RaisePropertyChanged("MoneyCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MoneyMaintenanceCost {
+            get {
+                return this.MoneyMaintenanceCostField;
+            }
+            set {
+                if ((this.MoneyMaintenanceCostField.Equals(value) != true)) {
+                    this.MoneyMaintenanceCostField = value;
+                    this.RaisePropertyChanged("MoneyMaintenanceCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OreCost {
+            get {
+                return this.OreCostField;
+            }
+            set {
+                if ((this.OreCostField.Equals(value) != true)) {
+                    this.OreCostField = value;
+                    this.RaisePropertyChanged("OreCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OreMaintenanceCost {
+            get {
+                return this.OreMaintenanceCostField;
+            }
+            set {
+                if ((this.OreMaintenanceCostField.Equals(value) != true)) {
+                    this.OreMaintenanceCostField = value;
+                    this.RaisePropertyChanged("OreMaintenanceCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Shield[] Shields {
+            get {
+                return this.ShieldsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ShieldsField, value) != true)) {
+                    this.ShieldsField = value;
+                    this.RaisePropertyChanged("Shields");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StructurePoints {
+            get {
+                return this.StructurePointsField;
+            }
+            set {
+                if ((this.StructurePointsField.Equals(value) != true)) {
+                    this.StructurePointsField = value;
+                    this.RaisePropertyChanged("StructurePoints");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.ShipSystem[] SubSystems {
+            get {
+                return this.SubSystemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SubSystemsField, value) != true)) {
+                    this.SubSystemsField = value;
+                    this.RaisePropertyChanged("SubSystems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ToHitBonus {
+            get {
+                return this.ToHitBonusField;
+            }
+            set {
+                if ((this.ToHitBonusField.Equals(value) != true)) {
+                    this.ToHitBonusField = value;
+                    this.RaisePropertyChanged("ToHitBonus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalArmor {
+            get {
+                return this.TotalArmorField;
+            }
+            set {
+                if ((this.TotalArmorField.Equals(value) != true)) {
+                    this.TotalArmorField = value;
+                    this.RaisePropertyChanged("TotalArmor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalShields {
+            get {
+                return this.TotalShieldsField;
+            }
+            set {
+                if ((this.TotalShieldsField.Equals(value) != true)) {
+                    this.TotalShieldsField = value;
+                    this.RaisePropertyChanged("TotalShields");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalSpaces {
+            get {
+                return this.TotalSpacesField;
+            }
+            set {
+                if ((this.TotalSpacesField.Equals(value) != true)) {
+                    this.TotalSpacesField = value;
+                    this.RaisePropertyChanged("TotalSpaces");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TravelSpeed {
+            get {
+                return this.TravelSpeedField;
+            }
+            set {
+                if ((this.TravelSpeedField.Equals(value) != true)) {
+                    this.TravelSpeedField = value;
+                    this.RaisePropertyChanged("TravelSpeed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UsedSpaces {
+            get {
+                return this.UsedSpacesField;
+            }
+            set {
+                if ((this.UsedSpacesField.Equals(value) != true)) {
+                    this.UsedSpacesField = value;
+                    this.RaisePropertyChanged("UsedSpaces");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PartShipEntity", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Armor))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Engine))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.Shield))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.ShipSystem))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.BaseWeaponEntity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.AntiPlanetWeapon))]
+    public partial class PartShipEntity : WcfTester.UniverseWcf.BaseShipEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MoneyCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MoneyMaintenanceCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OreCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OreMaintenanceCostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SpacesNeededField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Technology TechonologyField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MoneyCost {
+            get {
+                return this.MoneyCostField;
+            }
+            set {
+                if ((this.MoneyCostField.Equals(value) != true)) {
+                    this.MoneyCostField = value;
+                    this.RaisePropertyChanged("MoneyCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MoneyMaintenanceCost {
+            get {
+                return this.MoneyMaintenanceCostField;
+            }
+            set {
+                if ((this.MoneyMaintenanceCostField.Equals(value) != true)) {
+                    this.MoneyMaintenanceCostField = value;
+                    this.RaisePropertyChanged("MoneyMaintenanceCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OreCost {
+            get {
+                return this.OreCostField;
+            }
+            set {
+                if ((this.OreCostField.Equals(value) != true)) {
+                    this.OreCostField = value;
+                    this.RaisePropertyChanged("OreCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OreMaintenanceCost {
+            get {
+                return this.OreMaintenanceCostField;
+            }
+            set {
+                if ((this.OreMaintenanceCostField.Equals(value) != true)) {
+                    this.OreMaintenanceCostField = value;
+                    this.RaisePropertyChanged("OreMaintenanceCost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SpacesNeeded {
+            get {
+                return this.SpacesNeededField;
+            }
+            set {
+                if ((this.SpacesNeededField.Equals(value) != true)) {
+                    this.SpacesNeededField = value;
+                    this.RaisePropertyChanged("SpacesNeeded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Technology Techonology {
+            get {
+                return this.TechonologyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TechonologyField, value) != true)) {
+                    this.TechonologyField = value;
+                    this.RaisePropertyChanged("Techonology");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseWeaponEntity", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.AntiShipWeapon))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WcfTester.UniverseWcf.AntiPlanetWeapon))]
+    public partial class BaseWeaponEntity : WcfTester.UniverseWcf.PartShipEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BonusToHitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DamageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RateOfFireField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BonusToHit {
+            get {
+                return this.BonusToHitField;
+            }
+            set {
+                if ((this.BonusToHitField.Equals(value) != true)) {
+                    this.BonusToHitField = value;
+                    this.RaisePropertyChanged("BonusToHit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Damage {
+            get {
+                return this.DamageField;
+            }
+            set {
+                if ((this.DamageField.Equals(value) != true)) {
+                    this.DamageField = value;
+                    this.RaisePropertyChanged("Damage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RateOfFire {
+            get {
+                return this.RateOfFireField;
+            }
+            set {
+                if ((this.RateOfFireField.Equals(value) != true)) {
+                    this.RateOfFireField = value;
+                    this.RaisePropertyChanged("RateOfFire");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AntiPlanetWeapon", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Weapons")]
+    [System.SerializableAttribute()]
+    public partial class AntiPlanetWeapon : WcfTester.UniverseWcf.BaseWeaponEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Hull HullField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool RadiationHazardField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Hull Hull {
+            get {
+                return this.HullField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HullField, value) != true)) {
+                    this.HullField = value;
+                    this.RaisePropertyChanged("Hull");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool RadiationHazard {
+            get {
+                return this.RadiationHazardField;
+            }
+            set {
+                if ((this.RadiationHazardField.Equals(value) != true)) {
+                    this.RadiationHazardField = value;
+                    this.RaisePropertyChanged("RadiationHazard");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TechBonus", Namespace="http://schemas.datacontract.org/2004/07/Models.Tech")]
+    [System.SerializableAttribute()]
+    public partial class TechBonus : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.BonusType BonusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Technology TechnologyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.BonusType Bonus {
+            get {
+                return this.BonusField;
+            }
+            set {
+                if ((this.BonusField.Equals(value) != true)) {
+                    this.BonusField = value;
+                    this.RaisePropertyChanged("Bonus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Technology Technology {
+            get {
+                return this.TechnologyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TechnologyField, value) != true)) {
+                    this.TechnologyField = value;
+                    this.RaisePropertyChanged("Technology");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((this.ValueField.Equals(value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TechRequisiteNode", Namespace="http://schemas.datacontract.org/2004/07/Models.Tech")]
+    [System.SerializableAttribute()]
+    public partial class TechRequisiteNode : WcfTester.UniverseWcf.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Technology RequisiteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Technology TechnologyField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Technology Requisite {
+            get {
+                return this.RequisiteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RequisiteField, value) != true)) {
+                    this.RequisiteField = value;
+                    this.RaisePropertyChanged("Requisite");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Technology Technology {
+            get {
+                return this.TechnologyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TechnologyField, value) != true)) {
+                    this.TechnologyField = value;
+                    this.RaisePropertyChanged("Technology");
+                }
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StarColor", Namespace="http://schemas.datacontract.org/2004/07/Models.Universe.Enum")]
+    public enum StarColor : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Red = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Yellow = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Orange = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Blue = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        White = 4,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StarType", Namespace="http://schemas.datacontract.org/2004/07/Models.Universe.Enum")]
+    public enum StarType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Dwarf = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Giant = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        HyperGiant = 2,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AntiShipWeapon", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Weapons")]
+    [System.SerializableAttribute()]
+    public partial class AntiShipWeapon : WcfTester.UniverseWcf.BaseWeaponEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Hull HullField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RayOfFireField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Hull Hull {
+            get {
+                return this.HullField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HullField, value) != true)) {
+                    this.HullField = value;
+                    this.RaisePropertyChanged("Hull");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RayOfFire {
+            get {
+                return this.RayOfFireField;
+            }
+            set {
+                if ((this.RayOfFireField.Equals(value) != true)) {
+                    this.RayOfFireField = value;
+                    this.RaisePropertyChanged("RayOfFire");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Armor", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Armors")]
+    [System.SerializableAttribute()]
+    public partial class Armor : WcfTester.UniverseWcf.PartShipEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Hull HullField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double PercCombatSpeedMalusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double PercTravelSpeedMalusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProtectionField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Hull Hull {
+            get {
+                return this.HullField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HullField, value) != true)) {
+                    this.HullField = value;
+                    this.RaisePropertyChanged("Hull");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double PercCombatSpeedMalus {
+            get {
+                return this.PercCombatSpeedMalusField;
+            }
+            set {
+                if ((this.PercCombatSpeedMalusField.Equals(value) != true)) {
+                    this.PercCombatSpeedMalusField = value;
+                    this.RaisePropertyChanged("PercCombatSpeedMalus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double PercTravelSpeedMalus {
+            get {
+                return this.PercTravelSpeedMalusField;
+            }
+            set {
+                if ((this.PercTravelSpeedMalusField.Equals(value) != true)) {
+                    this.PercTravelSpeedMalusField = value;
+                    this.RaisePropertyChanged("PercTravelSpeedMalus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Protection {
+            get {
+                return this.ProtectionField;
+            }
+            set {
+                if ((this.ProtectionField.Equals(value) != true)) {
+                    this.ProtectionField = value;
+                    this.RaisePropertyChanged("Protection");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Engine", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Engines")]
+    [System.SerializableAttribute()]
+    public partial class Engine : WcfTester.UniverseWcf.PartShipEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CombatSpeedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GeneratedEnergyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Hull HullField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TravelSpeedField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CombatSpeed {
+            get {
+                return this.CombatSpeedField;
+            }
+            set {
+                if ((this.CombatSpeedField.Equals(value) != true)) {
+                    this.CombatSpeedField = value;
+                    this.RaisePropertyChanged("CombatSpeed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GeneratedEnergy {
+            get {
+                return this.GeneratedEnergyField;
+            }
+            set {
+                if ((this.GeneratedEnergyField.Equals(value) != true)) {
+                    this.GeneratedEnergyField = value;
+                    this.RaisePropertyChanged("GeneratedEnergy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Hull Hull {
+            get {
+                return this.HullField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HullField, value) != true)) {
+                    this.HullField = value;
+                    this.RaisePropertyChanged("Hull");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TravelSpeed {
+            get {
+                return this.TravelSpeedField;
+            }
+            set {
+                if ((this.TravelSpeedField.Equals(value) != true)) {
+                    this.TravelSpeedField = value;
+                    this.RaisePropertyChanged("TravelSpeed");
+                }
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TechnologyField", Namespace="http://schemas.datacontract.org/2004/07/Models.Tech.Enum")]
+    public enum TechnologyField : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Buildings = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Social = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Phisycs = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ShipComponent = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ShipFrame = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Weapons = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Enviroment = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Mathematics = 7,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Shield", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Shields")]
+    [System.SerializableAttribute()]
+    public partial class Shield : WcfTester.UniverseWcf.PartShipEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Hull HullField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProtectionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RequiredEnergyField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Hull Hull {
+            get {
+                return this.HullField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HullField, value) != true)) {
+                    this.HullField = value;
+                    this.RaisePropertyChanged("Hull");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Protection {
+            get {
+                return this.ProtectionField;
+            }
+            set {
+                if ((this.ProtectionField.Equals(value) != true)) {
+                    this.ProtectionField = value;
+                    this.RaisePropertyChanged("Protection");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RequiredEnergy {
+            get {
+                return this.RequiredEnergyField;
+            }
+            set {
+                if ((this.RequiredEnergyField.Equals(value) != true)) {
+                    this.RequiredEnergyField = value;
+                    this.RaisePropertyChanged("RequiredEnergy");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ShipSystem", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.System")]
+    [System.SerializableAttribute()]
+    public partial class ShipSystem : WcfTester.UniverseWcf.PartShipEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CombatSpeedBonusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EnergyBonusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.Hull HullField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RangeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ScannerRadiusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double ScannerRelevationBonusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double ScannerRelevationMalusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double SpaceBonusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.SystemType SystemTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ToHitBonusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ToHitMalusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TravelSpeedBonusField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CombatSpeedBonus {
+            get {
+                return this.CombatSpeedBonusField;
+            }
+            set {
+                if ((this.CombatSpeedBonusField.Equals(value) != true)) {
+                    this.CombatSpeedBonusField = value;
+                    this.RaisePropertyChanged("CombatSpeedBonus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EnergyBonus {
+            get {
+                return this.EnergyBonusField;
+            }
+            set {
+                if ((this.EnergyBonusField.Equals(value) != true)) {
+                    this.EnergyBonusField = value;
+                    this.RaisePropertyChanged("EnergyBonus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.Hull Hull {
+            get {
+                return this.HullField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HullField, value) != true)) {
+                    this.HullField = value;
+                    this.RaisePropertyChanged("Hull");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Range {
+            get {
+                return this.RangeField;
+            }
+            set {
+                if ((this.RangeField.Equals(value) != true)) {
+                    this.RangeField = value;
+                    this.RaisePropertyChanged("Range");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ScannerRadius {
+            get {
+                return this.ScannerRadiusField;
+            }
+            set {
+                if ((this.ScannerRadiusField.Equals(value) != true)) {
+                    this.ScannerRadiusField = value;
+                    this.RaisePropertyChanged("ScannerRadius");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double ScannerRelevationBonus {
+            get {
+                return this.ScannerRelevationBonusField;
+            }
+            set {
+                if ((this.ScannerRelevationBonusField.Equals(value) != true)) {
+                    this.ScannerRelevationBonusField = value;
+                    this.RaisePropertyChanged("ScannerRelevationBonus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double ScannerRelevationMalus {
+            get {
+                return this.ScannerRelevationMalusField;
+            }
+            set {
+                if ((this.ScannerRelevationMalusField.Equals(value) != true)) {
+                    this.ScannerRelevationMalusField = value;
+                    this.RaisePropertyChanged("ScannerRelevationMalus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double SpaceBonus {
+            get {
+                return this.SpaceBonusField;
+            }
+            set {
+                if ((this.SpaceBonusField.Equals(value) != true)) {
+                    this.SpaceBonusField = value;
+                    this.RaisePropertyChanged("SpaceBonus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.SystemType SystemType {
+            get {
+                return this.SystemTypeField;
+            }
+            set {
+                if ((this.SystemTypeField.Equals(value) != true)) {
+                    this.SystemTypeField = value;
+                    this.RaisePropertyChanged("SystemType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ToHitBonus {
+            get {
+                return this.ToHitBonusField;
+            }
+            set {
+                if ((this.ToHitBonusField.Equals(value) != true)) {
+                    this.ToHitBonusField = value;
+                    this.RaisePropertyChanged("ToHitBonus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ToHitMalus {
+            get {
+                return this.ToHitMalusField;
+            }
+            set {
+                if ((this.ToHitMalusField.Equals(value) != true)) {
+                    this.ToHitMalusField = value;
+                    this.RaisePropertyChanged("ToHitMalus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TravelSpeedBonus {
+            get {
+                return this.TravelSpeedBonusField;
+            }
+            set {
+                if ((this.TravelSpeedBonusField.Equals(value) != true)) {
+                    this.TravelSpeedBonusField = value;
+                    this.RaisePropertyChanged("TravelSpeedBonus");
+                }
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TechnologySubField", Namespace="http://schemas.datacontract.org/2004/07/Models.Tech.Enum")]
+    public enum TechnologySubField : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Engine = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Armor = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Shield = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Tools = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Frame = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Bombs = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Beams = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Projectile = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AntiShipWeapon = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AntiPlanetWeapon = 9,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DefenceBuildings = 10,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CivilBuilding = 11,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MilitaryBuildings = 12,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ReducePollution = 13,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EnancheProduction = 14,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        BetterLiving = 15,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Energy = 16,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Space = 17,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Materials = 18,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SocialLiving = 19,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RulingSystem = 20,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Coordinates", Namespace="http://schemas.datacontract.org/2004/07/Models.Universe.Strcut")]
+    [System.SerializableAttribute()]
+    public partial struct Coordinates : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int XField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int YField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int X {
+            get {
+                return this.XField;
+            }
+            set {
+                if ((this.XField.Equals(value) != true)) {
+                    this.XField = value;
+                    this.RaisePropertyChanged("X");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Y {
+            get {
+                return this.YField;
+            }
+            set {
+                if ((this.YField.Equals(value) != true)) {
+                    this.YField = value;
+                    this.RaisePropertyChanged("Y");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserStatus", Namespace="http://schemas.datacontract.org/2004/07/Models.Users.Enum")]
+    public enum UserStatus : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Active = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ToConfirm = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Banned = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Inactive = 3,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserLogType", Namespace="http://schemas.datacontract.org/2004/07/Models.Logs.Enum")]
+    public enum UserLogType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Registration = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PasswordReset = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Donations = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TechnologyCreated = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ShipClassCreated = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FleetAssembled = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        LoginFailed = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        LoginSuccess = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        HolidayPeriodStarted = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        HolidayPeriodEnded = 9,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrbitDetail", Namespace="http://schemas.datacontract.org/2004/07/Models.Universe")]
+    [System.SerializableAttribute()]
+    public partial class OrbitDetail : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double DistanceRField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double EccentricityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double PeriodOfRevolutionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double PeriodOfRotationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double TetaZeroField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double DistanceR {
+            get {
+                return this.DistanceRField;
+            }
+            set {
+                if ((this.DistanceRField.Equals(value) != true)) {
+                    this.DistanceRField = value;
+                    this.RaisePropertyChanged("DistanceR");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Eccentricity {
+            get {
+                return this.EccentricityField;
+            }
+            set {
+                if ((this.EccentricityField.Equals(value) != true)) {
+                    this.EccentricityField = value;
+                    this.RaisePropertyChanged("Eccentricity");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double PeriodOfRevolution {
+            get {
+                return this.PeriodOfRevolutionField;
+            }
+            set {
+                if ((this.PeriodOfRevolutionField.Equals(value) != true)) {
+                    this.PeriodOfRevolutionField = value;
+                    this.RaisePropertyChanged("PeriodOfRevolution");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double PeriodOfRotation {
+            get {
+                return this.PeriodOfRotationField;
+            }
+            set {
+                if ((this.PeriodOfRotationField.Equals(value) != true)) {
+                    this.PeriodOfRotationField = value;
+                    this.RaisePropertyChanged("PeriodOfRotation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double TetaZero {
+            get {
+                return this.TetaZeroField;
+            }
+            set {
+                if ((this.TetaZeroField.Equals(value) != true)) {
+                    this.TetaZeroField = value;
+                    this.RaisePropertyChanged("TetaZero");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Production", Namespace="http://schemas.datacontract.org/2004/07/Models.Base")]
+    [System.SerializableAttribute()]
+    public partial class Production : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double ActivePopOnFoodProductionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double ActivePopOnOreProductionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double ActivePopOnResProductionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FoodProductionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OreProductionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ResearchPointProductionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double ActivePopOnFoodProduction {
+            get {
+                return this.ActivePopOnFoodProductionField;
+            }
+            set {
+                if ((this.ActivePopOnFoodProductionField.Equals(value) != true)) {
+                    this.ActivePopOnFoodProductionField = value;
+                    this.RaisePropertyChanged("ActivePopOnFoodProduction");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double ActivePopOnOreProduction {
+            get {
+                return this.ActivePopOnOreProductionField;
+            }
+            set {
+                if ((this.ActivePopOnOreProductionField.Equals(value) != true)) {
+                    this.ActivePopOnOreProductionField = value;
+                    this.RaisePropertyChanged("ActivePopOnOreProduction");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double ActivePopOnResProduction {
+            get {
+                return this.ActivePopOnResProductionField;
+            }
+            set {
+                if ((this.ActivePopOnResProductionField.Equals(value) != true)) {
+                    this.ActivePopOnResProductionField = value;
+                    this.RaisePropertyChanged("ActivePopOnResProduction");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FoodProduction {
+            get {
+                return this.FoodProductionField;
+            }
+            set {
+                if ((this.FoodProductionField.Equals(value) != true)) {
+                    this.FoodProductionField = value;
+                    this.RaisePropertyChanged("FoodProduction");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OreProduction {
+            get {
+                return this.OreProductionField;
+            }
+            set {
+                if ((this.OreProductionField.Equals(value) != true)) {
+                    this.OreProductionField = value;
+                    this.RaisePropertyChanged("OreProduction");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ResearchPointProduction {
+            get {
+                return this.ResearchPointProductionField;
+            }
+            set {
+                if ((this.ResearchPointProductionField.Equals(value) != true)) {
+                    this.ResearchPointProductionField = value;
+                    this.RaisePropertyChanged("ResearchPointProduction");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SatelliteSocials", Namespace="http://schemas.datacontract.org/2004/07/Models.Base")]
+    [System.SerializableAttribute()]
+    public partial class SatelliteSocials : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PopulationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UniverseWcf.TaxLevel TaxLevelField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Population {
+            get {
+                return this.PopulationField;
+            }
+            set {
+                if ((this.PopulationField.Equals(value) != true)) {
+                    this.PopulationField = value;
+                    this.RaisePropertyChanged("Population");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UniverseWcf.TaxLevel TaxLevel {
+            get {
+                return this.TaxLevelField;
+            }
+            set {
+                if ((this.TaxLevelField.Equals(value) != true)) {
+                    this.TaxLevelField = value;
+                    this.RaisePropertyChanged("TaxLevel");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Spaces", Namespace="http://schemas.datacontract.org/2004/07/Models.Base")]
+    [System.SerializableAttribute()]
+    public partial class Spaces : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GroudSpacesLeftField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GroudUsedSpacesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GroundRadiatedSpacesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GroundSpacesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int HabitableSpacesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalspacesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WaterRadiatedSpacesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WaterSpacesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WaterSpacesLeftField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WaterUsedSpacesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GroudSpacesLeft {
+            get {
+                return this.GroudSpacesLeftField;
+            }
+            set {
+                if ((this.GroudSpacesLeftField.Equals(value) != true)) {
+                    this.GroudSpacesLeftField = value;
+                    this.RaisePropertyChanged("GroudSpacesLeft");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GroudUsedSpaces {
+            get {
+                return this.GroudUsedSpacesField;
+            }
+            set {
+                if ((this.GroudUsedSpacesField.Equals(value) != true)) {
+                    this.GroudUsedSpacesField = value;
+                    this.RaisePropertyChanged("GroudUsedSpaces");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GroundRadiatedSpaces {
+            get {
+                return this.GroundRadiatedSpacesField;
+            }
+            set {
+                if ((this.GroundRadiatedSpacesField.Equals(value) != true)) {
+                    this.GroundRadiatedSpacesField = value;
+                    this.RaisePropertyChanged("GroundRadiatedSpaces");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GroundSpaces {
+            get {
+                return this.GroundSpacesField;
+            }
+            set {
+                if ((this.GroundSpacesField.Equals(value) != true)) {
+                    this.GroundSpacesField = value;
+                    this.RaisePropertyChanged("GroundSpaces");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int HabitableSpaces {
+            get {
+                return this.HabitableSpacesField;
+            }
+            set {
+                if ((this.HabitableSpacesField.Equals(value) != true)) {
+                    this.HabitableSpacesField = value;
+                    this.RaisePropertyChanged("HabitableSpaces");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Totalspaces {
+            get {
+                return this.TotalspacesField;
+            }
+            set {
+                if ((this.TotalspacesField.Equals(value) != true)) {
+                    this.TotalspacesField = value;
+                    this.RaisePropertyChanged("Totalspaces");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int WaterRadiatedSpaces {
+            get {
+                return this.WaterRadiatedSpacesField;
+            }
+            set {
+                if ((this.WaterRadiatedSpacesField.Equals(value) != true)) {
+                    this.WaterRadiatedSpacesField = value;
+                    this.RaisePropertyChanged("WaterRadiatedSpaces");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int WaterSpaces {
+            get {
+                return this.WaterSpacesField;
+            }
+            set {
+                if ((this.WaterSpacesField.Equals(value) != true)) {
+                    this.WaterSpacesField = value;
+                    this.RaisePropertyChanged("WaterSpaces");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int WaterSpacesLeft {
+            get {
+                return this.WaterSpacesLeftField;
+            }
+            set {
+                if ((this.WaterSpacesLeftField.Equals(value) != true)) {
+                    this.WaterSpacesLeftField = value;
+                    this.RaisePropertyChanged("WaterSpacesLeft");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int WaterUsedSpaces {
+            get {
+                return this.WaterUsedSpacesField;
+            }
+            set {
+                if ((this.WaterUsedSpacesField.Equals(value) != true)) {
+                    this.WaterUsedSpacesField = value;
+                    this.RaisePropertyChanged("WaterUsedSpaces");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SatelliteStatus", Namespace="http://schemas.datacontract.org/2004/07/Models.Universe.Enum")]
+    public enum SatelliteStatus : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Uncolonizable = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Uncolonized = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Colonized = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Blocked = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Starvation = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Revolt = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Optimum = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Abandoned = 7,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BuildingType", Namespace="http://schemas.datacontract.org/2004/07/Models.Buildings.Enums")]
+    public enum BuildingType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Civil = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Military = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CivilInOrbit = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MilitaryInOrbit = 3,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BonusType", Namespace="http://schemas.datacontract.org/2004/07/Models.Tech.Enum")]
+    public enum BonusType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ATTACKBONUS = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DEFENCEBONUS = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ROFBONUS = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ENERGYBONUS = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RESEARCHBONUS = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        POPULATIONBONUS = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TAXBONUS = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SOCIALBONUS = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ARMORBONUS = 9,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FOODBONUS = 10,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PLANETTYPEALLOWED = 11,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RANGE = 12,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SCANNER_RANGE = 13,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SHIELD_BONUS = 14,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ORE_BONUS = 15,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        GOLD_BONUS = 16,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MAINT_BONUS = 17,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SPACE = 18,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ARMOPIERCINGFACTOR = 19,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TERRAFORMFACTOR = 20,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SPATIALCOMPRESSIONFACTOR = 21,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        BATTLESPEEDBONUS = 22,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PREREQUISITO = 23,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        BONUSTIMETOBUILD = 24,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SPYINGBONUS = 25,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PRECISIONBONUS = 26,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TaxLevel", Namespace="http://schemas.datacontract.org/2004/07/Models.Base.Enum")]
+    public enum TaxLevel : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        GreatDonations = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SmallDonations = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Low = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Normal = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Heavy = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SuperHeavy = 5,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RaceTraitsBonuses", Namespace="http://schemas.datacontract.org/2004/07/Models.Races.Enums")]
+    public enum RaceTraitsBonuses : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Armor = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Shield = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Structure = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Attack = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ToHit = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Rof = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MaintenanceMoney = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MaintenanceOre = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        OreProduction = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MoneyTax = 9,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Social = 10,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Growth = 11,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Military = 12,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FoodProduction = 13,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FoodConsumption = 14,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TimeToBuild = 15,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Research = 16,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Spying = 17,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RaceTraitsType", Namespace="http://schemas.datacontract.org/2004/07/Models.Races.Enums")]
+    public enum RaceTraitsType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Phisycal = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Cultural = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Social = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Special = 3,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="QueueStatus", Namespace="http://schemas.datacontract.org/2004/07/Models.Queues.Enum")]
+    public enum QueueStatus : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        InQueue = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Done = 1,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="HullType", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Enums")]
+    public enum HullType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Bulk = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Rooms = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Command = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EngineRoom = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Special = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Generic = 5,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SystemType", Namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Enums")]
+    public enum SystemType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ECM = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ECCM = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EnergyCell = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AimingSystem = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FlightComputer = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AimingComputer = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Generic = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Scanners = 7,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="PlanetGenerationDto", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto")]
     [System.SerializableAttribute()]
     public partial class PlanetGenerationDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -223,16 +5090,16 @@ namespace WcfTester.UniverseWcf {
     public interface IUniverse {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GetUniversePortion", ReplyAction="http://tempuri.org/IUniverse/GetUniversePortionResponse")]
-        string GetUniversePortion(string minX, string minY, string maxX, string maxY);
+        WcfTester.UniverseWcf.StarDto[] GetUniversePortion(WcfTester.UniverseWcf.UniverseRangeDto universeRage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GetUniversePortion", ReplyAction="http://tempuri.org/IUniverse/GetUniversePortionResponse")]
-        System.Threading.Tasks.Task<string> GetUniversePortionAsync(string minX, string minY, string maxX, string maxY);
+        System.Threading.Tasks.Task<WcfTester.UniverseWcf.StarDto[]> GetUniversePortionAsync(WcfTester.UniverseWcf.UniverseRangeDto universeRage);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GeneratePortion", ReplyAction="http://tempuri.org/IUniverse/GeneratePortionResponse")]
-        string GeneratePortion(WcfTester.UniverseWcf.PlanetGenerationDto generationData);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
+        string GenerateStarSystem(WcfTester.UniverseWcf.PlanetGenerationDto generationData);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GeneratePortion", ReplyAction="http://tempuri.org/IUniverse/GeneratePortionResponse")]
-        System.Threading.Tasks.Task<string> GeneratePortionAsync(WcfTester.UniverseWcf.PlanetGenerationDto generationData);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
+        System.Threading.Tasks.Task<string> GenerateStarSystemAsync(WcfTester.UniverseWcf.PlanetGenerationDto generationData);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -262,20 +5129,20 @@ namespace WcfTester.UniverseWcf {
                 base(binding, remoteAddress) {
         }
         
-        public string GetUniversePortion(string minX, string minY, string maxX, string maxY) {
-            return base.Channel.GetUniversePortion(minX, minY, maxX, maxY);
+        public WcfTester.UniverseWcf.StarDto[] GetUniversePortion(WcfTester.UniverseWcf.UniverseRangeDto universeRage) {
+            return base.Channel.GetUniversePortion(universeRage);
         }
         
-        public System.Threading.Tasks.Task<string> GetUniversePortionAsync(string minX, string minY, string maxX, string maxY) {
-            return base.Channel.GetUniversePortionAsync(minX, minY, maxX, maxY);
+        public System.Threading.Tasks.Task<WcfTester.UniverseWcf.StarDto[]> GetUniversePortionAsync(WcfTester.UniverseWcf.UniverseRangeDto universeRage) {
+            return base.Channel.GetUniversePortionAsync(universeRage);
         }
         
-        public string GeneratePortion(WcfTester.UniverseWcf.PlanetGenerationDto generationData) {
-            return base.Channel.GeneratePortion(generationData);
+        public string GenerateStarSystem(WcfTester.UniverseWcf.PlanetGenerationDto generationData) {
+            return base.Channel.GenerateStarSystem(generationData);
         }
         
-        public System.Threading.Tasks.Task<string> GeneratePortionAsync(WcfTester.UniverseWcf.PlanetGenerationDto generationData) {
-            return base.Channel.GeneratePortionAsync(generationData);
+        public System.Threading.Tasks.Task<string> GenerateStarSystemAsync(WcfTester.UniverseWcf.PlanetGenerationDto generationData) {
+            return base.Channel.GenerateStarSystemAsync(generationData);
         }
     }
 }

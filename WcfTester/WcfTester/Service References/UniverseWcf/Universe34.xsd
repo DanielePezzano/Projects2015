@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Weapons" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Weapons" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Hulls" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base" />
+  <xs:complexType name="ArrayOfAntiPlanetWeapon">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AntiPlanetWeapon" nillable="true" type="tns:AntiPlanetWeapon" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAntiPlanetWeapon" nillable="true" type="tns:ArrayOfAntiPlanetWeapon" />
+  <xs:complexType name="AntiPlanetWeapon">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base" base="q1:BaseWeaponEntity">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Hulls" minOccurs="0" name="Hull" nillable="true" type="q2:Hull" />
+          <xs:element minOccurs="0" name="RadiationHazard" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AntiPlanetWeapon" nillable="true" type="tns:AntiPlanetWeapon" />
+  <xs:complexType name="ArrayOfAntiShipWeapon">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AntiShipWeapon" nillable="true" type="tns:AntiShipWeapon" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAntiShipWeapon" nillable="true" type="tns:ArrayOfAntiShipWeapon" />
+  <xs:complexType name="AntiShipWeapon">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base" base="q3:BaseWeaponEntity">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Hulls" minOccurs="0" name="Hull" nillable="true" type="q4:Hull" />
+          <xs:element minOccurs="0" name="RayOfFire" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AntiShipWeapon" nillable="true" type="tns:AntiShipWeapon" />
+</xs:schema>

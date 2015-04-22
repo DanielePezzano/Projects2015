@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Tech" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Tech" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Weapons" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Armors" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd16" namespace="http://schemas.datacontract.org/2004/07/Models.Queues" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd18" namespace="http://schemas.datacontract.org/2004/07/Models.Buildings" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd23" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Engines" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd20" namespace="http://schemas.datacontract.org/2004/07/Models.Tech.Enum" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd24" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Shields" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd25" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.System" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Models.Users" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Models.Base" />
+  <xs:complexType name="Technology">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Models.Base" base="q1:BaseEntity">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Weapons" minOccurs="0" name="AntiPlanetWeapons" nillable="true" type="q2:ArrayOfAntiPlanetWeapon" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Weapons" minOccurs="0" name="AntiShipWeapon" nillable="true" type="q3:ArrayOfAntiShipWeapon" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Armors" minOccurs="0" name="Armors" nillable="true" type="q4:ArrayOfArmor" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Models.Queues" minOccurs="0" name="BuildingQueues" nillable="true" type="q5:ArrayOfBuildingQueue" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Models.Buildings" minOccurs="0" name="Buildings" nillable="true" type="q6:ArrayOfBuilding" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Engines" minOccurs="0" name="Engines" nillable="true" type="q7:ArrayOfEngine" />
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Models.Tech.Enum" minOccurs="0" name="Field" type="q8:TechnologyField" />
+          <xs:element minOccurs="0" name="MoneyCost" type="xs:int" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OreCost" type="xs:int" />
+          <xs:element minOccurs="0" name="ResearchPoints" type="xs:int" />
+          <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Models.Queues" minOccurs="0" name="ResearchQueues" nillable="true" type="q9:ArrayOfResearchQueue" />
+          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Shields" minOccurs="0" name="Shields" nillable="true" type="q10:ArrayOfShield" />
+          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.System" minOccurs="0" name="ShipSystems" nillable="true" type="q11:ArrayOfShipSystem" />
+          <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Models.Tech.Enum" minOccurs="0" name="SubField" type="q12:TechnologySubField" />
+          <xs:element minOccurs="0" name="TechBonuses" nillable="true" type="tns:ArrayOfTechBonus" />
+          <xs:element minOccurs="0" name="TechRequisites" nillable="true" type="tns:ArrayOfTechRequisiteNode" />
+          <xs:element minOccurs="0" name="TimeToComplete" type="xs:int" />
+          <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Models.Users" minOccurs="0" name="Users" nillable="true" type="q13:ArrayOfUser" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Technology" nillable="true" type="tns:Technology" />
+  <xs:complexType name="ArrayOfTechBonus">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TechBonus" nillable="true" type="tns:TechBonus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTechBonus" nillable="true" type="tns:ArrayOfTechBonus" />
+  <xs:complexType name="TechBonus">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/Models.Base" base="q14:BaseEntity">
+        <xs:sequence>
+          <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Models.Tech.Enum" minOccurs="0" name="Bonus" type="q15:BonusType" />
+          <xs:element minOccurs="0" name="Technology" nillable="true" type="tns:Technology" />
+          <xs:element minOccurs="0" name="Value" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TechBonus" nillable="true" type="tns:TechBonus" />
+  <xs:complexType name="ArrayOfTechRequisiteNode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TechRequisiteNode" nillable="true" type="tns:TechRequisiteNode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTechRequisiteNode" nillable="true" type="tns:ArrayOfTechRequisiteNode" />
+  <xs:complexType name="TechRequisiteNode">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q16="http://schemas.datacontract.org/2004/07/Models.Base" base="q16:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Requisite" nillable="true" type="tns:Technology" />
+          <xs:element minOccurs="0" name="Technology" nillable="true" type="tns:Technology" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TechRequisiteNode" nillable="true" type="tns:TechRequisiteNode" />
+  <xs:complexType name="ArrayOfTechnology">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Technology" nillable="true" type="tns:Technology" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTechnology" nillable="true" type="tns:ArrayOfTechnology" />
+</xs:schema>

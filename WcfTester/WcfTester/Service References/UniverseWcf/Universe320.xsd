@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Logs.Enum" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Logs.Enum" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="UserLogType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Registration" />
+      <xs:enumeration value="PasswordReset" />
+      <xs:enumeration value="Donations" />
+      <xs:enumeration value="TechnologyCreated" />
+      <xs:enumeration value="ShipClassCreated" />
+      <xs:enumeration value="FleetAssembled" />
+      <xs:enumeration value="LoginFailed" />
+      <xs:enumeration value="LoginSuccess" />
+      <xs:enumeration value="HolidayPeriodStarted" />
+      <xs:enumeration value="HolidayPeriodEnded" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UserLogType" nillable="true" type="tns:UserLogType" />
+</xs:schema>

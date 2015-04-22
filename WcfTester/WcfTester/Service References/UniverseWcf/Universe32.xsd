@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Hulls" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Models.Users" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base" />
+  <xs:complexType name="ArrayOfShipClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ShipClass" nillable="true" type="tns:ShipClass" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfShipClass" nillable="true" type="tns:ArrayOfShipClass" />
+  <xs:complexType name="ShipClass">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base" base="q1:BaseShipEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CombatSpeed" type="xs:int" />
+          <xs:element minOccurs="0" name="EngineRadius" type="xs:int" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Models.Fleets" minOccurs="0" name="Fleets" nillable="true" type="q2:ArrayOfFleet" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Hulls" minOccurs="0" name="Hulls" nillable="true" type="q3:ArrayOfHull" />
+          <xs:element minOccurs="0" name="MoneyCost" type="xs:int" />
+          <xs:element minOccurs="0" name="MoneyMaintenanceCost" type="xs:int" />
+          <xs:element minOccurs="0" name="OreCost" type="xs:int" />
+          <xs:element minOccurs="0" name="OreMaintenanceCost" type="xs:int" />
+          <xs:element minOccurs="0" name="StructurePoints" type="xs:int" />
+          <xs:element minOccurs="0" name="ToHitBonus" type="xs:int" />
+          <xs:element minOccurs="0" name="TotalArmor" type="xs:int" />
+          <xs:element minOccurs="0" name="TotalShields" type="xs:int" />
+          <xs:element minOccurs="0" name="TravelSpeed" type="xs:int" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Models.Users" minOccurs="0" name="User" nillable="true" type="q4:User" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ShipClass" nillable="true" type="tns:ShipClass" />
+</xs:schema>

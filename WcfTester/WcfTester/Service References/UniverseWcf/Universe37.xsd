@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Queues" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Queues" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/Models.Tech" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Models.Base" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Models.Users" />
+  <xs:complexType name="ArrayOfBuildingQueue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BuildingQueue" nillable="true" type="tns:BuildingQueue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBuildingQueue" nillable="true" type="tns:ArrayOfBuildingQueue" />
+  <xs:complexType name="BuildingQueue">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Models.Base" base="q1:BaseQueueEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Number" type="xs:int" />
+          <xs:element minOccurs="0" name="PlanetId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="SatelliteId" nillable="true" type="xs:int" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Models.Tech" minOccurs="0" name="Technology" nillable="true" type="q2:Technology" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuildingQueue" nillable="true" type="tns:BuildingQueue" />
+  <xs:complexType name="ArrayOfResearchQueue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ResearchQueue" nillable="true" type="tns:ResearchQueue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfResearchQueue" nillable="true" type="tns:ArrayOfResearchQueue" />
+  <xs:complexType name="ResearchQueue">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Models.Base" base="q3:BaseQueueEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PlanetId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="SatelliteId" nillable="true" type="xs:int" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Models.Tech" minOccurs="0" name="Technology" nillable="true" type="q4:Technology" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Models.Users" minOccurs="0" name="User" nillable="true" type="q5:User" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResearchQueue" nillable="true" type="tns:ResearchQueue" />
+</xs:schema>

@@ -1,63 +1,61 @@
-﻿
+﻿using System.Runtime.Serialization;
 namespace Models.Tech.Enum
 {
+    [DataContract]
     public enum BonusType
     {
-        /*
-         *  self::ATTACKBONUS=>Yii::t('pageBody', 'Bonus Attacco'),
-            self::DEFENCEBONUS=>Yii::t('pageBody', 'Bonus Difesa'),
-            self::ROFBONUS=>Yii::t('pageBody', 'Bonus Velocità di tiro'),
-            self::SPEEDBONUS=>Yii::t('pageBody', 'Bonus Velocità'),
-            self::ENERGYBONUS=>Yii::t('pageBody', 'Bonus Energia'),
-            self::RESEARCHBONUS=>Yii::t('pageBody', 'Bonus Ricerca'),
-            self::POPULATIONBONUS=>Yii::t('pageBody', 'Bonus Popolazione'),
-            self::TAXBONUS=>Yii::t('pageBody', 'Bonus Tasse'),
-            self::SOCIALBONUS=>Yii::t('pageBody', 'Bonus Sociale'),
-            self::ARMORBONUS=>Yii::t('pageBody', 'Bonus Armatura'),
-            self::FOODBONUS=>Yii::t('pageBody', 'Bonus Cibo'),
-            self::PLANETTYPEALLOWED=>Yii::t('pageBody', 'Pianeta Colonizzabile'),
-            self::RANGE=>Yii::t('pageBody', 'Raggio'),
-            self::SCANNER_RANGE=>Yii::t('pageBody', 'Raggio Scanners'),
-            self::SHIELD_BONUS=>Yii::t('pageBody', 'Bonus Scudi'),
-            self::ORE_BONUS=>Yii::t('pageBody', 'Bonus Produzione Minerali'),
-            self::GOLD_BONUS=>Yii::t('pageBody', 'Bonus Produzione oro'),
-            self::MAINT_BONUS=>Yii::t('pageBody', 'Bonus Riduzione Costi'),
-            self::SPACE=>Yii::t('pageBody', 'Spazi'),
-            self::ARMOPIERCINGFACTOR=>Yii::t('pageBody', 'Fattore Penetrazione Armatura'),
-            self::TERRAFORMFACTOR=>Yii::t('pageBody', 'Fattore Terraforming'),
-            self::SPATIALCOMPRESSIONFACTOR=>Yii::t('pageBody', 'Fattore Compressione'),
-            self::BATTLESPEEDBONUS=>Yii::t('pageBody', 'Bonus Velocità di Combattimento'),
-            self::PREREQUISITO=>Yii::t('pageBody', 'Prerequisito'),
-            self::BONUSTIMETOBUILD=>Yii::t('pageBody', 'Bonus Tempo Costruzione'),
-            self::SPYINGBONUS=>Yii::t('pageBody', 'Bonus Spionaggio'),
-            self::PRECISIONBONUS=>Yii::t('pageBody', 'Bonus Precisione'),
-         */
+        [EnumMember]
         ATTACKBONUS,
-        DEFENCEBONUS ,
+        [EnumMember]
+        DEFENCEBONUS,
+        [EnumMember]
         ROFBONUS,
-        SPEEDBONUS ,
-        ENERGYBONUS ,
+        SPEEDBONUS,
+        [EnumMember]
+        ENERGYBONUS,
+        [EnumMember]
         RESEARCHBONUS,
-        POPULATIONBONUS ,
+        [EnumMember]
+        POPULATIONBONUS,
+        [EnumMember]
         TAXBONUS,
+        [EnumMember]
         SOCIALBONUS,
-        ARMORBONUS ,
+        [EnumMember]
+        ARMORBONUS,
+        [EnumMember]
         FOODBONUS,
+        [EnumMember]
         PLANETTYPEALLOWED,
+        [EnumMember]
         RANGE,
+        [EnumMember]
         SCANNER_RANGE,
+        [EnumMember]
         SHIELD_BONUS,
+        [EnumMember]
         ORE_BONUS,
+        [EnumMember]
         GOLD_BONUS,
+        [EnumMember]
         MAINT_BONUS,
+        [EnumMember]
         SPACE,
+        [EnumMember]
         ARMOPIERCINGFACTOR,
+        [EnumMember]
         TERRAFORMFACTOR,
+        [EnumMember]
         SPATIALCOMPRESSIONFACTOR,
+        [EnumMember]
         BATTLESPEEDBONUS,
+        [EnumMember]
         PREREQUISITO,
+        [EnumMember]
         BONUSTIMETOBUILD,
+        [EnumMember]
         SPYINGBONUS,
+        [EnumMember]
         PRECISIONBONUS,
 
     }

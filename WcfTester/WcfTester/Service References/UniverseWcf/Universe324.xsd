@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Users" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Users" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd27" namespace="http://schemas.datacontract.org/2004/07/Models.Logs" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Models.Universe" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd29" namespace="http://schemas.datacontract.org/2004/07/Models.Races" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd16" namespace="http://schemas.datacontract.org/2004/07/Models.Queues" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd31" namespace="http://schemas.datacontract.org/2004/07/Models.Users.Enum" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/Models.Tech" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Models.Base" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+  <xs:complexType name="User">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Models.Base" base="q1:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Models.Fleets" minOccurs="0" name="Fleets" nillable="true" type="q2:ArrayOfFleet" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Models.Logs" minOccurs="0" name="Logs" nillable="true" type="q3:ArrayOfUserLog" />
+          <xs:element minOccurs="0" name="Mails" nillable="true" type="tns:ArrayOfInternalMail" />
+          <xs:element minOccurs="0" name="Photo" nillable="true" type="xs:string" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Models.Universe" minOccurs="0" name="Planets" nillable="true" type="q4:ArrayOfPlanet" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Models.Races" minOccurs="0" name="RaceBonuses" nillable="true" type="q5:ArrayOfRaceBonus" />
+          <xs:element minOccurs="0" name="RaceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RacePointsLeft" type="xs:int" />
+          <xs:element minOccurs="0" name="RacePointsUsed" type="xs:int" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Models.Queues" minOccurs="0" name="Researches" nillable="true" type="q6:ArrayOfResearchQueue" />
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Models.Universe" minOccurs="0" name="Satellites" nillable="true" type="q7:ArrayOfSatellite" />
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses" minOccurs="0" name="SchipClasses" nillable="true" type="q8:ArrayOfShipClass" />
+          <xs:element minOccurs="0" name="ScoreConstruction" type="xs:int" />
+          <xs:element minOccurs="0" name="ScoreCultural" type="xs:int" />
+          <xs:element minOccurs="0" name="ScoreMilitary" type="xs:int" />
+          <xs:element minOccurs="0" name="ScoreResearch" type="xs:int" />
+          <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Models.Users.Enum" minOccurs="0" name="Status" type="q9:UserStatus" />
+          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Models.Tech" minOccurs="0" name="Technologies" nillable="true" type="q10:ArrayOfTechnology" />
+          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Models.Universe" minOccurs="0" name="Universe" nillable="true" type="q11:Galaxy" />
+          <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfInternalMail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InternalMail" nillable="true" type="tns:InternalMail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInternalMail" nillable="true" type="tns:ArrayOfInternalMail" />
+  <xs:complexType name="InternalMail">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/Models.Base" base="q12:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Body" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Receiver" type="xs:int" />
+          <xs:element minOccurs="0" name="Sender" nillable="true" type="tns:User" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="InternalMail" nillable="true" type="tns:InternalMail" />
+</xs:schema>

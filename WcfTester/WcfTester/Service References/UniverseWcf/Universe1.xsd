@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.Universe" />
   <xs:element name="GetUniversePortion">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="minX" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="minY" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="maxX" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="maxY" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto" minOccurs="0" name="universeRage" nillable="true" type="q1:UniverseRangeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetUniversePortionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetUniversePortionResult" nillable="true" type="xs:string" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.Universe" minOccurs="0" name="GetUniversePortionResult" nillable="true" type="q2:ArrayOfStarDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GeneratePortion">
+  <xs:element name="GenerateStarSystem">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto" minOccurs="0" name="generationData" nillable="true" type="q1:PlanetGenerationDto" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto" minOccurs="0" name="generationData" nillable="true" type="q3:PlanetGenerationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GeneratePortionResponse">
+  <xs:element name="GenerateStarSystemResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GeneratePortionResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="GenerateStarSystemResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

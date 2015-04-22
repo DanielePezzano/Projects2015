@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Hulls" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Hulls" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Weapons" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Armors" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd23" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Engines" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd26" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Enums" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd24" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Shields" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd25" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.System" />
+  <xs:import schemaLocation="http://localhost:51822/Universe.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base" />
+  <xs:complexType name="ArrayOfHull">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Hull" nillable="true" type="tns:Hull" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHull" nillable="true" type="tns:ArrayOfHull" />
+  <xs:complexType name="Hull">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Base" base="q1:BaseShipEntity">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Weapons" minOccurs="0" name="AntiPlanetWeapons" nillable="true" type="q2:ArrayOfAntiPlanetWeapon" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Weapons" minOccurs="0" name="AntiShipWeapons" nillable="true" type="q3:ArrayOfAntiShipWeapon" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Armors" minOccurs="0" name="Armors" nillable="true" type="q4:ArrayOfArmor" />
+          <xs:element minOccurs="0" name="CombatSpeed" type="xs:int" />
+          <xs:element minOccurs="0" name="EngineRadius" type="xs:int" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Engines" minOccurs="0" name="Engines" nillable="true" type="q5:ArrayOfEngine" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Enums" minOccurs="0" name="HullType" type="q6:HullType" />
+          <xs:element minOccurs="0" name="MoneyCost" type="xs:int" />
+          <xs:element minOccurs="0" name="MoneyMaintenanceCost" type="xs:int" />
+          <xs:element minOccurs="0" name="OreCost" type="xs:int" />
+          <xs:element minOccurs="0" name="OreMaintenanceCost" type="xs:int" />
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.Shields" minOccurs="0" name="Shields" nillable="true" type="q7:ArrayOfShield" />
+          <xs:element minOccurs="0" name="StructurePoints" type="xs:int" />
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Models.Fleets.ShipClasses.System" minOccurs="0" name="SubSystems" nillable="true" type="q8:ArrayOfShipSystem" />
+          <xs:element minOccurs="0" name="ToHitBonus" type="xs:int" />
+          <xs:element minOccurs="0" name="TotalArmor" type="xs:int" />
+          <xs:element minOccurs="0" name="TotalShields" type="xs:int" />
+          <xs:element minOccurs="0" name="TotalSpaces" type="xs:int" />
+          <xs:element minOccurs="0" name="TravelSpeed" type="xs:int" />
+          <xs:element minOccurs="0" name="UsedSpaces" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Hull" nillable="true" type="tns:Hull" />
+</xs:schema>

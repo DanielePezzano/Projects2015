@@ -7,41 +7,50 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Models.Fleets
 {
+    [DataContract]
     public class Fleet : BaseShipEntity
     {
         [NotMapped()]
         [Display(Name = "TravelSpeed", ResourceType = typeof(Resources))]
+        [DataMember]
         public int TravelSpeed { get { return GetTravelSpeed(); } }
-        
+        [DataMember]
         [NotMapped()]
         [Display(Name = "Range", Description = "RangeHint", ResourceType = typeof(Resources))]
         public int Range { get { return GetRange(); } }
         [Required()]
         [Display(Name = "AtBay", Description = "AtBayHint", ResourceType = typeof(Resources))]
+        [DataMember]
         public bool AtBay { get; set; }
-
+        [DataMember]
         [Display(Name = "MoneyCost", ResourceType = typeof(Resources))]
         [NotMapped()]
         public int MoneyCost { get { return GetMoneyCost(); } }
         [Display(Name = "OreCost", ResourceType = typeof(Resources))]
         [NotMapped()]
+        [DataMember]
         public int OreCost { get { return GetOreCost(); } }
         [Display(Name = "MoneyMaintenanceCost", ResourceType = typeof(Resources))]
         [NotMapped()]
+        [DataMember]
         public int MoneyMaintenanceCost { get { return GetMoneyMaintCost(); } }
         [Display(Name = "OreMaintenanceCost", ResourceType = typeof(Resources))]
         [NotMapped()]
+        [DataMember]
         public int OreMaintenanceCost { get { return GetOreMaintCost(); } }
         [Required()]
         [Display(Name = "Position", ResourceType = typeof(Resources))]
+        [DataMember]
         public Coordinates Position { get; set; }
-
+        [DataMember]
         public virtual ICollection<ShipClass> ShipClasses { get; set; }
+        [DataMember]
         public virtual User User { get; set; }
 
         private int GetTravelSpeed()

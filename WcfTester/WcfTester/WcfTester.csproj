@@ -65,6 +65,96 @@
     <None Include="Service References\UniverseWcf\Universe2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\UniverseWcf\Universe3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe310.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe311.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe312.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe313.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe314.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe315.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe316.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe317.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe318.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe319.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe320.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe321.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe322.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe323.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe324.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe325.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe326.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe327.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe328.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe33.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe34.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe35.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe36.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe37.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe38.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\Universe39.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UniverseWcf\WcfTester.UniverseWcf.StarDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
