@@ -105,6 +105,10 @@
     <Compile Include="Universe.svc.cs">
       <DependentUpon>Universe.svc</DependentUpon>
     </Compile>
+    <Compile Include="Utility\CallSentences.cs" />
+    <Compile Include="Utility\RepetitionChecker.cs" />
+    <Compile Include="Utility\RijndaelManagedEncryption.cs" />
+    <Compile Include="Utility\Struct\MessageData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

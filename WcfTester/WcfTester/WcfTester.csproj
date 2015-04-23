@@ -50,6 +50,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Utility\CallSentences.cs" />
+    <Compile Include="Utility\RijndaelManagedEncryption.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

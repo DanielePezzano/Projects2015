@@ -20,6 +20,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto" minOccurs="0" name="generationData" nillable="true" type="q3:PlanetGenerationDto" />
+        <xs:element minOccurs="0" name="hashcall" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

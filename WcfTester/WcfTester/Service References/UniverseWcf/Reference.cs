@@ -1551,10 +1551,10 @@ namespace WcfTester.UniverseWcf {
         System.Threading.Tasks.Task<WcfTester.UniverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[]> GetUniversePortionAsync(WcfTester.UniverseWcf.UniverseRangeDto universeRage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
-        string GenerateStarSystem(WcfTester.UniverseWcf.PlanetGenerationDto generationData);
+        string GenerateStarSystem(WcfTester.UniverseWcf.PlanetGenerationDto generationData, string hashcall);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
-        System.Threading.Tasks.Task<string> GenerateStarSystemAsync(WcfTester.UniverseWcf.PlanetGenerationDto generationData);
+        System.Threading.Tasks.Task<string> GenerateStarSystemAsync(WcfTester.UniverseWcf.PlanetGenerationDto generationData, string hashcall);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1592,12 +1592,12 @@ namespace WcfTester.UniverseWcf {
             return base.Channel.GetUniversePortionAsync(universeRage);
         }
         
-        public string GenerateStarSystem(WcfTester.UniverseWcf.PlanetGenerationDto generationData) {
-            return base.Channel.GenerateStarSystem(generationData);
+        public string GenerateStarSystem(WcfTester.UniverseWcf.PlanetGenerationDto generationData, string hashcall) {
+            return base.Channel.GenerateStarSystem(generationData, hashcall);
         }
         
-        public System.Threading.Tasks.Task<string> GenerateStarSystemAsync(WcfTester.UniverseWcf.PlanetGenerationDto generationData) {
-            return base.Channel.GenerateStarSystemAsync(generationData);
+        public System.Threading.Tasks.Task<string> GenerateStarSystemAsync(WcfTester.UniverseWcf.PlanetGenerationDto generationData, string hashcall) {
+            return base.Channel.GenerateStarSystemAsync(generationData, hashcall);
         }
     }
 }

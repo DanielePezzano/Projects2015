@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using Models.Universe;
 using _2015ProjectsBackEndWs.DataMapper;
 using _2015ProjectsBackEndWs.DTO.Universe;
+using _2015ProjectsBackEndWs.Utility;
 
 namespace _2015ProjectsBackEndWs
 {
@@ -26,21 +27,50 @@ namespace _2015ProjectsBackEndWs
         {
             if (_Rnd == null) _Rnd = new Random();
         }
-        
-        public string GenerateStarSystem(PlanetGenerationDto generationData)
+        /// <summary>
+        /// this must be called only once per user, every 30 minutes
+        /// </summary>
+        /// <param name="generationData"></param>
+        /// <param name="hashcall"></param>
+        /// <returns></returns>
+        public string GenerateStarSystem(PlanetGenerationDto generationData, string hashcall)
+        {
+            if (hashcall != null)
+            {
+                string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(hashcall);
+                if (decriptedHash.StartsWith(CallStartSentences.GeneratePortion))
+                {
+                    if (!RepetitionChecker.Check(hashcall))
+                    {
+                        bool generationResult = ProcessStarSystemGeneration(generationData);
+                        if (generationResult) return CallsStatusResponse.GenericCallSuccess;
+                    }
+                    else return CallsStatusResponse.GenericWait;
+                }
+            }
+
+            return CallsStatusResponse.GenericCallFailed;
+        }
+
+        /// <summary>
+        /// If all Checks goes well, the system is created
+        /// </summary>
+        /// <param name="generationData"></param>
+        /// <param name="generationResult"></param>
+        /// <param name="result"></param>
+        private bool ProcessStarSystemGeneration(PlanetGenerationDto generationData)
         {
             IntRange RangeX = new IntRange(generationData.MinX, generationData.MaxX);
             IntRange RangeY = new IntRange(generationData.MinY, generationData.MaxY);
             bool generationResult = false;
-            string result = "Generation ended with: ";
             using (ContextFactory factory = new ContextFactory())
             {
                 IContext context = factory.Retrieve();
                 UowRepositories repositories = factory.CreateRepositories();
                 DalCache cache = factory.CreateCache();
-                using (UowRepositoryFactories repoFactory = new UowRepositoryFactories(context,cache,repositories))
+                using (UowRepositoryFactories repoFactory = new UowRepositoryFactories(context, cache, repositories))
                 {
-                    using (MainUow uow = new MainUow(context,cache,repoFactory))
+                    using (MainUow uow = new MainUow(context, cache, repoFactory))
                     {
                         GeneratePortion generator = new GeneratePortion(
                             RangeX.Min,
@@ -58,10 +88,9 @@ namespace _2015ProjectsBackEndWs
 
                         generationResult = generator.Generate(_Rnd);
                     }
-                }                
+                }
             }
-
-            return result + ((generationResult) ? " OK status" : " KO status");
+            return generationResult;
         }
 
         public List<StarDto> GetUniversePortion(UniverseRangeDto universeRage)
