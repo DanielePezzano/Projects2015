@@ -15,6 +15,10 @@ namespace _2015ProjectsBackEndWs
         List<StarDto> GetUniversePortion(UniverseRangeDto universeRage);
 
         [OperationContract]
+        string RetrieveUniversePortion(string data);
+
+        [OperationContract]
         string GenerateStarSystem(PlanetGenerationDto generationData, string hashcall);
+                
     }
 }

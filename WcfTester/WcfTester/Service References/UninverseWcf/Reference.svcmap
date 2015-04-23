@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="37ea8e93-6b5d-4de9-a737-22a5b541c254" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:51822/Universe.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="true.xsd" MetadataType="Schema" ID="c5c8df36-f633-4ae7-8882-a027cf9dbede" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd5" />
+    <MetadataFile FileName="true1.xsd" MetadataType="Schema" ID="4df5fb19-83c1-4619-889d-1a571a19e843" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd1" />
+    <MetadataFile FileName="true2.xsd" MetadataType="Schema" ID="efdf08db-9282-4bc2-aaaf-e164518487cf" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd0" />
+    <MetadataFile FileName="true3.xsd" MetadataType="Schema" ID="86d81a47-220f-46fb-ac08-c35efa59350b" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd3" />
+    <MetadataFile FileName="true4.xsd" MetadataType="Schema" ID="cbb7bab4-b8a8-4ae7-a7f5-89e18a8f1c20" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd2" />
+    <MetadataFile FileName="Universe.wsdl" MetadataType="Wsdl" ID="c547c687-a112-4ce7-8716-5e1eedcbe26d" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?wsdl" />
+    <MetadataFile FileName="true5.xsd" MetadataType="Schema" ID="d5631a07-7bc4-47cd-9995-c9333fbbdf16" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd4" />
+    <MetadataFile FileName="true6.xsd" MetadataType="Schema" ID="f58cedf3-5099-4e2d-a721-f7a12025db7e" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd7" />
+    <MetadataFile FileName="true7.xsd" MetadataType="Schema" ID="49ec32b2-b9f7-450c-bd5f-ea0e0875dad9" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd6" />
+    <MetadataFile FileName="true8.xsd" MetadataType="Schema" ID="561fa583-d18a-4f40-8809-fa6ae99a0621" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd8" />
+    <MetadataFile FileName="true.disco" MetadataType="Disco" ID="67f81623-d429-4a9e-abef-dd062b6c03fd" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

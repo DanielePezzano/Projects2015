@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WcfTester.UniverseWcf {
+namespace WcfTester.UninverseWcf {
     using System.Runtime.Serialization;
     using System;
     
@@ -21,6 +21,9 @@ namespace WcfTester.UniverseWcf {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UninverseWcf.BaseAuthDto AuthField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MaxXField;
@@ -41,6 +44,19 @@ namespace WcfTester.UniverseWcf {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UninverseWcf.BaseAuthDto Auth {
+            get {
+                return this.AuthField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AuthField, value) != true)) {
+                    this.AuthField = value;
+                    this.RaisePropertyChanged("Auth");
+                }
             }
         }
         
@@ -108,6 +124,67 @@ namespace WcfTester.UniverseWcf {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseAuthDto", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO")]
+    [System.SerializableAttribute()]
+    public partial class BaseAuthDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AuthHashField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime GeneratedStampField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AuthHash {
+            get {
+                return this.AuthHashField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AuthHashField, value) != true)) {
+                    this.AuthHashField = value;
+                    this.RaisePropertyChanged("AuthHash");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime GeneratedStamp {
+            get {
+                return this.GeneratedStampField;
+            }
+            set {
+                if ((this.GeneratedStampField.Equals(value) != true)) {
+                    this.GeneratedStampField = value;
+                    this.RaisePropertyChanged("GeneratedStamp");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="_2015ProjectsBackEndWs.DTO.Universe.StarDto", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.Universe")]
     [System.SerializableAttribute()]
     public partial class _2015ProjectsBackEndWsDTOUniverseStarDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -125,7 +202,7 @@ namespace WcfTester.UniverseWcf {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WcfTester.UniverseWcf.PlanetDto[] PlanetsField;
+        private WcfTester.UninverseWcf.PlanetDto[] PlanetsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PositgionYField;
@@ -198,7 +275,7 @@ namespace WcfTester.UniverseWcf {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WcfTester.UniverseWcf.PlanetDto[] Planets {
+        public WcfTester.UninverseWcf.PlanetDto[] Planets {
             get {
                 return this.PlanetsField;
             }
@@ -333,7 +410,7 @@ namespace WcfTester.UniverseWcf {
         private bool AtmospherePresentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WcfTester.UniverseWcf.BuildingDto[] BuildingsField;
+        private WcfTester.UninverseWcf.BuildingDto[] BuildingsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double DistanceRField;
@@ -399,13 +476,13 @@ namespace WcfTester.UniverseWcf {
         private bool RingsPresentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WcfTester.UniverseWcf.SatelliteStatus StatusField;
+        private WcfTester.UninverseWcf.SatelliteStatus StatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SurfaceTempField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WcfTester.UniverseWcf.TaxLevel TaxLevelField;
+        private WcfTester.UninverseWcf.TaxLevel TaxLevelField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double TetaZeroField;
@@ -488,7 +565,7 @@ namespace WcfTester.UniverseWcf {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WcfTester.UniverseWcf.BuildingDto[] Buildings {
+        public WcfTester.UninverseWcf.BuildingDto[] Buildings {
             get {
                 return this.BuildingsField;
             }
@@ -774,7 +851,7 @@ namespace WcfTester.UniverseWcf {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WcfTester.UniverseWcf.SatelliteStatus Status {
+        public WcfTester.UninverseWcf.SatelliteStatus Status {
             get {
                 return this.StatusField;
             }
@@ -800,7 +877,7 @@ namespace WcfTester.UniverseWcf {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WcfTester.UniverseWcf.TaxLevel TaxLevel {
+        public WcfTester.UninverseWcf.TaxLevel TaxLevel {
             get {
                 return this.TaxLevelField;
             }
@@ -910,13 +987,13 @@ namespace WcfTester.UniverseWcf {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WcfTester.UniverseWcf.BuildingType BuildingTypeField;
+        private WcfTester.UninverseWcf.BuildingType BuildingTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WcfTester.UniverseWcf.BuildingSpecsDto[] DetailsField;
+        private WcfTester.UninverseWcf.BuildingSpecsDto[] DetailsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -956,7 +1033,7 @@ namespace WcfTester.UniverseWcf {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WcfTester.UniverseWcf.BuildingType BuildingType {
+        public WcfTester.UninverseWcf.BuildingType BuildingType {
             get {
                 return this.BuildingTypeField;
             }
@@ -982,7 +1059,7 @@ namespace WcfTester.UniverseWcf {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WcfTester.UniverseWcf.BuildingSpecsDto[] Details {
+        public WcfTester.UninverseWcf.BuildingSpecsDto[] Details {
             get {
                 return this.DetailsField;
             }
@@ -1201,7 +1278,7 @@ namespace WcfTester.UniverseWcf {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WcfTester.UniverseWcf.BonusType BonusField;
+        private WcfTester.UninverseWcf.BonusType BonusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ValueField;
@@ -1217,7 +1294,7 @@ namespace WcfTester.UniverseWcf {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WcfTester.UniverseWcf.BonusType Bonus {
+        public WcfTester.UninverseWcf.BonusType Bonus {
             get {
                 return this.BonusField;
             }
@@ -1541,29 +1618,35 @@ namespace WcfTester.UniverseWcf {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UniverseWcf.IUniverse")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UninverseWcf.IUniverse")]
     public interface IUniverse {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GetUniversePortion", ReplyAction="http://tempuri.org/IUniverse/GetUniversePortionResponse")]
-        WcfTester.UniverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[] GetUniversePortion(WcfTester.UniverseWcf.UniverseRangeDto universeRage);
+        WcfTester.UninverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[] GetUniversePortion(WcfTester.UninverseWcf.UniverseRangeDto universeRage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GetUniversePortion", ReplyAction="http://tempuri.org/IUniverse/GetUniversePortionResponse")]
-        System.Threading.Tasks.Task<WcfTester.UniverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[]> GetUniversePortionAsync(WcfTester.UniverseWcf.UniverseRangeDto universeRage);
+        System.Threading.Tasks.Task<WcfTester.UninverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[]> GetUniversePortionAsync(WcfTester.UninverseWcf.UniverseRangeDto universeRage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrieveUniversePortion", ReplyAction="http://tempuri.org/IUniverse/RetrieveUniversePortionResponse")]
+        string RetrieveUniversePortion(string data);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrieveUniversePortion", ReplyAction="http://tempuri.org/IUniverse/RetrieveUniversePortionResponse")]
+        System.Threading.Tasks.Task<string> RetrieveUniversePortionAsync(string data);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
-        string GenerateStarSystem(WcfTester.UniverseWcf.PlanetGenerationDto generationData, string hashcall);
+        string GenerateStarSystem(WcfTester.UninverseWcf.PlanetGenerationDto generationData, string hashcall);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
-        System.Threading.Tasks.Task<string> GenerateStarSystemAsync(WcfTester.UniverseWcf.PlanetGenerationDto generationData, string hashcall);
+        System.Threading.Tasks.Task<string> GenerateStarSystemAsync(WcfTester.UninverseWcf.PlanetGenerationDto generationData, string hashcall);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IUniverseChannel : WcfTester.UniverseWcf.IUniverse, System.ServiceModel.IClientChannel {
+    public interface IUniverseChannel : WcfTester.UninverseWcf.IUniverse, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class UniverseClient : System.ServiceModel.ClientBase<WcfTester.UniverseWcf.IUniverse>, WcfTester.UniverseWcf.IUniverse {
+    public partial class UniverseClient : System.ServiceModel.ClientBase<WcfTester.UninverseWcf.IUniverse>, WcfTester.UninverseWcf.IUniverse {
         
         public UniverseClient() {
         }
@@ -1584,19 +1667,27 @@ namespace WcfTester.UniverseWcf {
                 base(binding, remoteAddress) {
         }
         
-        public WcfTester.UniverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[] GetUniversePortion(WcfTester.UniverseWcf.UniverseRangeDto universeRage) {
+        public WcfTester.UninverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[] GetUniversePortion(WcfTester.UninverseWcf.UniverseRangeDto universeRage) {
             return base.Channel.GetUniversePortion(universeRage);
         }
         
-        public System.Threading.Tasks.Task<WcfTester.UniverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[]> GetUniversePortionAsync(WcfTester.UniverseWcf.UniverseRangeDto universeRage) {
+        public System.Threading.Tasks.Task<WcfTester.UninverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[]> GetUniversePortionAsync(WcfTester.UninverseWcf.UniverseRangeDto universeRage) {
             return base.Channel.GetUniversePortionAsync(universeRage);
         }
         
-        public string GenerateStarSystem(WcfTester.UniverseWcf.PlanetGenerationDto generationData, string hashcall) {
+        public string RetrieveUniversePortion(string data) {
+            return base.Channel.RetrieveUniversePortion(data);
+        }
+        
+        public System.Threading.Tasks.Task<string> RetrieveUniversePortionAsync(string data) {
+            return base.Channel.RetrieveUniversePortionAsync(data);
+        }
+        
+        public string GenerateStarSystem(WcfTester.UninverseWcf.PlanetGenerationDto generationData, string hashcall) {
             return base.Channel.GenerateStarSystem(generationData, hashcall);
         }
         
-        public System.Threading.Tasks.Task<string> GenerateStarSystemAsync(WcfTester.UniverseWcf.PlanetGenerationDto generationData, string hashcall) {
+        public System.Threading.Tasks.Task<string> GenerateStarSystemAsync(WcfTester.UninverseWcf.PlanetGenerationDto generationData, string hashcall) {
             return base.Channel.GenerateStarSystemAsync(generationData, hashcall);
         }
     }

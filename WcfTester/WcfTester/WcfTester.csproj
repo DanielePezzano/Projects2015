@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -45,44 +46,48 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\UniverseWcf\Reference.cs">
+    <Compile Include="Service References\UninverseWcf\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Utility\CallSentences.cs" />
     <Compile Include="Utility\RijndaelManagedEncryption.cs" />
+    <Compile Include="Utility\Sha1Managed.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UniverseWcf\Universe.wsdl" />
-    <None Include="Service References\UniverseWcf\Universe.xsd">
+    <None Include="Service References\UninverseWcf\true.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UniverseWcf\Universe1.xsd">
+    <None Include="Service References\UninverseWcf\true1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UniverseWcf\Universe2.xsd">
+    <None Include="Service References\UninverseWcf\true2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UniverseWcf\Universe311.xsd">
+    <None Include="Service References\UninverseWcf\true3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UniverseWcf\Universe324.xsd">
+    <None Include="Service References\UninverseWcf\true4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UniverseWcf\Universe325.xsd">
+    <None Include="Service References\UninverseWcf\true5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UniverseWcf\Universe326.xsd">
+    <None Include="Service References\UninverseWcf\true6.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UniverseWcf\Universe328.xsd">
+    <None Include="Service References\UninverseWcf\true7.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UniverseWcf\WcfTester.UniverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto.datasource">
+    <None Include="Service References\UninverseWcf\true8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UninverseWcf\Universe.wsdl" />
+    <None Include="Service References\UninverseWcf\WcfTester.UninverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
@@ -90,22 +95,22 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\UniverseWcf\" />
+    <WCFMetadataStorage Include="Service References\UninverseWcf\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UniverseWcf\configuration91.svcinfo" />
+    <None Include="Service References\UninverseWcf\true.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UniverseWcf\configuration.svcinfo" />
+    <None Include="Service References\UninverseWcf\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UniverseWcf\Reference.svcmap">
+    <None Include="Service References\UninverseWcf\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UninverseWcf\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\UniverseWcf\Universe.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

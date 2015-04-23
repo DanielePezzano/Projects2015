@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="_2015ProjectsBackEndWsDTOUniverseStarDto" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>WcfTester.UniverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto, Service References.UniverseWcf.Reference.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+   <TypeInfo>WcfTester.UninverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto, Service References.UninverseWcf.Reference.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

@@ -56,6 +56,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\Models.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -93,6 +96,7 @@
     <Compile Include="DataMapper\BuildingSpecEntityMapper.cs" />
     <Compile Include="DataMapper\PlanetEntityMapper.cs" />
     <Compile Include="DataMapper\StarEntityMapper.cs" />
+    <Compile Include="DTO\BaseAuthDto.cs" />
     <Compile Include="DTO\Universe\BuildingDto.cs" />
     <Compile Include="DTO\Universe\BuildingSpecsDto.cs" />
     <Compile Include="DTO\Universe\PlanetDto.cs" />
@@ -105,9 +109,12 @@
     <Compile Include="Universe.svc.cs">
       <DependentUpon>Universe.svc</DependentUpon>
     </Compile>
+    <Compile Include="Utility\CallInstanceName.cs" />
     <Compile Include="Utility\CallSentences.cs" />
+    <Compile Include="Utility\CryptingUtils\Sha1Managed.cs" />
+    <Compile Include="Utility\CryptingUtils\ValidateCall.cs" />
     <Compile Include="Utility\RepetitionChecker.cs" />
-    <Compile Include="Utility\RijndaelManagedEncryption.cs" />
+    <Compile Include="Utility\CryptingUtils\RijndaelManagedEncryption.cs" />
     <Compile Include="Utility\Struct\MessageData.cs" />
   </ItemGroup>
   <ItemGroup>

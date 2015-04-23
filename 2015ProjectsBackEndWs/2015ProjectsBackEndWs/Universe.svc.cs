@@ -13,6 +13,10 @@ using Models.Universe;
 using _2015ProjectsBackEndWs.DataMapper;
 using _2015ProjectsBackEndWs.DTO.Universe;
 using _2015ProjectsBackEndWs.Utility;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Configuration;
+using System.Web.Script.Serialization;
 
 namespace _2015ProjectsBackEndWs
 {
@@ -95,11 +99,25 @@ namespace _2015ProjectsBackEndWs
 
         public List<StarDto> GetUniversePortion(UniverseRangeDto universeRage)
         {
+            return ProcessRetrieveMethod(universeRage);
+        }
+
+        private List<StarDto> ProcessRetrieveMethod(UniverseRangeDto universeRage)
+        {
             IntRange rangeX = new IntRange(universeRage.MinX, universeRage.MaxX);
             IntRange rangeY = new IntRange(universeRage.MinY, universeRage.MaxY);
             List<StarDto> stars = new List<StarDto>();
-            List<Star> starEntities = new List<Star>();
             StarEntityMapper mapper = new StarEntityMapper();
+
+            List<Star> starEntities = RetrieveInformation(ref rangeX, ref rangeY);
+            if (starEntities != null)
+                stars = mapper.EntityListToModel(starEntities);
+            return stars;
+        }
+
+        private List<Star> RetrieveInformation(ref IntRange rangeX, ref IntRange rangeY)
+        {
+            List<Star> starEntities = new List<Star>();
             using (ContextFactory factory = new ContextFactory())
             {
                 IContext context = factory.Retrieve();
@@ -110,15 +128,47 @@ namespace _2015ProjectsBackEndWs
                     using (MainUow uow = new MainUow(context, cache, repoFactory))
                     {
                         RetrieveInformations Retrieve = new RetrieveInformations(uow, rangeX, rangeY);
-                        string cacheKey = rangeX.Min+"_x_"+rangeX.Max+";"+rangeY.Min+"_y_"+rangeY.Max;                        
+                        string cacheKey = rangeX.Min + "_x_" + rangeX.Max + ";" + rangeY.Min + "_y_" + rangeY.Max;
                         starEntities = Retrieve.StarsInRange(cacheKey);
-                        
+
                     }
                 }
             }
-            if (starEntities!=null)
-                stars = mapper.EntityListToModel(starEntities);
-            return stars;
+            return starEntities;
+        }
+
+        public string RetrieveUniversePortion(string data)
+        {
+            string result = CallsStatusResponse.GenericCallFailed;
+            if (!string.IsNullOrEmpty(data))
+            {
+                try
+                {
+                    //Decriptalo con la nostra chiave
+                    string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data);
+                    DataContractJsonSerializer jsonSer = new DataContractJsonSerializer(typeof(UniverseRangeDto));
+                    var javascriptSerializer = new JavaScriptSerializer();
+
+                    MemoryStream stream = new MemoryStream();
+                    UniverseRangeDto universeRange = javascriptSerializer.Deserialize<UniverseRangeDto>(decriptedHash);
+                    //is correctly deserialized and it was sent in time
+                    if (universeRange != null && ValidateCall.Validate(universeRange.Auth.GeneratedStamp, universeRange.Auth.AuthHash, CallInstanceName.UniverseRangeDto))
+                    {
+                        List<StarDto> starEntities = ProcessRetrieveMethod(universeRange);
+                        stream.Position = 0;
+                        jsonSer.WriteObject(stream, starEntities);
+                        using (StreamReader streamReader = new StreamReader(stream))
+                        {
+                            result = streamReader.ReadToEnd();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return ex.Message;
+                }
+            }
+            return result;
         }
     }
 }
