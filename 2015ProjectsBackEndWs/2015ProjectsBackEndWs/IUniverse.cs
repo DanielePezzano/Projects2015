@@ -16,6 +16,12 @@ namespace _2015ProjectsBackEndWs
         string RetrieveUniversePortion(string data);
 
         [OperationContract]
+        string RetrievePlanetInfo(string data);
+
+        [OperationContract]
+        string RetrieveInfoUnused(RetrievingInfoDto data); //definito per permettere di esporre ai client il data-transport.object
+
+        [OperationContract]
         string RetrieveUniversePortionUnused(UniverseRangeDto data); // definito per permettere di esporre ai client, il data-transport-object UniverseRangeDto 
 
         [OperationContract]

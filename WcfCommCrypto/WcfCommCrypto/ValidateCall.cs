@@ -54,8 +54,8 @@ namespace WcfCommCrypto
                         try
                         {
                             DateTime serverTime = Convert.ToDateTime(clientHashSequence[1]);
-                            if ((serverTime - DateTime.Now).Minutes <= 1 &&
-                                (serverTime - DateTime.Now).Minutes >= 0 &&
+                            if (Math.Abs((serverTime - DateTime.Now).Minutes) <= 1 &&
+                                Math.Abs((serverTime - DateTime.Now).Minutes) >= 0 &&
                                 Sha1Managed.ValidateSHA1HashData(CompareAuthHash, authHash))
                                 result = true;
                         }

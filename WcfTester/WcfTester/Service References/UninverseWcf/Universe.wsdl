@@ -14,6 +14,18 @@
   <wsdl:message name="IUniverse_RetrieveUniversePortion_OutputMessage">
     <wsdl:part name="parameters" element="tns:RetrieveUniversePortionResponse" />
   </wsdl:message>
+  <wsdl:message name="IUniverse_RetrievePlanetInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrievePlanetInfo" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_RetrievePlanetInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrievePlanetInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_RetrieveInfoUnused_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveInfoUnused" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_RetrieveInfoUnused_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveInfoUnusedResponse" />
+  </wsdl:message>
   <wsdl:message name="IUniverse_RetrieveUniversePortionUnused_InputMessage">
     <wsdl:part name="parameters" element="tns:RetrieveUniversePortionUnused" />
   </wsdl:message>
@@ -36,6 +48,14 @@
     <wsdl:operation name="RetrieveUniversePortion">
       <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/RetrieveUniversePortion" message="tns:IUniverse_RetrieveUniversePortion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/RetrieveUniversePortionResponse" message="tns:IUniverse_RetrieveUniversePortion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrievePlanetInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/RetrievePlanetInfo" message="tns:IUniverse_RetrievePlanetInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/RetrievePlanetInfoResponse" message="tns:IUniverse_RetrievePlanetInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveInfoUnused">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/RetrieveInfoUnused" message="tns:IUniverse_RetrieveInfoUnused_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/RetrieveInfoUnusedResponse" message="tns:IUniverse_RetrieveInfoUnused_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RetrieveUniversePortionUnused">
       <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/RetrieveUniversePortionUnused" message="tns:IUniverse_RetrieveUniversePortionUnused_InputMessage" />

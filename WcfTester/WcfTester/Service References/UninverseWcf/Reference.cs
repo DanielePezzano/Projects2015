@@ -15,6 +15,144 @@ namespace WcfTester.UninverseWcf {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RetrievingInfoDto", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto")]
+    [System.SerializableAttribute()]
+    public partial class RetrievingInfoDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WcfTester.UninverseWcf.BaseAuthDto AuthField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WcfTester.UninverseWcf.BaseAuthDto Auth {
+            get {
+                return this.AuthField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AuthField, value) != true)) {
+                    this.AuthField = value;
+                    this.RaisePropertyChanged("Auth");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseAuthDto", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO")]
+    [System.SerializableAttribute()]
+    public partial class BaseAuthDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AuthHash_01Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AuthHash_02Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime GeneratedStampField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AuthHash_01 {
+            get {
+                return this.AuthHash_01Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AuthHash_01Field, value) != true)) {
+                    this.AuthHash_01Field = value;
+                    this.RaisePropertyChanged("AuthHash_01");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AuthHash_02 {
+            get {
+                return this.AuthHash_02Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AuthHash_02Field, value) != true)) {
+                    this.AuthHash_02Field = value;
+                    this.RaisePropertyChanged("AuthHash_02");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime GeneratedStamp {
+            get {
+                return this.GeneratedStampField;
+            }
+            set {
+                if ((this.GeneratedStampField.Equals(value) != true)) {
+                    this.GeneratedStampField = value;
+                    this.RaisePropertyChanged("GeneratedStamp");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="UniverseRangeDto", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto")]
     [System.SerializableAttribute()]
     public partial class UniverseRangeDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -124,83 +262,6 @@ namespace WcfTester.UninverseWcf {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BaseAuthDto", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO")]
-    [System.SerializableAttribute()]
-    public partial class BaseAuthDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AuthHash_01Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AuthHash_02Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime GeneratedStampField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string AuthHash_01 {
-            get {
-                return this.AuthHash_01Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AuthHash_01Field, value) != true)) {
-                    this.AuthHash_01Field = value;
-                    this.RaisePropertyChanged("AuthHash_01");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string AuthHash_02 {
-            get {
-                return this.AuthHash_02Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AuthHash_02Field, value) != true)) {
-                    this.AuthHash_02Field = value;
-                    this.RaisePropertyChanged("AuthHash_02");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime GeneratedStamp {
-            get {
-                return this.GeneratedStampField;
-            }
-            set {
-                if ((this.GeneratedStampField.Equals(value) != true)) {
-                    this.GeneratedStampField = value;
-                    this.RaisePropertyChanged("GeneratedStamp");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="PlanetGenerationDto", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto")]
     [System.SerializableAttribute()]
     public partial class PlanetGenerationDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -219,6 +280,9 @@ namespace WcfTester.UninverseWcf {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool ForceWaterField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Galaxy_IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MaxXField;
@@ -299,6 +363,19 @@ namespace WcfTester.UninverseWcf {
                 if ((this.ForceWaterField.Equals(value) != true)) {
                     this.ForceWaterField = value;
                     this.RaisePropertyChanged("ForceWater");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Galaxy_Id {
+            get {
+                return this.Galaxy_IdField;
+            }
+            set {
+                if ((this.Galaxy_IdField.Equals(value) != true)) {
+                    this.Galaxy_IdField = value;
+                    this.RaisePropertyChanged("Galaxy_Id");
                 }
             }
         }
@@ -414,6 +491,18 @@ namespace WcfTester.UninverseWcf {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrieveUniversePortion", ReplyAction="http://tempuri.org/IUniverse/RetrieveUniversePortionResponse")]
         System.Threading.Tasks.Task<string> RetrieveUniversePortionAsync(string data);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrievePlanetInfo", ReplyAction="http://tempuri.org/IUniverse/RetrievePlanetInfoResponse")]
+        string RetrievePlanetInfo(string data);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrievePlanetInfo", ReplyAction="http://tempuri.org/IUniverse/RetrievePlanetInfoResponse")]
+        System.Threading.Tasks.Task<string> RetrievePlanetInfoAsync(string data);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrieveInfoUnused", ReplyAction="http://tempuri.org/IUniverse/RetrieveInfoUnusedResponse")]
+        string RetrieveInfoUnused(WcfTester.UninverseWcf.RetrievingInfoDto data);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrieveInfoUnused", ReplyAction="http://tempuri.org/IUniverse/RetrieveInfoUnusedResponse")]
+        System.Threading.Tasks.Task<string> RetrieveInfoUnusedAsync(WcfTester.UninverseWcf.RetrievingInfoDto data);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrieveUniversePortionUnused", ReplyAction="http://tempuri.org/IUniverse/RetrieveUniversePortionUnusedResponse")]
         string RetrieveUniversePortionUnused(WcfTester.UninverseWcf.UniverseRangeDto data);
         
@@ -466,6 +555,22 @@ namespace WcfTester.UninverseWcf {
         
         public System.Threading.Tasks.Task<string> RetrieveUniversePortionAsync(string data) {
             return base.Channel.RetrieveUniversePortionAsync(data);
+        }
+        
+        public string RetrievePlanetInfo(string data) {
+            return base.Channel.RetrievePlanetInfo(data);
+        }
+        
+        public System.Threading.Tasks.Task<string> RetrievePlanetInfoAsync(string data) {
+            return base.Channel.RetrievePlanetInfoAsync(data);
+        }
+        
+        public string RetrieveInfoUnused(WcfTester.UninverseWcf.RetrievingInfoDto data) {
+            return base.Channel.RetrieveInfoUnused(data);
+        }
+        
+        public System.Threading.Tasks.Task<string> RetrieveInfoUnusedAsync(WcfTester.UninverseWcf.RetrievingInfoDto data) {
+            return base.Channel.RetrieveInfoUnusedAsync(data);
         }
         
         public string RetrieveUniversePortionUnused(WcfTester.UninverseWcf.UniverseRangeDto data) {

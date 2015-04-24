@@ -109,10 +109,14 @@
     <Compile Include="DTO\Universe\StarDto.cs" />
     <Compile Include="DTO\Users\UserDto.cs" />
     <Compile Include="DTO\UtilityDto\PlanetGenerationDto.cs" />
+    <Compile Include="DTO\UtilityDto\RetrievingInfoDto.cs" />
     <Compile Include="DTO\UtilityDto\UniverseRangeDto.cs" />
     <Compile Include="IUniverse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AcceptedClients.cs" />
+    <Compile Include="Security\Validation.cs" />
+    <Compile Include="ServiceLogic\GetOnly.cs" />
+    <Compile Include="ServiceLogic\SetOnly.cs" />
     <Compile Include="Universe.svc.cs">
       <DependentUpon>Universe.svc</DependentUpon>
     </Compile>

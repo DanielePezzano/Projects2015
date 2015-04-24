@@ -1,22 +1,12 @@
-﻿using _2015ProjectsBackEndWs.DataMapper;
-using _2015ProjectsBackEndWs.DTO.Universe;
+﻿using _2015ProjectsBackEndWs.DTO.Universe;
 using _2015ProjectsBackEndWs.DTO.UtilityDto;
 using _2015ProjectsBackEndWs.Security;
+using _2015ProjectsBackEndWs.ServiceLogic;
 using _2015ProjectsBackEndWs.Utility;
-using BLL.Generation;
-using BLL.Generation.StarSystem;
-using BLL.Information;
-using BLL.Utilities.Structs;
-using Models.Universe;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Script.Serialization;
-using UnitOfWork.Cache;
-using UnitOfWork.Implementations.Context;
-using UnitOfWork.Implementations.Uows;
-using UnitOfWork.Implementations.Uows.UowDto;
-using UnitOfWork.Interfaces.Context;
 using WcfCommCrypto;
 
 namespace _2015ProjectsBackEndWs
@@ -67,87 +57,14 @@ namespace _2015ProjectsBackEndWs
         /// <param name="result"></param>
         private bool ProcessStarSystemGeneration(PlanetGenerationDto generationData)
         {
-            IntRange rangeX = new IntRange(generationData.MinX, generationData.MaxX);
-            IntRange rangeY = new IntRange(generationData.MinY, generationData.MaxY);
-            PlanetCustomConditions customConditions = new PlanetCustomConditions() { 
-                ForceLiving = generationData.ForceLiving,
-                ForceWater = generationData.ForceWater,
-                MostlyWater = generationData.MostlyWater,
-                MineralPoor = generationData.MineralPoor,
-                MineralRich = generationData.MineralRich,
-                FoodPoor = generationData.FoodPoor,
-                FoodRich = generationData.FoodRich
-            };
             bool generationResult = false;
-            using (ContextFactory factory = new ContextFactory())
+            using (SetOnly setter = new SetOnly())
             {
-                IContext context = factory.Retrieve();
-                UowRepositories repositories = factory.CreateRepositories();
-                DalCache cache = factory.CreateCache();
-                using (UowRepositoryFactories repoFactory = new UowRepositoryFactories(context, cache, repositories))
-                {
-                    using (MainUow uow = new MainUow(context, cache, repoFactory))
-                    {
-                        GeneratePortion generator = new GeneratePortion(
-                            rangeX.Min,
-                            rangeX.Max,
-                            rangeY.Min,
-                            rangeY.Max,
-                            uow,
-                            customConditions,
-                            generationData.Galaxy_Id
-                            );
-
-                        generationResult = generator.Generate(_Rnd);
-                    }
-                }
-            }
+                generationResult = setter.GenerateStarSystem(generationData, _Rnd);
+            }            
             return generationResult;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="universeRage"></param>
-        /// <returns></returns>
-        private List<StarDto> ProcessRetrieveMethod(UniverseRangeDto universeRage)
-        {
-            IntRange rangeX = new IntRange(universeRage.MinX, universeRage.MaxX);
-            IntRange rangeY = new IntRange(universeRage.MinY, universeRage.MaxY);
-            List<StarDto> stars = new List<StarDto>();
-            StarEntityMapper mapper = new StarEntityMapper();
-
-            List<Star> starEntities = RetrieveInformation(ref rangeX, ref rangeY);
-            if (starEntities != null)
-                stars = mapper.EntityListToModel(starEntities);
-            return stars;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="rangeX"></param>
-        /// <param name="rangeY"></param>
-        /// <returns></returns>
-        private List<Star> RetrieveInformation(ref IntRange rangeX, ref IntRange rangeY)
-        {
-            List<Star> starEntities = new List<Star>();
-            using (ContextFactory factory = new ContextFactory())
-            {
-                IContext context = factory.Retrieve();
-                UowRepositories repositories = factory.CreateRepositories();
-                DalCache cache = factory.CreateCache();
-                using (UowRepositoryFactories repoFactory = new UowRepositoryFactories(context, cache, repositories))
-                {
-                    using (MainUow uow = new MainUow(context, cache, repoFactory))
-                    {
-                        RetrieveInformations Retrieve = new RetrieveInformations(uow, rangeX, rangeY);
-                        string cacheKey = rangeX.Min + CallSeparators.coordX + rangeX.Max + CallSeparators.otherSeparator + rangeY.Min + CallSeparators.coordY + rangeY.Max;
-                        starEntities = Retrieve.StarsInRange(cacheKey);
-
-                    }
-                }
-            }
-            return starEntities;
-        } 
+        
         #endregion
         /// <summary>
         /// Json Retrieve Method
@@ -166,23 +83,16 @@ namespace _2015ProjectsBackEndWs
                     var javascriptSerializer = new JavaScriptSerializer();
                     UniverseRangeDto universeRange = javascriptSerializer.Deserialize<UniverseRangeDto>(decriptedHash);
                     //is correctly deserialized and it was sent in time
-                    if (universeRange != null && 
-                        ValidateCall.Validate(
-                        universeRange.Auth.GeneratedStamp, 
-                        universeRange.Auth.AuthHash_01,
-                        universeRange.Auth.AuthHash_02,
-                        ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
-                        ConfigurationManager.AppSettings[ConfAppSettings.InputKey],
-                        CallInstanceName.UniverseRangeDto,
-                        ConfigurationManager.AppSettings[ConfAppSettings.Username],
-                        ConfigurationManager.AppSettings[ConfAppSettings.Password],
-                        AcceptedClients.WhiteList,
-                        CallSeparators.defaultSeparator))
+                    if (universeRange != null && Validation.Validate(universeRange.Auth, CallInstanceName.UniverseRangeDto))
                     {
-                        List<StarDto> starEntities = ProcessRetrieveMethod(universeRange);
-                        using (ProcessSerialization serializator = new ProcessSerialization())
+                        List<StarDto> starEntities = new List<StarDto>();
+                        using (GetOnly getter = new GetOnly())
                         {
-                            result = serializator.SerializeJson(typeof(SectorDto), new SectorDto() { Stars = starEntities });
+                            starEntities = getter.ProcessRetrieveMethod(universeRange);
+                            using (ProcessSerialization serializator = new ProcessSerialization())
+                            {
+                                result = serializator.SerializeJson(typeof(SectorDto), new SectorDto() { Stars = starEntities });
+                            } 
                         }
                     }
                 }
@@ -205,7 +115,7 @@ namespace _2015ProjectsBackEndWs
             string result = string.Empty;
             using (ProcessSerialization serializator = new ProcessSerialization())
             {
-                result = serializator.SerializeJson(typeof(DateTime),DateTime.Now);
+                result = serializator.SerializeJson(typeof(DateTime), DateTime.Now);
             }
             return result;
         }
@@ -215,6 +125,41 @@ namespace _2015ProjectsBackEndWs
         /// <param name="data"></param>
         /// <returns></returns>
         public string RetrieveUniversePortionUnused(UniverseRangeDto data)
+        {
+            return CallsStatusResponse.GenericCallSuccess;
+        }
+        /// <summary>
+        /// Ritorna tutte le informazioni utili di un pianeta
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public string RetrievePlanetInfo(string data)
+        {
+            string result = CallsStatusResponse.GenericCallFailed;
+            if (!string.IsNullOrEmpty(data))
+            {
+                //Decriptalo con la nostra chiave
+                string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data, ConfigurationManager.AppSettings[ConfAppSettings.SaltKey], ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
+                var javascriptSerializer = new JavaScriptSerializer();
+                RetrievingInfoDto info = javascriptSerializer.Deserialize<RetrievingInfoDto>(decriptedHash);
+                //is correctly deserialized and it was sent in time
+                if (info != null && Validation.Validate(info.Auth,CallInstanceName.RetrievingInfoDto))
+                {
+                    PlanetDto planet = null;
+                    using (GetOnly getter = new GetOnly())
+                    {
+                        planet = getter.RetrieveSinglePlanet(info.Id);
+                        using (ProcessSerialization serializator = new ProcessSerialization())
+                        {
+                            result = serializator.SerializeJson(typeof(PlanetDto), planet);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        public string RetrieveInfoUnused(RetrievingInfoDto data)
         {
             return CallsStatusResponse.GenericCallSuccess;
         }

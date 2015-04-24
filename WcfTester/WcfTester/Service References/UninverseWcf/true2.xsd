@@ -15,10 +15,38 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RetrievePlanetInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="data" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrievePlanetInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RetrievePlanetInfoResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveInfoUnused">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto" minOccurs="0" name="data" nillable="true" type="q1:RetrievingInfoDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveInfoUnusedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RetrieveInfoUnusedResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="RetrieveUniversePortionUnused">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto" minOccurs="0" name="data" nillable="true" type="q1:UniverseRangeDto" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto" minOccurs="0" name="data" nillable="true" type="q2:UniverseRangeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -32,7 +60,7 @@
   <xs:element name="GenerateStarSystem">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto" minOccurs="0" name="generationData" nillable="true" type="q2:PlanetGenerationDto" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto" minOccurs="0" name="generationData" nillable="true" type="q3:PlanetGenerationDto" />
         <xs:element minOccurs="0" name="hashcall" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>

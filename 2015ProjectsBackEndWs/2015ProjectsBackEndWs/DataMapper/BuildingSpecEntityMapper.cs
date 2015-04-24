@@ -17,6 +17,7 @@ namespace _2015ProjectsBackEndWs.DataMapper
         /// <returns></returns>
         public BuildingSpecsDto EntityToModel(BuildingSpec entity)
         {
+            if (entity == null) return null;
             BuildingSpecsDto result = new BuildingSpecsDto();
             result.Bonus = entity.Bonus;
             result.Value = entity.Value;

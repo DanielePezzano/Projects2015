@@ -7,11 +7,12 @@ using UnitOfWork.Implementations.Uows;
 
 namespace BLL.Information
 {
-    public sealed class RetrieveInformations
+    public sealed class RetrieveInformations : IDisposable
     {
         private MainUow _MainUow;
         private IntRange _RangeX;
         private IntRange _RangeY;
+        private bool _Disposed = false;
 
         /// <summary>
         /// Costruttore
@@ -48,6 +49,16 @@ namespace BLL.Information
                 throw;
             }
             return result;
+        }
+
+        public void Dispose()
+        {
+            if (!_Disposed)
+            {
+                this._Disposed = true;
+                this._MainUow.Dispose();
+            }
+            GC.SuppressFinalize(this);
         }
     }
 }

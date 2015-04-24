@@ -14,6 +14,7 @@ namespace _2015ProjectsBackEndWs.DataMapper
         /// <returns></returns>
         public PlanetDto EntityToModel(Planet entity)
         {
+            if (entity == null) return null;
             PlanetDto planet = new PlanetDto();
             BuildingEntityMapper buildingMapper = new BuildingEntityMapper();
             planet.ActivePopOnFoodProduction = entity.SatelliteProduction.ActivePopOnFoodProduction;
@@ -51,6 +52,7 @@ namespace _2015ProjectsBackEndWs.DataMapper
             planet.WaterSpaces = entity.Spaces.WaterSpaces;
             planet.WaterSpacesLeft = entity.Spaces.WaterSpacesLeft;
             planet.WaterUsedSpaces = entity.Spaces.WaterUsedSpaces;
+            planet.UserId = (entity.User != null) ? (int?)entity.User.Id : null;
             return planet;
         }
 

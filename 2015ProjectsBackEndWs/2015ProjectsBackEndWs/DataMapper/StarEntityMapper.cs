@@ -15,6 +15,7 @@ namespace _2015ProjectsBackEndWs.DataMapper
         /// <returns></returns>
         public StarDto EntityToModel(Star entity)
         {
+            if (entity == null) return null;
             StarDto result = new StarDto();
             PlanetEntityMapper mapper = new PlanetEntityMapper();
             result.GalaxyId = entity.Galaxy.Id;

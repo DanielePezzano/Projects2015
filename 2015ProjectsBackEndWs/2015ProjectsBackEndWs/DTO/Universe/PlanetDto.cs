@@ -77,6 +77,8 @@ namespace _2015ProjectsBackEndWs.DTO.Universe
         [DataMember]
         public double GravityEarthCompared { get; set; } // gravità rispetto alla terra (che si decide abbia 100 spazi come paragone)
         [DataMember]
+        public int? UserId { get; set; }
+        [DataMember]
         public List<BuildingDto> Buildings { get; set; }
     }
 }

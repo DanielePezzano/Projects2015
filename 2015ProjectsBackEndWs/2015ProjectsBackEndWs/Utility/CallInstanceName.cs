@@ -8,5 +8,6 @@ namespace _2015ProjectsBackEndWs.Utility
     public static class CallInstanceName
     {
         public const string UniverseRangeDto = "UniverseRangeDto";
+        public const string RetrievingInfoDto = "RetrievingInfoDto";
     }
 }

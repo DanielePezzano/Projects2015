@@ -83,6 +83,7 @@
     <Compile Include="Generation\StarSystem\PlanetPropertiesTest.cs" />
     <Compile Include="Generation\StarSystem\StarSystemGeneratorTest.cs" />
     <Compile Include="Information\RetrieveInformationsTest.cs" />
+    <Compile Include="Information\RetrievePlanetInformationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\RangeConversionTest.cs" />
     <Compile Include="Utilities\ScaleConversionTest.cs" />

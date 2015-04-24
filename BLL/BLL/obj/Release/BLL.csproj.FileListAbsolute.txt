@@ -9,4 +9,3 @@ C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramewo
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramework.SqlServer.xml
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.pdb
-C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.csprojResolveAssemblyReference.cache
