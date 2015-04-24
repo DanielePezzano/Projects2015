@@ -14,40 +14,26 @@ namespace BLL.Generation.StarSystem
     {
         private StarGenerator _StarGenerator;
         private StarPlacer _StarPlacer;
-        private bool _ForceLiving;
-        private bool _ForceWater;
-        private bool _MostlyWater;
-        private bool _MineralProductionRich;
-        private bool _MineralProductionPoor;
-        private bool _FoodProductionRich;
-        private bool _FoodProductionPoor;
-        private int _MinX;
-        private int _MaxX;
-        private int _MinY;
-        private int _MaxY;
+        private PlanetCustomConditions _Conditions = null;
+        private IntRange _RangeX;
+        private IntRange _RangeY;
         private DoubleRange _CloseRange = new DoubleRange(0.1, 0.7);
 
-        public StarSystemGenerator(StarGenerator starGenerator,
-            StarPlacer starPlacer, bool forceLiving, bool forceWater, bool mostlyWater
-            , int minX, int maxX, int minY, int maxY,
-            bool mineralProductionRich, bool mineralProductionPoor,
-            bool foodProductionRich, bool foodProductionPoor)
+        public StarSystemGenerator(
+            StarGenerator starGenerator,
+            StarPlacer starPlacer,
+            IntRange rangeX,
+            IntRange rangeY,
+            PlanetCustomConditions conditions
+            )
         {
             this._StarGenerator = starGenerator;
             this._StarPlacer = starPlacer;
-            this._ForceLiving = forceLiving;
-            this._ForceWater = forceWater;
-            this._MostlyWater = mostlyWater;
-
-            this._MinX = minX;
-            this._MaxX = maxX;
-            this._MinY = minY;
-            this._MaxY = maxY;
-
-            this._MineralProductionPoor = mineralProductionPoor;
-            this._MineralProductionRich = mineralProductionRich;
-            this._FoodProductionPoor = foodProductionPoor;
-            this._FoodProductionRich = foodProductionRich;
+            this._RangeX = rangeX;
+            this._RangeY = rangeY;
+            if (conditions == null)
+                throw new ArgumentNullException("conditions");
+            this._Conditions = conditions;
         }
         /// <summary>
         /// Determine the probability range of planet existence, based on the star color
@@ -144,14 +130,14 @@ namespace BLL.Generation.StarSystem
         /// <param name="foodProductionRich"></param>
         /// <param name="mineralProductionPoor"></param>
         /// <param name="foodProductionPoor"></param>
-        private void GeneratePlanet(Star star, bool forceLiving, bool forceWater, bool mostlyWater, bool mineralProductionRich, bool foodProductionRich, bool mineralProductionPoor, bool foodProductionPoor, Random _Rnd)
+        private void GeneratePlanet(Star star, PlanetCustomConditions conditions, Random _Rnd)
         {
-            using (PlanetGenerator generator = new PlanetGenerator(star, forceLiving, forceWater, mostlyWater, mineralProductionRich, foodProductionRich, mineralProductionPoor, foodProductionPoor))
+            using (PlanetGenerator generator = new PlanetGenerator(star, conditions))
             {
                 Planet habitablePlanet = generator.CreateBrandNewPlanet(_Rnd);
                 if (habitablePlanet != null)
                 {
-                    using (OrbitGenerator orbigGenerator = new OrbitGenerator(star, habitablePlanet.Mass, habitablePlanet.Radius, _CloseRange, _ForceLiving))
+                    using (OrbitGenerator orbigGenerator = new OrbitGenerator(star, habitablePlanet.Mass, habitablePlanet.Radius, _CloseRange, _Conditions.ForceLiving))
                     {
                         generator.CompletePlanetGeneration(habitablePlanet, orbigGenerator, _CloseRange, _Rnd);
                     }
@@ -165,31 +151,37 @@ namespace BLL.Generation.StarSystem
         /// <param name="_Rnd">Random Seeder</param>
         /// <param name="cacheKey">Placer query cachekey</param>
         /// <returns></returns>
-        public Star Generate(Random _Rnd,string cacheKey)
+        public Star Generate(Random _Rnd, string cacheKey)
         {
             Star star = this._StarGenerator.CreateBrandNewStar();
-            _StarPlacer.Place(star, this._MinX, this._MaxX, this._MinY, this._MaxY, _Rnd, cacheKey);
+            _StarPlacer.Place(star, this._RangeX, this._RangeY, _Rnd, cacheKey);
 
             IntRange maxNumberOfPlanets = this.CalculateMaxNumberOfPlanet(star);
             IntRange planetProbability = this.CalculatePlanetProbability(star);
 
-            if (this.HasPlanets(planetProbability, _Rnd) || _ForceLiving)
+            if (this.HasPlanets(planetProbability, _Rnd) || _Conditions.ForceLiving)
             {
                 int numberOfPlanets = this.CalculateNumberOfPlanets(maxNumberOfPlanets, _Rnd);
-                if (_ForceLiving)
+                if (_Conditions.ForceLiving)
                 {
-                    this.GeneratePlanet(star, _ForceLiving, _ForceWater, _MostlyWater, _MineralProductionRich, _FoodProductionRich, _MineralProductionPoor, _FoodProductionPoor, _Rnd);
+                    this.GeneratePlanet(star, _Conditions, _Rnd);
                     numberOfPlanets = (numberOfPlanets - 1 < 0) ? 0 : numberOfPlanets - 1;
                 }
                 for (int index = 0; index < numberOfPlanets; index++)
                 {
-                    this.GeneratePlanet(star, false, false, false, false, false, false, false, _Rnd);
+                    this.GeneratePlanet(star, new PlanetCustomConditions(), _Rnd);
                 }
             }
             return star;
         }
-
-        public void GenerateAndInsert(Random _rnd, MainUow uow, Galaxy galaxy,string cacheKey)
+        /// <summary>
+        /// Genera ed inserisce nel db un nuovo sistema solare
+        /// </summary>
+        /// <param name="_rnd"></param>
+        /// <param name="uow"></param>
+        /// <param name="galaxy"></param>
+        /// <param name="cacheKey"></param>
+        public void GenerateAndInsert(Random _rnd, MainUow uow, Galaxy galaxy, string cacheKey)
         {
             Star generatedStarSystem = this.Generate(_rnd, cacheKey);
             if (generatedStarSystem != null)

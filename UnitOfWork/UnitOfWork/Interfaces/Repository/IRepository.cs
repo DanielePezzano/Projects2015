@@ -15,7 +15,6 @@ namespace UnitOfWork.Interfaces.Repository
         IEnumerable<T> Get(
             string cacheKey,
             Expression<Func<T, bool>> filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "");
         void Add(T entity);
         void Delete(T entity);

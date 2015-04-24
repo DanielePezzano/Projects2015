@@ -24,19 +24,19 @@ namespace BLL.Generation.StarSystem
         /// <param name="hasAtmosphere">has atmosphere</param>
         /// <param name="rnd"></param>
         /// <returns></returns>
-        public static Spaces CalculateSpaces(int totalSpaces, int radiationLevel, bool forceWater, bool mostlyWater, bool forceLiving, bool hasWater,bool hasAtmosphere, Random rnd)
+        public static Spaces CalculateSpaces(int totalSpaces, int radiationLevel, PlanetCustomConditions conditions, bool hasWater, bool hasAtmosphere, Random rnd)
         {
             Spaces result = new Spaces();
 
-            if (forceLiving)
+            if (conditions.ForceLiving)
             {
-               ForcedLivingSpaces(result, totalSpaces, radiationLevel, forceWater, mostlyWater, hasWater, rnd);
+                ForcedLivingSpaces(result, totalSpaces, radiationLevel, conditions.ForceWater, conditions.MostlyWater, hasWater, rnd);
             }
             else
             {
-                NormalSpacesCalculation(result, totalSpaces, radiationLevel, forceWater, mostlyWater, hasWater, hasAtmosphere, rnd);
+                NormalSpacesCalculation(result, totalSpaces, radiationLevel, conditions.ForceWater, conditions.MostlyWater, hasWater, hasAtmosphere, rnd);
             }
-            
+
             return result;
         }
         /// <summary>
@@ -46,7 +46,7 @@ namespace BLL.Generation.StarSystem
         /// <param name="density"></param>
         /// <param name="earthDensity"></param>
         /// <returns></returns>
-        public static Production CalculateProduction(Spaces planetSpaces, double density, double earthDensity, bool mineralRich, bool mineralPoor, bool foodRich, bool foodPoor)
+        public static Production CalculateProduction(Spaces planetSpaces, double density, double earthDensity, PlanetCustomConditions conditions)
         {
             Production result = new Production();
             result.ActivePopOnFoodProduction = 0;
@@ -58,27 +58,28 @@ namespace BLL.Generation.StarSystem
             double baseMineralProduction = 0.2 * density / earthDensity;
             double baseMineralProdOnRad = baseMineralProduction + baseMineralProduction * 0.25;
 
-            if (mineralRich) { 
+            if (conditions.MineralRich)
+            {
                 baseMineralProdOnRad += baseMineralProdOnRad * 0.5;
                 baseMineralProduction += baseMineralProduction * 0.5;
             }
-            if (mineralPoor)
+            if (conditions.MineralPoor)
             {
                 baseMineralProdOnRad -= baseMineralProdOnRad * 0.5;
                 baseMineralProduction -= baseMineralProduction * 0.5;
             }
-            if (foodRich)
+            if (conditions.FoodRich)
             {
                 baseWaterProduction += baseWaterProduction * 0.5;
                 baseGroundProduction += baseGroundProduction * 0.5;
             }
-            if (foodPoor)
+            if (conditions.FoodPoor)
             {
                 baseWaterProduction -= baseWaterProduction * 0.5;
                 baseGroundProduction -= baseGroundProduction * 0.5;
             }
 
-            double percWater = (double)planetSpaces.WaterSpaces/ (double)planetSpaces.Totalspaces;
+            double percWater = (double)planetSpaces.WaterSpaces / (double)planetSpaces.Totalspaces;
             double percWaterRad = (double)planetSpaces.WaterRadiatedSpaces / (double)planetSpaces.Totalspaces;
             double percGround = (double)planetSpaces.GroundSpaces / (double)planetSpaces.Totalspaces;
             double percGroundRad = 100 - percWater - percWaterRad - percGround;
@@ -109,7 +110,7 @@ namespace BLL.Generation.StarSystem
             double percWater = 0;
             if (forceWater || hasWater)
             {
-                percWater = (mostlyWater) ? RandomNumbers.RandomDouble(0.6, 0.98, rnd) : RandomNumbers.RandomDouble(0.10, 0.60, rnd);           
+                percWater = (mostlyWater) ? RandomNumbers.RandomDouble(0.6, 0.98, rnd) : RandomNumbers.RandomDouble(0.10, 0.60, rnd);
             }
 
             double percRad = 0;
@@ -123,7 +124,7 @@ namespace BLL.Generation.StarSystem
             }
 
             SetSpacesParameters(result, totalSpaces, percWater, percRad);
-            
+
         }
 
         private static void SetSpacesParameters(Spaces result, int totalSpaces, double percWater, double percRad)

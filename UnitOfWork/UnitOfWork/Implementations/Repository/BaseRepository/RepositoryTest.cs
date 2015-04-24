@@ -40,13 +40,12 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
 
         public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string cacheKey)
         {
-            throw new NotImplementedException();
+            return (IQueryable<T>)(dbSet.Where(predicate.Compile()).ToList());
         }
 
         public IEnumerable<T> Get(
             string cacheKey,
             Expression<Func<T, bool>> filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "")
         {
             List<T> query = dbSet;
@@ -56,20 +55,6 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
                 query = query.Where(filter.Compile()).ToList();
             }
 
-            //foreach (var includeProperty in includeProperties.Split
-            //    (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            //{
-            //    query = query.Include(includeProperty);
-            //}
-
-            //if (orderBy != null)
-            //{
-            //    return order
-            //}
-            //else
-            //{
-            //    return query.ToList();
-            //}
             return query;
         }
 

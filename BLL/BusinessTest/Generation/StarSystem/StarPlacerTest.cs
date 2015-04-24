@@ -12,6 +12,7 @@ using System.Linq;
 using System;
 using UnitOfWork.Implementations.Uows.UowDto;
 using UnitOfWork.Interfaces.Context;
+using BLL.Utilities.Structs;
 
 namespace BusinessTest.Generation.StarSystem
 {
@@ -128,8 +129,7 @@ namespace BusinessTest.Generation.StarSystem
                         #endregion
 
                         StarPlacer placer = new StarPlacer(uow, galaxy.Object);
-                        placer.Place(generated, 40, 90, 40, 90, rnd, string.Empty);
-
+                        placer.Place(generated, new IntRange(40, 90), new IntRange(40, 90), rnd, string.Empty);
                         //Assert.IsInstanceOfType(generated.Coordinate, typeof(Coordinates));
                     }
                 }

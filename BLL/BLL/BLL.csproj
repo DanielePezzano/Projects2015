@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Generation\GeneratePortion.cs" />
     <Compile Include="Generation\StarSystem\OrbitGenerator.cs" />
+    <Compile Include="Generation\StarSystem\PlanetCustomConditions.cs" />
     <Compile Include="Generation\StarSystem\PlanetGenerator.cs" />
     <Compile Include="Generation\StarSystem\PlanetProperties.cs" />
     <Compile Include="Generation\StarSystem\StarGenerator.cs" />

@@ -13,6 +13,7 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using UnitOfWork.Interfaces.Context;
 using UnitOfWork.Implementations.Uows.UowDto;
+using BLL.Utilities.Structs;
 
 namespace BusinessTest.Generation.StarSystem
 {
@@ -98,7 +99,10 @@ namespace BusinessTest.Generation.StarSystem
         {
             StarSystemGenerator systemGenerator = new StarSystemGenerator(
                 new StarGenerator(),
-                new StarPlacer(_uow, _Galaxy.Object), false, false, false, 40, 90, 40, 90, false, false, false, false);
+                new StarPlacer(_uow, _Galaxy.Object),
+                new IntRange(40, 90),
+                new IntRange(40, 90),
+                new PlanetCustomConditions());
 
             Star starWithSystem = systemGenerator.Generate(OrbitGeneratorTest._Rnd,string.Empty);
 

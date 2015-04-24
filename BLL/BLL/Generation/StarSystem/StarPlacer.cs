@@ -1,4 +1,5 @@
-﻿using Models.Universe;
+﻿using BLL.Utilities.Structs;
+using Models.Universe;
 using Models.Universe.Strcut;
 using System;
 using UnitOfWork.Implementations.Uows;
@@ -60,10 +61,10 @@ namespace BLL.Generation.StarSystem
         /// <param name="maxY"></param>
         /// <param name="_Rnd">Random Seeder</param>
         /// <param name="cacheKey">Valid Place Cache Key</param>
-        public void Place(Star star, int minX, int maxX, int minY, int maxY,Random _Rnd,string cacheKey)
+        public void Place(Star star, IntRange rangeX, IntRange rangeY,Random _Rnd,string cacheKey)
         {
-            int invalidPlaceCounter = 0;           
-            Coordinates coord = this.GenerateRandomCoordinates(minX, maxX, minY, maxY,_Rnd);
+            int invalidPlaceCounter = 0;
+            Coordinates coord = this.GenerateRandomCoordinates(rangeX.Min, rangeX.Max, rangeY.Min, rangeY.Max, _Rnd);
             bool validCoordinates = this.ValidPlace(coord, cacheKey);
 
             while (!validCoordinates)
@@ -71,12 +72,12 @@ namespace BLL.Generation.StarSystem
                 invalidPlaceCounter++;
                 if (invalidPlaceCounter >= 10)
                 {
-                    minX -= _MinDistance;
-                    maxX += _MinDistance;
-                    minY -= _MinDistance;
-                    maxX += _MinDistance;
+                    rangeX.Min -= _MinDistance;
+                    rangeX.Max += _MinDistance;
+                    rangeY.Min -= _MinDistance;
+                    rangeY.Max += _MinDistance;
                 }
-                coord = this.GenerateRandomCoordinates(minX, maxX, minY, maxY,_Rnd);
+                coord = this.GenerateRandomCoordinates(rangeX.Min, rangeX.Max, rangeY.Min, rangeY.Max, _Rnd);
                 validCoordinates = this.ValidPlace(coord, string.Empty);
             }
             star.CoordinateX = coord.X;

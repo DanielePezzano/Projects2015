@@ -50,7 +50,7 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
                 var cached = RepoCache.GetMyCachedItem(cacheKey);
                 if (cached == null)
                 {
-                    result = this.dbSet.FirstOrDefault(c => c.Id == id);
+                    result = this.dbSet.SingleOrDefault(c => c.Id == id);
                     RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
                 }
                 else result = (T)cached;
@@ -70,7 +70,6 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
         public IEnumerable<T> Get(
             string cacheKey,
             Expression<Func<T, bool>> filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "")
         {
             IEnumerable<T> result = null;
@@ -79,7 +78,7 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
                 var cached = RepoCache.GetMyCachedItem(cacheKey);
                 if (cached == null)
                 {
-                    result = ProcessGet(filter, orderBy, includeProperties, result);
+                    result = ProcessGet(filter, includeProperties, result);
                     RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
                 }
                 else
@@ -87,12 +86,12 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             }
             else
             {
-                result = ProcessGet(filter, orderBy, includeProperties, result);
+                result = ProcessGet(filter, includeProperties, result);
             }
             return result;            
         }
 
-        private IEnumerable<T> ProcessGet(Expression<Func<T, bool>> filter, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy, string includeProperties, IEnumerable<T> result)
+        private IEnumerable<T> ProcessGet(Expression<Func<T, bool>> filter, string includeProperties, IEnumerable<T> result)
         {
             IQueryable<T> query = dbSet;
 
@@ -106,15 +105,6 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             {
                 query = query.Include(includeProperty);
             }
-
-            ////if (orderBy != null)
-            ////{
-            ////    result = orderBy(query).ToList();
-            ////}
-            //else
-            //{
-            //    result = query.ToList();
-            //}
             result = query.ToList();
             return result;
         }

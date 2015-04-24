@@ -107,6 +107,7 @@
     <Compile Include="DTO\Universe\PlanetDto.cs" />
     <Compile Include="DTO\Universe\SectorDto.cs" />
     <Compile Include="DTO\Universe\StarDto.cs" />
+    <Compile Include="DTO\Users\UserDto.cs" />
     <Compile Include="DTO\UtilityDto\PlanetGenerationDto.cs" />
     <Compile Include="DTO\UtilityDto\UniverseRangeDto.cs" />
     <Compile Include="IUniverse.cs" />
@@ -125,7 +126,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DataMapper\Interface\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

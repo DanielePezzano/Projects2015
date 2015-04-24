@@ -75,7 +75,7 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestAssignSurfaceTemperature()
         {
-            PlanetGenerator generator = new PlanetGenerator(this._Star.Object);
+            PlanetGenerator generator = new PlanetGenerator(this._Star.Object,new PlanetCustomConditions());
             int temp_1 = generator.AssignSurfaceTemperatureTest(_PlanetHostile.Object.Orbit.DistanceR, _PlanetHostile.Object.AtmospherePresent, _Star.Object.SurfaceTemp);
             Assert.AreEqual<int>(570, temp_1, "Temp non uguali: atteso: 570, ottenuto : " + temp_1);
         }
@@ -83,7 +83,7 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestGeneratePlanet()
         {
-            PlanetGenerator generator = new PlanetGenerator(this._Star.Object);
+            PlanetGenerator generator = new PlanetGenerator(this._Star.Object,new PlanetCustomConditions());
             Planet firstPlanet = generator.CreateBrandNewPlanet(OrbitGeneratorTest._Rnd);
             Assert.IsInstanceOfType(firstPlanet, typeof(Planet));
             DoubleRange closeRange = new DoubleRange(0.1, 0.7);
@@ -95,7 +95,7 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestCalculateRadiationLevel()
         {
-            PlanetGenerator generator = new PlanetGenerator(null);
+            PlanetGenerator generator = new PlanetGenerator(null,new PlanetCustomConditions());
             int radiationLevel = generator.CalculateRadiationLevelTest(false, 4, 1.4);
             Assert.IsTrue(radiationLevel > 3);
             radiationLevel = generator.CalculateRadiationLevelTest(true, 4, 1.4);
@@ -117,7 +117,7 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestAssignTotalSpaces()
         {
-            PlanetGenerator generator = new PlanetGenerator(null);
+            PlanetGenerator generator = new PlanetGenerator(null,new PlanetCustomConditions());
             int spaces = generator.AssignTotalSpacesTest(1.0, 5.53, false);
             Assert.IsTrue(spaces <= 100 && spaces >= 99);
             spaces = generator.AssignTotalSpacesTest(0.05, 5.43, false);

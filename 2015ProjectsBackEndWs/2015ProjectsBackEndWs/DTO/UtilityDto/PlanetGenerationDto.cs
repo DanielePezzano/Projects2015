@@ -32,5 +32,7 @@ namespace _2015ProjectsBackEndWs.DTO.UtilityDto
         public int MinY { get; set; }
         [DataMember]
         public int MaxY { get; set; }
+        [DataMember]
+        public int Galaxy_Id { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using _2015ProjectsBackEndWs.DTO.UtilityDto;
 using _2015ProjectsBackEndWs.Security;
 using _2015ProjectsBackEndWs.Utility;
 using BLL.Generation;
+using BLL.Generation.StarSystem;
 using BLL.Information;
 using BLL.Utilities.Structs;
 using Models.Universe;
@@ -66,8 +67,17 @@ namespace _2015ProjectsBackEndWs
         /// <param name="result"></param>
         private bool ProcessStarSystemGeneration(PlanetGenerationDto generationData)
         {
-            IntRange RangeX = new IntRange(generationData.MinX, generationData.MaxX);
-            IntRange RangeY = new IntRange(generationData.MinY, generationData.MaxY);
+            IntRange rangeX = new IntRange(generationData.MinX, generationData.MaxX);
+            IntRange rangeY = new IntRange(generationData.MinY, generationData.MaxY);
+            PlanetCustomConditions customConditions = new PlanetCustomConditions() { 
+                ForceLiving = generationData.ForceLiving,
+                ForceWater = generationData.ForceWater,
+                MostlyWater = generationData.MostlyWater,
+                MineralPoor = generationData.MineralPoor,
+                MineralRich = generationData.MineralRich,
+                FoodPoor = generationData.FoodPoor,
+                FoodRich = generationData.FoodRich
+            };
             bool generationResult = false;
             using (ContextFactory factory = new ContextFactory())
             {
@@ -79,18 +89,14 @@ namespace _2015ProjectsBackEndWs
                     using (MainUow uow = new MainUow(context, cache, repoFactory))
                     {
                         GeneratePortion generator = new GeneratePortion(
-                            RangeX.Min,
-                            RangeX.Max,
-                            RangeY.Min,
-                            RangeY.Max,
+                            rangeX.Min,
+                            rangeX.Max,
+                            rangeY.Min,
+                            rangeY.Max,
                             uow,
-                            generationData.ForceLiving,
-                            generationData.ForceWater,
-                            generationData.MostlyWater,
-                            generationData.MineralPoor,
-                            generationData.MineralRich,
-                            generationData.FoodPoor,
-                            generationData.FoodRich);
+                            customConditions,
+                            generationData.Galaxy_Id
+                            );
 
                         generationResult = generator.Generate(_Rnd);
                     }
