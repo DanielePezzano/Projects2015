@@ -12,7 +12,7 @@
   <xs:element name="GetUniversePortionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.Universe" minOccurs="0" name="GetUniversePortionResult" nillable="true" type="q2:ArrayOf_2015ProjectsBackEndWs.DTO.Universe.StarDto" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.Universe" minOccurs="0" name="GetUniversePortionResult" nillable="true" type="q2:ArrayOfStarDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

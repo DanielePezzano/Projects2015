@@ -1,6 +1,4 @@
-﻿using _2015ProjectsBackEndWs.DataMapper;
-using Models.Buildings;
-using Models.Buildings.Enums;
+﻿using Models.Buildings.Enums;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 

@@ -185,9 +185,9 @@ namespace WcfTester.UninverseWcf {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="_2015ProjectsBackEndWs.DTO.Universe.StarDto", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.Universe")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StarDto", Namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.Universe")]
     [System.SerializableAttribute()]
-    public partial class _2015ProjectsBackEndWsDTOUniverseStarDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class StarDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -1622,10 +1622,10 @@ namespace WcfTester.UninverseWcf {
     public interface IUniverse {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GetUniversePortion", ReplyAction="http://tempuri.org/IUniverse/GetUniversePortionResponse")]
-        WcfTester.UninverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[] GetUniversePortion(WcfTester.UninverseWcf.UniverseRangeDto universeRage);
+        WcfTester.UninverseWcf.StarDto[] GetUniversePortion(WcfTester.UninverseWcf.UniverseRangeDto universeRage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GetUniversePortion", ReplyAction="http://tempuri.org/IUniverse/GetUniversePortionResponse")]
-        System.Threading.Tasks.Task<WcfTester.UninverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[]> GetUniversePortionAsync(WcfTester.UninverseWcf.UniverseRangeDto universeRage);
+        System.Threading.Tasks.Task<WcfTester.UninverseWcf.StarDto[]> GetUniversePortionAsync(WcfTester.UninverseWcf.UniverseRangeDto universeRage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrieveUniversePortion", ReplyAction="http://tempuri.org/IUniverse/RetrieveUniversePortionResponse")]
         string RetrieveUniversePortion(string data);
@@ -1667,11 +1667,11 @@ namespace WcfTester.UninverseWcf {
                 base(binding, remoteAddress) {
         }
         
-        public WcfTester.UninverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[] GetUniversePortion(WcfTester.UninverseWcf.UniverseRangeDto universeRage) {
+        public WcfTester.UninverseWcf.StarDto[] GetUniversePortion(WcfTester.UninverseWcf.UniverseRangeDto universeRage) {
             return base.Channel.GetUniversePortion(universeRage);
         }
         
-        public System.Threading.Tasks.Task<WcfTester.UninverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto[]> GetUniversePortionAsync(WcfTester.UninverseWcf.UniverseRangeDto universeRage) {
+        public System.Threading.Tasks.Task<WcfTester.UninverseWcf.StarDto[]> GetUniversePortionAsync(WcfTester.UninverseWcf.UniverseRangeDto universeRage) {
             return base.Channel.GetUniversePortionAsync(universeRage);
         }
         

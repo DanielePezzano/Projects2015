@@ -1,0 +1,5 @@
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\Debug\WcfCommCrypto.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\Debug\WcfCommCrypto.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\obj\Debug\WcfCommCrypto.csprojResolveAssemblyReference.cache
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\obj\Debug\WcfCommCrypto.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\obj\Debug\WcfCommCrypto.pdb

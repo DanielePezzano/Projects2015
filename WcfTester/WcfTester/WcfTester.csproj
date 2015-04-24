@@ -87,7 +87,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\UninverseWcf\Universe.wsdl" />
-    <None Include="Service References\UninverseWcf\WcfTester.UninverseWcf._2015ProjectsBackEndWsDTOUniverseStarDto.datasource">
+    <None Include="Service References\UninverseWcf\WcfTester.UninverseWcf.StarDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>

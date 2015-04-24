@@ -1,13 +1,9 @@
-﻿using _2015ProjectsBackEndWs.DataMapper;
-using Models.Universe;
-using Models.Universe.Enum;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace _2015ProjectsBackEndWs.DTO.Universe
 {
-    [DataContract(Name = "_2015ProjectsBackEndWs.DTO.Universe.StarDto")]
+    [DataContract]
     public class StarDto
     {
        

@@ -1,7 +1,4 @@
-﻿using _2015ProjectsBackEndWs.DataMapper;
-using Models.Base.Enum;
-using Models.Buildings;
-using Models.Universe;
+﻿using Models.Base.Enum;
 using Models.Universe.Enum;
 using System.Collections.Generic;
 using System.Runtime.Serialization;

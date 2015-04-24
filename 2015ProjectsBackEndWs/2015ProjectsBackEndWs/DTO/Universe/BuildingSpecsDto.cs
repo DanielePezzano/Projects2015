@@ -1,5 +1,4 @@
-﻿using Models.Buildings;
-using Models.Tech.Enum;
+﻿using Models.Tech.Enum;
 using System.Runtime.Serialization;
 
 namespace _2015ProjectsBackEndWs.DTO.Universe

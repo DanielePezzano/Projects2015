@@ -146,20 +146,15 @@ namespace _2015ProjectsBackEndWs
                 {
                     //Decriptalo con la nostra chiave
                     string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data);
-                    DataContractJsonSerializer jsonSer = new DataContractJsonSerializer(typeof(UniverseRangeDto));
                     var javascriptSerializer = new JavaScriptSerializer();
-
-                    MemoryStream stream = new MemoryStream();
                     UniverseRangeDto universeRange = javascriptSerializer.Deserialize<UniverseRangeDto>(decriptedHash);
                     //is correctly deserialized and it was sent in time
                     if (universeRange != null && ValidateCall.Validate(universeRange.Auth.GeneratedStamp, universeRange.Auth.AuthHash, CallInstanceName.UniverseRangeDto))
                     {
                         List<StarDto> starEntities = ProcessRetrieveMethod(universeRange);
-                        stream.Position = 0;
-                        jsonSer.WriteObject(stream, starEntities);
-                        using (StreamReader streamReader = new StreamReader(stream))
+                        using (ProcessSerialization serializator = new ProcessSerialization())
                         {
-                            result = streamReader.ReadToEnd();
+                            result = serializator.SerializeJson(typeof(SectorDto), new SectorDto() { Stars = starEntities });
                         }
                     }
                 }

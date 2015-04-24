@@ -100,6 +100,7 @@
     <Compile Include="DTO\Universe\BuildingDto.cs" />
     <Compile Include="DTO\Universe\BuildingSpecsDto.cs" />
     <Compile Include="DTO\Universe\PlanetDto.cs" />
+    <Compile Include="DTO\Universe\SectorDto.cs" />
     <Compile Include="DTO\Universe\StarDto.cs" />
     <Compile Include="DTO\UtilityDto\PlanetGenerationDto.cs" />
     <Compile Include="DTO\UtilityDto\UniverseRangeDto.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Utility\CallSentences.cs" />
     <Compile Include="Utility\CryptingUtils\Sha1Managed.cs" />
     <Compile Include="Utility\CryptingUtils\ValidateCall.cs" />
+    <Compile Include="Utility\ProcessSerialization.cs" />
     <Compile Include="Utility\RepetitionChecker.cs" />
     <Compile Include="Utility\CryptingUtils\RijndaelManagedEncryption.cs" />
     <Compile Include="Utility\Struct\MessageData.cs" />
