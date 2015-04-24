@@ -1,30 +1,25 @@
-﻿using _2015ProjectsBackEndWs.DTO.UtilityDto;
+﻿using _2015ProjectsBackEndWs.DataMapper;
+using _2015ProjectsBackEndWs.DTO.Universe;
+using _2015ProjectsBackEndWs.DTO.UtilityDto;
+using _2015ProjectsBackEndWs.Security;
+using _2015ProjectsBackEndWs.Utility;
+using BLL.Generation;
+using BLL.Information;
 using BLL.Utilities.Structs;
+using Models.Universe;
 using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Web.Script.Serialization;
 using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Uows;
-using UnitOfWork.Interfaces.Context;
 using UnitOfWork.Implementations.Uows.UowDto;
-using BLL.Generation;
-using BLL.Information;
-using System.Collections.Generic;
-using Models.Universe;
-using _2015ProjectsBackEndWs.DataMapper;
-using _2015ProjectsBackEndWs.DTO.Universe;
-using _2015ProjectsBackEndWs.Utility;
-using System.IO;
-using System.Runtime.Serialization.Json;
-using System.Configuration;
-using System.Web.Script.Serialization;
+using UnitOfWork.Interfaces.Context;
 using WcfCommCrypto;
-using _2015ProjectsBackEndWs.Security;
 
 namespace _2015ProjectsBackEndWs
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Universe" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Universe.svc or Universe.svc.cs at the Solution Explorer and start debugging.
-
     public class Universe : IUniverse
     {
         private static Random _Rnd;
@@ -62,6 +57,7 @@ namespace _2015ProjectsBackEndWs
             return CallsStatusResponse.GenericCallFailed;
         }
 
+        #region Private Methods
         /// <summary>
         /// If all Checks goes well, the system is created
         /// </summary>
@@ -102,7 +98,11 @@ namespace _2015ProjectsBackEndWs
             }
             return generationResult;
         }
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="universeRage"></param>
+        /// <returns></returns>
         private List<StarDto> ProcessRetrieveMethod(UniverseRangeDto universeRage)
         {
             IntRange rangeX = new IntRange(universeRage.MinX, universeRage.MaxX);
@@ -115,7 +115,12 @@ namespace _2015ProjectsBackEndWs
                 stars = mapper.EntityListToModel(starEntities);
             return stars;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rangeX"></param>
+        /// <param name="rangeY"></param>
+        /// <returns></returns>
         private List<Star> RetrieveInformation(ref IntRange rangeX, ref IntRange rangeY)
         {
             List<Star> starEntities = new List<Star>();
@@ -136,7 +141,8 @@ namespace _2015ProjectsBackEndWs
                 }
             }
             return starEntities;
-        }
+        } 
+        #endregion
         /// <summary>
         /// Json Retrieve Method
         /// </summary>
@@ -176,7 +182,7 @@ namespace _2015ProjectsBackEndWs
                 }
                 catch (Exception ex)
                 {
-                    
+                    //Da FAre: Sistema di gestione log di errore
                 }
             }
             return result;
@@ -197,8 +203,11 @@ namespace _2015ProjectsBackEndWs
             }
             return result;
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public string RetrieveUniversePortionUnused(UniverseRangeDto data)
         {
             return CallsStatusResponse.GenericCallSuccess;
