@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -42,6 +45,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WcfCommCrypto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\WcfCommCrypto.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -52,13 +59,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Utility\CallSentences.cs" />
-    <Compile Include="Utility\RijndaelManagedEncryption.cs" />
-    <Compile Include="Utility\Sha1Managed.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
     <None Include="Service References\UninverseWcf\true.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -68,28 +74,10 @@
     <None Include="Service References\UninverseWcf\true2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UninverseWcf\true3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\UninverseWcf\true4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UninverseWcf\true5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UninverseWcf\true6.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UninverseWcf\true7.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UninverseWcf\true8.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\UninverseWcf\Universe.wsdl" />
-    <None Include="Service References\UninverseWcf\WcfTester.UninverseWcf.StarDto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -111,6 +99,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lib\WcfCommCrypto.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

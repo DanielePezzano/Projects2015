@@ -17,6 +17,8 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Configuration;
 using System.Web.Script.Serialization;
+using WcfCommCrypto;
+using _2015ProjectsBackEndWs.Security;
 
 namespace _2015ProjectsBackEndWs
 {
@@ -41,7 +43,7 @@ namespace _2015ProjectsBackEndWs
         {
             if (hashcall != null)
             {
-                string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(hashcall);
+                string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(hashcall, ConfigurationManager.AppSettings[ConfAppSettings.SaltKey], ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
                 if (decriptedHash.StartsWith(CallStartSentences.GeneratePortion))
                 {
                     if (!RepetitionChecker.Check(hashcall))
@@ -49,10 +51,14 @@ namespace _2015ProjectsBackEndWs
                         bool generationResult = ProcessStarSystemGeneration(generationData);
                         if (generationResult) return CallsStatusResponse.GenericCallSuccess;
                     }
-                    else return CallsStatusResponse.GenericWait;
+                    else
+                    {
+                        _Rnd = null;
+                        return CallsStatusResponse.GenericWait;
+                    }
                 }
             }
-
+            _Rnd = null;
             return CallsStatusResponse.GenericCallFailed;
         }
 
@@ -96,12 +102,7 @@ namespace _2015ProjectsBackEndWs
             }
             return generationResult;
         }
-
-        public List<StarDto> GetUniversePortion(UniverseRangeDto universeRage)
-        {
-            return ProcessRetrieveMethod(universeRage);
-        }
-
+        
         private List<StarDto> ProcessRetrieveMethod(UniverseRangeDto universeRage)
         {
             IntRange rangeX = new IntRange(universeRage.MinX, universeRage.MaxX);
@@ -128,7 +129,7 @@ namespace _2015ProjectsBackEndWs
                     using (MainUow uow = new MainUow(context, cache, repoFactory))
                     {
                         RetrieveInformations Retrieve = new RetrieveInformations(uow, rangeX, rangeY);
-                        string cacheKey = rangeX.Min + "_x_" + rangeX.Max + ";" + rangeY.Min + "_y_" + rangeY.Max;
+                        string cacheKey = rangeX.Min + CallSeparators.coordX + rangeX.Max + CallSeparators.otherSeparator + rangeY.Min + CallSeparators.coordY + rangeY.Max;
                         starEntities = Retrieve.StarsInRange(cacheKey);
 
                     }
@@ -136,7 +137,11 @@ namespace _2015ProjectsBackEndWs
             }
             return starEntities;
         }
-
+        /// <summary>
+        /// Json Retrieve Method
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public string RetrieveUniversePortion(string data)
         {
             string result = CallsStatusResponse.GenericCallFailed;
@@ -145,11 +150,22 @@ namespace _2015ProjectsBackEndWs
                 try
                 {
                     //Decriptalo con la nostra chiave
-                    string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data);
+                    string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data, ConfigurationManager.AppSettings[ConfAppSettings.SaltKey], ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
                     var javascriptSerializer = new JavaScriptSerializer();
                     UniverseRangeDto universeRange = javascriptSerializer.Deserialize<UniverseRangeDto>(decriptedHash);
                     //is correctly deserialized and it was sent in time
-                    if (universeRange != null && ValidateCall.Validate(universeRange.Auth.GeneratedStamp, universeRange.Auth.AuthHash, CallInstanceName.UniverseRangeDto))
+                    if (universeRange != null && 
+                        ValidateCall.Validate(
+                        universeRange.Auth.GeneratedStamp, 
+                        universeRange.Auth.AuthHash_01,
+                        universeRange.Auth.AuthHash_02,
+                        ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
+                        ConfigurationManager.AppSettings[ConfAppSettings.InputKey],
+                        CallInstanceName.UniverseRangeDto,
+                        ConfigurationManager.AppSettings[ConfAppSettings.Username],
+                        ConfigurationManager.AppSettings[ConfAppSettings.Password],
+                        AcceptedClients.WhiteList,
+                        CallSeparators.defaultSeparator))
                     {
                         List<StarDto> starEntities = ProcessRetrieveMethod(universeRange);
                         using (ProcessSerialization serializator = new ProcessSerialization())
@@ -160,10 +176,32 @@ namespace _2015ProjectsBackEndWs
                 }
                 catch (Exception ex)
                 {
-                    return ex.Message;
+                    
                 }
             }
             return result;
+        }
+        /// <summary>
+        /// Questo metodo restituisce il tempo corrente del servizio: usalo con il client prima di ogni 
+        /// successiva chiamata: dal momento che il server ti da il tempo, hai un minuto per creare
+        /// dal client, una chiamata valida.
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string ServiceTime()
+        {
+            string result = string.Empty;
+            using (ProcessSerialization serializator = new ProcessSerialization())
+            {
+                result = serializator.SerializeJson(typeof(DateTime),DateTime.Now);
+            }
+            return result;
+        }
+
+
+        public string RetrieveUniversePortionUnused(UniverseRangeDto data)
+        {
+            return CallsStatusResponse.GenericCallSuccess;
         }
     }
 }

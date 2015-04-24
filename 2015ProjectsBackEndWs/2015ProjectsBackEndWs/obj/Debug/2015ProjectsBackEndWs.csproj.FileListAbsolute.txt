@@ -12,3 +12,4 @@ C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\2015Project
 C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\2015ProjectsBackEndWs\obj\Debug\2015ProjectsBackEndWs.csprojResolveAssemblyReference.cache
 C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\2015ProjectsBackEndWs\bin\Newtonsoft.Json.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\2015ProjectsBackEndWs\bin\Newtonsoft.Json.xml
+C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\2015ProjectsBackEndWs\bin\WcfCommCrypto.dll

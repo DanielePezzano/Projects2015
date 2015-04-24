@@ -81,11 +81,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\UnitOfWork.dll</HintPath>
     </Reference>
+    <Reference Include="WcfCommCrypto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\WcfCommCrypto.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\BLL.dll" />
     <Content Include="Lib\Models.dll" />
     <Content Include="Lib\UnitOfWork.dll" />
+    <Content Include="Lib\WcfCommCrypto.dll" />
     <Content Include="Universe.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -107,16 +112,16 @@
     <Compile Include="IUniverse.cs" />
     <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\AcceptedClients.cs" />
     <Compile Include="Universe.svc.cs">
       <DependentUpon>Universe.svc</DependentUpon>
     </Compile>
     <Compile Include="Utility\CallInstanceName.cs" />
     <Compile Include="Utility\CallSentences.cs" />
-    <Compile Include="Utility\CryptingUtils\Sha1Managed.cs" />
-    <Compile Include="Utility\CryptingUtils\ValidateCall.cs" />
+    <Compile Include="Utility\CallSeparators.cs" />
+    <Compile Include="Utility\ConfAppSettings.cs" />
     <Compile Include="Utility\ProcessSerialization.cs" />
     <Compile Include="Utility\RepetitionChecker.cs" />
-    <Compile Include="Utility\CryptingUtils\RijndaelManagedEncryption.cs" />
     <Compile Include="Utility\Struct\MessageData.cs" />
   </ItemGroup>
   <ItemGroup>
