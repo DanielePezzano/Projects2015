@@ -84,3 +84,4 @@ C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC.T
 C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC.Tests\obj\Debug\FrontEnd2015MVC.Tests.csprojResolveAssemblyReference.cache
 C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC.Tests\obj\Debug\FrontEnd2015MVC.Tests.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC.Tests\obj\Debug\FrontEnd2015MVC.Tests.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC.Tests\bin\Debug\SharedDto.dll

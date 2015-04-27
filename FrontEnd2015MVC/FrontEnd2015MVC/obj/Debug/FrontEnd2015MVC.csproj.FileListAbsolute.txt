@@ -79,3 +79,5 @@ C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC\b
 C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC\obj\Debug\FrontEnd2015MVC.csprojResolveAssemblyReference.cache
 C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC\obj\Debug\FrontEnd2015MVC.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC\obj\Debug\FrontEnd2015MVC.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC\bin\SharedDto.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC\bin\WcfCommCrypto.dll

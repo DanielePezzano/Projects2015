@@ -10,6 +10,8 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using FrontEnd2015MVC.Filters;
 using FrontEnd2015MVC.Models;
+using SharedDto.Form.Account;
+using SharedDto;
 
 namespace FrontEnd2015MVC.Controllers
 {

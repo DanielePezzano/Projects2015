@@ -58,7 +58,17 @@
     <Compile Include="DataMapper\BuildingSpecEntityMapper.cs" />
     <Compile Include="DataMapper\PlanetEntityMapper.cs" />
     <Compile Include="DataMapper\StarEntityMapper.cs" />
+    <Compile Include="Form\Account\ExternalLogin.cs" />
+    <Compile Include="Form\Account\LocalPasswordModel.cs" />
+    <Compile Include="Form\Account\LoginModel.cs" />
+    <Compile Include="Form\Account\RegisterExternalLoginModel.cs" />
+    <Compile Include="Form\Account\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ModelResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Universe\Building\BuildingDto.cs" />
     <Compile Include="Universe\Building\BuildingSpecsDto.cs" />
     <Compile Include="Universe\Planets\PlanetDto.cs" />
@@ -77,6 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Universe\Technology\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ModelResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ModelResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

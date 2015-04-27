@@ -8,3 +8,5 @@ C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\E
 C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\EntityFramework.SqlServer.xml
 C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.Resources.ModelResources.resources
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.csproj.GenerateResource.Cache
