@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Universe" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:51822/Universe.svc/true?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:51822/Universe.svc/true?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:51822/Universe.svc/true?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO.UtilityDto" />
+      <xsd:import schemaLocation="http://localhost:51822/Universe.svc/true?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/_2015ProjectsBackEndWs.DTO" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IUniverse_RetrieveUniversePortion_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveUniversePortion" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_RetrieveUniversePortion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveUniversePortionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_RetrievePlanetInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrievePlanetInfo" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_RetrievePlanetInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrievePlanetInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_RetrieveInfoUnused_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveInfoUnused" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_RetrieveInfoUnused_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveInfoUnusedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_RetrieveUniversePortionUnused_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveUniversePortionUnused" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_RetrieveUniversePortionUnused_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveUniversePortionUnusedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_GenerateStarSystem_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateStarSystem" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_GenerateStarSystem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateStarSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_ServiceTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceTime" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_ServiceTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceTimeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IUniverse">
+    <wsdl:operation name="RetrieveUniversePortion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/RetrieveUniversePortion" message="tns:IUniverse_RetrieveUniversePortion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/RetrieveUniversePortionResponse" message="tns:IUniverse_RetrieveUniversePortion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrievePlanetInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/RetrievePlanetInfo" message="tns:IUniverse_RetrievePlanetInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/RetrievePlanetInfoResponse" message="tns:IUniverse_RetrievePlanetInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveInfoUnused">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/RetrieveInfoUnused" message="tns:IUniverse_RetrieveInfoUnused_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/RetrieveInfoUnusedResponse" message="tns:IUniverse_RetrieveInfoUnused_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveUniversePortionUnused">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/RetrieveUniversePortionUnused" message="tns:IUniverse_RetrieveUniversePortionUnused_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/RetrieveUniversePortionUnusedResponse" message="tns:IUniverse_RetrieveUniversePortionUnused_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateStarSystem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/GenerateStarSystem" message="tns:IUniverse_GenerateStarSystem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/GenerateStarSystemResponse" message="tns:IUniverse_GenerateStarSystem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiceTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/ServiceTime" message="tns:IUniverse_ServiceTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/ServiceTimeResponse" message="tns:IUniverse_ServiceTime_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:service name="Universe" />
+</wsdl:definitions>
