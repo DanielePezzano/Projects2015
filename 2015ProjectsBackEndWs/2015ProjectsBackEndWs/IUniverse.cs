@@ -1,10 +1,5 @@
-﻿using _2015ProjectsBackEndWs.DTO.Universe;
-using _2015ProjectsBackEndWs.DTO.UtilityDto;
-using System;
-using System.Collections.Generic;
+﻿using SharedDto;
 using System.ServiceModel;
-using System.ServiceModel.Activation;
-using System.ServiceModel.Web;
 
 namespace _2015ProjectsBackEndWs
 {
@@ -17,13 +12,7 @@ namespace _2015ProjectsBackEndWs
 
         [OperationContract]
         string RetrievePlanetInfo(string data);
-
-        [OperationContract]
-        string RetrieveInfoUnused(RetrievingInfoDto data); //definito per permettere di esporre ai client il data-transport.object
-
-        [OperationContract]
-        string RetrieveUniversePortionUnused(UniverseRangeDto data); // definito per permettere di esporre ai client, il data-transport-object UniverseRangeDto 
-
+        
         [OperationContract]
         string GenerateStarSystem(PlanetGenerationDto generationData, string hashcall);
 

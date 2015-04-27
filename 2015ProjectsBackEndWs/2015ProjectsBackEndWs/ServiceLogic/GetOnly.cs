@@ -1,10 +1,9 @@
-﻿using _2015ProjectsBackEndWs.DataMapper;
-using _2015ProjectsBackEndWs.DTO.Universe;
-using _2015ProjectsBackEndWs.DTO.UtilityDto;
-using _2015ProjectsBackEndWs.Utility;
+﻿using _2015ProjectsBackEndWs.Utility;
 using BLL.Information;
 using BLL.Utilities.Structs;
 using Models.Universe;
+using SharedDto;
+using SharedDto.DataMapper;
 using System;
 using System.Collections.Generic;
 using UnitOfWork.Cache;

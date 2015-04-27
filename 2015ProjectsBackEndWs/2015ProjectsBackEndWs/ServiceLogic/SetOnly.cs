@@ -1,14 +1,8 @@
-﻿using _2015ProjectsBackEndWs.DataMapper;
-using _2015ProjectsBackEndWs.DTO.Universe;
-using _2015ProjectsBackEndWs.DTO.UtilityDto;
-using _2015ProjectsBackEndWs.Utility;
-using BLL.Generation;
+﻿using BLL.Generation;
 using BLL.Generation.StarSystem;
-using BLL.Information;
 using BLL.Utilities.Structs;
-using Models.Universe;
+using SharedDto;
 using System;
-using System.Collections.Generic;
 using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Uows;

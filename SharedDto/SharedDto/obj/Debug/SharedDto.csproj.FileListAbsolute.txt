@@ -1,0 +1,11 @@
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Debug\SharedDto.dll.config
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Debug\SharedDto.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Debug\SharedDto.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Debug\EntityFramework.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Debug\Models.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Debug\EntityFramework.xml
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Debug\SharedDto.csprojResolveAssemblyReference.cache
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Debug\SharedDto.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Debug\SharedDto.pdb

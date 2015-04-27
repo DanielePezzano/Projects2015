@@ -9,6 +9,7 @@ using WcfTester.Utility;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using WcfCommCrypto;
+using SharedDto;
 namespace WcfTester
 {
     class Program

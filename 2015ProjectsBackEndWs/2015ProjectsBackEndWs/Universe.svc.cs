@@ -1,8 +1,7 @@
-﻿using _2015ProjectsBackEndWs.DTO.Universe;
-using _2015ProjectsBackEndWs.DTO.UtilityDto;
-using _2015ProjectsBackEndWs.Security;
+﻿using _2015ProjectsBackEndWs.Security;
 using _2015ProjectsBackEndWs.ServiceLogic;
 using _2015ProjectsBackEndWs.Utility;
+using SharedDto;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -120,15 +119,6 @@ namespace _2015ProjectsBackEndWs
             return result;
         }
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public string RetrieveUniversePortionUnused(UniverseRangeDto data)
-        {
-            return CallsStatusResponse.GenericCallSuccess;
-        }
-        /// <summary>
         /// Ritorna tutte le informazioni utili di un pianeta
         /// </summary>
         /// <param name="data"></param>
@@ -157,11 +147,6 @@ namespace _2015ProjectsBackEndWs
                 }
             }
             return result;
-        }
-
-        public string RetrieveInfoUnused(RetrievingInfoDto data)
-        {
-            return CallsStatusResponse.GenericCallSuccess;
         }
     }
 }

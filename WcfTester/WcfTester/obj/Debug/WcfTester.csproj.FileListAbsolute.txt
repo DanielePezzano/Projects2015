@@ -7,3 +7,5 @@ C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\obj\Debug\Wcf
 C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\bin\Debug\Newtonsoft.Json.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\bin\Debug\WcfCommCrypto.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\bin\Debug\Newtonsoft.Json.xml
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\bin\Debug\SharedDto.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\WcfTester\WcfTester\bin\Debug\Models.dll

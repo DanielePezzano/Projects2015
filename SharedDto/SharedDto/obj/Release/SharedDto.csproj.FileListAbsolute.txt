@@ -1,0 +1,10 @@
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\SharedDto.dll.config
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\SharedDto.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\SharedDto.pdb
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\EntityFramework.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\Models.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\EntityFramework.xml
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.pdb

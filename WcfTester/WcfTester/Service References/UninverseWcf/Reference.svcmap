@@ -23,11 +23,10 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="true1.xsd" MetadataType="Schema" ID="4df5fb19-83c1-4619-889d-1a571a19e843" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd1" />
-    <MetadataFile FileName="true2.xsd" MetadataType="Schema" ID="efdf08db-9282-4bc2-aaaf-e164518487cf" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd0" />
-    <MetadataFile FileName="true.xsd" MetadataType="Schema" ID="2cf1f12f-9bc7-4a5e-a90e-de022cf66541" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd3" />
-    <MetadataFile FileName="true4.xsd" MetadataType="Schema" ID="cbb7bab4-b8a8-4ae7-a7f5-89e18a8f1c20" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd2" />
-    <MetadataFile FileName="Universe.wsdl" MetadataType="Wsdl" ID="c547c687-a112-4ce7-8716-5e1eedcbe26d" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?wsdl" />
     <MetadataFile FileName="true.disco" MetadataType="Disco" ID="67f81623-d429-4a9e-abef-dd062b6c03fd" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?disco" />
+    <MetadataFile FileName="true4.xsd" MetadataType="Schema" ID="cbb7bab4-b8a8-4ae7-a7f5-89e18a8f1c20" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd2" />
+    <MetadataFile FileName="true2.xsd" MetadataType="Schema" ID="efdf08db-9282-4bc2-aaaf-e164518487cf" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd0" />
+    <MetadataFile FileName="Universe.wsdl" MetadataType="Wsdl" ID="c547c687-a112-4ce7-8716-5e1eedcbe26d" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

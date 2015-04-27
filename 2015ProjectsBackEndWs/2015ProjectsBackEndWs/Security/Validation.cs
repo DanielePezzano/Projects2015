@@ -1,10 +1,6 @@
-﻿using _2015ProjectsBackEndWs.DTO;
-using _2015ProjectsBackEndWs.Utility;
-using System;
-using System.Collections.Generic;
+﻿using _2015ProjectsBackEndWs.Utility;
+using SharedDto;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using WcfCommCrypto;
 
 namespace _2015ProjectsBackEndWs.Security

@@ -20,3 +20,4 @@ C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\b
 C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\obj\Debug\wcfTester.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\obj\Debug\wcfTester.pdb
 C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\WcfCommCrypto.dll
+C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\SharedDto.dll

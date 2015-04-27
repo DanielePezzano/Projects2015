@@ -59,6 +59,10 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SharedDto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\SharedDto.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -89,6 +93,7 @@
   <ItemGroup>
     <Content Include="Lib\BLL.dll" />
     <Content Include="Lib\Models.dll" />
+    <Content Include="Lib\SharedDto.dll" />
     <Content Include="Lib\UnitOfWork.dll" />
     <Content Include="Lib\WcfCommCrypto.dll" />
     <Content Include="Universe.svc" />
@@ -97,20 +102,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataMapper\BuildingEntityMapper.cs" />
-    <Compile Include="DataMapper\BuildingSpecEntityMapper.cs" />
-    <Compile Include="DataMapper\PlanetEntityMapper.cs" />
-    <Compile Include="DataMapper\StarEntityMapper.cs" />
-    <Compile Include="DTO\BaseAuthDto.cs" />
-    <Compile Include="DTO\Universe\BuildingDto.cs" />
-    <Compile Include="DTO\Universe\BuildingSpecsDto.cs" />
-    <Compile Include="DTO\Universe\PlanetDto.cs" />
-    <Compile Include="DTO\Universe\SectorDto.cs" />
-    <Compile Include="DTO\Universe\StarDto.cs" />
-    <Compile Include="DTO\Users\UserDto.cs" />
-    <Compile Include="DTO\UtilityDto\PlanetGenerationDto.cs" />
-    <Compile Include="DTO\UtilityDto\RetrievingInfoDto.cs" />
-    <Compile Include="DTO\UtilityDto\UniverseRangeDto.cs" />
     <Compile Include="IUniverse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AcceptedClients.cs" />
