@@ -56,7 +56,7 @@ namespace BLL.Information
             if (!_Disposed)
             {
                 this._Disposed = true;
-                this._MainUow.Dispose();
+                if (this._MainUow != null) this._MainUow.Dispose();
             }
             GC.SuppressFinalize(this);
         }

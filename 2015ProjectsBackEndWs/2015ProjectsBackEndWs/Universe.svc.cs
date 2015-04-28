@@ -2,6 +2,7 @@
 using _2015ProjectsBackEndWs.ServiceLogic;
 using _2015ProjectsBackEndWs.Utility;
 using SharedDto;
+using SharedDto.Form.Account;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -143,6 +144,31 @@ namespace _2015ProjectsBackEndWs
                         {
                             result = serializator.SerializeJson(typeof(PlanetDto), planet);
                         }
+                    }
+                }
+            }
+            return result;
+        }
+        /// <summary>
+        /// Quando un utente cerca di registrarsi manda un form al back-end
+        /// questo controlla che esista una email equivalente e se esiste
+        /// gli risponde con un negativo
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public bool CheckUserRegistration(string data)
+        {
+            bool result = false;
+            if (!string.IsNullOrEmpty(data))
+            {
+                string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data, ConfigurationManager.AppSettings[ConfAppSettings.SaltKey], ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
+                var javascriptSerializer = new JavaScriptSerializer();
+                RegisterModel item = javascriptSerializer.Deserialize<RegisterModel>(decriptedHash);
+                if (item != null)
+                {
+                    using (GetOnly getter = new GetOnly())
+                    {
+                        result = getter.IsEmailFree(item.Email);
                     }
                 }
             }

@@ -17,6 +17,9 @@ namespace _2015ProjectsBackEndWs
         string GenerateStarSystem(PlanetGenerationDto generationData, string hashcall);
 
         [OperationContract]
+        bool CheckUserRegistration(string data);
+
+        [OperationContract]
         string ServiceTime();
     }
 }

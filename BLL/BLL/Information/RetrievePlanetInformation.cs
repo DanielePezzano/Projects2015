@@ -11,12 +11,14 @@ namespace BLL.Information
     {
         private MainUow _MainUow = null;
         private bool _Disposed = false;
-        private int _PlanetId = -1;
+        private int _ItemId = -1;
 
-        public RetrievePlanetInformation(MainUow uow, int planetId)
+        public RetrievePlanetInformation(MainUow uow, int itemId)
         {
+            if (uow == null) throw new ArgumentNullException("uow");
+            if (itemId < 0) throw new ArgumentException("itemId");
             this._MainUow = uow;
-            this._PlanetId = planetId;
+            this._ItemId = itemId;
         }
         /// <summary>
         /// Retrieve PlanetInfo
@@ -25,15 +27,15 @@ namespace BLL.Information
         /// <returns></returns>
         public Planet Retrieve(string cacheKey)
         {
-            return this._MainUow.PlanetRepository.GetByKey(this._PlanetId, cacheKey);
-        }
+            return this._MainUow.PlanetRepository.GetByKey(this._ItemId, cacheKey);
+        }        
 
         public void Dispose()
         {
             if (!_Disposed)
             {
                 this._Disposed = true;
-                this._MainUow.Dispose();
+                if (this._MainUow!=null) this._MainUow.Dispose();
             }
             GC.SuppressFinalize(this);
         }

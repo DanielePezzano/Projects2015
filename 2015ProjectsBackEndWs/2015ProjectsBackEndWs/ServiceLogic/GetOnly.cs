@@ -58,9 +58,27 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
         public PlanetDto RetrieveSinglePlanet(int id)
         {
             string cacheKey = "SelectPlanetWhereId=" + id;
-            RetrievePlanetInformation retrieve = new RetrievePlanetInformation(_MainUow, id);
-            PlanetEntityMapper mapper = new PlanetEntityMapper();
-            return mapper.EntityToModel(retrieve.Retrieve(cacheKey));
+            PlanetDto result = null;
+            using (RetrievePlanetInformation retrieve = new RetrievePlanetInformation(_MainUow, id))
+            {
+                PlanetEntityMapper mapper = new PlanetEntityMapper();
+                result =mapper.EntityToModel(retrieve.Retrieve(cacheKey));
+            }
+            return result;
+        }
+        /// <summary>
+        /// Controlla esistenza di un email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public bool IsEmailFree(string email)
+        {
+            bool result = false;
+            using (RetrieveUserInformation retrieve = new RetrieveUserInformation(_MainUow, email))
+            {
+                result = !retrieve.ExistsEmail();
+            }
+            return false;
         }
         /// <summary>
         /// 
@@ -71,11 +89,15 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
         private List<Star> RetrieveInformation(ref IntRange rangeX, ref IntRange rangeY)
         {
             List<Star> starEntities = new List<Star>();
-            RetrieveInformations Retrieve = new RetrieveInformations(_MainUow, rangeX, rangeY);
-            string cacheKey = rangeX.Min + CallSeparators.coordX + rangeX.Max + CallSeparators.otherSeparator + rangeY.Min + CallSeparators.coordY + rangeY.Max;
-            starEntities = Retrieve.StarsInRange(cacheKey);
+            using (RetrieveInformations Retrieve = new RetrieveInformations(_MainUow, rangeX, rangeY))
+            {
+                string cacheKey = rangeX.Min + CallSeparators.coordX + rangeX.Max + CallSeparators.otherSeparator + rangeY.Min + CallSeparators.coordY + rangeY.Max;
+                starEntities = Retrieve.StarsInRange(cacheKey);
+            }            
             return starEntities;
         }
+
+
 
         public void Dispose()
         {

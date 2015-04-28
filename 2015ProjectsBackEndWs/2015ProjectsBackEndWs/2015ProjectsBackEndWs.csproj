@@ -111,11 +111,6 @@
     <Compile Include="Universe.svc.cs">
       <DependentUpon>Universe.svc</DependentUpon>
     </Compile>
-    <Compile Include="Utility\CallInstanceName.cs" />
-    <Compile Include="Utility\CallSentences.cs" />
-    <Compile Include="Utility\CallSeparators.cs" />
-    <Compile Include="Utility\ConfAppSettings.cs" />
-    <Compile Include="Utility\ProcessSerialization.cs" />
     <Compile Include="Utility\RepetitionChecker.cs" />
     <Compile Include="Utility\Struct\MessageData.cs" />
   </ItemGroup>
