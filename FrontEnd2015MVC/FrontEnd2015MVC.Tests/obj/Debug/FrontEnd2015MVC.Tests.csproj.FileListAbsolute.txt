@@ -107,3 +107,4 @@ C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC.T
 C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC.Tests\bin\Debug\Org.Mentalis.Security.Cryptography.xml
 C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC.Tests\bin\Debug\Mono.Math.xml
 C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC.Tests\obj\Debug\FrontEnd2015MVC.Tests.csproj.App.config
+C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC.Tests\bin\Debug\WcfCommCrypto.dll

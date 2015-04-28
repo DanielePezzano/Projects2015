@@ -135,6 +135,9 @@
   <data name="RememberMe" xml:space="preserve">
     <value>Ricordami</value>
   </data>
+  <data name="UniverseChoice" xml:space="preserve">
+    <value>Scegli Un Universo</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>Nome Utente</value>
   </data>

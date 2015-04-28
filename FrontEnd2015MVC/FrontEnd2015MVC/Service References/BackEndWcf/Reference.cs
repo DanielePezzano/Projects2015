@@ -9,230 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace FrontEnd2015MVC.BackEndWcf {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PlanetGenerationDto", Namespace="http://schemas.datacontract.org/2004/07/SharedDto")]
-    [System.SerializableAttribute()]
-    public partial class PlanetGenerationDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool FoodPoorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool FoodRichField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ForceLivingField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ForceWaterField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int Galaxy_IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MaxXField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MaxYField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MinXField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MinYField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool MineralPoorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool MineralRichField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool MostlyWaterField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool FoodPoor {
-            get {
-                return this.FoodPoorField;
-            }
-            set {
-                if ((this.FoodPoorField.Equals(value) != true)) {
-                    this.FoodPoorField = value;
-                    this.RaisePropertyChanged("FoodPoor");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool FoodRich {
-            get {
-                return this.FoodRichField;
-            }
-            set {
-                if ((this.FoodRichField.Equals(value) != true)) {
-                    this.FoodRichField = value;
-                    this.RaisePropertyChanged("FoodRich");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ForceLiving {
-            get {
-                return this.ForceLivingField;
-            }
-            set {
-                if ((this.ForceLivingField.Equals(value) != true)) {
-                    this.ForceLivingField = value;
-                    this.RaisePropertyChanged("ForceLiving");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ForceWater {
-            get {
-                return this.ForceWaterField;
-            }
-            set {
-                if ((this.ForceWaterField.Equals(value) != true)) {
-                    this.ForceWaterField = value;
-                    this.RaisePropertyChanged("ForceWater");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Galaxy_Id {
-            get {
-                return this.Galaxy_IdField;
-            }
-            set {
-                if ((this.Galaxy_IdField.Equals(value) != true)) {
-                    this.Galaxy_IdField = value;
-                    this.RaisePropertyChanged("Galaxy_Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MaxX {
-            get {
-                return this.MaxXField;
-            }
-            set {
-                if ((this.MaxXField.Equals(value) != true)) {
-                    this.MaxXField = value;
-                    this.RaisePropertyChanged("MaxX");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MaxY {
-            get {
-                return this.MaxYField;
-            }
-            set {
-                if ((this.MaxYField.Equals(value) != true)) {
-                    this.MaxYField = value;
-                    this.RaisePropertyChanged("MaxY");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MinX {
-            get {
-                return this.MinXField;
-            }
-            set {
-                if ((this.MinXField.Equals(value) != true)) {
-                    this.MinXField = value;
-                    this.RaisePropertyChanged("MinX");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MinY {
-            get {
-                return this.MinYField;
-            }
-            set {
-                if ((this.MinYField.Equals(value) != true)) {
-                    this.MinYField = value;
-                    this.RaisePropertyChanged("MinY");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool MineralPoor {
-            get {
-                return this.MineralPoorField;
-            }
-            set {
-                if ((this.MineralPoorField.Equals(value) != true)) {
-                    this.MineralPoorField = value;
-                    this.RaisePropertyChanged("MineralPoor");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool MineralRich {
-            get {
-                return this.MineralRichField;
-            }
-            set {
-                if ((this.MineralRichField.Equals(value) != true)) {
-                    this.MineralRichField = value;
-                    this.RaisePropertyChanged("MineralRich");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool MostlyWater {
-            get {
-                return this.MostlyWaterField;
-            }
-            set {
-                if ((this.MostlyWaterField.Equals(value) != true)) {
-                    this.MostlyWaterField = value;
-                    this.RaisePropertyChanged("MostlyWater");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BackEndWcf.IUniverse")]
@@ -251,10 +28,10 @@ namespace FrontEnd2015MVC.BackEndWcf {
         System.Threading.Tasks.Task<string> RetrievePlanetInfoAsync(string data);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
-        string GenerateStarSystem(FrontEnd2015MVC.BackEndWcf.PlanetGenerationDto generationData, string hashcall);
+        string GenerateStarSystem(SharedDto.PlanetGenerationDto generationData, string hashcall);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
-        System.Threading.Tasks.Task<string> GenerateStarSystemAsync(FrontEnd2015MVC.BackEndWcf.PlanetGenerationDto generationData, string hashcall);
+        System.Threading.Tasks.Task<string> GenerateStarSystemAsync(SharedDto.PlanetGenerationDto generationData, string hashcall);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/CheckUserRegistration", ReplyAction="http://tempuri.org/IUniverse/CheckUserRegistrationResponse")]
         bool CheckUserRegistration(string data);
@@ -312,11 +89,11 @@ namespace FrontEnd2015MVC.BackEndWcf {
             return base.Channel.RetrievePlanetInfoAsync(data);
         }
         
-        public string GenerateStarSystem(FrontEnd2015MVC.BackEndWcf.PlanetGenerationDto generationData, string hashcall) {
+        public string GenerateStarSystem(SharedDto.PlanetGenerationDto generationData, string hashcall) {
             return base.Channel.GenerateStarSystem(generationData, hashcall);
         }
         
-        public System.Threading.Tasks.Task<string> GenerateStarSystemAsync(FrontEnd2015MVC.BackEndWcf.PlanetGenerationDto generationData, string hashcall) {
+        public System.Threading.Tasks.Task<string> GenerateStarSystemAsync(SharedDto.PlanetGenerationDto generationData, string hashcall) {
             return base.Channel.GenerateStarSystemAsync(generationData, hashcall);
         }
         

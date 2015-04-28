@@ -78,7 +78,7 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
             {
                 result = !retrieve.ExistsEmail();
             }
-            return false;
+            return result;
         }
         /// <summary>
         /// 

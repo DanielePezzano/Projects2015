@@ -115,6 +115,15 @@ namespace SharedDto.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scegli Un Universo.
+        /// </summary>
+        public static string UniverseChoice {
+            get {
+                return ResourceManager.GetString("UniverseChoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nome Utente.
         /// </summary>
         public static string Username {

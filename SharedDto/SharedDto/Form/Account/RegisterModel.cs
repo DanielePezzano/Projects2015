@@ -24,6 +24,11 @@ namespace SharedDto.Form.Account
         [DataMember]
         public string Password { get; set; }
 
+        [Required]
+        [DataMember]
+        [Display(Name="UniverseChoice", ResourceType=typeof(Resources.ModelResources))]
+        public int GalaxyId { get; set; }
+
         [DataType(DataType.Password)]
         [Display(Name = "ConfirmPassword", ResourceType = typeof(Resources.ModelResources))]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]

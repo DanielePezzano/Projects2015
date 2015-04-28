@@ -11,6 +11,9 @@ using WebMatrix.WebData;
 using FrontEnd2015MVC.Filters;
 using SharedDto.Form.Account;
 using SharedDto;
+using FrontEnd2015MVC.BackEndWcf;
+using WcfCommCrypto;
+using System.Configuration;
 
 namespace FrontEnd2015MVC.Controllers
 {
@@ -78,11 +81,45 @@ namespace FrontEnd2015MVC.Controllers
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
+                string data = string.Empty;
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    using (UniverseClient client = new UniverseClient())
+                    {
+                        using (ProcessSerialization serializer = new ProcessSerialization())
+                        {
+                            data = RijndaelManagedEncryption.EncryptRijndael(
+                                serializer.SerializeJson(typeof(RegisterModel), model),
+                                ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
+                                ConfigurationManager.AppSettings[ConfAppSettings.InputKey]
+                                );
+                        }
+                        if (!string.IsNullOrEmpty(data))
+                        {
+                            bool canRegister = client.CheckUserRegistration(data);
+                            if (canRegister)
+                            {
+                                WebSecurity.CreateUserAndAccount(
+                                    model.UserName, 
+                                    model.Password, 
+                                    new
+                                        {
+                                            Email = model.Email,
+                                            ScoreConstruction =0,
+                                            ScoreResearch =0,
+                                            ScoreMilitary=0,
+                                            ScoreCultural=0,
+                                            RaceName=model.UserName,
+                                            RacePointsUsed=0,
+                                            RacePointsLeft=10
+                                        }
+                                    );
+                                WebSecurity.Login(model.UserName, model.Password);
+                                return RedirectToAction("Index", "Home");
+                            }
+                            else ModelState.AddModelError("EmailAlreadyTaken", "Email in uso");
+                        }
+                    }
                 }
                 catch (MembershipCreateUserException e)
                 {
