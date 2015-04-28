@@ -68,6 +68,7 @@
     <Compile Include="Information\RetrieveInformations.cs" />
     <Compile Include="Information\RetrievePlanetInformation.cs" />
     <Compile Include="Information\RetrieveUserInformation.cs" />
+    <Compile Include="Information\Struct\DropDownInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\RandomNumbers.cs" />
     <Compile Include="Utilities\RangeConversion.cs" />

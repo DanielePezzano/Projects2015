@@ -16,7 +16,8 @@
         <legend>Registration Form</legend>
         <ol>
             <li>
-               
+               @Html.LabelFor(m=>m.GalaxyId)
+               @Html.DropDownListFor(m=>m.GalaxyId,(SelectList)ViewBag.ItemList,"Scegli...")
             </li>
             <li>
                 @Html.LabelFor(m=>m.Email)

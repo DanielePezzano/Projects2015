@@ -26,7 +26,7 @@ namespace SharedDto.Form.Account
 
         [Required]
         [DataMember]
-        [Display(Name="UniverseChoice", ResourceType=typeof(Resources.ModelResources))]
+        [Display(Name = "UniverseChoice", ResourceType = typeof(Resources.ModelResources))]
         public int GalaxyId { get; set; }
 
         [DataType(DataType.Password)]

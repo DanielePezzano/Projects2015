@@ -2,6 +2,7 @@
 using _2015ProjectsBackEndWs.ServiceLogic;
 using _2015ProjectsBackEndWs.Utility;
 using SharedDto;
+using SharedDto.Form;
 using SharedDto.Form.Account;
 using System;
 using System.Collections.Generic;
@@ -170,6 +171,23 @@ namespace _2015ProjectsBackEndWs
                     {
                         result = getter.IsEmailFree(item.Email);
                     }
+                }
+            }
+            return result;
+        }
+        /// <summary>
+        /// Get the universe List to use in a dropdownlist
+        /// </summary>
+        /// <returns></returns>
+        public string RetrieveUniverseList()
+        {
+            string result = string.Empty;
+            using (GetOnly getter = new GetOnly())
+            {
+                GalaxyList galaxyList = getter.RetrieveGalaxyList();
+                using (ProcessSerialization serializer = new ProcessSerialization())
+                {
+                    result = serializer.SerializeJson(typeof(GalaxyList), galaxyList);
                 }
             }
             return result;

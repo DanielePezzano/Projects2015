@@ -19,6 +19,12 @@
   <wsdl:message name="IUniverse_RetrievePlanetInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:RetrievePlanetInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="IUniverse_RetrieveUniverseList_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveUniverseList" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_RetrieveUniverseList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveUniverseListResponse" />
+  </wsdl:message>
   <wsdl:message name="IUniverse_GenerateStarSystem_InputMessage">
     <wsdl:part name="parameters" element="tns:GenerateStarSystem" />
   </wsdl:message>
@@ -45,6 +51,10 @@
     <wsdl:operation name="RetrievePlanetInfo">
       <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/RetrievePlanetInfo" message="tns:IUniverse_RetrievePlanetInfo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/RetrievePlanetInfoResponse" message="tns:IUniverse_RetrievePlanetInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveUniverseList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/RetrieveUniverseList" message="tns:IUniverse_RetrieveUniverseList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/RetrieveUniverseListResponse" message="tns:IUniverse_RetrieveUniverseList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GenerateStarSystem">
       <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/GenerateStarSystem" message="tns:IUniverse_GenerateStarSystem_InputMessage" />

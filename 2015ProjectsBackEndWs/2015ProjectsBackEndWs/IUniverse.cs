@@ -12,6 +12,9 @@ namespace _2015ProjectsBackEndWs
 
         [OperationContract]
         string RetrievePlanetInfo(string data);
+
+        [OperationContract]
+        string RetrieveUniverseList();
         
         [OperationContract]
         string GenerateStarSystem(PlanetGenerationDto generationData, string hashcall);

@@ -27,6 +27,12 @@ namespace FrontEnd2015MVC.BackEndWcf {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrievePlanetInfo", ReplyAction="http://tempuri.org/IUniverse/RetrievePlanetInfoResponse")]
         System.Threading.Tasks.Task<string> RetrievePlanetInfoAsync(string data);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrieveUniverseList", ReplyAction="http://tempuri.org/IUniverse/RetrieveUniverseListResponse")]
+        string RetrieveUniverseList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrieveUniverseList", ReplyAction="http://tempuri.org/IUniverse/RetrieveUniverseListResponse")]
+        System.Threading.Tasks.Task<string> RetrieveUniverseListAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
         string GenerateStarSystem(SharedDto.PlanetGenerationDto generationData, string hashcall);
         
@@ -87,6 +93,14 @@ namespace FrontEnd2015MVC.BackEndWcf {
         
         public System.Threading.Tasks.Task<string> RetrievePlanetInfoAsync(string data) {
             return base.Channel.RetrievePlanetInfoAsync(data);
+        }
+        
+        public string RetrieveUniverseList() {
+            return base.Channel.RetrieveUniverseList();
+        }
+        
+        public System.Threading.Tasks.Task<string> RetrieveUniverseListAsync() {
+            return base.Channel.RetrieveUniverseListAsync();
         }
         
         public string GenerateStarSystem(SharedDto.PlanetGenerationDto generationData, string hashcall) {

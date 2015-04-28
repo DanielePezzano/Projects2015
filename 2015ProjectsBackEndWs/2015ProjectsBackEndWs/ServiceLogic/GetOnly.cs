@@ -4,6 +4,7 @@ using BLL.Utilities.Structs;
 using Models.Universe;
 using SharedDto;
 using SharedDto.DataMapper;
+using SharedDto.Form;
 using System;
 using System.Collections.Generic;
 using UnitOfWork.Cache;
@@ -32,6 +33,26 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
             _Cache = _Factory.CreateCache();
             _RepoFactory = new UowRepositoryFactories(_Context, _Cache, _Repositories);
             _MainUow = new MainUow(_Context, _Cache, _RepoFactory);
+        }
+        /// <summary>
+        /// Restituisce la lista degli universi presenti nel db
+        /// </summary>
+        /// <returns></returns>
+        public GalaxyList RetrieveGalaxyList()
+        {
+            GalaxyList result = new GalaxyList();
+            result.Galaxies = new List<GalaxyForm>();
+            using (RetrieveInformations retriever = new RetrieveInformations(this._MainUow))
+            {
+                foreach (var item in retriever.GetUniverseList())
+                {
+                    GalaxyForm toAdd = new GalaxyForm();
+                    toAdd.GalaxyId = item.ItemId;
+                    toAdd.Name = item.ItemName;
+                    result.Galaxies.Add(toAdd);
+                }
+            }
+            return result;
         }
 
         /// <summary>

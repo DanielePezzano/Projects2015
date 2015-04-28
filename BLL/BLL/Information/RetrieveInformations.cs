@@ -27,6 +27,13 @@ namespace BLL.Information
             this._RangeY = rangeY;
         }
         /// <summary>
+        /// Costruttore generico
+        /// </summary>
+        public RetrieveInformations(MainUow uow)
+        {
+            if (uow != null) this._MainUow = uow; else throw new ArgumentNullException("uow");
+        }
+        /// <summary>
         /// Recupera la porzione di universo richiesta
         /// </summary>
         /// <param name="cacheKey"></param>
@@ -47,6 +54,20 @@ namespace BLL.Information
             {
                 var e = ex.Message;
                 throw;
+            }
+            return result;
+        }
+        /// <summary>
+        /// Ritorna una lista di DTO fruibili per riempire un menu a tendina
+        /// </summary>
+        /// <returns></returns>
+        public List<DropDownInfo> GetUniverseList()
+        {
+            List<DropDownInfo> result = new List<DropDownInfo>();
+            foreach (var item in this._MainUow.GalaxyRepository.GetAll("RetrieveUniverseListForm").Select(c => new { Name = c.Name, Id = c.Id }))
+            {
+                DropDownInfo toAdd = new DropDownInfo(item.Id, item.Name);
+                result.Add(toAdd);
             }
             return result;
         }

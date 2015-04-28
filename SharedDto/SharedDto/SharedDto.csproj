@@ -68,6 +68,8 @@
     <Compile Include="Form\Account\LoginModel.cs" />
     <Compile Include="Form\Account\RegisterExternalLoginModel.cs" />
     <Compile Include="Form\Account\RegisterModel.cs" />
+    <Compile Include="Form\Universe\GalaxyForm.cs" />
+    <Compile Include="Form\Universe\GalaxyList.cs" />
     <Compile Include="ProcessSerialization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ModelResources.Designer.cs">

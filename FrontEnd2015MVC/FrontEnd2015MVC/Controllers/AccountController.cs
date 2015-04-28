@@ -14,6 +14,9 @@ using SharedDto;
 using FrontEnd2015MVC.BackEndWcf;
 using WcfCommCrypto;
 using System.Configuration;
+using SharedDto.Form;
+using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace FrontEnd2015MVC.Controllers
 {
@@ -65,8 +68,25 @@ namespace FrontEnd2015MVC.Controllers
         // GET: /Account/Register
 
         [AllowAnonymous]
-        public ActionResult Register()
+        public async Task<ActionResult> Register()
         {
+            GalaxyList galaxyList = new GalaxyList();
+            
+            using (UniverseClient client = new UniverseClient())
+            {
+                string data = await client.RetrieveUniverseListAsync();
+                if (!string.IsNullOrEmpty(data))
+                {
+                    var javascriptSerializer = new JavaScriptSerializer();
+                    galaxyList = javascriptSerializer.Deserialize<GalaxyList>(data);
+                    if (galaxyList!=null && galaxyList.Galaxies!=null && galaxyList.Galaxies.Count>0)
+                    {
+                        SelectList itemList = new SelectList(galaxyList.Galaxies, "GalaxyId", "Name");
+                        ViewBag.ItemList = itemList;
+                    }
+                }
+            }
+            
             return View();
         }
 
@@ -109,9 +129,12 @@ namespace FrontEnd2015MVC.Controllers
                                             ScoreResearch =0,
                                             ScoreMilitary=0,
                                             ScoreCultural=0,
+                                            Status=1,
                                             RaceName=model.UserName,
                                             RacePointsUsed=0,
-                                            RacePointsLeft=10
+                                            CreatedAt = DateTime.Now,
+                                            UpdatedAt = DateTime.Now,
+                                            Universe_Id = model.GalaxyId
                                         }
                                     );
                                 WebSecurity.Login(model.UserName, model.Password);
