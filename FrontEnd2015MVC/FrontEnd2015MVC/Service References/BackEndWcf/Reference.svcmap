@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bea3f146-0586-49a1-8af9-86115d98d94f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="SharedDto" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:51822/Universe.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="true.xsd" MetadataType="Schema" ID="b872bd15-2172-41f7-ae61-0ad9c6a6f45c" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd1" />
+    <MetadataFile FileName="true.disco" MetadataType="Disco" ID="19a84836-2817-4d4a-9c16-31d3c282e5c1" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?disco" />
+    <MetadataFile FileName="true1.xsd" MetadataType="Schema" ID="a5e7c46d-b576-4692-94e3-60d750f0fad0" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd2" />
+    <MetadataFile FileName="true2.xsd" MetadataType="Schema" ID="9c720451-d237-4b5c-838d-57daf6c5714e" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?xsd=xsd0" />
+    <MetadataFile FileName="Universe.wsdl" MetadataType="Wsdl" ID="31d95d76-3afd-4af0-afa6-48986d2e3ed8" SourceId="1" SourceUrl="http://localhost:51822/Universe.svc/true?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
