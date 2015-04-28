@@ -77,6 +77,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ValidationResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Universe\Building\BuildingDto.cs" />
     <Compile Include="Universe\Building\BuildingSpecsDto.cs" />
     <Compile Include="Universe\Planets\PlanetDto.cs" />
@@ -100,6 +105,10 @@
     <EmbeddedResource Include="Resources\ModelResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ModelResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ValidationResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidationResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
