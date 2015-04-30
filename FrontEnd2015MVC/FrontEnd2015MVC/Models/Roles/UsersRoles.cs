@@ -14,5 +14,6 @@ namespace FrontEnd2015MVC.Models
         public const string CanViewLog = "CanViewLog";
         public const string CanPurgeLog = "CanPurgeLog";
         public const string CanModifyStats = "CanModifyStats";
+        public const string CanAccessAdministration = "CanAccessAdministration";
     }
 }

@@ -7,5 +7,8 @@ namespace SharedDto
         public const string Password = "Password";
         public const string InputKey = "InputKey";
         public const string SaltKey = "SaltKey";
+        public const string AdminUsername = "AdminUsername";
+        public const string AdminPassword = "AdminPassword";
+        public const string AdminEmail = "AdminEmail";
     }
 }

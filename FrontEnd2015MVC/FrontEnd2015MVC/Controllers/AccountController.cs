@@ -130,7 +130,7 @@ namespace FrontEnd2015MVC.Controllers
                                             ScoreMilitary=0,
                                             ScoreCultural=0,
                                             Status=1,
-                                            RaceName=model.UserName,
+                                            RaceName="Razza Sconosciuta",
                                             RacePointsUsed=0,
                                             CreatedAt = DateTime.Now,
                                             UpdatedAt = DateTime.Now,

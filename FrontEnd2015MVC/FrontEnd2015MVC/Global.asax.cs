@@ -1,6 +1,8 @@
 ﻿using FrontEnd2015MVC.Models;
+using SharedDto;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -34,7 +36,6 @@ namespace FrontEnd2015MVC
 
                 if (!roles.RoleExists(UsersRoles.CanBanUsers))
                     roles.CreateRole(UsersRoles.CanBanUsers);
-
                 if (!roles.RoleExists(UsersRoles.CanCreateStars))
                     roles.CreateRole(UsersRoles.CanCreateStars);
                 if (!roles.RoleExists(UsersRoles.CanEditUsers))
@@ -47,6 +48,45 @@ namespace FrontEnd2015MVC
                     roles.CreateRole(UsersRoles.CanViewLog);
                 if (!roles.RoleExists(UsersRoles.CanViewUsers))
                     roles.CreateRole(UsersRoles.CanViewUsers);
+                if (!roles.RoleExists(UsersRoles.CanAccessAdministration))
+                    roles.CreateRole(UsersRoles.CanAccessAdministration);
+
+                if (!WebSecurity.UserExists(ConfigurationManager.AppSettings[ConfAppSettings.AdminUsername]))
+                {
+                    WebSecurity.CreateUserAndAccount(
+                                    ConfigurationManager.AppSettings[ConfAppSettings.AdminUsername],
+                                    ConfigurationManager.AppSettings[ConfAppSettings.AdminPassword],
+                                    new
+                                    {
+                                        Email = ConfigurationManager.AppSettings[ConfAppSettings.AdminEmail],
+                                        ScoreConstruction = 0,
+                                        ScoreResearch = 0,
+                                        ScoreMilitary = 0,
+                                        ScoreCultural = 0,
+                                        Status = 1,
+                                        RaceName = "Amministrazione",
+                                        RacePointsUsed = 0,
+                                        CreatedAt = DateTime.Now,
+                                        UpdatedAt = DateTime.Now,
+                                    }
+                                    );
+                    List<string> roleList = new List<string>()
+                    {
+                        UsersRoles.CanAccessAdministration,
+                        UsersRoles.CanBanUsers,
+                        UsersRoles.CanCreateStars,
+                        UsersRoles.CanEditUsers,
+                        UsersRoles.CanModifyStats,
+                        UsersRoles.CanPurgeLog,
+                        UsersRoles.CanViewLog,
+                        UsersRoles.CanViewUsers,
+                    };
+                    List<string> administrators = new List<string>()
+                    {
+                        ConfigurationManager.AppSettings[ConfAppSettings.AdminUsername]
+                    };
+                    roles.AddUsersToRoles(administrators.ToArray(), roleList.ToArray());
+                }
             }
             catch (Exception ex)
             {
