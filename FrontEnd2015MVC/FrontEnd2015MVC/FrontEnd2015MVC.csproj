@@ -213,6 +213,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Roles\UsersRoles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\BackEndWcf\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -335,7 +336,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -362,7 +362,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>49940</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:52027/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

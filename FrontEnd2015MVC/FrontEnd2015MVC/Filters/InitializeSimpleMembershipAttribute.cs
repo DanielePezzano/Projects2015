@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrontEnd2015MVC.Models;
+using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Threading;
@@ -26,7 +27,8 @@ namespace FrontEnd2015MVC.Filters
             {
                 try
                 {
-                    WebSecurity.InitializeDatabaseConnection("UniverseConnection", "Users", "Id", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("UniverseConnection", "Users", "Id", "UserName", autoCreateTables: true);                    
+                                        
                 }
                 catch (Exception ex)
                 {
