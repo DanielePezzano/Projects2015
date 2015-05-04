@@ -18,6 +18,8 @@ namespace Models.Races
         [DataMember]
         public RaceTraitsType TraitType { get; set; }
         [DataMember]
+        public int Value { get; set; }
+        [DataMember]
         public virtual User Race { get; set; }
     }
 }
