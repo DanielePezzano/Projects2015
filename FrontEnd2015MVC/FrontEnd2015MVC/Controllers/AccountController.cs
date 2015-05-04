@@ -17,6 +17,7 @@ using System.Configuration;
 using SharedDto.Form;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using FrontEnd2015MVC.Models;
 
 namespace FrontEnd2015MVC.Controllers
 {
@@ -71,7 +72,7 @@ namespace FrontEnd2015MVC.Controllers
         public async Task<ActionResult> Register()
         {
             GalaxyList galaxyList = new GalaxyList();
-            
+
             using (UniverseClient client = new UniverseClient())
             {
                 string data = await client.RetrieveUniverseListAsync();
@@ -79,14 +80,14 @@ namespace FrontEnd2015MVC.Controllers
                 {
                     var javascriptSerializer = new JavaScriptSerializer();
                     galaxyList = javascriptSerializer.Deserialize<GalaxyList>(data);
-                    if (galaxyList!=null && galaxyList.Galaxies!=null && galaxyList.Galaxies.Count>0)
+                    if (galaxyList != null && galaxyList.Galaxies != null && galaxyList.Galaxies.Count > 0)
                     {
                         SelectList itemList = new SelectList(galaxyList.Galaxies, "GalaxyId", "Name");
                         ViewBag.ItemList = itemList;
                     }
                 }
             }
-            
+
             return View();
         }
 
@@ -120,28 +121,33 @@ namespace FrontEnd2015MVC.Controllers
                             if (canRegister)
                             {
                                 WebSecurity.CreateUserAndAccount(
-                                    model.UserName, 
-                                    model.Password, 
+                                    model.UserName,
+                                    model.Password,
                                     new
                                         {
                                             Email = model.Email,
-                                            ScoreConstruction =0,
-                                            ScoreResearch =0,
-                                            ScoreMilitary=0,
-                                            ScoreCultural=0,
-                                            Status=1,
-                                            RaceName="Razza Sconosciuta",
-                                            RacePointsUsed=0,
+                                            ScoreConstruction = 0,
+                                            ScoreResearch = 0,
+                                            ScoreMilitary = 0,
+                                            ScoreCultural = 0,
+                                            Status = 1,
+                                            RaceName = "Razza Sconosciuta",
+                                            RacePointsUsed = 0,
                                             CreatedAt = DateTime.Now,
                                             UpdatedAt = DateTime.Now,
                                             Universe_Id = model.GalaxyId
                                         }
                                     );
+                                List<string> roles = new List<string>() { UsersRoles.CanCreateRace, UsersRoles.CanModifyStatus };
+                                List<string> usernames = new List<string>() { model.UserName };
+                                var rolesProvider = (SimpleRoleProvider)System.Web.Security.Roles.Provider;
+                                rolesProvider.AddUsersToRoles(usernames.ToArray(), roles.ToArray());
                                 WebSecurity.Login(model.UserName, model.Password);
-                                return RedirectToAction("Index", "Home");
+                                return RedirectToAction("CreateRace", "Home");
                             }
                             else ModelState.AddModelError("EmailAlreadyTaken", "Email in uso");
                         }
+                        else ModelState.AddModelError("GeneralError", "Errore interno. Contattare amministratore se persiste.");
                     }
                 }
                 catch (MembershipCreateUserException e)

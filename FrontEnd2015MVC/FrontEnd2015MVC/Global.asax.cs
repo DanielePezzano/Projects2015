@@ -50,6 +50,10 @@ namespace FrontEnd2015MVC
                     roles.CreateRole(UsersRoles.CanViewUsers);
                 if (!roles.RoleExists(UsersRoles.CanAccessAdministration))
                     roles.CreateRole(UsersRoles.CanAccessAdministration);
+                if (!roles.RoleExists(UsersRoles.CanCreateRace))
+                    roles.CreateRole(UsersRoles.CanCreateRace);
+                if (!roles.RoleExists(UsersRoles.CanModifyStatus))
+                    roles.CreateRole(UsersRoles.CanModifyStatus);
 
                 if (!WebSecurity.UserExists(ConfigurationManager.AppSettings[ConfAppSettings.AdminUsername]))
                 {
@@ -80,6 +84,7 @@ namespace FrontEnd2015MVC
                         UsersRoles.CanPurgeLog,
                         UsersRoles.CanViewLog,
                         UsersRoles.CanViewUsers,
+                        UsersRoles.CanModifyStatus
                     };
                     List<string> administrators = new List<string>()
                     {

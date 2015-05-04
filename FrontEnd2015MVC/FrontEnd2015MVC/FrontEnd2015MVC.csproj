@@ -335,6 +335,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\BackEndWcf\Universe.wsdl" />
+    <Content Include="Views\Home\CreateRace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
