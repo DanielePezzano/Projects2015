@@ -1,5 +1,5 @@
-﻿using SharedDto;
-using System.ServiceModel;
+﻿using System.ServiceModel;
+using SharedDto.UtilityDto;
 
 namespace _2015ProjectsBackEndWs
 {
@@ -15,7 +15,7 @@ namespace _2015ProjectsBackEndWs
 
         [OperationContract]
         string RetrieveUniverseList();
-        
+
         [OperationContract]
         string GenerateStarSystem(PlanetGenerationDto generationData, string hashcall);
 

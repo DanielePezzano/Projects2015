@@ -1,6 +1,5 @@
-﻿using System;
+﻿using BLL.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BLL.Utilities;
 
 namespace BusinessTest.Utilities
 {

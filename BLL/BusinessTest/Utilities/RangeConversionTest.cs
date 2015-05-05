@@ -1,18 +1,25 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿using BLL.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BLL.Utilities;
 
 namespace BusinessTest.Utilities
 {
     /// <summary>
-    /// Summary description for RangeConversionTest
+    ///     Summary description for RangeConversionTest
     /// </summary>
     [TestClass]
     public class RangeConversionTest
     {
-        const double DELTA = 0.005;
+        private const double Delta = 0.005;
+
+        [TestMethod]
+        public void DoConversionTest()
+        {
+            using (var conv = new RangeConversion(3, 5, new ScaleConversion(14, 2)))
+            {
+                Assert.AreEqual(3.71, conv.DoConversion(5), Delta);
+            }
+        }
+
         //public RangeConversionTest()
         //{
         //    //
@@ -39,6 +46,7 @@ namespace BusinessTest.Utilities
         //}
 
         #region Additional test attributes
+
         //
         // You can use the following additional attributes as you write your tests:
         //
@@ -58,15 +66,7 @@ namespace BusinessTest.Utilities
         // [TestCleanup()]
         // public void MyTestCleanup() { }
         //
-        #endregion
 
-        [TestMethod]
-        public void DoConversionTest()
-        {
-            using (RangeConversion conv = new RangeConversion(1, 15, 3, 5, new ScaleConversion(14, 2)))
-            {
-                Assert.AreEqual(3.71, conv.DoConversion(5), DELTA);
-            }
-        }
+        #endregion
     }
 }

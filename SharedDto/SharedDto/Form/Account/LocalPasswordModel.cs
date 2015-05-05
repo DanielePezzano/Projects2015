@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using SharedDto.Resources;
 
 namespace SharedDto.Form.Account
 {
@@ -8,20 +9,20 @@ namespace SharedDto.Form.Account
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "OldPassword", ResourceType = typeof(Resources.ModelResources))]
+        [Display(Name = "OldPassword", ResourceType = typeof(ModelResources))]
         [DataMember]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessageResourceType = typeof (ValidationResource), ErrorMessageResourceName = "MinimumLenght", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "NewPassword", ResourceType = typeof(Resources.ModelResources))]
+        [Display(Name = "NewPassword", ResourceType = typeof(ModelResources))]
         [DataMember]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
-        [Display(Name = "ConfirmPassword", ResourceType = typeof(Resources.ModelResources))]
+        [Compare("NewPassword", ErrorMessageResourceType = typeof (ValidationResource), ErrorMessageResourceName = "PasswordsNotMatch")]
+        [Display(Name = "ConfirmPassword", ResourceType = typeof(ModelResources))]
         [DataMember]
         public string ConfirmPassword { get; set; }
     }

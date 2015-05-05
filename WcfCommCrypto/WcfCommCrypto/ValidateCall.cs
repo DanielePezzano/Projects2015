@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WcfCommCrypto
 {
     public static class ValidateCall
     {
         /// <summary>
-        /// Valida una chiamata entrante
+        ///     Valida una chiamata entrante
         /// </summary>
         /// <param name="clearDatetime">data in chiaro</param>
         /// <param name="authHash">stringa criptata per validazione lato server</param>
@@ -21,6 +17,7 @@ namespace WcfCommCrypto
         /// <param name="username">username per autenticazione</param>
         /// <param name="password">password per autenticazione</param>
         /// <param name="acceptedClients">client riconosciuti dal server</param>
+        /// <param name="separator"></param>
         /// <returns></returns>
         public static bool Validate(
             DateTime clearDatetime,
@@ -34,13 +31,15 @@ namespace WcfCommCrypto
             ReadOnlyCollection<string> acceptedClients,
             char separator)
         {
-            bool result = false;
-            string CompareAuthHash = username + separator + password + separator + dtoSignature + separator + clearDatetime.ToUniversalTime();
-            string CompareClientHash = RijndaelManagedEncryption.DecryptRijndael(clientHash, saltKey, inputKey);//Client_datetime_firmaDto
+            var result = false;
+            var compareAuthHash = username + separator + password + separator + dtoSignature + separator +
+                                  clearDatetime.ToUniversalTime();
+            var compareClientHash = RijndaelManagedEncryption.DecryptRijndael(clientHash, saltKey, inputKey);
+                //Client_datetime_firmaDto
 
-            if (!string.IsNullOrEmpty(CompareAuthHash) && !string.IsNullOrEmpty(CompareClientHash))
+            if (!string.IsNullOrEmpty(compareAuthHash) && !string.IsNullOrEmpty(compareClientHash))
             {
-                string[] clientHashSequence = CompareClientHash.Split(separator);
+                var clientHashSequence = compareClientHash.Split(separator);
                 /*
                  * [0]=>client
                  * [1]=>datetime
@@ -53,13 +52,13 @@ namespace WcfCommCrypto
                     {
                         try
                         {
-                            DateTime serverTime = Convert.ToDateTime(clientHashSequence[1]);
+                            var serverTime = Convert.ToDateTime(clientHashSequence[1]);
                             if (Math.Abs((serverTime - DateTime.Now).Minutes) <= 1 &&
                                 Math.Abs((serverTime - DateTime.Now).Minutes) >= 0 &&
-                                Sha1Managed.ValidateSHA1HashData(CompareAuthHash, authHash))
+                                Sha1Managed.ValidateSha1HashData(compareAuthHash, authHash))
                                 result = true;
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             //DA FARE
                             //IMPLEMENTA UN SISTEMA DI LOG (UNA LIBRERIA DI CLASSI CONDIVISA)

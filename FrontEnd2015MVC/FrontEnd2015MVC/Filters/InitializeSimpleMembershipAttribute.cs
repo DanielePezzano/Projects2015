@@ -1,14 +1,11 @@
-﻿using FrontEnd2015MVC.Models;
-using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using System;
 using System.Threading;
 using System.Web.Mvc;
 using WebMatrix.WebData;
 
 namespace FrontEnd2015MVC.Filters
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class InitializeSimpleMembershipAttribute : ActionFilterAttribute
     {
         private static SimpleMembershipInitializer _initializer;
@@ -27,12 +24,13 @@ namespace FrontEnd2015MVC.Filters
             {
                 try
                 {
-                    WebSecurity.InitializeDatabaseConnection("UniverseConnection", "Users", "Id", "UserName", autoCreateTables: true);                    
-                                        
+                    WebSecurity.InitializeDatabaseConnection("UniverseConnection", "Users", "Id", "UserName", true);
                 }
                 catch (Exception ex)
                 {
-                    throw new InvalidOperationException("The ASP.NET Simple Membership database could not be initialized. For more information, please see http://go.microsoft.com/fwlink/?LinkId=256588", ex);
+                    throw new InvalidOperationException(
+                        "The ASP.NET Simple Membership database could not be initialized. For more information, please see http://go.microsoft.com/fwlink/?LinkId=256588",
+                        ex);
                 }
             }
         }

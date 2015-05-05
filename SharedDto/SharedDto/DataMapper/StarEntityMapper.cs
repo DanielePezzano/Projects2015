@@ -1,24 +1,22 @@
-﻿using Models.Universe;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Models.Universe;
+using SharedDto.Universe.Stars;
 
 namespace SharedDto.DataMapper
 {
     public class StarEntityMapper
     {
         /// <summary>
-        /// Map an entity to the correspondent DTO
+        ///     Map an entity to the correspondent DTO
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         public StarDto EntityToModel(Star entity)
         {
             if (entity == null) return null;
-            StarDto result = new StarDto();
-            PlanetEntityMapper mapper = new PlanetEntityMapper();
+            var result = new StarDto();
+            var mapper = new PlanetEntityMapper();
             result.GalaxyId = entity.Galaxy.Id;
             result.Mass = entity.Mass;
             result.Name = entity.Name;
@@ -32,19 +30,14 @@ namespace SharedDto.DataMapper
             result.SurfaceTemp = entity.SurfaceTemp;
             return result;
         }
+
         /// <summary>
-        /// Map an entity List to the correspondent DTO List
+        ///     Map an entity List to the correspondent DTO List
         /// </summary>
-        /// <param name="entity"></param>
         /// <returns></returns>
         public List<StarDto> EntityListToModel(List<Star> stars)
         {
-            List<StarDto> result = new List<StarDto>();
-            foreach (Star star in stars)
-            {
-                result.Add(EntityToModel(star));
-            }
-            return result;
+            return stars.Select(EntityToModel).ToList();
         }
     }
 }

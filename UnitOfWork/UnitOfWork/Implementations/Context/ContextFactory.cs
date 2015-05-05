@@ -7,18 +7,18 @@ namespace UnitOfWork.Implementations.Context
 {
     public class ContextFactory : IContextFactory,IDisposable
     {
-        private bool disposed = false;
-        private IContext _Context = null;
+        private bool _disposed;
+        private IContext _context;
 
         public ContextFactory(bool isTest=false)
         {
-            if (isTest) _Context = new TestContext();
-            else _Context = new ProductionContext();
+            if (isTest) _context = new TestContext();
+            else _context = new ProductionContext();
         }
 
         public IContext Retrieve()
         {
-            return _Context;
+            return _context;
         }
 
         public void Dispose()
@@ -29,12 +29,12 @@ namespace UnitOfWork.Implementations.Context
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposed) return;
+            if (_disposed) return;
             if (disposing)
             {
-                if (_Context != null) _Context = null;
+                _context = null;
             }
-            disposed = true;
+            _disposed = true;
         }
 
 

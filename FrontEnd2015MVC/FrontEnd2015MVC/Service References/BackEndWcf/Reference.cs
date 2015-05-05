@@ -34,10 +34,10 @@ namespace FrontEnd2015MVC.BackEndWcf {
         System.Threading.Tasks.Task<string> RetrieveUniverseListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
-        string GenerateStarSystem(SharedDto.PlanetGenerationDto generationData, string hashcall);
+        string GenerateStarSystem(SharedDto.UtilityDto.PlanetGenerationDto generationData, string hashcall);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
-        System.Threading.Tasks.Task<string> GenerateStarSystemAsync(SharedDto.PlanetGenerationDto generationData, string hashcall);
+        System.Threading.Tasks.Task<string> GenerateStarSystemAsync(SharedDto.UtilityDto.PlanetGenerationDto generationData, string hashcall);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/CheckUserRegistration", ReplyAction="http://tempuri.org/IUniverse/CheckUserRegistrationResponse")]
         bool CheckUserRegistration(string data);
@@ -103,11 +103,11 @@ namespace FrontEnd2015MVC.BackEndWcf {
             return base.Channel.RetrieveUniverseListAsync();
         }
         
-        public string GenerateStarSystem(SharedDto.PlanetGenerationDto generationData, string hashcall) {
+        public string GenerateStarSystem(SharedDto.UtilityDto.PlanetGenerationDto generationData, string hashcall) {
             return base.Channel.GenerateStarSystem(generationData, hashcall);
         }
         
-        public System.Threading.Tasks.Task<string> GenerateStarSystemAsync(SharedDto.PlanetGenerationDto generationData, string hashcall) {
+        public System.Threading.Tasks.Task<string> GenerateStarSystemAsync(SharedDto.UtilityDto.PlanetGenerationDto generationData, string hashcall) {
             return base.Channel.GenerateStarSystemAsync(generationData, hashcall);
         }
         

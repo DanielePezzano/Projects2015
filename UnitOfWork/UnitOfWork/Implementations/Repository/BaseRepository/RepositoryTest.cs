@@ -1,8 +1,8 @@
-﻿using Models.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Models.Base;
 using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Context;
 using UnitOfWork.Interfaces.Repository;
@@ -11,36 +11,36 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
 {
     public class RepositoryTest<T> : IRepository<T> where T : BaseEntity
     {
-        internal TestContext Context = null;
-        internal List<T> dbSet;
-        internal DalCache RepoCache = null;
+        internal TestContext Context;
+        internal List<T> DbSet;
+        internal DalCache RepoCache;
         internal string RepoEntitySign = string.Empty;
 
         public RepositoryTest(TestContext context, DalCache cache, string repoEntitySign)
         {
-            this.Context = context;
-            this.RepoCache = cache;
-            var cached = RepoCache.GetMyCachedItem(repoEntitySign);            
+            Context = context;
+            RepoCache = cache;
+            RepoCache.GetMyCachedItem(repoEntitySign);
         }
 
         public void CustomDbset(List<T> setter)
         {
-            dbSet = setter;
+            DbSet = setter;
         }
 
         public IQueryable<T> GetAll(string cacheKey)
         {
-            return (IQueryable<T>)dbSet;
+            return (IQueryable<T>) DbSet;
         }
 
         public T GetByKey(int id, string cacheKey)
         {
-            return dbSet.FirstOrDefault(c => c.Id == id);
+            return DbSet.FirstOrDefault(c => c.Id == id);
         }
 
         public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string cacheKey)
         {
-            return (IQueryable<T>)(dbSet.Where(predicate.Compile()).ToList());
+            return (IQueryable<T>) (DbSet.Where(predicate.Compile()).ToList());
         }
 
         public IEnumerable<T> Get(
@@ -48,7 +48,7 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             Expression<Func<T, bool>> filter = null,
             string includeProperties = "")
         {
-            List<T> query = dbSet;
+            var query = DbSet;
 
             if (filter != null)
             {
@@ -60,29 +60,29 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
 
         public void Add(T entity)
         {
-            if (dbSet == null) dbSet = new List<T>();
-            dbSet.Add(entity);
+            if (DbSet == null) DbSet = new List<T>();
+            DbSet.Add(entity);
         }
 
         public void Delete(T entity)
         {
-            dbSet.Remove(entity);
+            DbSet.Remove(entity);
         }
 
         public void Edit(T entity)
         {
-            dbSet.Remove(entity);
-            dbSet.Add(entity);
+            DbSet.Remove(entity);
+            DbSet.Add(entity);
         }
 
         public int Count(string cacheKey)
         {
-            return dbSet.Count;
+            return DbSet.Count;
         }
 
         public int Count(Expression<Func<T, bool>> predicate, string cacheKey)
         {
-            return dbSet.Count(predicate.Compile());
+            return DbSet.Count(predicate.Compile());
         }
     }
 }

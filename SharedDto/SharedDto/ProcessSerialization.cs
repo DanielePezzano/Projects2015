@@ -6,19 +6,18 @@ namespace SharedDto
 {
     public class ProcessSerialization : IDisposable
     {
-        private bool _Disposed = false;
-        private MemoryStream _MemoryStream;
-        private StreamReader _StreamReader;
+        private bool _disposed;
+        private MemoryStream _memoryStream;
+        private StreamReader _streamReader;
 
         public string SerializeJson(Type objectType, dynamic objectClass)
         {
-            string result = string.Empty;
-            DataContractJsonSerializer jsonSer = new DataContractJsonSerializer(objectType);
-            _MemoryStream = new MemoryStream();
-            jsonSer.WriteObject(_MemoryStream, objectClass);
-            _MemoryStream.Position = 0;
-            _StreamReader = new StreamReader(_MemoryStream);
-            result = _StreamReader.ReadToEnd();
+            var jsonSer = new DataContractJsonSerializer(objectType);
+            _memoryStream = new MemoryStream();
+            jsonSer.WriteObject(_memoryStream, objectClass);
+            _memoryStream.Position = 0;
+            _streamReader = new StreamReader(_memoryStream);
+            var result = _streamReader.ReadToEnd();
             return result;
         }
 
@@ -26,11 +25,11 @@ namespace SharedDto
         {
             if (disposing)
             {
-                if (!_Disposed)
+                if (!_disposed)
                 {
-                    if (_MemoryStream != null) _MemoryStream.Dispose();
-                    if (_StreamReader != null) _StreamReader.Dispose();
-                    _Disposed = true;
+                    if (_memoryStream != null) _memoryStream.Dispose();
+                    if (_streamReader != null) _streamReader.Dispose();
+                    _disposed = true;
                 }
             }
         }

@@ -1,11 +1,10 @@
-﻿
-namespace SharedDto
+﻿namespace SharedDto
 {
     public static class CallSeparators
     {
-        public const char defaultSeparator = '_';
-        public const char otherSeparator = ';';
-        public const string coordX = "_x_";
-        public const string coordY = "_y_";
+        public const char DefaultSeparator = '_';
+        public const char OtherSeparator = ';';
+        public const string CoordX = "_x_";
+        public const string CoordY = "_y_";
     }
 }

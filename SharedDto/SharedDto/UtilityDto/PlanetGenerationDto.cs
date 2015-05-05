@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SharedDto
+namespace SharedDto.UtilityDto
 {
     [DataContract]
     public class PlanetGenerationDto
@@ -28,6 +28,6 @@ namespace SharedDto
         [DataMember]
         public int MaxY { get; set; }
         [DataMember]
-        public int Galaxy_Id { get; set; }
+        public int GalaxyId { get; set; }
     }
 }

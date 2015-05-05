@@ -1,7 +1,7 @@
-﻿using Models.Tech.Enum;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
+using Models.Tech.Enum;
 
-namespace SharedDto
+namespace SharedDto.Universe.Building
 {
     [DataContract]
     public class BuildingSpecsDto

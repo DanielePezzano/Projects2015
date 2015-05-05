@@ -1,62 +1,36 @@
 ﻿using System.Runtime.Serialization;
+
 namespace Models.Tech.Enum
 {
     [DataContract]
     public enum BonusType
     {
-        [EnumMember]
-        ATTACKBONUS,
-        [EnumMember]
-        DEFENCEBONUS,
-        [EnumMember]
-        ROFBONUS,
-        SPEEDBONUS,
-        [EnumMember]
-        ENERGYBONUS,
-        [EnumMember]
-        RESEARCHBONUS,
-        [EnumMember]
-        POPULATIONBONUS,
-        [EnumMember]
-        TAXBONUS,
-        [EnumMember]
-        SOCIALBONUS,
-        [EnumMember]
-        ARMORBONUS,
-        [EnumMember]
-        FOODBONUS,
-        [EnumMember]
-        PLANETTYPEALLOWED,
-        [EnumMember]
-        RANGE,
-        [EnumMember]
-        SCANNER_RANGE,
-        [EnumMember]
-        SHIELD_BONUS,
-        [EnumMember]
-        ORE_BONUS,
-        [EnumMember]
-        GOLD_BONUS,
-        [EnumMember]
-        MAINT_BONUS,
-        [EnumMember]
-        SPACE,
-        [EnumMember]
-        ARMOPIERCINGFACTOR,
-        [EnumMember]
-        TERRAFORMFACTOR,
-        [EnumMember]
-        SPATIALCOMPRESSIONFACTOR,
-        [EnumMember]
-        BATTLESPEEDBONUS,
-        [EnumMember]
-        PREREQUISITO,
-        [EnumMember]
-        BONUSTIMETOBUILD,
-        [EnumMember]
-        SPYINGBONUS,
-        [EnumMember]
-        PRECISIONBONUS,
-
+        [EnumMember] Attackbonus,
+        [EnumMember] Defencebonus,
+        [EnumMember] Rofbonus,
+        [EnumMember] Speedbonus,
+        [EnumMember] Energybonus,
+        [EnumMember] Researchbonus,
+        [EnumMember] Populationbonus,
+        [EnumMember] Taxbonus,
+        [EnumMember] Socialbonus,
+        [EnumMember] Armorbonus,
+        [EnumMember] Foodbonus,
+        [EnumMember] Planettypeallowed,
+        [EnumMember] Range,
+        [EnumMember] ScannerRange,
+        [EnumMember] ShieldBonus,
+        [EnumMember] OreBonus,
+        [EnumMember] GoldBonus,
+        [EnumMember] MaintBonus,
+        [EnumMember] Space,
+        [EnumMember] Armopiercingfactor,
+        [EnumMember] Terraformfactor,
+        [EnumMember] Spatialcompressionfactor,
+        [EnumMember] Battlespeedbonus,
+        [EnumMember] Prerequisito,
+        [EnumMember] Bonustimetobuild,
+        [EnumMember] Spyingbonus,
+        [EnumMember] Precisionbonus
     }
 }

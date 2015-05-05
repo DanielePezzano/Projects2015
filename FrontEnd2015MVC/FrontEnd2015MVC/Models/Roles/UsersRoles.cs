@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace FrontEnd2015MVC.Models
+﻿namespace FrontEnd2015MVC.Models.Roles
 {
     public static class UsersRoles
     {

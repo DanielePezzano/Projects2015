@@ -63,12 +63,12 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         public static double CalculateResultInRange(int seed, double min, double max, int minResult)
         {
-            double result = minResult;
-            using (RangeConversion rangeConverter = new RangeConversion(MinBaseRange, MaxBaseRange, min, max, new ScaleConversion((MaxBaseRange-MinBaseRange), max - min)))
+            double result;
+            using (RangeConversion rangeConverter = new RangeConversion(min, max, new ScaleConversion((MaxBaseRange-MinBaseRange), max - min)))
             {
                 result = rangeConverter.DoConversion(seed);
             }
-            return result;
+            return result < minResult ? minResult : result;
         }
         /// <summary>
         /// Based on starcolor and type, determine the surface temperature range
@@ -106,8 +106,6 @@ namespace BLL.Generation.StarSystem
                     if (starType == StarType.Giant) { result.Min = 5500; result.Max = 5800; }
                     if (starType == StarType.HyperGiant) { result.Min = 5800; result.Max = 6000; }
                     break;
-                default:
-                    break;
             }
             return result;
         }
@@ -133,8 +131,6 @@ namespace BLL.Generation.StarSystem
                     break;
                 case StarColor.White:
                     range.Min = 7; range.Max = 11;
-                    break;
-                default:
                     break;
             }
             return range;
@@ -170,8 +166,6 @@ namespace BLL.Generation.StarSystem
                     if (starType == StarType.Dwarf) { result.Min = 1.4; result.Max = 2.1; }
                     if (starType == StarType.Giant) { result.Min = 2.1; result.Max = 10; }
                     if (starType == StarType.HyperGiant) { result.Min = 10; result.Max = 150; }
-                    break;                
-                default:
                     break;
             }
             return result;
@@ -207,8 +201,6 @@ namespace BLL.Generation.StarSystem
                     if (starType == StarType.Dwarf) { result.Min = 1.4; result.Max = 2.1; }
                     if (starType == StarType.Giant) { result.Min = 2.1; result.Max = 10; }
                     if (starType == StarType.HyperGiant) { result.Min = 10; result.Max = 150; }
-                    break;
-                default:
                     break;
             }
             return result;
@@ -248,12 +240,13 @@ namespace BLL.Generation.StarSystem
             DoubleRange mass = CalculateMassRange(starColor, starType);
             return CalculateResultInRange(seed, mass.Min, mass.Max, 1);
         }
+
         /// <summary>
         /// Determine StarRadius
         /// </summary>
         /// <param name="starColor"></param>
         /// <param name="starType"></param>
-        /// <param name="p"></param>
+        /// <param name="seed"></param>
         /// <returns></returns>
         public static double DetermineStarRadius(StarColor starColor, StarType starType, int seed)
         {

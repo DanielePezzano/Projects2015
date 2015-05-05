@@ -61,6 +61,15 @@ namespace SharedDto.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Il campo  {0} deve essere lungo almeno {2} caratteri..
+        /// </summary>
+        public static string MinimumLenght {
+            get {
+                return ResourceManager.GetString("MinimumLenght", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email non Valida!.
         /// </summary>
         public static string NotValidEmail {
@@ -75,6 +84,15 @@ namespace SharedDto.Resources {
         public static string PasswordNotMatch {
             get {
                 return ResourceManager.GetString("PasswordNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le password non coincidono.
+        /// </summary>
+        public static string PasswordsNotMatch {
+            get {
+                return ResourceManager.GetString("PasswordsNotMatch", resourceCulture);
             }
         }
         

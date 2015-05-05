@@ -129,4 +129,10 @@
   <data name="StringLenght" xml:space="preserve">
     <value>Ammesse parole tra {0} e {2} Caratteri.</value>
   </data>
+  <data name="MinimumLenght" xml:space="preserve">
+    <value>Il campo  {0} deve essere lungo almeno {2} caratteri.</value>
+  </data>
+  <data name="PasswordsNotMatch" xml:space="preserve">
+    <value>Le password non coincidono</value>
+  </data>
 </root>

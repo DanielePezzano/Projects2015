@@ -1,5 +1,7 @@
 ﻿using Models.Universe;
 using System.Collections.Generic;
+using System.Linq;
+using SharedDto.Universe.Planets;
 
 namespace SharedDto.DataMapper
 {
@@ -13,8 +15,8 @@ namespace SharedDto.DataMapper
         public PlanetDto EntityToModel(Planet entity)
         {
             if (entity == null) return null;
-            PlanetDto planet = new PlanetDto();
-            BuildingEntityMapper buildingMapper = new BuildingEntityMapper();
+            var planet = new PlanetDto();
+            var buildingMapper = new BuildingEntityMapper();
             planet.ActivePopOnFoodProduction = entity.SatelliteProduction.ActivePopOnFoodProduction;
             planet.ActivePopOnOreProduction = entity.SatelliteProduction.ActivePopOnOreProduction;
             planet.ActivePopOnResProduction = entity.SatelliteProduction.ActivePopOnResProduction;
@@ -57,16 +59,10 @@ namespace SharedDto.DataMapper
         /// <summary>
         /// Map an entity List to the correspondent DTO List
         /// </summary>
-        /// <param name="entity"></param>
         /// <returns></returns>
         public List<PlanetDto> EntityListToModel(ICollection<Planet> items)
         {
-            List<PlanetDto> result = new List<PlanetDto>();
-            foreach (Planet item in items)
-            {
-                result.Add(EntityToModel(item));
-            }
-            return result;
+            return items.Select(EntityToModel).ToList();
         }
     }
 }

@@ -4,7 +4,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:51822/Universe.svc/true?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:51822/Universe.svc/true?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:51822/Universe.svc/true?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SharedDto" />
+      <xsd:import schemaLocation="http://localhost:51822/Universe.svc/true?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SharedDto.UtilityDto" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IUniverse_RetrieveUniversePortion_InputMessage">
@@ -19,11 +19,23 @@
   <wsdl:message name="IUniverse_RetrievePlanetInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:RetrievePlanetInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="IUniverse_RetrieveUniverseList_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveUniverseList" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_RetrieveUniverseList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveUniverseListResponse" />
+  </wsdl:message>
   <wsdl:message name="IUniverse_GenerateStarSystem_InputMessage">
     <wsdl:part name="parameters" element="tns:GenerateStarSystem" />
   </wsdl:message>
   <wsdl:message name="IUniverse_GenerateStarSystem_OutputMessage">
     <wsdl:part name="parameters" element="tns:GenerateStarSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_CheckUserRegistration_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserRegistration" />
+  </wsdl:message>
+  <wsdl:message name="IUniverse_CheckUserRegistration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserRegistrationResponse" />
   </wsdl:message>
   <wsdl:message name="IUniverse_ServiceTime_InputMessage">
     <wsdl:part name="parameters" element="tns:ServiceTime" />
@@ -40,9 +52,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/RetrievePlanetInfo" message="tns:IUniverse_RetrievePlanetInfo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/RetrievePlanetInfoResponse" message="tns:IUniverse_RetrievePlanetInfo_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RetrieveUniverseList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/RetrieveUniverseList" message="tns:IUniverse_RetrieveUniverseList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/RetrieveUniverseListResponse" message="tns:IUniverse_RetrieveUniverseList_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GenerateStarSystem">
       <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/GenerateStarSystem" message="tns:IUniverse_GenerateStarSystem_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/GenerateStarSystemResponse" message="tns:IUniverse_GenerateStarSystem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserRegistration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/CheckUserRegistration" message="tns:IUniverse_CheckUserRegistration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUniverse/CheckUserRegistrationResponse" message="tns:IUniverse_CheckUserRegistration_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ServiceTime">
       <wsdl:input wsaw:Action="http://tempuri.org/IUniverse/ServiceTime" message="tns:IUniverse_ServiceTime_InputMessage" />

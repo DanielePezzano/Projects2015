@@ -1,53 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Caching;
-using System.Text;
-using System.Threading.Tasks;
 using UnitOfWork.Cache.Enum;
 
 namespace UnitOfWork.Cache
 {
     public class DalCache
     {
-        private static ObjectCache cache = MemoryCache.Default;
-        private CacheItemPolicy policy = null;
-        private CacheEntryRemovedCallback callback = null;
+        private static readonly ObjectCache Cache = MemoryCache.Default;
+        private CacheEntryRemovedCallback _callback;
+        private CacheItemPolicy _policy;
 
-        public void AddToMyCache(String CacheKeyName, Object CacheItem, DalCachePriority MyCacheItemPriority)
+        public void AddToMyCache(string cacheKeyName, object cacheItem, DalCachePriority myCacheItemPriority)
         {
             // 
-            callback = new CacheEntryRemovedCallback(this.MyCachedItemRemovedCallback);
-            policy = new CacheItemPolicy();
-            policy.Priority = (MyCacheItemPriority == DalCachePriority.Default) ?
-                    CacheItemPriority.Default : CacheItemPriority.NotRemovable;
-            policy.AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(10.00);
-            policy.RemovedCallback = callback;
+            _callback = MyCachedItemRemovedCallback;
+            _policy = new CacheItemPolicy();
+            _policy.Priority = (myCacheItemPriority == DalCachePriority.Default)
+                ? CacheItemPriority.Default
+                : CacheItemPriority.NotRemovable;
+            _policy.AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(10.00);
+            _policy.RemovedCallback = _callback;
             //policy.ChangeMonitors.Add(new HostFileChangeMonitor(FilePath));
 
             // Add inside cache 
-            cache.Set(CacheKeyName, CacheItem, policy);
+            Cache.Set(cacheKeyName, cacheItem, _policy);
         }
 
-        public Object GetMyCachedItem(String CacheKeyName)
+        public object GetMyCachedItem(string cacheKeyName)
         {
             // 
-            return cache[CacheKeyName] as Object;
+            return Cache[cacheKeyName];
         }
 
-        public void RemoveMyCachedItem(String CacheKeyName)
+        public void RemoveMyCachedItem(string cacheKeyName)
         {
             // 
-            if (cache.Contains(CacheKeyName))
+            if (Cache.Contains(cacheKeyName))
             {
-                cache.Remove(CacheKeyName);
+                Cache.Remove(cacheKeyName);
             }
         }
 
         private void MyCachedItemRemovedCallback(CacheEntryRemovedArguments arguments)
         {
             // Log these values from arguments list 
-            String strLog = String.Concat("Reason: ", arguments.RemovedReason.ToString(), " | Key-Name: ", arguments.CacheItem.Key, " | Value-Object: ", arguments.CacheItem.Value.ToString());
+            //var strLog = string.Concat("Reason: ", arguments.RemovedReason.ToString(), " | Key-Name: ",
+            //    arguments.CacheItem.Key, " | Value-Object: ", arguments.CacheItem.Value.ToString());
         }
     }
 }

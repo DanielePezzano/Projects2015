@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SharedDto
+namespace SharedDto.UtilityDto
 {
     [DataContract]
     public class RetrievingInfoDto

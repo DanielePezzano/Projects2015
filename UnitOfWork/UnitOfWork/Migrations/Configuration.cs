@@ -1,27 +1,25 @@
+using System;
+using System.Data.Entity.Migrations;
+using Models.Universe;
+using UnitOfWork.Implementations.Context;
+
 namespace UnitOfWork.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<UnitOfWork.Implementations.Context.ProductionContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ProductionContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(UnitOfWork.Implementations.Context.ProductionContext context)
+        protected override void Seed(ProductionContext context)
         {
-
-            Models.Universe.Galaxy seed = new Models.Universe.Galaxy();
+            var seed = new Galaxy();
             seed.CreatedAt = DateTime.Now;
             seed.UpdatedAt = DateTime.Now;
             seed.Name = "Galaxy Seed";
             Console.WriteLine("Sono arrivato");
             context.Galaxys.AddOrUpdate(seed);
-                
         }
     }
 }

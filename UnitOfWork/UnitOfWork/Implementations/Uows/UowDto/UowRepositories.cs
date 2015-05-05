@@ -1,4 +1,5 @@
-﻿using Models.Buildings;
+﻿using System;
+using Models.Buildings;
 using Models.Fleets;
 using Models.Fleets.ShipClasses;
 using Models.Fleets.ShipClasses.Armors;
@@ -13,15 +14,13 @@ using Models.Races;
 using Models.Tech;
 using Models.Universe;
 using Models.Users;
-using System;
 using UnitOfWork.Interfaces.Repository;
 
 namespace UnitOfWork.Implementations.Uows.UowDto
 {
     public class UowRepositories : IDisposable
     {
-        private bool _Disposed = false;
-
+        private bool _disposed;
         public IRepository<User> UserRepo { get; set; }
         public IRepository<InternalMail> InternalMailRepo { get; set; }
         public IRepository<Galaxy> GalaxyRepo { get; set; }
@@ -49,48 +48,42 @@ namespace UnitOfWork.Implementations.Uows.UowDto
         public IRepository<AntiShipWeapon> AntiShipWeaponRepo { get; set; }
         public IRepository<AntiPlanetWeapon> AntiPlanetWeaponRepo { get; set; }
 
-        public UowRepositories()
-        {
-        }
-
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!_Disposed)
-            {
-                _Disposed = true;
-                if (AntiPlanetWeaponRepo != null) AntiPlanetWeaponRepo = null;
-                if (AntiShipWeaponRepo != null) AntiShipWeaponRepo = null;
-                if (ShipSystemRepo != null) ShipSystemRepo = null;
-                if (ShieldRepo != null) ShieldRepo = null;
-                if (HullRepo != null) HullRepo = null;
-                if (EngineRepo != null) EngineRepo = null;
-                if (ArmorRepo != null) ArmorRepo = null;
-                if (ShipClassRepo != null) ShipClassRepo = null;
-                if (FleetRepo != null) FleetRepo = null;
-                if (BuildingSpecRepo != null) BuildingSpecRepo = null;
-                if (BuildingRepo != null) BuildingRepo = null;
-                if (GalaxyLogRepo != null) GalaxyLogRepo = null;
-                if (UserLogRepo != null) UserLogRepo = null;
-                if (BuildingQueueRepo != null) BuildingQueueRepo = null;
-                if (FleetQueueRepo != null) FleetQueueRepo = null;
-                if (ResQueueRepo != null) ResQueueRepo = null;
-                if (RaceBonusRepo != null) RaceBonusRepo = null;
-                if (TechNodeRepo != null) TechNodeRepo = null;
-                if (TechnologyRepo != null) TechnologyRepo = null;
-                if (TechBonusRepo != null) TechBonusRepo = null;
-                if (PlanetRepo != null) PlanetRepo = null;
-                if (SatelliteRepo != null) SatelliteRepo = null;
-                if (StarRepo != null) StarRepo = null;
-                if (GalaxyRepo != null) GalaxyRepo = null;
-                if (InternalMailRepo != null) InternalMailRepo = null;
-                if (UserRepo != null) UserRepo = null;
-            }
+            if (_disposed) return;
+            _disposed = true;
+            if (AntiPlanetWeaponRepo != null) AntiPlanetWeaponRepo = null;
+            if (AntiShipWeaponRepo != null) AntiShipWeaponRepo = null;
+            if (ShipSystemRepo != null) ShipSystemRepo = null;
+            if (ShieldRepo != null) ShieldRepo = null;
+            if (HullRepo != null) HullRepo = null;
+            if (EngineRepo != null) EngineRepo = null;
+            if (ArmorRepo != null) ArmorRepo = null;
+            if (ShipClassRepo != null) ShipClassRepo = null;
+            if (FleetRepo != null) FleetRepo = null;
+            if (BuildingSpecRepo != null) BuildingSpecRepo = null;
+            if (BuildingRepo != null) BuildingRepo = null;
+            if (GalaxyLogRepo != null) GalaxyLogRepo = null;
+            if (UserLogRepo != null) UserLogRepo = null;
+            if (BuildingQueueRepo != null) BuildingQueueRepo = null;
+            if (FleetQueueRepo != null) FleetQueueRepo = null;
+            if (ResQueueRepo != null) ResQueueRepo = null;
+            if (RaceBonusRepo != null) RaceBonusRepo = null;
+            if (TechNodeRepo != null) TechNodeRepo = null;
+            if (TechnologyRepo != null) TechnologyRepo = null;
+            if (TechBonusRepo != null) TechBonusRepo = null;
+            if (PlanetRepo != null) PlanetRepo = null;
+            if (SatelliteRepo != null) SatelliteRepo = null;
+            if (StarRepo != null) StarRepo = null;
+            if (GalaxyRepo != null) GalaxyRepo = null;
+            if (InternalMailRepo != null) InternalMailRepo = null;
+            if (UserRepo != null) UserRepo = null;
         }
     }
 }

@@ -1,9 +1,5 @@
-﻿using FrontEnd2015MVC.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using FrontEnd2015MVC.Models.Roles;
 
 namespace FrontEnd2015MVC.Controllers
 {
@@ -15,8 +11,8 @@ namespace FrontEnd2015MVC.Controllers
 
             return View();
         }
-        
-        [Authorize(Roles=UsersRoles.CanCreateRace)]
+
+        [Authorize(Roles = UsersRoles.CanCreateRace)]
         [HttpGet]
         public ActionResult CreateRace()
         {

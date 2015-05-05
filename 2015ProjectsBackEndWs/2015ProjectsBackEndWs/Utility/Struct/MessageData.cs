@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace _2015ProjectsBackEndWs.Utility.Struct
 {
@@ -12,8 +9,8 @@ namespace _2015ProjectsBackEndWs.Utility.Struct
 
         public MessageData(string hash, DateTime sent)
         {
-            this.Hash = hash;
-            this.Sent = sent;
+            Hash = hash;
+            Sent = sent;
         }
     }
 }

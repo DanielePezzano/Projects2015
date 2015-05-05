@@ -98,4 +98,3 @@ C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC\b
 C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC\bin\Org.Mentalis.Security.Cryptography.xml
 C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC\bin\Mono.Math.xml
 C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC\obj\Debug\FrontEnd2015MVC.csproj.App.config
-C:\Users\daniele\Documents\GitHub\Projects2015\FrontEnd2015MVC\FrontEnd2015MVC\obj\Debug\FrontEnd2015MVC.csprojResolveAssemblyReference.cache

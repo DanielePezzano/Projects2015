@@ -9,8 +9,8 @@ namespace SharedDto
         [DataMember]
         public DateTime GeneratedStamp { get; set; }
         [DataMember]
-        public string AuthHash_01 { get; set; } //sha256 hashed string username_password_DtoName_GeneratedStamp.ToUniversalTime()
+        public string AuthHash01 { get; set; } //sha256 hashed string username_password_DtoName_GeneratedStamp.ToUniversalTime()
         [DataMember]
-        public string AuthHash_02 { get; set; } //sha256 hashed string client_ServerGeneratedStamp.ToUniversalTime()_DtoName
+        public string AuthHash02 { get; set; } //sha256 hashed string client_ServerGeneratedStamp.ToUniversalTime()_DtoName
     }
 }

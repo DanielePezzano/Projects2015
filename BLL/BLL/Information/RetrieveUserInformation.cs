@@ -1,51 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnitOfWork.Implementations.Uows;
 
 namespace BLL.Information
 {
-    public sealed class RetrieveUserInformation :IDisposable
+    public sealed class RetrieveUserInformation : IDisposable
     {
-        public MainUow _MainUow { get; set; }
-        private bool _Disposed = false;
-        private int _ItemId = -1;
-        private string _Email = string.Empty;
+        private readonly string _email = string.Empty;
+        private bool _disposed;
 
-        public RetrieveUserInformation(MainUow uow, int itemId)
+        public MainUow MainUow { get; set; }
+
+        public RetrieveUserInformation(MainUow uow)
         {
             if (uow == null) throw new ArgumentNullException("uow");
-            if (itemId < 0) throw new ArgumentException("itemId");
-            this._MainUow = uow;
-            this._ItemId = itemId;
+            MainUow = uow;
         }
 
-        public RetrieveUserInformation(MainUow uow,string email)
+        public RetrieveUserInformation(MainUow uow, string email)
         {
             if (uow == null) throw new ArgumentNullException("uow");
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("email");
-            this._Email = email;
-            this._MainUow = uow;
+            _email = email;
+            MainUow = uow;
         }
+
+        
+
+        public void Dispose()
+        {
+            if (!_disposed)
+            {
+                _disposed = true;
+                if (MainUow != null) MainUow.Dispose();
+            }
+            //GC.SuppressFinalize(this);
+        }
+
         /// <summary>
-        /// controlla l'esistenza di un email nel database.
+        ///     controlla l'esistenza di un email nel database.
         /// </summary>
         /// <returns></returns>
         public bool ExistsEmail()
         {
-            return this._MainUow.UserRepository.Count(c => c.Email == this._Email,"WhereEmailEqualsTo=>"+_Email) > 0 ? true : false;
-        }
-
-        public void Dispose()
-        {
-            if (!_Disposed)
-            {
-                _Disposed = true;
-                if (_MainUow != null) _MainUow.Dispose();
-            }
-            GC.SuppressFinalize(this);
+            return MainUow.UserRepository.Count(c => c.Email == _email, "WhereEmailEqualsTo=>" + _email) > 0;
         }
     }
 }

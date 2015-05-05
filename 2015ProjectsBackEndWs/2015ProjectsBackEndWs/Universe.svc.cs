@@ -1,27 +1,30 @@
-﻿using _2015ProjectsBackEndWs.Security;
-using _2015ProjectsBackEndWs.ServiceLogic;
-using _2015ProjectsBackEndWs.Utility;
-using SharedDto;
-using SharedDto.Form;
-using SharedDto.Form.Account;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Configuration;
 using System.Web.Script.Serialization;
+using SharedDto;
+using SharedDto.Form.Account;
+using SharedDto.Form.Universe;
+using SharedDto.Universe.Planets;
+using SharedDto.Universe.Stars;
+using SharedDto.UtilityDto;
 using WcfCommCrypto;
+using _2015ProjectsBackEndWs.Security;
+using _2015ProjectsBackEndWs.ServiceLogic;
+using _2015ProjectsBackEndWs.Utility;
 
 namespace _2015ProjectsBackEndWs
 {
     public class Universe : IUniverse
     {
-        private static Random _Rnd;
+        private static Random _rnd;
 
         public Universe()
         {
-            if (_Rnd == null) _Rnd = new Random();
+            if (_rnd == null) _rnd = new Random();
         }
+
         /// <summary>
-        /// this must be called only once per user, every 30 minutes
+        ///     this must be called only once per user, every 30 minutes
         /// </summary>
         /// <param name="generationData"></param>
         /// <param name="hashcall"></param>
@@ -30,144 +33,134 @@ namespace _2015ProjectsBackEndWs
         {
             if (hashcall != null)
             {
-                string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(hashcall, ConfigurationManager.AppSettings[ConfAppSettings.SaltKey], ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
+                var decriptedHash = RijndaelManagedEncryption.DecryptRijndael(hashcall,
+                    ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
+                    ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
                 if (decriptedHash.StartsWith(CallStartSentences.GeneratePortion))
                 {
                     if (!RepetitionChecker.Check(hashcall))
                     {
-                        bool generationResult = ProcessStarSystemGeneration(generationData);
+                        var generationResult = ProcessStarSystemGeneration(generationData);
                         if (generationResult) return CallsStatusResponse.GenericCallSuccess;
                     }
                     else
                     {
-                        _Rnd = null;
+                        _rnd = null;
                         return CallsStatusResponse.GenericWait;
                     }
                 }
             }
-            _Rnd = null;
+            _rnd = null;
             return CallsStatusResponse.GenericCallFailed;
         }
 
-        #region Private Methods
         /// <summary>
-        /// If all Checks goes well, the system is created
-        /// </summary>
-        /// <param name="generationData"></param>
-        /// <param name="generationResult"></param>
-        /// <param name="result"></param>
-        private bool ProcessStarSystemGeneration(PlanetGenerationDto generationData)
-        {
-            bool generationResult = false;
-            using (SetOnly setter = new SetOnly())
-            {
-                generationResult = setter.GenerateStarSystem(generationData, _Rnd);
-            }            
-            return generationResult;
-        }
-        
-        #endregion
-        /// <summary>
-        /// Json Retrieve Method
+        ///     Json Retrieve Method
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         public string RetrieveUniversePortion(string data)
         {
-            string result = CallsStatusResponse.GenericCallFailed;
+            var result = CallsStatusResponse.GenericCallFailed;
             if (!string.IsNullOrEmpty(data))
             {
                 try
                 {
                     //Decriptalo con la nostra chiave
-                    string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data, ConfigurationManager.AppSettings[ConfAppSettings.SaltKey], ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
+                    var decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data,
+                        ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
+                        ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
                     var javascriptSerializer = new JavaScriptSerializer();
-                    UniverseRangeDto universeRange = javascriptSerializer.Deserialize<UniverseRangeDto>(decriptedHash);
+                    var universeRange = javascriptSerializer.Deserialize<UniverseRangeDto>(decriptedHash);
                     //is correctly deserialized and it was sent in time
-                    if (universeRange != null && Validation.Validate(universeRange.Auth, CallInstanceName.UniverseRangeDto))
+                    if (universeRange != null &&
+                        Validation.Validate(universeRange.Auth, CallInstanceName.UniverseRangeDto))
                     {
-                        List<StarDto> starEntities = new List<StarDto>();
-                        using (GetOnly getter = new GetOnly())
+                        using (var getter = new GetOnly())
                         {
-                            starEntities = getter.ProcessRetrieveMethod(universeRange);
-                            using (ProcessSerialization serializator = new ProcessSerialization())
+                            var starEntities = getter.ProcessRetrieveMethod(universeRange);
+                            using (var serializator = new ProcessSerialization())
                             {
-                                result = serializator.SerializeJson(typeof(SectorDto), new SectorDto() { Stars = starEntities });
-                            } 
+                                result = serializator.SerializeJson(typeof (SectorDto),
+                                    new SectorDto {Stars = starEntities});
+                            }
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //Da FAre: Sistema di gestione log di errore
                 }
             }
             return result;
         }
+
         /// <summary>
-        /// Questo metodo restituisce il tempo corrente del servizio: usalo con il client prima di ogni 
-        /// successiva chiamata: dal momento che il server ti da il tempo, hai un minuto per creare
-        /// dal client, una chiamata valida.
-        /// 
+        ///     Questo metodo restituisce il tempo corrente del servizio: usalo con il client prima di ogni
+        ///     successiva chiamata: dal momento che il server ti da il tempo, hai un minuto per creare
+        ///     dal client, una chiamata valida.
         /// </summary>
         /// <returns></returns>
         public string ServiceTime()
         {
-            string result = string.Empty;
-            using (ProcessSerialization serializator = new ProcessSerialization())
+            string result;
+            using (var serializator = new ProcessSerialization())
             {
-                result = serializator.SerializeJson(typeof(DateTime), DateTime.Now);
+                result = serializator.SerializeJson(typeof (DateTime), DateTime.Now);
             }
             return result;
         }
+
         /// <summary>
-        /// Ritorna tutte le informazioni utili di un pianeta
+        ///     Ritorna tutte le informazioni utili di un pianeta
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         public string RetrievePlanetInfo(string data)
         {
-            string result = CallsStatusResponse.GenericCallFailed;
+            var result = CallsStatusResponse.GenericCallFailed;
             if (!string.IsNullOrEmpty(data))
             {
                 //Decriptalo con la nostra chiave
-                string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data, ConfigurationManager.AppSettings[ConfAppSettings.SaltKey], ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
+                var decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data,
+                    ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
+                    ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
                 var javascriptSerializer = new JavaScriptSerializer();
-                RetrievingInfoDto info = javascriptSerializer.Deserialize<RetrievingInfoDto>(decriptedHash);
+                var info = javascriptSerializer.Deserialize<RetrievingInfoDto>(decriptedHash);
                 //is correctly deserialized and it was sent in time
-                if (info != null && Validation.Validate(info.Auth,CallInstanceName.RetrievingInfoDto))
+                if (info == null || !Validation.Validate(info.Auth, CallInstanceName.RetrievingInfoDto)) return result;
+                using (var getter = new GetOnly())
                 {
-                    PlanetDto planet = null;
-                    using (GetOnly getter = new GetOnly())
+                    var planet = getter.RetrieveSinglePlanet(info.Id);
+                    using (var serializator = new ProcessSerialization())
                     {
-                        planet = getter.RetrieveSinglePlanet(info.Id);
-                        using (ProcessSerialization serializator = new ProcessSerialization())
-                        {
-                            result = serializator.SerializeJson(typeof(PlanetDto), planet);
-                        }
+                        result = serializator.SerializeJson(typeof (PlanetDto), planet);
                     }
                 }
             }
             return result;
         }
+
         /// <summary>
-        /// Quando un utente cerca di registrarsi manda un form al back-end
-        /// questo controlla che esista una email equivalente e se esiste
-        /// gli risponde con un negativo
+        ///     Quando un utente cerca di registrarsi manda un form al back-end
+        ///     questo controlla che esista una email equivalente e se esiste
+        ///     gli risponde con un negativo
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         public bool CheckUserRegistration(string data)
         {
-            bool result = false;
+            var result = false;
             if (!string.IsNullOrEmpty(data))
             {
-                string decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data, ConfigurationManager.AppSettings[ConfAppSettings.SaltKey], ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
+                var decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data,
+                    ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
+                    ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
                 var javascriptSerializer = new JavaScriptSerializer();
-                RegisterModel item = javascriptSerializer.Deserialize<RegisterModel>(decriptedHash);
+                var item = javascriptSerializer.Deserialize<RegisterModel>(decriptedHash);
                 if (item != null)
                 {
-                    using (GetOnly getter = new GetOnly())
+                    using (var getter = new GetOnly())
                     {
                         result = getter.IsEmailFree(item.Email);
                     }
@@ -175,22 +168,41 @@ namespace _2015ProjectsBackEndWs
             }
             return result;
         }
+
         /// <summary>
-        /// Get the universe List to use in a dropdownlist
+        ///     Get the universe List to use in a dropdownlist
         /// </summary>
         /// <returns></returns>
         public string RetrieveUniverseList()
         {
-            string result = string.Empty;
-            using (GetOnly getter = new GetOnly())
+            string result;
+            using (var getter = new GetOnly())
             {
-                GalaxyList galaxyList = getter.RetrieveGalaxyList();
-                using (ProcessSerialization serializer = new ProcessSerialization())
+                var galaxyList = getter.RetrieveGalaxyList();
+                using (var serializer = new ProcessSerialization())
                 {
-                    result = serializer.SerializeJson(typeof(GalaxyList), galaxyList);
+                    result = serializer.SerializeJson(typeof (GalaxyList), galaxyList);
                 }
             }
             return result;
         }
+
+        #region Private Methods
+
+        /// <summary>
+        ///     If all Checks goes well, the system is created
+        /// </summary>
+        /// <param name="generationData"></param>
+        private static bool ProcessStarSystemGeneration(PlanetGenerationDto generationData)
+        {
+            bool generationResult;
+            using (var setter = new SetOnly())
+            {
+                generationResult = setter.GenerateStarSystem(generationData, _rnd);
+            }
+            return generationResult;
+        }
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using Models.Buildings;
+﻿using System.Collections.Generic;
+using Models.Buildings;
 using Models.Fleets;
 using Models.Fleets.ShipClasses;
 using Models.Fleets.ShipClasses.Armors;
@@ -13,18 +14,17 @@ using Models.Races;
 using Models.Tech;
 using Models.Universe;
 using Models.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnitOfWork.Interfaces.Context;
 
 namespace UnitOfWork.Implementations.Context
 {
     public class TestContext : IContext
     {
-        public bool IsTest { get; set; }
+        public TestContext()
+        {
+            IsTest = true;
+        }
+
         public List<Galaxy> Galaxys { get; set; }
         public List<Star> Stars { get; set; }
         public List<Satellite> Satellites { get; set; }
@@ -51,10 +51,6 @@ namespace UnitOfWork.Implementations.Context
         public List<ShipSystem> ShipSystems { get; set; }
         public List<AntiShipWeapon> AntiShipWeapons { get; set; }
         public List<AntiPlanetWeapon> AntiPlanetWeapons { get; set; }
-
-        public TestContext()
-        {
-            this.IsTest = true;
-        }
+        public bool IsTest { get; set; }
     }
 }

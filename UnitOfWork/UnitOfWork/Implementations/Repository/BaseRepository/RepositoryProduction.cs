@@ -1,10 +1,11 @@
-﻿using Models.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using Models.Base;
 using UnitOfWork.Cache;
+using UnitOfWork.Cache.Enum;
 using UnitOfWork.Implementations.Context;
 using UnitOfWork.Interfaces.Repository;
 
@@ -12,59 +13,59 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
 {
     public class RepositoryProduction<T> : IRepository<T> where T : BaseEntity
     {
-        internal ProductionContext Context = null;
-        internal DbSet<T> dbSet;
-        internal DalCache RepoCache= null;
+        internal ProductionContext Context;
+        internal DbSet<T> DbSet;
+        internal DalCache RepoCache;
         internal string RepoEntitySign = string.Empty;
 
-        public RepositoryProduction(ProductionContext context, DalCache cache, string repoEntitySign)
+        public RepositoryProduction(ProductionContext context, DalCache cache)
         {
-            this.Context = context;
-            this.RepoCache = cache;
-            this.dbSet = this.Context.Set<T>();
+            Context = context;
+            RepoCache = cache;
+            DbSet = Context.Set<T>();
         }
 
         public IQueryable<T> GetAll(string cacheKey)
         {
-            IQueryable<T> result = null;
+            IQueryable<T> result;
             if (!string.IsNullOrEmpty(cacheKey))
             {
                 var cached = RepoCache.GetMyCachedItem(cacheKey);
                 if (cached == null)
                 {
-                    result = this.dbSet;
-                    RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
+                    result = DbSet;
+                    RepoCache.AddToMyCache(cacheKey, result, DalCachePriority.Default);
                 }
                 else
-                    result = (IQueryable<T>)cached;
+                    result = (IQueryable<T>) cached;
             }
-            else result = this.dbSet;
+            else result = DbSet;
             return result;
         }
 
         public T GetByKey(int id, string cacheKey)
         {
-            T result = null;
+            T result;
             if (!string.IsNullOrEmpty(cacheKey))
             {
                 var cached = RepoCache.GetMyCachedItem(cacheKey);
                 if (cached == null)
                 {
-                    result = this.dbSet.SingleOrDefault(c => c.Id == id);
-                    RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
+                    result = DbSet.SingleOrDefault(c => c.Id == id);
+                    RepoCache.AddToMyCache(cacheKey, result, DalCachePriority.Default);
                 }
-                else result = (T)cached;
+                else result = (T) cached;
             }
-            else result = this.dbSet.FirstOrDefault(c => c.Id == id);
+            else result = DbSet.FirstOrDefault(c => c.Id == id);
             return result;
         }
 
         /// <summary>
-        /// Restituisce il risultato filtrato, eventualmente ordinato ed eventualmente con
-        /// già incluse le sottocategorie.
+        ///     Restituisce il risultato filtrato, eventualmente ordinato ed eventualmente con
+        ///     già incluse le sottocategorie.
         /// </summary>
+        /// <param name="cacheKey"></param>
         /// <param name="filter">es. student => student.LastName == "Smith"</param>
-        /// <param name="orderBy">es. q => q.OrderBy(s => s.LastName)</param>
         /// <param name="includeProperties">es. Student,StudentInfo</param>
         /// <returns></returns>
         public IEnumerable<T> Get(
@@ -72,149 +73,118 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             Expression<Func<T, bool>> filter = null,
             string includeProperties = "")
         {
-            IEnumerable<T> result = null;
+            IEnumerable<T> result;
             if (!string.IsNullOrEmpty(cacheKey))
             {
                 var cached = RepoCache.GetMyCachedItem(cacheKey);
                 if (cached == null)
                 {
-                    result = ProcessGet(filter, includeProperties, result);
-                    RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
+                    result = ProcessGet(filter, includeProperties);
+                    RepoCache.AddToMyCache(cacheKey, result, DalCachePriority.Default);
                 }
                 else
-                    result = (IEnumerable<T>)cached;
+                    result = (IEnumerable<T>) cached;
             }
             else
             {
-                result = ProcessGet(filter, includeProperties, result);
+                result = ProcessGet(filter, includeProperties);
             }
-            return result;            
-        }
-
-        private IEnumerable<T> ProcessGet(Expression<Func<T, bool>> filter, string includeProperties, IEnumerable<T> result)
-        {
-            IQueryable<T> query = dbSet;
-
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-
-            foreach (var includeProperty in includeProperties.Split
-                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                query = query.Include(includeProperty);
-            }
-            result = query.ToList();
             return result;
         }
 
-        public IQueryable<T> FindBy(Expression<System.Func<T, bool>> predicate, string cacheKey)
+        public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string cacheKey)
         {
-            IQueryable<T> result = null;
-            try
+            IQueryable<T> result;
+            if (!string.IsNullOrEmpty(cacheKey))
             {
-                if (!string.IsNullOrEmpty(cacheKey))
+                var cached = RepoCache.GetMyCachedItem(cacheKey);
+                if (cached == null)
                 {
-                    var cached = RepoCache.GetMyCachedItem(cacheKey);
-                    if (cached == null)
-                    {
-                        result = this.dbSet.Where(predicate);
-                        RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
-                    }
-                    else
-                        result = (IQueryable<T>)cached;
+                    result = DbSet.Where(predicate);
+                    RepoCache.AddToMyCache(cacheKey, result, DalCachePriority.Default);
                 }
                 else
-                    result = this.dbSet.Where(predicate);
+                    result = (IQueryable<T>) cached;
             }
-            catch (Exception ex)
-            {
-                 //DAFARE : CREARE UN PROGETTO LOGGER CHE SI OCCUPI DI PRENDERE LE ECCEZIONI E SCRIVERLE IN UN FILE APPOSITO
-                var message = ex.Message;
-                throw;
-            }
+            else
+                result = DbSet.Where(predicate);
             return result;
         }
 
         public void Add(T entity)
         {
-            dbSet.Add(entity);
+            DbSet.Add(entity);
         }
 
         public void Delete(T entity)
         {
             if (Context.Entry(entity).State == EntityState.Detached)
             {
-                dbSet.Attach(entity);
+                DbSet.Attach(entity);
             }
-            dbSet.Remove(entity);
+            DbSet.Remove(entity);
         }
 
         public void Edit(T entity)
         {
-            dbSet.Attach(entity);
+            DbSet.Attach(entity);
             Context.Entry(entity).State = EntityState.Modified;
         }
 
         public int Count(string cacheKey)
         {
-            int result = 0;
-            try
+            int result;
+            if (!string.IsNullOrEmpty(cacheKey))
             {
-                if (!string.IsNullOrEmpty(cacheKey))
+                var cached = RepoCache.GetMyCachedItem(cacheKey);
+                if (cached == null)
                 {
-                    var cached = RepoCache.GetMyCachedItem(cacheKey);
-                    if (cached == null)
-                    {
-                        result = dbSet.Count();
-                        RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
-                    }
-                    else result = (int)cached;
+                    result = DbSet.Count();
+                    RepoCache.AddToMyCache(cacheKey, result, DalCachePriority.Default);
                 }
-                else
-                    result = dbSet.Count();
+                else result = (int) cached;
             }
-            catch (Exception ex)
-            {
-                //DAFARE : CREARE UN PROGETTO LOGGER CHE SI OCCUPI DI PRENDERE LE ECCEZIONI E SCRIVERLE IN UN FILE APPOSITO
-                var message = ex.Message;
-                throw;
-            }
+            else
+                result = DbSet.Count();
             return result;
         }
 
         public int Count(Expression<Func<T, bool>> predicate, string cacheKey)
         {
-            int result = 0;
-            try
+            int result;
+            if (!string.IsNullOrEmpty(cacheKey))
             {
-                if (!string.IsNullOrEmpty(cacheKey))
+                var cached = RepoCache.GetMyCachedItem(cacheKey);
+                if (cached == null)
                 {
-                    var cached = RepoCache.GetMyCachedItem(cacheKey);
-                    if (cached == null)
-                    {
-                        result = dbSet.Count(predicate);
-                        RepoCache.AddToMyCache(cacheKey, result, Cache.Enum.DalCachePriority.Default);
-                    }
-                    else
-                        result = (int)cached;
+                    result = DbSet.Count(predicate);
+                    RepoCache.AddToMyCache(cacheKey, result, DalCachePriority.Default);
                 }
                 else
-                    result = dbSet.Count(predicate);
+                    result = (int) cached;
             }
-            catch (Exception ex)
-            {
-                //DAFARE : CREARE UN PROGETTO LOGGER CHE SI OCCUPI DI PRENDERE LE ECCEZIONI E SCRIVERLE IN UN FILE APPOSITO
-                var message = ex.Message;
-                throw;
-            }
+            else
+                result = DbSet.Count(predicate);
             return result;
         }
 
         public void CustomDbset(List<T> setter)
         {
-            
+        }
+
+        private IEnumerable<T> ProcessGet(Expression<Func<T, bool>> filter, string includeProperties)
+        {
+            IQueryable<T> query = DbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            query = includeProperties.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
+                .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+            IEnumerable<T> result = query.ToList();
+            return result;
         }
     }
 }

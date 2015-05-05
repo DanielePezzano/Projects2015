@@ -953,4 +953,8 @@
     <value>Punto di Partenza</value>
     <comment>Code</comment>
   </data>
+  <data name="UsableSpacesLeft" xml:space="preserve">
+    <value>Spazio Rimasto</value>
+    <comment>Generale</comment>
+  </data>
 </root>

@@ -4,8 +4,8 @@ namespace BLL.Utilities
 {
     public sealed class ScaleConversion : IDisposable
     {
-        private double _FromBase;
-        private double _ToBase;
+        private readonly double _fromBase;
+        private readonly double _toBase;
 
         /// <summary>
         /// This class will convert a double from a base (eg. 10) 
@@ -17,8 +17,8 @@ namespace BLL.Utilities
         /// <param name="toBase"></param>
         public ScaleConversion(double fromBase, double toBase)
         {
-            _FromBase = fromBase;
-            _ToBase = toBase;
+            _fromBase = fromBase;
+            _toBase = toBase;
         }
 
         /// <summary>
@@ -28,12 +28,12 @@ namespace BLL.Utilities
         /// <returns></returns>
         public double Convert(double numberInFromBase)
         {
-            return (numberInFromBase * _ToBase) / _FromBase;
+            return (numberInFromBase * _toBase) / _fromBase;
         }
 
         public void Dispose()
         {
-            GC.SuppressFinalize(this);
+           // GC.SuppressFinalize(this);
         }
     }
 }

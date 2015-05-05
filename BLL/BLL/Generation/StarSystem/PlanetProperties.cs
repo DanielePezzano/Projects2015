@@ -1,101 +1,103 @@
-﻿using BLL.Utilities;
+﻿using System;
+using BLL.Utilities;
 using Models.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Generation.StarSystem
 {
     public static class PlanetProperties
     {
-        public const double _MinSatelliteDistance = 0.8;
-        public const double _MaxSatelliteDistance = 2.5;
+        public const double MinSatelliteDistance = 0.8;
+        public const double MaxSatelliteDistance = 2.5;
+
         /// <summary>
-        /// Determine planet Space Structure
+        ///     Determine planet Space Structure
         /// </summary>
         /// <param name="totalSpaces"></param>
         /// <param name="radiationLevel">Planet radiation level</param>
-        /// <param name="forceWater">forced water presence</param>
-        /// <param name="mostlyWater">planet mostly water coverd</param>
-        /// <param name="forceLiving">habitable planet forced</param>
+        /// <param name="conditions"></param>
         /// <param name="hasWater">has water</param>
         /// <param name="hasAtmosphere">has atmosphere</param>
         /// <param name="rnd"></param>
         /// <returns></returns>
-        public static Spaces CalculateSpaces(int totalSpaces, int radiationLevel, PlanetCustomConditions conditions, bool hasWater, bool hasAtmosphere, Random rnd)
+        public static Spaces CalculateSpaces(int totalSpaces, int radiationLevel, PlanetCustomConditions conditions,
+            bool hasWater, bool hasAtmosphere, Random rnd)
         {
-            Spaces result = new Spaces();
+            var result = new Spaces();
 
             if (conditions.ForceLiving)
             {
-                ForcedLivingSpaces(result, totalSpaces, radiationLevel, conditions.ForceWater, conditions.MostlyWater, hasWater, rnd);
+                ForcedLivingSpaces(result, totalSpaces, conditions.MostlyWater, rnd);
             }
             else
             {
-                NormalSpacesCalculation(result, totalSpaces, radiationLevel, conditions.ForceWater, conditions.MostlyWater, hasWater, hasAtmosphere, rnd);
+                NormalSpacesCalculation(result, totalSpaces, radiationLevel, conditions.ForceWater,
+                    conditions.MostlyWater, hasWater, hasAtmosphere, rnd);
             }
 
             return result;
         }
+
         /// <summary>
-        /// This will calculate production for planet
+        ///     This will calculate production for planet
         /// </summary>
         /// <param name="planetSpaces"></param>
         /// <param name="density"></param>
         /// <param name="earthDensity"></param>
+        /// <param name="conditions"></param>
         /// <returns></returns>
-        public static Production CalculateProduction(Spaces planetSpaces, double density, double earthDensity, PlanetCustomConditions conditions)
+        public static Production CalculateProduction(Spaces planetSpaces, double density, double earthDensity,
+            PlanetCustomConditions conditions)
         {
-            Production result = new Production();
-            result.ActivePopOnFoodProduction = 0;
-            result.ActivePopOnOreProduction = 0;
-            result.ActivePopOnResProduction = 0;
+            var result = new Production
+            {
+                ActivePopOnFoodProduction = 0,
+                ActivePopOnOreProduction = 0,
+                ActivePopOnResProduction = 0
+            };
 
-            double baseWaterProduction = 0.24;
-            double baseGroundProduction = 0.14;
-            double baseMineralProduction = 0.2 * density / earthDensity;
-            double baseMineralProdOnRad = baseMineralProduction + baseMineralProduction * 0.25;
+            var baseWaterProduction = 0.24;
+            var baseGroundProduction = 0.14;
+            var baseMineralProduction = 0.2*density/earthDensity;
+            var baseMineralProdOnRad = baseMineralProduction + baseMineralProduction*0.25;
 
             if (conditions.MineralRich)
             {
-                baseMineralProdOnRad += baseMineralProdOnRad * 0.5;
-                baseMineralProduction += baseMineralProduction * 0.5;
+                baseMineralProdOnRad += baseMineralProdOnRad*0.5;
+                baseMineralProduction += baseMineralProduction*0.5;
             }
             if (conditions.MineralPoor)
             {
-                baseMineralProdOnRad -= baseMineralProdOnRad * 0.5;
-                baseMineralProduction -= baseMineralProduction * 0.5;
+                baseMineralProdOnRad -= baseMineralProdOnRad*0.5;
+                baseMineralProduction -= baseMineralProduction*0.5;
             }
             if (conditions.FoodRich)
             {
-                baseWaterProduction += baseWaterProduction * 0.5;
-                baseGroundProduction += baseGroundProduction * 0.5;
+                baseWaterProduction += baseWaterProduction*0.5;
+                baseGroundProduction += baseGroundProduction*0.5;
             }
             if (conditions.FoodPoor)
             {
-                baseWaterProduction -= baseWaterProduction * 0.5;
-                baseGroundProduction -= baseGroundProduction * 0.5;
+                baseWaterProduction -= baseWaterProduction*0.5;
+                baseGroundProduction -= baseGroundProduction*0.5;
             }
 
-            double percWater = (double)planetSpaces.WaterSpaces / (double)planetSpaces.Totalspaces;
-            double percWaterRad = (double)planetSpaces.WaterRadiatedSpaces / (double)planetSpaces.Totalspaces;
-            double percGround = (double)planetSpaces.GroundSpaces / (double)planetSpaces.Totalspaces;
-            double percGroundRad = 100 - percWater - percWaterRad - percGround;
+            var percWater = planetSpaces.WaterSpaces/(double) planetSpaces.Totalspaces;
+            var percWaterRad = planetSpaces.WaterRadiatedSpaces/(double) planetSpaces.Totalspaces;
+            var percGround = planetSpaces.GroundSpaces/(double) planetSpaces.Totalspaces;
+            var percGroundRad = 100 - percWater - percWaterRad - percGround;
 
-            double FoodProd = (baseGroundProduction * percGround) + baseWaterProduction * percWater;
-            double OreProd = (baseMineralProduction * percGround) + baseMineralProduction * percWater +
-                (baseMineralProdOnRad * percGroundRad) + (baseMineralProdOnRad * percWaterRad);
-            result.FoodProduction = ((int)FoodProd >= 0) ? (int)FoodProd : 0;
-            result.OreProduction = ((int)OreProd >= 0) ? (int)OreProd : 0;
+            var foodProd = (baseGroundProduction*percGround) + baseWaterProduction*percWater;
+            var oreProd = (baseMineralProduction*percGround) + baseMineralProduction*percWater +
+                          (baseMineralProdOnRad*percGroundRad) + (baseMineralProdOnRad*percWaterRad);
+            result.FoodProduction = ((int) foodProd >= 0) ? (int) foodProd : 0;
+            result.OreProduction = ((int) oreProd >= 0) ? (int) oreProd : 0;
             result.ResearchPointProduction = 10;
             return result;
         }
 
-        private static void ForcedLivingSpaces(Spaces result, int totalSpaces, int radiationLevel, bool forceWater, bool mostlyWater, bool hasWater, Random rnd)
+        private static void ForcedLivingSpaces(Spaces result, int totalSpaces, bool mostlyWater, Random rnd)
         {
-            double percWater = RandomNumbers.RandomDouble(0.10, 0.60, rnd);
+            var percWater = RandomNumbers.RandomDouble(0.10, 0.60, rnd);
             double percRad = 0;
             if (mostlyWater)
             {
@@ -105,34 +107,36 @@ namespace BLL.Generation.StarSystem
             SetSpacesParameters(result, totalSpaces, percWater, percRad);
         }
 
-        private static void NormalSpacesCalculation(Spaces result, int totalSpaces, int radiationLevel, bool forceWater, bool mostlyWater, bool hasWater, bool hasAtmosphere, Random rnd)
+        private static void NormalSpacesCalculation(Spaces result, int totalSpaces, int radiationLevel, bool forceWater,
+            bool mostlyWater, bool hasWater, bool hasAtmosphere, Random rnd)
         {
             double percWater = 0;
             if (forceWater || hasWater)
             {
-                percWater = (mostlyWater) ? RandomNumbers.RandomDouble(0.6, 0.98, rnd) : RandomNumbers.RandomDouble(0.10, 0.60, rnd);
+                percWater = (mostlyWater)
+                    ? RandomNumbers.RandomDouble(0.6, 0.98, rnd)
+                    : RandomNumbers.RandomDouble(0.10, 0.60, rnd);
             }
 
             double percRad = 0;
             if (radiationLevel > 3)
             {
-                percRad = (double)radiationLevel / 10.00;
+                percRad = radiationLevel/10.00;
                 if (!hasWater)
-                    percRad = (percRad + percRad * 0.5);
-                if (hasAtmosphere) percRad = (percRad - percRad * 0.5);
+                    percRad = (percRad + percRad*0.5);
+                if (hasAtmosphere) percRad = (percRad - percRad*0.5);
                 if (percRad > 1) percRad = 1;
             }
 
             SetSpacesParameters(result, totalSpaces, percWater, percRad);
-
         }
 
         private static void SetSpacesParameters(Spaces result, int totalSpaces, double percWater, double percRad)
         {
-            int radiatedSpaces = (int)(totalSpaces * percRad);
-            int nonradiatedSpaces = totalSpaces - radiatedSpaces;
-            result.WaterRadiatedSpaces = (int)(radiatedSpaces * percWater);
-            result.WaterSpaces = (int)(nonradiatedSpaces * percWater);
+            var radiatedSpaces = (int) (totalSpaces*percRad);
+            var nonradiatedSpaces = totalSpaces - radiatedSpaces;
+            result.WaterRadiatedSpaces = (int) (radiatedSpaces*percWater);
+            result.WaterSpaces = (int) (nonradiatedSpaces*percWater);
             result.GroundRadiatedSpaces = radiatedSpaces - result.WaterRadiatedSpaces;
             result.GroundSpaces = nonradiatedSpaces - result.WaterSpaces;
             result.GroudUsedSpaces = 0;

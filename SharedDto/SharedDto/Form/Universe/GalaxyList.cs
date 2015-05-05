@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace SharedDto.Form
+namespace SharedDto.Form.Universe
 {
     [DataContract]
     public class GalaxyList

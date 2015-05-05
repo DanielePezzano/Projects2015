@@ -1,8 +1,8 @@
-﻿using Models.Buildings.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Models.Buildings.Enums;
 
-namespace SharedDto
+namespace SharedDto.Universe.Building
 {
     [DataContract]
     public class BuildingDto

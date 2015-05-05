@@ -1,5 +1,7 @@
 ﻿using Models.Buildings;
 using System.Collections.Generic;
+using System.Linq;
+using SharedDto.Universe.Building;
 
 namespace SharedDto.DataMapper
 {
@@ -13,25 +15,21 @@ namespace SharedDto.DataMapper
         public BuildingSpecsDto EntityToModel(BuildingSpec entity)
         {
             if (entity == null) return null;
-            BuildingSpecsDto result = new BuildingSpecsDto();
-            result.Bonus = entity.Bonus;
-            result.Value = entity.Value;
+            BuildingSpecsDto result = new BuildingSpecsDto
+            {
+                Bonus = entity.Bonus,
+                Value = entity.Value
+            };
             return result;
         }
 
         /// <summary>
         /// Map an entity List to the correspondent DTO List
         /// </summary>
-        /// <param name="entity"></param>
         /// <returns></returns>
         public List<BuildingSpecsDto> EntityListToModel(ICollection<BuildingSpec> items)
         {
-            List<BuildingSpecsDto> result = new List<BuildingSpecsDto>();
-            foreach (BuildingSpec item in items)
-            {
-                result.Add(EntityToModel(item));
-            }
-            return result;
+            return items.Select(EntityToModel).ToList();
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using Models.Base.Enum;
-using Models.Universe.Enum;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Models.Base.Enum;
+using Models.Universe.Enum;
+using SharedDto.Universe.Building;
 
-namespace SharedDto
+namespace SharedDto.Universe.Planets
 {
     [DataContract]
     public class PlanetDto

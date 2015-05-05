@@ -27,11 +27,23 @@ namespace WcfTester.UninverseWcf {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrievePlanetInfo", ReplyAction="http://tempuri.org/IUniverse/RetrievePlanetInfoResponse")]
         System.Threading.Tasks.Task<string> RetrievePlanetInfoAsync(string data);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
-        string GenerateStarSystem(SharedDto.PlanetGenerationDto generationData, string hashcall);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrieveUniverseList", ReplyAction="http://tempuri.org/IUniverse/RetrieveUniverseListResponse")]
+        string RetrieveUniverseList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/RetrieveUniverseList", ReplyAction="http://tempuri.org/IUniverse/RetrieveUniverseListResponse")]
+        System.Threading.Tasks.Task<string> RetrieveUniverseListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
-        System.Threading.Tasks.Task<string> GenerateStarSystemAsync(SharedDto.PlanetGenerationDto generationData, string hashcall);
+        string GenerateStarSystem(SharedDto.UtilityDto.PlanetGenerationDto generationData, string hashcall);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/GenerateStarSystem", ReplyAction="http://tempuri.org/IUniverse/GenerateStarSystemResponse")]
+        System.Threading.Tasks.Task<string> GenerateStarSystemAsync(SharedDto.UtilityDto.PlanetGenerationDto generationData, string hashcall);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/CheckUserRegistration", ReplyAction="http://tempuri.org/IUniverse/CheckUserRegistrationResponse")]
+        bool CheckUserRegistration(string data);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/CheckUserRegistration", ReplyAction="http://tempuri.org/IUniverse/CheckUserRegistrationResponse")]
+        System.Threading.Tasks.Task<bool> CheckUserRegistrationAsync(string data);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUniverse/ServiceTime", ReplyAction="http://tempuri.org/IUniverse/ServiceTimeResponse")]
         string ServiceTime();
@@ -83,12 +95,28 @@ namespace WcfTester.UninverseWcf {
             return base.Channel.RetrievePlanetInfoAsync(data);
         }
         
-        public string GenerateStarSystem(SharedDto.PlanetGenerationDto generationData, string hashcall) {
+        public string RetrieveUniverseList() {
+            return base.Channel.RetrieveUniverseList();
+        }
+        
+        public System.Threading.Tasks.Task<string> RetrieveUniverseListAsync() {
+            return base.Channel.RetrieveUniverseListAsync();
+        }
+        
+        public string GenerateStarSystem(SharedDto.UtilityDto.PlanetGenerationDto generationData, string hashcall) {
             return base.Channel.GenerateStarSystem(generationData, hashcall);
         }
         
-        public System.Threading.Tasks.Task<string> GenerateStarSystemAsync(SharedDto.PlanetGenerationDto generationData, string hashcall) {
+        public System.Threading.Tasks.Task<string> GenerateStarSystemAsync(SharedDto.UtilityDto.PlanetGenerationDto generationData, string hashcall) {
             return base.Channel.GenerateStarSystemAsync(generationData, hashcall);
+        }
+        
+        public bool CheckUserRegistration(string data) {
+            return base.Channel.CheckUserRegistration(data);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckUserRegistrationAsync(string data) {
+            return base.Channel.CheckUserRegistrationAsync(data);
         }
         
         public string ServiceTime() {

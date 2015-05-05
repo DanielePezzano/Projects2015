@@ -1,27 +1,26 @@
-﻿
-namespace BLL.Utilities.Structs
+﻿namespace BLL.Utilities.Structs
 {
     public struct IntRange
     {
-        public int Min;
         public int Max;
+        public int Min;
 
         public IntRange(int min, int max)
         {
-            this.Min = min;
-            this.Max = max;
+            Min = min;
+            Max = max;
         }
     }
 
     public struct DoubleRange
     {
-        public double Min;
         public double Max;
+        public double Min;
 
         public DoubleRange(double min, double max)
         {
-            this.Min = min;
-            this.Max = max;
+            Min = min;
+            Max = max;
         }
     }
 }

@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BLL.Information
+﻿namespace BLL.Information.Struct
 {
     public struct DropDownInfo
     {
-        public string ItemName;
         public int ItemId;
+        public string ItemName;
 
-        public DropDownInfo(int id,string name)
+        public DropDownInfo(int id, string name)
         {
-            this.ItemName = name;
-            this.ItemId = id;
+            ItemName = name;
+            ItemId = id;
         }
     }
 }

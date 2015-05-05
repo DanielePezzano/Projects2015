@@ -1,46 +1,44 @@
-﻿using System;
+﻿using BLL.Information;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models.Users;
 using Moq;
+using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Uows;
-using Models.Users;
-using UnitOfWork.Interfaces.Context;
-using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Uows.UowDto;
-using BLL.Information;
 
 namespace BusinessTest.Information
 {
     [TestClass]
     public class RetrieveUserInformationTest
     {
-        private MockRepository _Repo;
-        private ContextFactory _ContextFactory;
-        private Mock<User> _User;
+        private ContextFactory _contextFactory;
+        private MockRepository _repo;
         private MainUow _uow;
+        private Mock<User> _user;
 
-        [TestInitialize()]
+        [TestInitialize]
         public void MyTestInitialize()
         {
-            _Repo = new MockRepository(MockBehavior.Default);
-            _User = _Repo.Create<User>();
-            _User.Object.Email = "danieleTest@test.com";
+            _repo = new MockRepository(MockBehavior.Default);
+            _user = _repo.Create<User>();
+            _user.Object.Email = "danieleTest@test.com";
 
-            _ContextFactory = new ContextFactory(true);
-            IContext context = _ContextFactory.Retrieve();
-            DalCache cache = new DalCache();
-            UowRepositories repos = new UowRepositories();
-            UowRepositoryFactories repoFactories = new UowRepositoryFactories(context, cache, repos);
-            _uow = new MainUow(context, cache, repoFactories);
-            _uow.UserRepository.Add(_User.Object);
+            _contextFactory = new ContextFactory(true);
+            var context = _contextFactory.Retrieve();
+            var cache = new DalCache();
+            var repos = new UowRepositories();
+            var repoFactories = new UowRepositoryFactories(context, cache, repos);
+            _uow = new MainUow(context, repoFactories);
+            _uow.UserRepository.Add(_user.Object);
         }
 
         [TestMethod]
         public void TestExistsEmail()
         {
-            RetrieveUserInformation user = new RetrieveUserInformation(this._uow, "danieleTest@test.com");
+            var user = new RetrieveUserInformation(_uow, "danieleTest@test.com");
             Assert.IsTrue(user.ExistsEmail());
-            user = new RetrieveUserInformation(this._uow, "danieleddddTest@test.com");
+            user = new RetrieveUserInformation(_uow, "danieleddddTest@test.com");
             Assert.IsFalse(user.ExistsEmail());
         }
     }

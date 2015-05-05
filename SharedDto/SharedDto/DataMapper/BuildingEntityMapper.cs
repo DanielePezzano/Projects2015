@@ -1,20 +1,22 @@
-﻿using Models.Buildings;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Models.Buildings;
+using SharedDto.Universe.Building;
 
 namespace SharedDto.DataMapper
 {
     public sealed class BuildingEntityMapper
     {
         /// <summary>
-        /// Map an entity to the correspondent DTO
+        ///     Map an entity to the correspondent DTO
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         public BuildingDto EntityToModel(Building entity)
         {
             if (entity == null) return null;
-            BuildingDto result = new BuildingDto();
-            BuildingSpecEntityMapper mapper = new BuildingSpecEntityMapper();
+            var result = new BuildingDto();
+            var mapper = new BuildingSpecEntityMapper();
             result.BuildingType = entity.BuildingType;
             result.Description = entity.Description;
             result.Details = mapper.EntityListToModel(entity.BuildingSpecs);
@@ -31,18 +33,12 @@ namespace SharedDto.DataMapper
         }
 
         /// <summary>
-        /// Map an entity List to the correspondent DTO List
+        ///     Map an entity List to the correspondent DTO List
         /// </summary>
-        /// <param name="entity"></param>
         /// <returns></returns>
         public List<BuildingDto> EntityListToModel(ICollection<Building> items)
         {
-            List<BuildingDto> result = new List<BuildingDto>();
-            foreach (Building item in items)
-            {
-                result.Add(EntityToModel(item));
-            }
-            return result;
+            return items.Select(EntityToModel).ToList();
         }
     }
 }

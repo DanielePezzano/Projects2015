@@ -1,41 +1,50 @@
-﻿using BLL.Generation;
+﻿using System;
+using BLL.Generation;
 using BLL.Generation.StarSystem;
 using BLL.Utilities.Structs;
-using SharedDto;
-using System;
-using UnitOfWork.Cache;
+using SharedDto.UtilityDto;
 using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Uows;
 using UnitOfWork.Implementations.Uows.UowDto;
-using UnitOfWork.Interfaces.Context;
 
 namespace _2015ProjectsBackEndWs.ServiceLogic
 {
     public sealed class SetOnly : IDisposable
     {
-        private bool _Disposed = false;
-        private ContextFactory _Factory = null;
-        private IContext _Context = null;
-        private UowRepositories _Repositories = null;
-        private MainUow _MainUow = null;
-        private DalCache _Cache = null;
-        private UowRepositoryFactories _RepoFactory = null;
+        private readonly ContextFactory _factory;
+        private readonly MainUow _mainUow;
+        private readonly UowRepositoryFactories _repoFactory;
+        private readonly UowRepositories _repositories;
+        private bool _disposed;
 
         public SetOnly()
         {
-            _Factory = new ContextFactory();
-            _Context = _Factory.Retrieve();
-            _Repositories = _Factory.CreateRepositories();
-            _Cache = _Factory.CreateCache();
-            _RepoFactory = new UowRepositoryFactories(_Context, _Cache, _Repositories);
-            _MainUow = new MainUow(_Context, _Cache, _RepoFactory);
+            _factory = new ContextFactory();
+            var context = _factory.Retrieve();
+            _repositories = _factory.CreateRepositories();
+            var cache = _factory.CreateCache();
+            _repoFactory = new UowRepositoryFactories(context, cache, _repositories);
+            _mainUow = new MainUow(context, _repoFactory);
         }
 
-        public bool GenerateStarSystem(PlanetGenerationDto generationData, Random Rnd)
+        public void Dispose()
         {
-            IntRange rangeX = new IntRange(generationData.MinX, generationData.MaxX);
-            IntRange rangeY = new IntRange(generationData.MinY, generationData.MaxY);
-            PlanetCustomConditions customConditions = new PlanetCustomConditions()
+            if (!_disposed)
+            {
+                if (_factory != null) _factory.Dispose();
+                if (_repositories != null) _repositories.Dispose();
+                if (_mainUow != null) _mainUow.Dispose();
+                if (_repoFactory != null) _repoFactory.Dispose();
+                _disposed = true;
+            }
+           // GC.SuppressFinalize(this);
+        }
+
+        public bool GenerateStarSystem(PlanetGenerationDto generationData, Random rnd)
+        {
+            var rangeX = new IntRange(generationData.MinX, generationData.MaxX);
+            var rangeY = new IntRange(generationData.MinY, generationData.MaxY);
+            var customConditions = new PlanetCustomConditions
             {
                 ForceLiving = generationData.ForceLiving,
                 ForceWater = generationData.ForceWater,
@@ -46,29 +55,16 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
                 FoodRich = generationData.FoodRich
             };
 
-            GeneratePortion generator = new GeneratePortion(
-                            rangeX.Min,
-                            rangeX.Max,
-                            rangeY.Min,
-                            rangeY.Max,
-                            _MainUow,
-                            customConditions,
-                            generationData.Galaxy_Id
-                            );
-            return generator.Generate(Rnd);
-        }
-
-        public void Dispose()
-        {
-            if (!_Disposed)
-            {
-                if (_Factory != null) _Factory.Dispose();
-                if (_Repositories != null) _Repositories.Dispose();
-                if (_MainUow != null) _MainUow.Dispose();
-                if (_RepoFactory != null) _RepoFactory.Dispose();
-                _Disposed = true;
-            }
-            GC.SuppressFinalize(this);
+            var generator = new GeneratePortion(
+                rangeX.Min,
+                rangeX.Max,
+                rangeY.Min,
+                rangeY.Max,
+                _mainUow,
+                customConditions,
+                generationData.GalaxyId
+                );
+            return generator.Generate(rnd);
         }
     }
 }

@@ -1,85 +1,96 @@
-﻿using BLL.Utilities.Structs;
-using Models.Universe;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BLL.Information.Struct;
+using BLL.Utilities.Structs;
+using Models.Universe;
 using UnitOfWork.Implementations.Uows;
 
 namespace BLL.Information
 {
     public sealed class RetrieveInformations : IDisposable
     {
-        private MainUow _MainUow;
-        private IntRange _RangeX;
-        private IntRange _RangeY;
-        private bool _Disposed = false;
+        private readonly MainUow _mainUow;
+        private bool _disposed;
+        private IntRange _rangeX;
+        private IntRange _rangeY;
 
         /// <summary>
-        /// Costruttore
+        ///     Costruttore
         /// </summary>
         /// <param name="uow"></param>
         /// <param name="rangeX"></param>
         /// <param name="rangeY"></param>
         public RetrieveInformations(MainUow uow, IntRange rangeX, IntRange rangeY)
         {
-            if (uow != null) this._MainUow = uow; else throw new ArgumentNullException("uow");
-            this._RangeX = rangeX;
-            this._RangeY = rangeY;
+            if (uow != null) _mainUow = uow;
+            else throw new ArgumentNullException("uow");
+            _rangeX = rangeX;
+            _rangeY = rangeY;
         }
+
         /// <summary>
-        /// Costruttore generico
+        ///     Costruttore generico
         /// </summary>
         public RetrieveInformations(MainUow uow)
         {
-            if (uow != null) this._MainUow = uow; else throw new ArgumentNullException("uow");
+            if (uow != null) _mainUow = uow;
+            else throw new ArgumentNullException("uow");
         }
+
+        public void Dispose()
+        {
+            if (!_disposed)
+            {
+                _disposed = true;
+                if (_mainUow != null) _mainUow.Dispose();
+            }
+            //GC.SuppressFinalize(this);
+        }
+
         /// <summary>
-        /// Recupera la porzione di universo richiesta
+        ///     Recupera la porzione di universo richiesta
         /// </summary>
         /// <param name="cacheKey"></param>
         /// <returns></returns>
         public List<Star> StarsInRange(string cacheKey)
         {
-            List<Star> result = new List<Star>();
+            List<Star> result;
             try
             {
-                result = this._MainUow.StarRepository.FindBy(c => c.CoordinateX >= _RangeX.Min && c.CoordinateY <= _RangeX.Max && c.CoordinateY >= _RangeY.Min && c.CoordinateY <= _RangeY.Max, cacheKey).OrderBy(c => c.Id).ToList();
+                result =
+                    _mainUow.StarRepository.FindBy(
+                        c =>
+                            c.CoordinateX >= _rangeX.Min && c.CoordinateY <= _rangeX.Max && c.CoordinateY >= _rangeY.Min &&
+                            c.CoordinateY <= _rangeY.Max, cacheKey).OrderBy(c => c.Id).ToList();
             }
-            catch (InvalidCastException ex)
+            catch (InvalidCastException)
             {
                 //Accade soltanto in fase di test, perché l'unità di lavoro del repository di test non implementa FindBy
-                result = this._MainUow.StarRepository.Get(string.Empty, c => c.CoordinateX >= _RangeX.Min && c.CoordinateY <= _RangeX.Max && c.CoordinateY >= _RangeY.Min && c.CoordinateY <= _RangeY.Max).ToList();
-            }
-            catch (Exception ex)
-            {
-                var e = ex.Message;
-                throw;
-            }
-            return result;
-        }
-        /// <summary>
-        /// Ritorna una lista di DTO fruibili per riempire un menu a tendina
-        /// </summary>
-        /// <returns></returns>
-        public List<DropDownInfo> GetUniverseList()
-        {
-            List<DropDownInfo> result = new List<DropDownInfo>();
-            foreach (var item in this._MainUow.GalaxyRepository.GetAll("RetrieveUniverseListForm").Select(c => new { Name = c.Name, Id = c.Id }))
-            {
-                DropDownInfo toAdd = new DropDownInfo(item.Id, item.Name);
-                result.Add(toAdd);
+                result =
+                    _mainUow.StarRepository.Get(string.Empty,
+                        c =>
+                            c.CoordinateX >= _rangeX.Min && c.CoordinateY <= _rangeX.Max && c.CoordinateY >= _rangeY.Min &&
+                            c.CoordinateY <= _rangeY.Max).ToList();
             }
             return result;
         }
 
-        public void Dispose()
+        /// <summary>
+        ///     Ritorna una lista di DTO fruibili per riempire un menu a tendina
+        /// </summary>
+        /// <returns></returns>
+        public List<DropDownInfo> GetUniverseList()
         {
-            if (!_Disposed)
+            var result = new List<DropDownInfo>();
+            foreach (
+                var item in _mainUow.GalaxyRepository.GetAll("RetrieveUniverseListForm").Select(c => new {c.Name, c.Id})
+                )
             {
-                this._Disposed = true;
-                if (this._MainUow != null) this._MainUow.Dispose();
+                var toAdd = new DropDownInfo(item.Id, item.Name);
+                result.Add(toAdd);
             }
-            GC.SuppressFinalize(this);
+            return result;
         }
     }
 }

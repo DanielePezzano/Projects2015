@@ -1,4 +1,4 @@
-﻿using Models.Base;
+﻿using System;
 using Models.Buildings;
 using Models.Fleets;
 using Models.Fleets.ShipClasses;
@@ -14,104 +14,101 @@ using Models.Races;
 using Models.Tech;
 using Models.Universe;
 using Models.Users;
-using System;
 using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Repository;
 using UnitOfWork.Interfaces.Context;
-using UnitOfWork.Interfaces.Repository;
 
 namespace UnitOfWork.Implementations.Uows.UowDto
 {
-    public class UowRepositoryFactories :IDisposable
+    public class UowRepositoryFactories : IDisposable
     {
-        private IContext _Context = null;
-        private DalCache _Cache = null;
-        public UowRepositories Repositories { get; set; }
-        private bool _Disposed = false;
+        private readonly DalCache _cache;
+        private readonly IContext _context;
+        private bool _disposed;
 
-        public UowRepositoryFactories(IContext context,DalCache cache, UowRepositories repositories)
+        public UowRepositoryFactories(IContext context, DalCache cache, UowRepositories repositories)
         {
             if (context != null)
-                this._Context = context;
+                _context = context;
             else
                 throw new ArgumentNullException("context");
             if (cache != null)
-                this._Cache = cache;
+                _cache = cache;
             else throw new ArgumentNullException("cache");
-            if (repositories != null) this.Repositories = repositories;
+            if (repositories != null) Repositories = repositories;
             else throw new ArgumentNullException("repositories");
-            this.InitializeRepositories();
+            InitializeRepositories();
+        }
+
+        public UowRepositories Repositories { get; set; }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         private void InitializeRepositories()
         {
             if (Repositories.AntiPlanetWeaponRepo == null)
-                Repositories.AntiPlanetWeaponRepo = RepositoryFactory<AntiPlanetWeapon>.GetRepository(this._Context, this._Cache);
+                Repositories.AntiPlanetWeaponRepo = RepositoryFactory<AntiPlanetWeapon>.GetRepository(_context, _cache);
             if (Repositories.AntiShipWeaponRepo == null)
-                Repositories.AntiShipWeaponRepo = RepositoryFactory<AntiShipWeapon>.GetRepository(this._Context, this._Cache);
+                Repositories.AntiShipWeaponRepo = RepositoryFactory<AntiShipWeapon>.GetRepository(_context, _cache);
             if (Repositories.ShipSystemRepo == null)
-                Repositories.ShipSystemRepo = RepositoryFactory<ShipSystem>.GetRepository(this._Context, this._Cache);
+                Repositories.ShipSystemRepo = RepositoryFactory<ShipSystem>.GetRepository(_context, _cache);
             if (Repositories.ShieldRepo == null)
-                Repositories.ShieldRepo = RepositoryFactory<Shield>.GetRepository(this._Context, this._Cache);
+                Repositories.ShieldRepo = RepositoryFactory<Shield>.GetRepository(_context, _cache);
             if (Repositories.HullRepo == null)
-                Repositories.HullRepo = RepositoryFactory<Hull>.GetRepository(this._Context, this._Cache);
+                Repositories.HullRepo = RepositoryFactory<Hull>.GetRepository(_context, _cache);
             if (Repositories.EngineRepo == null)
-                Repositories.EngineRepo = RepositoryFactory<Engine>.GetRepository(this._Context, this._Cache);
+                Repositories.EngineRepo = RepositoryFactory<Engine>.GetRepository(_context, _cache);
             if (Repositories.ArmorRepo == null)
-                Repositories.ArmorRepo = RepositoryFactory<Armor>.GetRepository(this._Context, this._Cache);
+                Repositories.ArmorRepo = RepositoryFactory<Armor>.GetRepository(_context, _cache);
             if (Repositories.ShipClassRepo == null)
-                Repositories.ShipClassRepo = RepositoryFactory<ShipClass>.GetRepository(this._Context, this._Cache);
+                Repositories.ShipClassRepo = RepositoryFactory<ShipClass>.GetRepository(_context, _cache);
             if (Repositories.FleetRepo == null)
-                Repositories.FleetRepo = RepositoryFactory<Fleet>.GetRepository(this._Context, this._Cache);
+                Repositories.FleetRepo = RepositoryFactory<Fleet>.GetRepository(_context, _cache);
             if (Repositories.BuildingSpecRepo == null)
-                Repositories.BuildingSpecRepo = RepositoryFactory<BuildingSpec>.GetRepository(this._Context, this._Cache);
+                Repositories.BuildingSpecRepo = RepositoryFactory<BuildingSpec>.GetRepository(_context, _cache);
             if (Repositories.BuildingRepo == null)
-                Repositories.BuildingRepo = RepositoryFactory<Building>.GetRepository(this._Context, this._Cache);
+                Repositories.BuildingRepo = RepositoryFactory<Building>.GetRepository(_context, _cache);
             if (Repositories.GalaxyRepo == null)
-                Repositories.GalaxyRepo = RepositoryFactory<Galaxy>.GetRepository(this._Context, this._Cache);
+                Repositories.GalaxyRepo = RepositoryFactory<Galaxy>.GetRepository(_context, _cache);
             if (Repositories.GalaxyLogRepo == null)
-                Repositories.GalaxyLogRepo = RepositoryFactory<GalaxyLog>.GetRepository(this._Context, this._Cache);
+                Repositories.GalaxyLogRepo = RepositoryFactory<GalaxyLog>.GetRepository(_context, _cache);
             if (Repositories.UserLogRepo == null)
-                Repositories.UserLogRepo = RepositoryFactory<UserLog>.GetRepository(this._Context, this._Cache);
+                Repositories.UserLogRepo = RepositoryFactory<UserLog>.GetRepository(_context, _cache);
             if (Repositories.BuildingQueueRepo == null)
-                Repositories.BuildingQueueRepo = RepositoryFactory<BuildingQueue>.GetRepository(this._Context, this._Cache);
+                Repositories.BuildingQueueRepo = RepositoryFactory<BuildingQueue>.GetRepository(_context, _cache);
             if (Repositories.FleetQueueRepo == null)
-                Repositories.FleetQueueRepo = RepositoryFactory<FleetQueue>.GetRepository(this._Context, this._Cache);
+                Repositories.FleetQueueRepo = RepositoryFactory<FleetQueue>.GetRepository(_context, _cache);
             if (Repositories.ResQueueRepo == null)
-                Repositories.ResQueueRepo = RepositoryFactory<ResearchQueue>.GetRepository(this._Context, this._Cache);
-            if (Repositories.RaceBonusRepo==null)
-                Repositories.RaceBonusRepo = RepositoryFactory<RaceBonus>.GetRepository(this._Context, this._Cache);
-            if (Repositories.TechNodeRepo==null)
-                Repositories.TechNodeRepo = RepositoryFactory<TechRequisiteNode>.GetRepository(this._Context, this._Cache);
-            if (Repositories.TechnologyRepo==null)
-                Repositories.TechnologyRepo = RepositoryFactory<Technology>.GetRepository(this._Context, this._Cache);
-            if (Repositories.TechBonusRepo==null)
-                Repositories.TechBonusRepo = RepositoryFactory<TechBonus>.GetRepository(this._Context, this._Cache);
-            if (Repositories.InternalMailRepo==null)
-                Repositories.InternalMailRepo = RepositoryFactory<InternalMail>.GetRepository(this._Context, this._Cache);
-            if (Repositories.PlanetRepo ==null)
-                Repositories.PlanetRepo = RepositoryFactory<Planet>.GetRepository(this._Context, this._Cache);
-            if (Repositories.SatelliteRepo ==null)
-                Repositories.SatelliteRepo = RepositoryFactory<Satellite>.GetRepository(this._Context, this._Cache);
-            if (Repositories.StarRepo==null)
-                Repositories.StarRepo = RepositoryFactory<Star>.GetRepository(this._Context, this._Cache);
-            if (Repositories.UserRepo==null)
-                Repositories.UserRepo = RepositoryFactory<User>.GetRepository(this._Context, this._Cache);
+                Repositories.ResQueueRepo = RepositoryFactory<ResearchQueue>.GetRepository(_context, _cache);
+            if (Repositories.RaceBonusRepo == null)
+                Repositories.RaceBonusRepo = RepositoryFactory<RaceBonus>.GetRepository(_context, _cache);
+            if (Repositories.TechNodeRepo == null)
+                Repositories.TechNodeRepo = RepositoryFactory<TechRequisiteNode>.GetRepository(_context, _cache);
+            if (Repositories.TechnologyRepo == null)
+                Repositories.TechnologyRepo = RepositoryFactory<Technology>.GetRepository(_context, _cache);
+            if (Repositories.TechBonusRepo == null)
+                Repositories.TechBonusRepo = RepositoryFactory<TechBonus>.GetRepository(_context, _cache);
+            if (Repositories.InternalMailRepo == null)
+                Repositories.InternalMailRepo = RepositoryFactory<InternalMail>.GetRepository(_context, _cache);
+            if (Repositories.PlanetRepo == null)
+                Repositories.PlanetRepo = RepositoryFactory<Planet>.GetRepository(_context, _cache);
+            if (Repositories.SatelliteRepo == null)
+                Repositories.SatelliteRepo = RepositoryFactory<Satellite>.GetRepository(_context, _cache);
+            if (Repositories.StarRepo == null)
+                Repositories.StarRepo = RepositoryFactory<Star>.GetRepository(_context, _cache);
+            if (Repositories.UserRepo == null)
+                Repositories.UserRepo = RepositoryFactory<User>.GetRepository(_context, _cache);
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!_Disposed)
-            {
-                _Disposed = true;
-                this.Repositories.Dispose();
-            }
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
+            if (_disposed) return;
+            _disposed = true;
+            Repositories.Dispose();
         }
     }
 }

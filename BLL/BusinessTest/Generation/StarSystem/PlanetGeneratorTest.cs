@@ -1,56 +1,106 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
+using BLL.Generation.StarSystem;
+using BLL.Utilities.Structs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
-using BLL.Generation.StarSystem;
 using Moq;
-using BLL.Utilities.Structs;
 
 namespace BusinessTest.Generation.StarSystem
 {
     /// <summary>
-    /// Summary description for PlanetGeneratorTest
+    ///     Summary description for PlanetGeneratorTest
     /// </summary>
     [TestClass]
     public class PlanetGeneratorTest
     {
-
-        private MockRepository _Repo;
-        private Mock<Star> _Star;
-        private Mock<Planet> _PlanetHostile;
-        private Mock<Planet> _PlanetHabitable;
-        private Mock<OrbitDetail> _CloseOrbit;
-        private Mock<OrbitDetail> _MediumOrbit;
+        private readonly Mock<Planet> _planetHostile;
+        private readonly Mock<Star> _star;
 
         public PlanetGeneratorTest()
         {
-            if (OrbitGeneratorTest._Rnd == null) OrbitGeneratorTest._Rnd = new Random(Environment.TickCount);
-            _Repo = new MockRepository(MockBehavior.Default);
-            _Star = _Repo.Create<Star>();
-            _Star.Object.Mass = 0.03;
-            _Star.Object.Radius = 10;
-            _Star.Object.RadiationLevel = 7;
-            _Star.Object.SurfaceTemp = 5778;
+            if (OrbitGeneratorTest.Rnd == null) OrbitGeneratorTest.Rnd = new Random(Environment.TickCount);
+            var repo = new MockRepository(MockBehavior.Default);
+            _star = repo.Create<Star>();
+            _star.Object.Mass = 0.03;
+            _star.Object.Radius = 10;
+            _star.Object.RadiationLevel = 7;
+            _star.Object.SurfaceTemp = 5778;
 
-            _PlanetHostile = _Repo.Create<Planet>();
-            _PlanetHabitable = _Repo.Create<Planet>();
-            _PlanetHostile.SetupProperty(c => c.Star, _Star.Object);
-            _PlanetHabitable.SetupProperty(c => c.Star, _Star.Object);
+            _planetHostile = repo.Create<Planet>();
+            var planetHabitable = repo.Create<Planet>();
+            _planetHostile.SetupProperty(c => c.Star, _star.Object);
+            planetHabitable.SetupProperty(c => c.Star, _star.Object);
 
-            _CloseOrbit = _Repo.Create<OrbitDetail>();
-            _CloseOrbit.Object.DistanceR = 0.3;
-            _MediumOrbit = _Repo.Create<OrbitDetail>();
-            _MediumOrbit.Object.DistanceR = 1.4;
+            var closeOrbit = repo.Create<OrbitDetail>();
+            closeOrbit.Object.DistanceR = 0.3;
+            var mediumOrbit = repo.Create<OrbitDetail>();
+            mediumOrbit.Object.DistanceR = 1.4;
 
-            _PlanetHostile.Object.AtmospherePresent = false;
-            _PlanetHostile.Object.Orbit = _CloseOrbit.Object;
+            _planetHostile.Object.AtmospherePresent = false;
+            _planetHostile.Object.Orbit = closeOrbit.Object;
 
-            _PlanetHabitable.Object.AtmospherePresent = true;
-            _PlanetHabitable.Object.Orbit = _MediumOrbit.Object;
+            planetHabitable.Object.AtmospherePresent = true;
+            planetHabitable.Object.Orbit = mediumOrbit.Object;
+        }
+
+        [TestMethod]
+        public void TestAssignSurfaceTemperature()
+        {
+            var generator = new PlanetGenerator(_star.Object, new PlanetCustomConditions());
+            var temp1 = generator.AssignSurfaceTemperatureTest(_planetHostile.Object.Orbit.DistanceR,
+                _planetHostile.Object.AtmospherePresent, _star.Object.SurfaceTemp);
+            Assert.AreEqual(570, temp1, "Temp non uguali: atteso: 570, ottenuto : " + temp1);
+        }
+
+        [TestMethod]
+        public void TestGeneratePlanet()
+        {
+            var generator = new PlanetGenerator(_star.Object, new PlanetCustomConditions());
+            var firstPlanet = generator.CreateBrandNewPlanet(OrbitGeneratorTest.Rnd);
+            Assert.IsInstanceOfType(firstPlanet, typeof (Planet));
+            var closeRange = new DoubleRange(0.1, 0.7);
+            generator.CompletePlanetGeneration(firstPlanet, new OrbitGenerator(_star.Object, 0, closeRange), closeRange,
+                OrbitGeneratorTest.Rnd);
+            Assert.IsTrue(Math.Abs(firstPlanet.GravityEarthCompared - firstPlanet.Mass) < 0.001);
+            Assert.IsInstanceOfType(firstPlanet.Orbit, typeof (OrbitDetail));
+        }
+
+        [TestMethod]
+        public void TestCalculateRadiationLevel()
+        {
+            var generator = new PlanetGenerator(null, new PlanetCustomConditions());
+            var radiationLevel = generator.CalculateRadiationLevelTest(false, 4, 1.4);
+            Assert.IsTrue(radiationLevel > 3);
+            radiationLevel = generator.CalculateRadiationLevelTest(true, 4, 1.4);
+            Assert.IsTrue(radiationLevel < 3);
+            radiationLevel = generator.CalculateRadiationLevelTest(false, 15, 1.4);
+            Assert.IsTrue(radiationLevel >= 10);
+            radiationLevel = generator.CalculateRadiationLevelTest(true, 15, 1.4);
+            Assert.IsTrue(radiationLevel < 10);
+
+            radiationLevel = generator.CalculateRadiationLevelTest(true, 15, 0.5);
+            Assert.IsTrue(radiationLevel < 9);
+            radiationLevel = generator.CalculateRadiationLevelTest(false, 15, 0.5);
+            Assert.IsTrue(radiationLevel >= 8);
+            radiationLevel = generator.CalculateRadiationLevelTest(true, 15, 11.4);
+            Assert.IsTrue(radiationLevel < 3);
+            radiationLevel = generator.CalculateRadiationLevelTest(false, 15, 11.4);
+            Assert.IsTrue(radiationLevel > 3);
+        }
+
+        [TestMethod]
+        public void TestAssignTotalSpaces()
+        {
+            var generator = new PlanetGenerator(null, new PlanetCustomConditions());
+            var spaces = generator.AssignTotalSpacesTest(1.0, 5.53, false);
+            Assert.IsTrue(spaces <= 100 && spaces >= 99);
+            spaces = generator.AssignTotalSpacesTest(0.05, 5.43, false);
+            Assert.IsTrue(spaces <= 5 && spaces >= 4);
+            generator.AssignTotalSpacesTest(755, 0.70, false);
         }
 
         #region Additional test attributes
+
         //
         // You can use the following additional attributes as you write your tests:
         //
@@ -70,59 +120,7 @@ namespace BusinessTest.Generation.StarSystem
         // [TestCleanup()]
         // public void MyTestCleanup() { }
         //
+
         #endregion
-
-        [TestMethod]
-        public void TestAssignSurfaceTemperature()
-        {
-            PlanetGenerator generator = new PlanetGenerator(this._Star.Object,new PlanetCustomConditions());
-            int temp_1 = generator.AssignSurfaceTemperatureTest(_PlanetHostile.Object.Orbit.DistanceR, _PlanetHostile.Object.AtmospherePresent, _Star.Object.SurfaceTemp);
-            Assert.AreEqual<int>(570, temp_1, "Temp non uguali: atteso: 570, ottenuto : " + temp_1);
-        }
-
-        [TestMethod]
-        public void TestGeneratePlanet()
-        {
-            PlanetGenerator generator = new PlanetGenerator(this._Star.Object,new PlanetCustomConditions());
-            Planet firstPlanet = generator.CreateBrandNewPlanet(OrbitGeneratorTest._Rnd);
-            Assert.IsInstanceOfType(firstPlanet, typeof(Planet));
-            DoubleRange closeRange = new DoubleRange(0.1, 0.7);
-            generator.CompletePlanetGeneration(firstPlanet, new OrbitGenerator(this._Star.Object, firstPlanet.Mass, 0, closeRange), closeRange, OrbitGeneratorTest._Rnd);
-            Assert.IsTrue(firstPlanet.GravityEarthCompared == firstPlanet.Mass);
-            Assert.IsInstanceOfType(firstPlanet.Orbit, typeof(OrbitDetail));
-        }
-
-        [TestMethod]
-        public void TestCalculateRadiationLevel()
-        {
-            PlanetGenerator generator = new PlanetGenerator(null,new PlanetCustomConditions());
-            int radiationLevel = generator.CalculateRadiationLevelTest(false, 4, 1.4);
-            Assert.IsTrue(radiationLevel > 3);
-            radiationLevel = generator.CalculateRadiationLevelTest(true, 4, 1.4);
-            Assert.IsTrue(radiationLevel < 3);
-            radiationLevel = generator.CalculateRadiationLevelTest(false, 15, 1.4);
-            Assert.IsTrue(radiationLevel >= 10);
-            radiationLevel = generator.CalculateRadiationLevelTest(true, 15, 1.4);
-            Assert.IsTrue(radiationLevel < 10);
-
-            radiationLevel = generator.CalculateRadiationLevelTest(true, 15, 0.5);
-            Assert.IsTrue(radiationLevel < 9);
-            radiationLevel = generator.CalculateRadiationLevelTest(false, 15, 0.5);
-            Assert.IsTrue(radiationLevel >= 8);
-            radiationLevel = generator.CalculateRadiationLevelTest(true, 15, 11.4);
-            Assert.IsTrue(radiationLevel < 3);
-            radiationLevel = generator.CalculateRadiationLevelTest(false, 15, 11.4);
-            Assert.IsTrue(radiationLevel > 3);
-        }
-        [TestMethod]
-        public void TestAssignTotalSpaces()
-        {
-            PlanetGenerator generator = new PlanetGenerator(null,new PlanetCustomConditions());
-            int spaces = generator.AssignTotalSpacesTest(1.0, 5.53, false);
-            Assert.IsTrue(spaces <= 100 && spaces >= 99);
-            spaces = generator.AssignTotalSpacesTest(0.05, 5.43, false);
-            Assert.IsTrue(spaces <= 5 && spaces >= 4);
-            spaces = generator.AssignTotalSpacesTest(755, 0.70, false);
-        }
     }
 }

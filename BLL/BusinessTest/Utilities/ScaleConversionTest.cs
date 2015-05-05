@@ -1,18 +1,43 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿using BLL.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BLL.Utilities;
 
 namespace BusinessTest.Utilities
 {
     /// <summary>
-    /// Summary description for ScaleConversionTest
+    ///     Summary description for ScaleConversionTest
     /// </summary>
     [TestClass]
     public class ScaleConversionTest
     {
-        const double DELTA = 0.005;
+        private const double Delta = 0.005;
+
+        [TestMethod]
+        public void TestScaleConversionFrom10To100()
+        {
+            using (var conv = new ScaleConversion(10, 100))
+            {
+                Assert.AreEqual(30.0, conv.Convert(3), Delta);
+            }
+        }
+
+        [TestMethod]
+        public void TestScaleConversionFrom15To10()
+        {
+            using (var conv = new ScaleConversion(15, 10))
+            {
+                Assert.AreEqual(2, conv.Convert(3), Delta);
+            }
+        }
+
+        [TestMethod]
+        public void TestScaleConversionFrom20To100()
+        {
+            using (var conv = new ScaleConversion(20, 100))
+            {
+                Assert.AreEqual(50, conv.Convert(10), Delta);
+            }
+        }
+
         //public ScaleConversionTest()
         //{
         //    //
@@ -39,6 +64,7 @@ namespace BusinessTest.Utilities
         //}
 
         #region Additional test attributes
+
         //
         // You can use the following additional attributes as you write your tests:
         //
@@ -58,31 +84,7 @@ namespace BusinessTest.Utilities
         // [TestCleanup()]
         // public void MyTestCleanup() { }
         //
-        #endregion
 
-        [TestMethod]
-        public void TestScaleConversionFrom10To100()
-        {
-            using (ScaleConversion conv = new ScaleConversion(10, 100))
-            {
-                Assert.AreEqual(30.0, conv.Convert(3), DELTA);
-            }
-        }
-        [TestMethod]
-        public void TestScaleConversionFrom15To10()
-        {
-            using (ScaleConversion conv = new ScaleConversion(15, 10))
-            {
-                Assert.AreEqual(2, conv.Convert(3), DELTA);
-            }
-        }
-        [TestMethod]
-        public void TestScaleConversionFrom20To100()
-        {
-            using (ScaleConversion conv = new ScaleConversion(20, 100))
-            {
-                Assert.AreEqual(50, conv.Convert(10), DELTA);
-            }
-        }
+        #endregion
     }
 }
