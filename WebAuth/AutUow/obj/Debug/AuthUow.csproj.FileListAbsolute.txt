@@ -1,0 +1,14 @@
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\bin\Debug\AutUow.dll.config
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\bin\Debug\AutUow.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\bin\Debug\AutUow.pdb
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\bin\Debug\AutUow.dll.CodeAnalysisLog.xml
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\bin\Debug\AutUow.dll.lastcodeanalysissucceeded
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\bin\Debug\AuthModel.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\bin\Debug\EntityFramework.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\bin\Debug\AuthModel.pdb
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\bin\Debug\EntityFramework.xml
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\obj\Debug\AuthUow.csprojResolveAssemblyReference.cache
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\obj\Debug\AutUow.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AutUow\obj\Debug\AutUow.pdb

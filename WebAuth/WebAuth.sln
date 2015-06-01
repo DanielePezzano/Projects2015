@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthModel", "AuthModel\AuthModel.csproj", "{7B59BC9D-1F3D-4322-9D22-D10897D31949}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0FEBFE46-BAF5-4D53-9462-9D43FC573E55}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthUow", "AutUow\AuthUow.csproj", "{9DB1C76E-0026-4D23-9CDA-7DB0D8AB64C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthBll", "AuthBll\AuthBll.csproj", "{C3ED5662-3E35-4CF0-80A9-9DFB7F9BC948}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthBllTest", "AuthBllTest\AuthBllTest.csproj", "{2DBA1FBE-B546-42B5-AA26-63EFB5F3E056}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthSharedDto", "AuthSharedDto\AuthSharedDto.csproj", "{6DE31FB9-71BF-4582-89B1-7BC5C7157955}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthApi", "AuthApi\AuthApi.csproj", "{231DF787-4903-42A3-A648-88560F1FB1E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthApi.Tests", "AuthApi.Tests\AuthApi.Tests.csproj", "{A60093D4-2A4D-4B8F-8BAE-15C8BDC0A19F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B59BC9D-1F3D-4322-9D22-D10897D31949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B59BC9D-1F3D-4322-9D22-D10897D31949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B59BC9D-1F3D-4322-9D22-D10897D31949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B59BC9D-1F3D-4322-9D22-D10897D31949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DB1C76E-0026-4D23-9CDA-7DB0D8AB64C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DB1C76E-0026-4D23-9CDA-7DB0D8AB64C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DB1C76E-0026-4D23-9CDA-7DB0D8AB64C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DB1C76E-0026-4D23-9CDA-7DB0D8AB64C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3ED5662-3E35-4CF0-80A9-9DFB7F9BC948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3ED5662-3E35-4CF0-80A9-9DFB7F9BC948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3ED5662-3E35-4CF0-80A9-9DFB7F9BC948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3ED5662-3E35-4CF0-80A9-9DFB7F9BC948}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DBA1FBE-B546-42B5-AA26-63EFB5F3E056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DBA1FBE-B546-42B5-AA26-63EFB5F3E056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DBA1FBE-B546-42B5-AA26-63EFB5F3E056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DBA1FBE-B546-42B5-AA26-63EFB5F3E056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DE31FB9-71BF-4582-89B1-7BC5C7157955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DE31FB9-71BF-4582-89B1-7BC5C7157955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DE31FB9-71BF-4582-89B1-7BC5C7157955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DE31FB9-71BF-4582-89B1-7BC5C7157955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{231DF787-4903-42A3-A648-88560F1FB1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{231DF787-4903-42A3-A648-88560F1FB1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{231DF787-4903-42A3-A648-88560F1FB1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{231DF787-4903-42A3-A648-88560F1FB1E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A60093D4-2A4D-4B8F-8BAE-15C8BDC0A19F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A60093D4-2A4D-4B8F-8BAE-15C8BDC0A19F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A60093D4-2A4D-4B8F-8BAE-15C8BDC0A19F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A60093D4-2A4D-4B8F-8BAE-15C8BDC0A19F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

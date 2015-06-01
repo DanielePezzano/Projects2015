@@ -1,0 +1,17 @@
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\AuthBll.dll.config
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\AuthBll.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\AuthBll.pdb
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\AuthModel.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\AuthSharedDto.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\AutUow.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\EntityFramework.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\WcfCommCrypto.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\AuthModel.pdb
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\AuthSharedDto.pdb
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\AutUow.pdb
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\EntityFramework.xml
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\obj\Debug\AuthBll.csprojResolveAssemblyReference.cache
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\obj\Debug\AuthBll.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthBll\obj\Debug\AuthBll.pdb

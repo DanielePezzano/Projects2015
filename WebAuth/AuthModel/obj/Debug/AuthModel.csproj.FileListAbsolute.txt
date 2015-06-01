@@ -1,0 +1,10 @@
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthModel\bin\Debug\AuthModel.dll.config
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthModel\bin\Debug\AuthModel.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthModel\bin\Debug\AuthModel.pdb
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthModel\bin\Debug\EntityFramework.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthModel\bin\Debug\EntityFramework.xml
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthModel\obj\Debug\AuthModel.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthModel\obj\Debug\AuthModel.pdb
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthModel\obj\Debug\AuthModel.csprojResolveAssemblyReference.cache

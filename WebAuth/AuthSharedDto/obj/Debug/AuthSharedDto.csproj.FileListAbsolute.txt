@@ -1,0 +1,5 @@
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthSharedDto\bin\Debug\AuthSharedDto.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthSharedDto\bin\Debug\AuthSharedDto.pdb
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthSharedDto\obj\Debug\AuthSharedDto.csprojResolveAssemblyReference.cache
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthSharedDto\obj\Debug\AuthSharedDto.dll
+C:\Users\Daniele\Documents\GitHub\Projects2015\WebAuth\AuthSharedDto\obj\Debug\AuthSharedDto.pdb
