@@ -24,3 +24,16 @@ C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release
 C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.pdb
 C:\Users\daniele\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.csprojResolveAssemblyReference.cache
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.dll.config
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.dll.CodeAnalysisLog.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\UnitOfWork.dll.lastcodeanalysissucceeded
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\EntityFramework.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\Models.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\EntityFramework.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.csprojResolveAssemblyReference.cache
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Release\UnitOfWork.pdb

@@ -31,12 +31,12 @@ namespace UnitOfWork.Implementations.Uows.UowDto
             if (context != null)
                 _context = context;
             else
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             if (cache != null)
                 _cache = cache;
-            else throw new ArgumentNullException("cache");
+            else throw new ArgumentNullException(nameof(cache));
             if (repositories != null) Repositories = repositories;
-            else throw new ArgumentNullException("repositories");
+            else throw new ArgumentNullException(nameof(repositories));
             InitializeRepositories();
         }
 

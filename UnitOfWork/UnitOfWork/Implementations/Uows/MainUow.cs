@@ -32,9 +32,9 @@ namespace UnitOfWork.Implementations.Uows
         public MainUow(IContext context, UowRepositoryFactories repoFactories)
         {
             if (context != null) _context = context;
-            else throw new ArgumentNullException("context");
+            else throw new ArgumentNullException(nameof(context));
             if (repoFactories != null) _repoFactories = repoFactories;
-            else throw new ArgumentNullException("repoFactories");
+            else throw new ArgumentNullException(nameof(repoFactories));
 
             if (_context.IsTest == false) CheckInitialization();
         }
@@ -72,7 +72,7 @@ namespace UnitOfWork.Implementations.Uows
 
         private static int DoSaving(ProductionContext context)
         {
-            return context != null ? context.SaveChanges() : 1;
+            return context?.SaveChanges() ?? 1;
         }
 
         #region Repositories properties
