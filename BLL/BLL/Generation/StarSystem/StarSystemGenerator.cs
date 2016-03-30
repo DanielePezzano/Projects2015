@@ -119,28 +119,10 @@ namespace BLL.Generation.StarSystem
             return myRange;
         }
 
-        /// <summary>
-        ///     Generate a RandomPlanet
-        /// </summary>
-        /// <param name="star"></param>
-        /// <param name="conditions"></param>
-        /// <param name="rnd"></param>
-        private void GeneratePlanet(Star star, PlanetCustomConditions conditions, Random rnd)
+        private void GeneratePlanets(Star star, PlanetCustomConditions conditions, Random rnd,int numberOfPlanetsToAdd)
         {
-            using (var generator = new PlanetGenerator(star, conditions))
-            {
-                var habitablePlanet = generator.CreateBrandNewPlanet(rnd);
-                if (habitablePlanet != null)
-                {
-                    using (
-                        var orbigGenerator = new OrbitGenerator(star, habitablePlanet.Radius, _closeRange,
-                            _conditions.ForceLiving))
-                    {
-                        generator.CompletePlanetGeneration(habitablePlanet, orbigGenerator, _closeRange, rnd);
-                    }
-                    star.Planets.Add(habitablePlanet);
-                }
-            }
+            var factory = new SolarSystemFactory(star, conditions, rnd, new OrbitGenerator(star,_closeRange), _closeRange, numberOfPlanetsToAdd);
+            factory.Construct();
         }
 
         /// <summary>
@@ -157,20 +139,21 @@ namespace BLL.Generation.StarSystem
             var maxNumberOfPlanets = CalculateMaxNumberOfPlanet(star);
             var planetProbability = CalculatePlanetProbability(star);
 
-            if (HasPlanets(planetProbability, rnd) || _conditions.ForceLiving)
-            {
-                var numberOfPlanets = CalculateNumberOfPlanets(maxNumberOfPlanets, rnd);
-                if (_conditions.ForceLiving)
-                {
-                    GeneratePlanet(star, _conditions, rnd);
-                    numberOfPlanets = (numberOfPlanets - 1 < 0) ? 0 : numberOfPlanets - 1;
-                }
-                for (var index = 0; index < numberOfPlanets; index++)
-                {
-                    GeneratePlanet(star, new PlanetCustomConditions(), rnd);
-                }
-            }
+            AddPlanets(rnd, planetProbability, maxNumberOfPlanets, star);
             return star;
+        }
+
+        private void AddPlanets(Random rnd, IntRange planetProbability, IntRange maxNumberOfPlanets, Star star)
+        {
+            if (!HasPlanets(planetProbability, rnd) && !_conditions.ForceLiving) return;
+
+            var numberOfPlanets = CalculateNumberOfPlanets(maxNumberOfPlanets, rnd);
+            if (_conditions.ForceLiving)
+            {
+                GeneratePlanets(star,_conditions,rnd,1);
+                numberOfPlanets = (numberOfPlanets - 1 < 0) ? 0 : numberOfPlanets - 1;
+            }
+            GeneratePlanets(star, _conditions, rnd, numberOfPlanets);
         }
 
         /// <summary>

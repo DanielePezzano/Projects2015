@@ -8,17 +8,16 @@ namespace BLL.Generation.StarSystem
     public sealed class OrbitGenerator : IDisposable
     {
         private readonly bool _forceLiving;
-        private readonly double _planetRadius;
+        private double _planetRadius;
         private readonly Star _star;
         private DoubleRange _closeRange;
         private bool _disposed;
         private DoubleRange _satelliteRange;
 
-        public OrbitGenerator(Star star, double planetRadius, DoubleRange closeRange,
+        public OrbitGenerator(Star star, DoubleRange closeRange,
             bool forceLiving = false)
         {
             _star = star;
-            _planetRadius = planetRadius;
             _forceLiving = forceLiving;
             _closeRange = closeRange;
             _satelliteRange = new DoubleRange(PlanetProperties.MinSatelliteDistance,
@@ -27,12 +26,10 @@ namespace BLL.Generation.StarSystem
 
         public void Dispose()
         {
-            if (!_disposed)
-            {
-                _disposed = true;
-                _closeRange = new DoubleRange();
-                _satelliteRange = new DoubleRange();
-            }
+            if (_disposed) return;
+            _disposed = true;
+            _closeRange = new DoubleRange();
+            _satelliteRange = new DoubleRange();
         }
 
         /// <summary>
@@ -115,6 +112,11 @@ namespace BLL.Generation.StarSystem
                 PeriodOfRevolution = CalculatePeriodOfRevolution(distance, _planetRadius, 0),
                 TetaZero = RandomNumbers.RandomDouble(0.1, 3, rnd)
             };
+        }
+
+        public void AssignPlanetRadius(double radius)
+        {
+            _planetRadius = radius;
         }
 
         #region Wrapper for private methods test

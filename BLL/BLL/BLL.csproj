@@ -63,7 +63,6 @@
     <Compile Include="Generation\StarSystem\OrbitGenerator.cs" />
     <Compile Include="Generation\StarSystem\PlanetCustomConditions.cs" />
     <Compile Include="Generation\StarSystem\SolarSystemFactory.cs" />
-    <Compile Include="Generation\StarSystem\PlanetGenerator.cs" />
     <Compile Include="Generation\StarSystem\PlanetProperties.cs" />
     <Compile Include="Generation\StarSystem\StarGenerator.cs" />
     <Compile Include="Generation\StarSystem\StarPlacer.cs" />

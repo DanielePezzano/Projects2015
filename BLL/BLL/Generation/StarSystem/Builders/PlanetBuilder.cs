@@ -7,7 +7,6 @@ using Models.Base.Enum;
 using Models.Buildings;
 using Models.Universe;
 using Models.Universe.Enum;
-using Models.Users;
 
 namespace BLL.Generation.StarSystem.Builders
 {
@@ -63,12 +62,11 @@ namespace BLL.Generation.StarSystem.Builders
             _isGasseous = result;
         }
 
-        private bool IsWaterPresent(bool hasAtmosphere, bool forcewater, bool isSatellite, Random rnd)
+        private bool IsWaterPresent(bool hasAtmosphere, bool forcewater, Random rnd)
         {
             if (forcewater) return true;
             if (!hasAtmosphere) return false;
-            if (!isSatellite) return (RandomNumbers.RandomInt(0, 10, rnd) <= 1);
-            return (RandomNumbers.RandomInt(0, 100, rnd) <= 1);
+            return (RandomNumbers.RandomInt(0, 10, rnd) <= 1);
         }
 
         private int CalculateTotalSpaces(double mass, bool isGasseous)
@@ -201,23 +199,21 @@ namespace BLL.Generation.StarSystem.Builders
                 CalculateTotalSpaces(_resultPlanet.Mass,_isGasseous),
                 _resultPlanet.RadiationLevel,
                 _conditions,
-                IsWaterPresent(_resultPlanet.AtmospherePresent, _conditions.ForceWater, false, _rnd),
+                IsWaterPresent(_resultPlanet.AtmospherePresent, _conditions.ForceWater, _rnd),
                 _resultPlanet.AtmospherePresent,
                 _rnd);
         }
 
-        private void CheckConditionRichness(Random rnd)
+        private void CheckConditionRichness()
         {
             if (!_conditions.MineralPoor && !_conditions.MineralRich)
             {
-                _conditions.MineralRich = (RandomNumbers.RandomInt(0, 100, rnd) == 0);
-                _conditions.MineralPoor = (!_conditions.MineralRich && RandomNumbers.RandomInt(0, 100, rnd) <= 20);
+                _conditions.MineralRich = (RandomNumbers.RandomInt(0, 100, _rnd) == 0);
+                _conditions.MineralPoor = (!_conditions.MineralRich && RandomNumbers.RandomInt(0, 100, _rnd) <= 20);
             }
-            if (!_conditions.FoodRich && !_conditions.FoodPoor)
-            {
-                _conditions.FoodRich = (RandomNumbers.RandomInt(0, 100, rnd) == 0);
-                _conditions.FoodPoor = (!_conditions.FoodRich && RandomNumbers.RandomInt(0, 100, rnd) <= 20);
-            }
+            if (_conditions.FoodRich || _conditions.FoodPoor) return;
+            _conditions.FoodRich = (RandomNumbers.RandomInt(0, 100, _rnd) == 0);
+            _conditions.FoodPoor = (!_conditions.FoodRich && RandomNumbers.RandomInt(0, 100, _rnd) <= 20);
         }
 
         private void AssignProduction()
@@ -235,7 +231,7 @@ namespace BLL.Generation.StarSystem.Builders
 
         #endregion
 
-        public BaseEntity Build(Star star, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange,double planetDistance = 0)
+        public BaseEntity Build(Star star, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange)
         {
             _star = star;
             _conditions = conditions;
@@ -251,13 +247,11 @@ namespace BLL.Generation.StarSystem.Builders
             AssignPeriodOfRotation(generator);
             AssignTotalSpaces();
 
-            CheckConditionRichness(rnd);
+            CheckConditionRichness();
 
             AssignProduction();
             AssignStatus();
             
-            //var satellites = NumberOfSatellite(planet.Mass, rnd);
-
             return _resultPlanet;
         }
 

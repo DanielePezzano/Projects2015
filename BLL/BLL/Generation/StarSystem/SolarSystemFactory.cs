@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using BLL.Generation.StarSystem.Builders;
 using BLL.Utilities;
 using BLL.Utilities.Structs;
-using Models.Base;
 using Models.Universe;
 
 namespace BLL.Generation.StarSystem
@@ -16,7 +16,8 @@ namespace BLL.Generation.StarSystem
         private Random _rnd;
         private OrbitGenerator _orbitGenerator;
         private DoubleRange _closeRange;
-        private int _numberOfPlanets;
+        private readonly int _numberOfPlanets;
+        private List<Planet> _generatedPlanets;
 
         public SolarSystemFactory(Star associatedStar, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange,int numberOfPlanets)
         {
@@ -26,6 +27,7 @@ namespace BLL.Generation.StarSystem
             _numberOfPlanets = numberOfPlanets;
             _orbitGenerator = generator;
             _closeRange = closeRange;
+            
         }
 
         private int CalculateNumberOfSatellite(double mass, Random rnd, double satelliteFactor = 0.1)
@@ -40,7 +42,7 @@ namespace BLL.Generation.StarSystem
 
         private void AddSatellites(Planet planet)
         {
-            var nos = this.CalculateNumberOfSatellite(planet.Mass, _rnd);
+            var nos = CalculateNumberOfSatellite(planet.Mass, _rnd);
             for (var i = 0; i < nos; i++)
             {
                 _mySatBuilder = new SatelliteBuilder();
@@ -51,15 +53,26 @@ namespace BLL.Generation.StarSystem
             }
         }
 
+        public List<Planet> RetrievePlanets()
+        {
+            return _generatedPlanets;
+        }
+
         public void Construct()
         {
+            _generatedPlanets = new List<Planet>();
+
             for (var x = 0; x < _numberOfPlanets; x++)
             {
                 _myPlanetBuilder = new PlanetBuilder();
                 var toAdd = (Planet)_myPlanetBuilder.Build(_associatedStar, _conditions, _rnd, _orbitGenerator, _closeRange);
+                _orbitGenerator.AssignPlanetRadius(toAdd.Radius);
                 AddSatellites(toAdd);
-                _associatedStar.Planets.Add(toAdd);
+                _generatedPlanets.Add(toAdd);
             }
+
+            if (_generatedPlanets != null && _associatedStar.Planets != null)
+                _associatedStar.Planets = _generatedPlanets;
         }
     }
 }

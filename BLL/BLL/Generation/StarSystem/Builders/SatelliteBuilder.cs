@@ -7,13 +7,13 @@ using Models.Base;
 using Models.Base.Enum;
 using Models.Buildings;
 using Models.Universe;
+using Models.Universe.Enum;
 
 namespace BLL.Generation.StarSystem.Builders
 {
     public class SatelliteBuilder : IBuilder
     {
         private PlanetCustomConditions _conditions;
-        private double _planetDistance = 0;
         private double _mediumDensity = 5.5; //densità media terrestre --> se densità calcolata <=3 probabilmente è gassoso   
         private Star _star;
         private Random _rnd;
@@ -33,6 +33,25 @@ namespace BLL.Generation.StarSystem.Builders
             return false;
         }
 
+        private void IsGasseous(double density, Random rnd, bool atmospherePresent)
+        {
+            if (!atmospherePresent) _isGasseous = false;
+            if (density <= 1) _isGasseous = true;
+            var result = false;
+            var perc = 0;
+            if (density > 2 && density <= BasicConstants.MinDensityForGas) perc = 20;
+            if (density > 1 && density <= 2) perc = 70;
+            if (RandomNumbers.RandomInt(0, 100, rnd) <= perc) result = true;
+            _isGasseous = result;
+        }
+
+        private bool IsWaterPresent(bool hasAtmosphere, bool forcewater, Random rnd)
+        {
+            if (forcewater) return true;
+            if (!hasAtmosphere) return false;
+            return (RandomNumbers.RandomInt(0, 100, rnd) <= 1);
+        }
+
         private void CreateSatellite()
         {
             _resultSat = new Satellite
@@ -46,6 +65,22 @@ namespace BLL.Generation.StarSystem.Builders
                 User = null,
                 RingsPresent = false
             };
+        }
+
+        private int CalculateTotalSpaces(double mass, bool isGasseous)
+        {
+            if (isGasseous) return 0;
+            double result;
+            if (_mediumDensity >= BasicConstants.MinDensityForGas)
+                result = 100 * (mass * _mediumDensity) / BasicConstants.EarthDensity;
+            else
+            {
+                result = (_mediumDensity >= 1)
+                    ? 10 * mass / (Math.Pow(BasicConstants.EarthDensity * _mediumDensity, 2))
+                    : 10 * mass * Math.Pow(_mediumDensity, 10) / BasicConstants.EarthDensity;
+            }
+            if ((int)result > 250) return 250;
+            return (int)result;
         }
 
         private int CalculateRadiationLevel(bool atmospherePresent, int starRadiation, double distance, bool forceLiving, double fixedDistance)
@@ -109,7 +144,7 @@ namespace BLL.Generation.StarSystem.Builders
         private void AssignRadiationLevel()
         {
             _resultSat.RadiationLevel = CalculateRadiationLevel(_resultSat.AtmospherePresent, _star.RadiationLevel,
-                _planetDistance, false, BasicConstants.EarthDistance);
+                _resultSat.Orbit.DistanceR, false, BasicConstants.EarthDistance);
         }
 
         private void AssignAtmosphere()
@@ -126,7 +161,7 @@ namespace BLL.Generation.StarSystem.Builders
 
         private void AssignSurfaceTemperature(Star star)
         {
-            _resultSat.SurfaceTemp = CalculateSurfaceTemperature(_planetDistance,
+            _resultSat.SurfaceTemp = CalculateSurfaceTemperature(_resultSat.Orbit.DistanceR,
                 _resultSat.AtmospherePresent, star.SurfaceTemp, _rnd);
         }
 
@@ -135,14 +170,52 @@ namespace BLL.Generation.StarSystem.Builders
             _resultSat.Radius = CalculateRadius(_resultSat.Mass);
         }
 
+        private void AssignPeriodOfRotation(OrbitGenerator generator)
+        {
+            _resultSat.Orbit.PeriodOfRotation = generator.CalculatePeriodOfRotation(_resultSat.Orbit.DistanceR,
+                _resultSat.Orbit.PeriodOfRevolution, _mediumDensity, _rnd);
+        }
+
+        private void AssignTotalSpaces()
+        {
+            IsGasseous(_mediumDensity, _rnd, _resultSat.AtmospherePresent);
+
+            _resultSat.Spaces = PlanetProperties.CalculateSpaces(
+                CalculateTotalSpaces(_resultSat.Mass, _isGasseous),
+                _resultSat.RadiationLevel,
+                _conditions,
+                IsWaterPresent(_resultSat.AtmospherePresent, _conditions.ForceWater, _rnd),
+                _resultSat.AtmospherePresent,
+                _rnd);
+        }
+
+        private void AssignProduction()
+        {
+            _resultSat.SatelliteProduction = PlanetProperties.CalculateProduction(_resultSat.Spaces, _mediumDensity,
+                BasicConstants.EarthDensity, _conditions);
+        }
+
+        private void CheckConditionRichness()
+        {
+            _conditions.FoodRich = (RandomNumbers.RandomInt(0, 100, _rnd) == 0);
+            _conditions.FoodPoor = (!_conditions.FoodRich && RandomNumbers.RandomInt(0, 100, _rnd) <= 20);
+
+            _conditions.MineralRich = (RandomNumbers.RandomInt(0, 100, _rnd) == 0);
+            _conditions.MineralPoor = (!_conditions.MineralRich && RandomNumbers.RandomInt(0, 100, _rnd) <= 20);
+        }
+
+        private void AssignStatus()
+        {
+            _resultSat.SatelliteStatus = (_resultSat.Spaces.Totalspaces > 0) ? SatelliteStatus.Uncolonized : SatelliteStatus.Uncolonizable;
+        }
+
         #endregion
 
-        public BaseEntity Build(Star star, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange,double planetDistance = 0)
+        public BaseEntity Build(Star star, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange)
         {
             _star = star;
             _conditions = conditions;
             _rnd = rnd;
-            _planetDistance = planetDistance;
 
             CreateSatellite();
             AssignOrbit(generator);
@@ -151,7 +224,12 @@ namespace BLL.Generation.StarSystem.Builders
             AssignMass();
             AssignSurfaceTemperature(star);
             AssignRadius();
-            
+            AssignPeriodOfRotation(generator);
+            AssignTotalSpaces();
+
+            CheckConditionRichness();
+            AssignProduction();
+            AssignStatus();
 
             return _resultSat;
         }

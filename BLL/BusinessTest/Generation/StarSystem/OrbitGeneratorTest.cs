@@ -28,14 +28,16 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestGenerateType()
         {
-            var generator = new OrbitGenerator(_star.Object, 0.8, new DoubleRange(0.1, 0.6));
+            var generator = new OrbitGenerator(_star.Object, new DoubleRange(0.1, 0.6));
+            generator.AssignPlanetRadius(0.8);
             Assert.IsInstanceOfType(generator.Generate(Rnd), typeof (OrbitDetail));
         }
 
         [TestMethod]
         public void TestCalculateDistanceTest()
         {
-            var generator = new OrbitGenerator(_star.Object, 0.8, new DoubleRange(0.1, 0.6));
+            var generator = new OrbitGenerator(_star.Object,new DoubleRange(0.1, 0.6));
+            generator.AssignPlanetRadius(0.8);
             var distance = generator.CalculateDistanceTest();
             Assert.IsTrue(distance >= 0.7);
         }
@@ -43,7 +45,8 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestCalculatePeriodOfRevolutionTest()
         {
-            var generator = new OrbitGenerator(_star.Object, 0.8, new DoubleRange(0.1, 0.6));
+            var generator = new OrbitGenerator(_star.Object, new DoubleRange(0.1, 0.6));
+            generator.AssignPlanetRadius(0.8);
             var revolution = generator.CalculatePeriodOfRevolutionTest(5.2);
             Assert.IsTrue(revolution>0);
         }
@@ -51,7 +54,8 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestCalculatePeriodOfRotation()
         {
-            var generator = new OrbitGenerator(_star.Object, 0.22, new DoubleRange(0.1, 0.6));
+            var generator = new OrbitGenerator(_star.Object, new DoubleRange(0.1, 0.6));
+            generator.AssignPlanetRadius(0.22);
             var rotation = generator.CalculatePeriodOfRotation(0.45, 0.2, 4.9, Rnd);
             Assert.IsTrue(Math.Abs(rotation) > 40 && Math.Abs(rotation) < 100);
         }

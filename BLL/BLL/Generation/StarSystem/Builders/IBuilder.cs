@@ -7,7 +7,6 @@ namespace BLL.Generation.StarSystem.Builders
 {
     interface IBuilder
     {
-        BaseEntity Build(Star star, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator,
-            DoubleRange closeRange, double planetDistance = 0);
+        BaseEntity Build(Star star, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange);
     }
 }
