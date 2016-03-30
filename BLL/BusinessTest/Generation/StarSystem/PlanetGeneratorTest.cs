@@ -132,12 +132,15 @@ namespace BusinessTest.Generation.StarSystem
 
                         var star = generator.Generate(OrbitGeneratorTest.Rnd, uow, galaxy.Object, "");
 
+                        if (star.Planets.Count <= 0) return;
                         List<Planet> generatedPlanets = star.Planets.ToList();
 
-                        Assert.IsInstanceOfType(generatedPlanets.FirstOrDefault(), typeof(Planet));
+                        Assert.IsInstanceOfType(generatedPlanets.FirstOrDefault(), typeof (Planet));
                         Assert.IsNotNull(generatedPlanets.FirstOrDefault());
-                        Assert.IsTrue(Math.Abs(generatedPlanets.First().GravityEarthCompared - generatedPlanets.First().Mass) < 0.001);
-                        Assert.IsInstanceOfType(generatedPlanets.First().Orbit, typeof(OrbitDetail));
+                        Assert.IsTrue(
+                            Math.Abs(generatedPlanets.First().GravityEarthCompared - generatedPlanets.First().Mass) <
+                            0.001);
+                        Assert.IsInstanceOfType(generatedPlanets.First().Orbit, typeof (OrbitDetail));
                     }
                 }
             }
@@ -167,7 +170,35 @@ namespace BusinessTest.Generation.StarSystem
                         var star = generator.Generate(OrbitGeneratorTest.Rnd, uow, galaxy.Object, "");
 
                         List<Planet> generatedPlanets = star.Planets.ToList();
-                        Assert.IsTrue(generatedPlanets.Count(c => c.AtmospherePresent) >= 1);
+                        Assert.IsTrue(generatedPlanets.Count(c => c.IsHabitable) >= 1);
+                    }
+                }
+            }
+        }
+         [TestMethod]
+        public void TestOneMostlyWater()
+        {
+            using (var cf = new ContextFactory(true))
+            {
+                var context = cf.Retrieve();
+                var cache = new DalCache();
+                var repos = new UowRepositories();
+                using (var repoFactories = new UowRepositoryFactories(context, cache, repos))
+                {
+                    using (var uow = new MainUow(context, repoFactories))
+                    {
+                        uow.StarRepository.CustomDbset(new List<Star>());
+                        var repo = new MockRepository(MockBehavior.Default);
+                        Mock<Galaxy> galaxy = repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
+
+                        var generator = FactoryGenerator.RetrieveStarSystemGenerator(
+                            FactoryGenerator.RetrieveConditions(false, false, false, false, false,true, false),
+                            OrbitGeneratorTest.Rnd, uow, new IntRange(0, 10), new IntRange(0, 10));
+
+                        var star = generator.Generate(OrbitGeneratorTest.Rnd, uow, galaxy.Object, "");
+
+                        List<Planet> generatedPlanets = star.Planets.ToList();
+                        Assert.IsTrue(generatedPlanets.Count(c => c.Spaces.WaterSpaces > c.Spaces.GroundSpaces) >= 1);
                     }
                 }
             }

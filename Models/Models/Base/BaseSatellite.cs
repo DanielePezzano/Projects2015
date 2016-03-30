@@ -78,6 +78,16 @@ namespace Models.Base
         [DataMember]
         public OrbitDetail Orbit { get; set; }
 
+        [Required]
+        [Display(Name = "Habitable", ResourceType = typeof (Resources))]
+        [DataMember]
+        public bool IsHabitable { get; set; }
+
+        [Required]
+        [Display(Name = "IsGaseous", ResourceType = typeof(Resources))]
+        [DataMember]
+        public bool IsGaseous { get; set; }
+
         [NotMapped]
         [Display(Name = "GravityCompared", Description = "GravityComparedHint", ResourceType = typeof (Resources))]
         [DataMember]

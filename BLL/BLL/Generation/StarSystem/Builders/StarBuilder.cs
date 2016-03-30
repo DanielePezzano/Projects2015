@@ -125,14 +125,17 @@ namespace BLL.Generation.StarSystem.Builders
         /// </summary>
         /// <param name="planetRage"></param>
         /// <param name="rnd"></param>
+        /// <param name="conditions"></param>
         /// <returns></returns>
-        public int CalculateNumberOfPlanets(IntRange planetRage, Random rnd)
+        public int CalculateNumberOfPlanets(IntRange planetRage, Random rnd,PlanetCustomConditions conditions)
         {
             int result;
             using (var conversion = new ScaleConversion(100, (planetRage.Max - planetRage.Min)))
             {
                 result = (int)conversion.Convert(RandomNumbers.RandomInt(0, 100, rnd));
             }
+            if (result == 0 && (conditions.ForceLiving || conditions.MostlyWater || conditions.ForceWater))
+                result = 1;
             return result;
         }
 

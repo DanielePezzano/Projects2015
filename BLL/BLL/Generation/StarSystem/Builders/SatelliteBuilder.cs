@@ -126,7 +126,7 @@ namespace BLL.Generation.StarSystem.Builders
             if (atmpspherePresent) result = (int)(temp - (temp * 0.5));
             else result = (int)temp;
 
-            if (result >= 100) return result;
+            if (result <= 100) return result;
             result = RandomNumbers.RandomInt(100, !atmpspherePresent ? 273 : 500, rnd);
             return result;
         }
@@ -209,6 +209,11 @@ namespace BLL.Generation.StarSystem.Builders
             _resultSat.SatelliteStatus = (_resultSat.Spaces.Totalspaces > 0) ? SatelliteStatus.Uncolonized : SatelliteStatus.Uncolonizable;
         }
 
+        private void CompleteGeneration()
+        {
+            _resultSat.IsGaseous = _isGasseous;
+            _resultSat.IsHabitable = _resultSat.AtmospherePresent && !_isGasseous;
+        }
         #endregion
 
         public BaseEntity Build(Star star, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange)
@@ -230,6 +235,7 @@ namespace BLL.Generation.StarSystem.Builders
             CheckConditionRichness();
             AssignProduction();
             AssignStatus();
+            CompleteGeneration();
 
             return _resultSat;
         }

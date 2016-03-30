@@ -957,4 +957,12 @@
     <value>Spazio Rimasto</value>
     <comment>Generale</comment>
   </data>
+  <data name="Habitable" xml:space="preserve">
+    <value>Abitabile</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="IsGaseous" xml:space="preserve">
+    <value>Gassoso</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
 </root>

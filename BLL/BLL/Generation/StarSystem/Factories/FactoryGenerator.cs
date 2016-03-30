@@ -28,6 +28,11 @@ namespace BLL.Generation.StarSystem.Factories
                 forceLiving);
         }
 
+        public static PlanetCustomConditions RetrieveConditions()
+        {
+            return new PlanetCustomConditions(false, false, false, false, false, false, false);
+        }
+
         public static StarSystemGenerator RetrieveStarSystemGenerator(PlanetCustomConditions  conditions,Random rnd,IUnitOfWork uow,IntRange rangeX,
             IntRange rangeY)
         {

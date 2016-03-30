@@ -18,11 +18,12 @@ namespace BLL.Generation.StarSystem.Builders
         private Random _rnd;
         private Planet _resultPlanet;
         private bool _isGasseous;
+        private bool _isHabitable;
 
         #region Private Method
         private void BasePlanet()
         {
-            _mediumDensity = (_conditions.ForceLiving)
+            _mediumDensity = (_conditions.ForceLiving || _conditions.ForceWater || _conditions.MostlyWater)
                 ? BasicConstants.EarthDensity + RandomNumbers.RandomDouble(-0.5, 0.5, _rnd)
                 : RandomNumbers.RandomDouble(BasicConstants.MinDensity, BasicConstants.MaxDensity, _rnd);
 
@@ -42,7 +43,7 @@ namespace BLL.Generation.StarSystem.Builders
 
         private bool IsAtmospherePresent(double distance, Random rnd)
         {
-            if (_conditions.ForceLiving) return true;
+            if (_conditions.ForceLiving || _conditions.ForceWater || _conditions.MostlyWater) return true;
             if (distance >= BasicConstants.MinAtmosphereDistance)
             {
                 return (RandomNumbers.RandomInt(0, 100, rnd) <= 30);
@@ -62,10 +63,10 @@ namespace BLL.Generation.StarSystem.Builders
             _isGasseous = result;
         }
 
-        private bool IsWaterPresent(bool hasAtmosphere, bool forcewater, Random rnd)
+        private bool IsWaterPresent(Random rnd)
         {
-            if (forcewater) return true;
-            if (!hasAtmosphere) return false;
+            if (_conditions.ForceWater || _conditions.MostlyWater) return true;
+            if (!_resultPlanet.AtmospherePresent) return false;
             return (RandomNumbers.RandomInt(0, 10, rnd) <= 1);
         }
 
@@ -92,10 +93,10 @@ namespace BLL.Generation.StarSystem.Builders
             return scaleMaxGreatest;
         }
 
-        private double CalculateMass(double distance, DoubleRange closeRange, bool forceliving, double scaleMaxClose,
+        private double CalculateMass(double distance, DoubleRange closeRange, double scaleMaxClose,
             double scaleMaxMed, double scaleMaxGreatest, Random rnd)
         {
-            if (forceliving) return 0.8 + RandomNumbers.RandomDouble(0.1, 1, rnd);
+            if (_conditions.ForceWater || _conditions.MostlyWater || _conditions.ForceLiving) return 0.8 + RandomNumbers.RandomDouble(0.1, 1, rnd);
             double result;
             using (var scale = new ScaleConversion(10, ConvertScale(distance, closeRange, scaleMaxMed, scaleMaxGreatest, scaleMaxClose)))
             {
@@ -105,9 +106,9 @@ namespace BLL.Generation.StarSystem.Builders
             return result;
         }
 
-        private int CalculateRadiationLevel(bool atmospherePresent, int starRadiation, double distance, bool forceLiving, double fixedDistance)
+        private int CalculateRadiationLevel(bool atmospherePresent, int starRadiation, double distance, double fixedDistance)
         {
-            if (forceLiving) return 1;
+            if (_conditions.ForceWater || _conditions.MostlyWater || _conditions.ForceLiving) return 1;
             var result = 1;
             if (distance <= fixedDistance)
             {
@@ -139,7 +140,7 @@ namespace BLL.Generation.StarSystem.Builders
             if (atmpspherePresent) result = (int)(temp - (temp * 0.5));
             else result = (int)temp;
 
-            if (result >= 100) return result;
+            if (result <= 100) return result;
             result = RandomNumbers.RandomInt(100, !atmpspherePresent ? 273 : 500, rnd);
             return result;
         }
@@ -163,12 +164,12 @@ namespace BLL.Generation.StarSystem.Builders
         private void AssignRadiation(int radiationLevelStar)
         {
             _resultPlanet.RadiationLevel = CalculateRadiationLevel(_resultPlanet.AtmospherePresent, radiationLevelStar,
-                _resultPlanet.Orbit.DistanceR, _conditions.ForceLiving, BasicConstants.EarthDistance);
+                _resultPlanet.Orbit.DistanceR,  BasicConstants.EarthDistance);
         }
 
         private void AssignMass(DoubleRange closeRange)
         {
-            _resultPlanet.Mass = CalculateMass(_resultPlanet.Orbit.DistanceR, closeRange, _conditions.ForceLiving,
+            _resultPlanet.Mass = CalculateMass(_resultPlanet.Orbit.DistanceR, closeRange, 
                 BasicConstants.PlanetMinCloseScale, BasicConstants.PlanetMedCloseScale,
                 BasicConstants.PlanetMaxCloseScale, _rnd);
         }
@@ -199,7 +200,7 @@ namespace BLL.Generation.StarSystem.Builders
                 CalculateTotalSpaces(_resultPlanet.Mass,_isGasseous),
                 _resultPlanet.RadiationLevel,
                 _conditions,
-                IsWaterPresent(_resultPlanet.AtmospherePresent, _conditions.ForceWater, _rnd),
+                IsWaterPresent(_rnd),
                 _resultPlanet.AtmospherePresent,
                 _rnd);
         }
@@ -229,6 +230,12 @@ namespace BLL.Generation.StarSystem.Builders
                 : SatelliteStatus.Uncolonized;
         }
 
+        private void CompleteGeneration()
+        {
+            _resultPlanet.IsGaseous = _isGasseous;
+            _resultPlanet.IsHabitable = _resultPlanet.AtmospherePresent && !_isGasseous;
+        }
+
         #endregion
 
         public BaseEntity Build(Star star, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange)
@@ -246,11 +253,12 @@ namespace BLL.Generation.StarSystem.Builders
             AssignRadius();
             AssignPeriodOfRotation(generator);
             AssignTotalSpaces();
-
+            
             CheckConditionRichness();
 
             AssignProduction();
             AssignStatus();
+            CompleteGeneration();
             
             return _resultPlanet;
         }

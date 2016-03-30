@@ -7,18 +7,18 @@ namespace BLL.Generation.StarSystem
 {
     public sealed class OrbitGenerator : IDisposable
     {
-        private readonly bool _forceLiving;
         private double _planetRadius;
         private readonly Star _star;
         private DoubleRange _closeRange;
         private bool _disposed;
         private DoubleRange _satelliteRange;
+        private PlanetCustomConditions _conditions;
 
         public OrbitGenerator(Star star, DoubleRange closeRange,
-            bool forceLiving = false)
+            PlanetCustomConditions conditions)
         {
             _star = star;
-            _forceLiving = forceLiving;
+            _conditions = conditions;
             _closeRange = closeRange;
             _satelliteRange = new DoubleRange(PlanetProperties.MinSatelliteDistance,
                 PlanetProperties.MaxSatelliteDistance);
@@ -36,10 +36,10 @@ namespace BLL.Generation.StarSystem
         ///     Calculate the distance expressed in UA
         /// </summary>
         /// <returns></returns>
-        private double CalculateDistance(DoubleRange range, bool forceLiving, Random rnd)
+        private double CalculateDistance(DoubleRange range, Random rnd)
         {
             var result = range.Max;
-            if (forceLiving) return (result + RandomNumbers.RandomDouble(range.Min, range.Max, rnd));
+            if (_conditions.ForceWater|| _conditions.ForceLiving || _conditions.MostlyWater) return (result + RandomNumbers.RandomDouble(range.Min, range.Max, rnd));
             return RandomNumbers.RandomDouble(range.Min, 40, rnd);
         }
 
@@ -88,7 +88,7 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         public OrbitDetail Generate(Random rnd)
         {
-            var distance = CalculateDistance(_closeRange, _forceLiving, rnd);
+            var distance = CalculateDistance(_closeRange, rnd);
             return new OrbitDetail
             {
                 DistanceR = distance,
@@ -104,7 +104,10 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         public OrbitDetail GenerateSatellite(Random rnd)
         {
-            var distance = CalculateDistance(_satelliteRange, false, rnd);
+            _conditions.ForceWater = false;
+            _conditions.ForceLiving = false;
+            _conditions.MostlyWater = false;
+            var distance = CalculateDistance(_satelliteRange, rnd);
             return new OrbitDetail
             {
                 DistanceR = distance,
@@ -123,7 +126,7 @@ namespace BLL.Generation.StarSystem
 
         public double CalculateDistanceTest()
         {
-            return CalculateDistance(_closeRange, _forceLiving, new Random());
+            return CalculateDistance(_closeRange, new Random());
         }
 
         public double CalculatePeriodOfRevolutionTest(double distance)

@@ -23,7 +23,6 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Release\Resour
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Release\Resources.Designer.cs
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Release\Models.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Release\Models.pdb
-C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Release\Models.csprojResolveAssemblyReference.cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Release\Models.Resources.resources
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Release\Models.csproj.GenerateResource.Cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Release\Models.dll
