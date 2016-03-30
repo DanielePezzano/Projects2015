@@ -110,7 +110,7 @@ namespace BusinessTest.Generation.StarSystem
         public void TestSolarGeneration()
         {
             var closeRange = new DoubleRange(0.1, 0.7);
-            var factory = new SolarSystemFactory(_star.Object, new PlanetCustomConditions(), OrbitGeneratorTest.Rnd, new OrbitGenerator(_star.Object, closeRange),closeRange,1);
+            var factory = new SolarSystemFactory(_star.Object, new PlanetCustomConditions(), OrbitGeneratorTest.Rnd, new OrbitGenerator(_star.Object, closeRange),1);
             factory.Construct();
 
             List<Planet> generatedPlanets = factory.RetrievePlanets();

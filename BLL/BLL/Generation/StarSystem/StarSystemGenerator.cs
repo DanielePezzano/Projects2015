@@ -1,4 +1,5 @@
 ﻿using System;
+using BLL.Generation.StarSystem.Builders;
 using BLL.Utilities;
 using BLL.Utilities.Structs;
 using Models.Universe;
@@ -13,11 +14,11 @@ namespace BLL.Generation.StarSystem
         private readonly PlanetCustomConditions _conditions;
         private readonly IntRange _rangeX;
         private readonly IntRange _rangeY;
-        private readonly StarGenerator _starGenerator;
+        private readonly StarBuilder _starGenerator;
         private readonly StarPlacer _starPlacer;
 
         public StarSystemGenerator(
-            StarGenerator starGenerator,
+            StarBuilder starGenerator,
             StarPlacer starPlacer,
             IntRange rangeX,
             IntRange rangeY,
@@ -33,95 +34,9 @@ namespace BLL.Generation.StarSystem
             _conditions = conditions;
         }
 
-        /// <summary>
-        ///     Determine the probability range of planet existence, based on the star color
-        /// </summary>
-        /// <param name="star"></param>
-        /// <returns></returns>
-        private IntRange CalculatePlanetProbability(Star star)
-        {
-            var myRange = new IntRange {Min = 0};
-            switch (star.StarColor)
-            {
-                case StarColor.Blue:
-                    myRange.Max = 5;
-                    break;
-                case StarColor.Orange:
-                    myRange.Max = 60;
-                    break;
-                case StarColor.Red:
-                    myRange.Max = 50;
-                    break;
-                case StarColor.White:
-                    myRange.Max = 20;
-                    break;
-                case StarColor.Yellow:
-                    myRange.Max = 70;
-                    break;
-            }
-            return myRange;
-        }
-
-        /// <summary>
-        ///     Determine if there are planets
-        /// </summary>
-        /// <param name="planetProb"></param>
-        /// <param name="rnd"></param>
-        /// <returns></returns>
-        private bool HasPlanets(IntRange planetProb, Random rnd)
-        {
-            var seed = RandomNumbers.RandomInt(0, 100, rnd);
-            return (seed <= planetProb.Max);
-        }
-
-        /// <summary>
-        ///     Determine the number of present planets
-        /// </summary>
-        /// <param name="planetRage"></param>
-        /// <param name="rnd"></param>
-        /// <returns></returns>
-        private static int CalculateNumberOfPlanets(IntRange planetRage, Random rnd)
-        {
-            int result;
-            using (var conversion = new ScaleConversion(100, (planetRage.Max - planetRage.Min)))
-            {
-                result = (int) conversion.Convert(RandomNumbers.RandomInt(0, 100, rnd));
-            }
-            return result;
-        }
-
-        /// <summary>
-        ///     Determine the max number of possible plantes, based on the star color
-        /// </summary>
-        /// <param name="star"></param>
-        /// <returns></returns>
-        private IntRange CalculateMaxNumberOfPlanet(Star star)
-        {
-            var myRange = new IntRange {Min = 0};
-
-            switch (star.StarColor)
-            {
-                case StarColor.Blue:
-                case StarColor.White:
-                    myRange.Max = 2;
-                    break;
-                case StarColor.Orange:
-                case StarColor.Yellow:
-                    myRange.Max = 9;
-                    break;
-                case StarColor.Red:
-                    myRange.Max = 5;
-                    break;
-                default:
-                    myRange.Max = 1;
-                    break;
-            }
-            return myRange;
-        }
-
         private void GeneratePlanets(Star star, PlanetCustomConditions conditions, Random rnd,int numberOfPlanetsToAdd)
         {
-            var factory = new SolarSystemFactory(star, conditions, rnd, new OrbitGenerator(star,_closeRange), _closeRange, numberOfPlanetsToAdd);
+            var factory = new SolarSystemFactory(star, conditions, rnd, new OrbitGenerator(star,_closeRange), numberOfPlanetsToAdd);
             factory.Construct();
         }
 
@@ -136,8 +51,8 @@ namespace BLL.Generation.StarSystem
             var star = _starGenerator.CreateBrandNewStar();
             _starPlacer.Place(star, _rangeX, _rangeY, rnd, cacheKey);
 
-            var maxNumberOfPlanets = CalculateMaxNumberOfPlanet(star);
-            var planetProbability = CalculatePlanetProbability(star);
+            var maxNumberOfPlanets = _starGenerator.CalculateMaxNumberOfPlanet(star);
+            var planetProbability = _starGenerator.CalculatePlanetProbability(star);
 
             AddPlanets(rnd, planetProbability, maxNumberOfPlanets, star);
             return star;
@@ -145,9 +60,9 @@ namespace BLL.Generation.StarSystem
 
         private void AddPlanets(Random rnd, IntRange planetProbability, IntRange maxNumberOfPlanets, Star star)
         {
-            if (!HasPlanets(planetProbability, rnd) && !_conditions.ForceLiving) return;
+            if (!_starGenerator.HasPlanets(planetProbability, rnd) && !_conditions.ForceLiving) return;
 
-            var numberOfPlanets = CalculateNumberOfPlanets(maxNumberOfPlanets, rnd);
+            var numberOfPlanets = _starGenerator.CalculateNumberOfPlanets(maxNumberOfPlanets, rnd);
             if (_conditions.ForceLiving)
             {
                 GeneratePlanets(star,_conditions,rnd,1);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BLL.Generation.StarSystem;
+using BLL.Generation.StarSystem.Builders;
 using BLL.Utilities.Structs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
@@ -94,7 +95,7 @@ namespace BusinessTest.Generation.StarSystem
         public void TestGenerate()
         {
             var systemGenerator = new StarSystemGenerator(
-                new StarGenerator(),
+                new StarBuilder(),
                 new StarPlacer(_uow),
                 new IntRange(40, 90),
                 new IntRange(40, 90),

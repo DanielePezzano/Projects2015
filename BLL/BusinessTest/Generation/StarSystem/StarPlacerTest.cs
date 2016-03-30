@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BLL.Generation.StarSystem;
+using BLL.Generation.StarSystem.Builders;
 using BLL.Utilities.Structs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
@@ -100,7 +101,7 @@ namespace BusinessTest.Generation.StarSystem
                         uow.StarRepository.Add(star2.Object);
                         uow.StarRepository.Add(star3.Object);
                         uow.StarRepository.Add(star4.Object);
-                        var generator = new StarGenerator();
+                        var generator = new StarBuilder();
                         var generated = generator.CreateBrandNewStar();
 
                         #endregion

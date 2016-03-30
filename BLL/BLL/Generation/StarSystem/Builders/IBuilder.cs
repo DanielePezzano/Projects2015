@@ -5,7 +5,7 @@ using Models.Universe;
 
 namespace BLL.Generation.StarSystem.Builders
 {
-    interface IBuilder
+    internal interface IBuilder
     {
         BaseEntity Build(Star star, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange);
     }

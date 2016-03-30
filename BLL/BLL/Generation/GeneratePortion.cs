@@ -1,5 +1,6 @@
 ﻿using System;
 using BLL.Generation.StarSystem;
+using BLL.Generation.StarSystem.Builders;
 using BLL.Utilities.Structs;
 using UnitOfWork.Implementations.Uows;
 
@@ -42,7 +43,7 @@ namespace BLL.Generation
             try
             {
                 var generator = new StarSystemGenerator(
-                    new StarGenerator(),
+                    new StarBuilder(),
                     new StarPlacer(_uow),
                     _rangeX,
                     _rangeY,
