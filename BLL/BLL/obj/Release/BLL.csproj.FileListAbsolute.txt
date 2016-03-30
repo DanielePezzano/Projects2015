@@ -20,3 +20,4 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramew
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramework.SqlServer.xml
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.csprojResolveAssemblyReference.cache

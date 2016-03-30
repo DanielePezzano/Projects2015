@@ -16,7 +16,43 @@ namespace BLL.Generation.StarSystem.Builders
         {
             _rnd = new Random();
         }
-        
+
+        #region Private Methods
+
+        private static void AssignRadius(Star result)
+        {
+            result.Radius = StarProperties.DetermineStarRadius(result.StarColor, result.StarType,
+                _rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
+        }
+
+        private static void AssignRadiation(Star result)
+        {
+            result.RadiationLevel = StarProperties.DetermineStarRadiation(result.StarColor,
+                _rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
+        }
+
+        private static void AssignMass(Star result)
+        {
+            result.Mass = StarProperties.DetermineStarMass(result.StarType, result.StarColor,
+                _rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
+        }
+
+        private static void AssignSurfaceTemp(Star result)
+        {
+            result.SurfaceTemp = StarProperties.DetermineSurfaceTemp(result.StarColor, result.StarType,
+                _rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
+        }
+
+        private static void AssignType(Star result)
+        {
+            result.StarType = StarProperties.DetermineStarType(result.StarColor,
+                _rnd.Next(StarProperties.MinBaseRange, 100));
+        }
+
+        #endregion
+
+
+
         #region public exposed methods
         /// <summary>
         /// It creates a bran new star without placing it and without any satellites
@@ -29,16 +65,18 @@ namespace BLL.Generation.StarSystem.Builders
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
                 Name = "NS-" + DateTime.Now.ToFileTimeUtc(),
-                StarColor = StarProperties.DetermineStarColor(_rnd.Next(StarProperties.MinBaseRange, 100))
+                StarColor = StarProperties.DetermineStarColor(_rnd.Next(StarProperties.MinBaseRange, 100)),
+                Planets = new List<Planet>()
             };
-            result.StarType = StarProperties.DetermineStarType(result.StarColor, _rnd.Next(StarProperties.MinBaseRange, 100));
-            result.SurfaceTemp = StarProperties.DetermineSurfaceTemp(result.StarColor, result.StarType, _rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
-            result.Mass = StarProperties.DetermineStarMass(result.StarType, result.StarColor, _rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
-            result.RadiationLevel = StarProperties.DetermineStarRadiation(result.StarColor, _rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
-            result.Radius = StarProperties.DetermineStarRadius(result.StarColor, result.StarType, _rnd.Next(StarProperties.MinBaseRange, StarProperties.MaxBaseRange));
-            result.Planets = new List<Planet>();
+            AssignType(result);
+            AssignSurfaceTemp(result);
+            AssignMass(result);
+            AssignRadiation(result);
+            AssignRadius(result);
             return result;
         }
+
+        
 
         /// <summary>
         ///     Determine the probability range of planet existence, based on the star color
@@ -134,7 +172,6 @@ namespace BLL.Generation.StarSystem.Builders
             {
                 _disposed = true;
             }
-           // GC.SuppressFinalize(this);
         }
     }
 }

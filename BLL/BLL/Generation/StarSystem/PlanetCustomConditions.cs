@@ -13,6 +13,17 @@
             MostlyWater = false;
         }
 
+        public PlanetCustomConditions(bool water, bool foodRich, bool foodPoor, bool mineralPoor, bool mineralRich, bool mostlyWater, bool forceLiving)
+        {
+            ForceWater = water;
+            FoodRich = foodRich;
+            FoodPoor = foodPoor;
+            ForceLiving = forceLiving;
+            MineralRich = mineralRich;
+            MineralPoor = mineralPoor;
+            MostlyWater = mostlyWater;
+        }
+
         public bool ForceLiving { get; set; }
         public bool ForceWater { get; set; }
         public bool MineralRich { get; set; }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BLL.Generation.StarSystem;
 using BLL.Generation.StarSystem.Builders;
+using BLL.Generation.StarSystem.Factories;
 using BLL.Utilities.Structs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
@@ -29,7 +30,7 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestCoordinatesGeneration()
         {
-            var placer = new StarPlacer(null);
+            var placer = FactoryGenerator.RetrieveStarPlacer(null);
             var coord = placer.GenerateRandomCoordinatesTest(230, 400, 230, 400, _rnd);
             Assert.IsTrue(coord.X > 0);
             Assert.IsTrue(coord.Y > 0);

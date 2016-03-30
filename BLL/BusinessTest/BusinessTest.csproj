@@ -81,7 +81,6 @@
     <Compile Include="Generation\StarSystem\StarPlacerTest.cs" />
     <Compile Include="Generation\StarSystem\StarPropertiesTests.cs" />
     <Compile Include="Generation\StarSystem\PlanetPropertiesTest.cs" />
-    <Compile Include="Generation\StarSystem\StarSystemGeneratorTest.cs" />
     <Compile Include="Information\RetrieveInformationsTest.cs" />
     <Compile Include="Information\RetrievePlanetInformationTest.cs" />
     <Compile Include="Information\RetrieveUserInformationTest.cs" />

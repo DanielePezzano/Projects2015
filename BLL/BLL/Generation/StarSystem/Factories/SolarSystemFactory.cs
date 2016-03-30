@@ -5,7 +5,7 @@ using BLL.Utilities;
 using BLL.Utilities.Structs;
 using Models.Universe;
 
-namespace BLL.Generation.StarSystem
+namespace BLL.Generation.StarSystem.Factories
 {
     public class SolarSystemFactory
     {
@@ -64,6 +64,8 @@ namespace BLL.Generation.StarSystem
 
         private void AddPlanets()
         {
+            _generatedPlanets = new List<Planet>();
+
             for (var x = 0; x < _numberOfPlanets; x++)
             {
                 _myPlanetBuilder = new PlanetBuilder();
@@ -91,7 +93,6 @@ namespace BLL.Generation.StarSystem
         }
 
         #endregion
-
         
 
         public List<Planet> RetrievePlanets()
@@ -99,17 +100,7 @@ namespace BLL.Generation.StarSystem
             return _generatedPlanets;
         }
 
-        public void Construct()
-        {
-            _generatedPlanets = new List<Planet>();
-
-            if (_associatedStar != null)
-            {
-                AddPlanets();
-            }
-        }
-
-        public Star ConstuctWholeSystem(StarBuilder starGenerator, StarPlacer starPlacer, IntRange rangeX, IntRange rangeY, string cacheKey)
+        public Star Constuct(StarBuilder starGenerator, StarPlacer starPlacer, IntRange rangeX, IntRange rangeY, string cacheKey)
         {
             if (_conditions == null) throw new NullReferenceException("_Conditions must have a value");
 
@@ -122,8 +113,8 @@ namespace BLL.Generation.StarSystem
             if (!starGenerator.HasPlanets(starGenerator.CalculatePlanetProbability(star), _rnd) && !_conditions.ForceLiving) return star;
 
             _numberOfPlanets = starGenerator.CalculateNumberOfPlanets(starGenerator.CalculateMaxNumberOfPlanet(star), _rnd);
-            
-            Construct();
+
+            AddPlanets();
             return star;
         }
     }

@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using BLL.Generation.StarSystem;
+using BLL.Generation.StarSystem.Factories;
 using BLL.Utilities.Structs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
 using Moq;
+using UnitOfWork.Cache;
+using UnitOfWork.Implementations.Context;
+using UnitOfWork.Implementations.Uows;
+using UnitOfWork.Implementations.Uows.UowDto;
 
 namespace BusinessTest.Generation.StarSystem
 {
@@ -16,23 +21,23 @@ namespace BusinessTest.Generation.StarSystem
     public class PlanetGeneratorTest
     {
         private readonly Mock<Planet> _planetHostile;
-        private readonly Mock<Star> _star;
-
+        internal readonly Mock<Star> Star;
+        
 
         public PlanetGeneratorTest()
         {
             if (OrbitGeneratorTest.Rnd == null) OrbitGeneratorTest.Rnd = new Random(Environment.TickCount);
             var repo = new MockRepository(MockBehavior.Default);
-            _star = repo.Create<Star>();
-            _star.Object.Mass = 0.03;
-            _star.Object.Radius = 10;
-            _star.Object.RadiationLevel = 7;
-            _star.Object.SurfaceTemp = 5778;
+            Star = repo.Create<Star>();
+            Star.Object.Mass = 0.03;
+            Star.Object.Radius = 10;
+            Star.Object.RadiationLevel = 7;
+            Star.Object.SurfaceTemp = 5778;
 
             _planetHostile = repo.Create<Planet>();
             var planetHabitable = repo.Create<Planet>();
-            _planetHostile.SetupProperty(c => c.Star, _star.Object);
-            planetHabitable.SetupProperty(c => c.Star, _star.Object);
+            _planetHostile.SetupProperty(c => c.Star, Star.Object);
+            planetHabitable.SetupProperty(c => c.Star, Star.Object);
 
             var closeOrbit = repo.Create<OrbitDetail>();
             closeOrbit.Object.DistanceR = 0.3;
@@ -107,18 +112,65 @@ namespace BusinessTest.Generation.StarSystem
         //}
 
         [TestMethod]
-        public void TestSolarGeneration()
+        public void TestPlanetGeneration()
         {
-            var closeRange = new DoubleRange(0.1, 0.7);
-            var factory = new SolarSystemFactory(_star.Object, new PlanetCustomConditions(), OrbitGeneratorTest.Rnd, new OrbitGenerator(_star.Object, closeRange),1);
-            factory.Construct();
+            using (var cf = new ContextFactory(true))
+            {
+                var context = cf.Retrieve();
+                var cache = new DalCache();
+                var repos = new UowRepositories();
+                using (var repoFactories = new UowRepositoryFactories(context, cache, repos))
+                {
+                    using (var uow = new MainUow(context, repoFactories))
+                    {
+                        uow.StarRepository.CustomDbset(new List<Star>());
+                        var repo = new MockRepository(MockBehavior.Default);
+                        Mock<Galaxy> galaxy = repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
 
-            List<Planet> generatedPlanets = factory.RetrievePlanets();
+                        var generator = FactoryGenerator.RetrieveStarSystemGenerator(new PlanetCustomConditions(),
+                            OrbitGeneratorTest.Rnd, uow, new IntRange(0, 10), new IntRange(0, 10));
 
-            Assert.IsInstanceOfType(generatedPlanets.FirstOrDefault(), typeof(Planet));
-            Assert.IsNotNull(generatedPlanets.FirstOrDefault());
-            Assert.IsTrue(Math.Abs(generatedPlanets.First().GravityEarthCompared - generatedPlanets.First().Mass) < 0.001);
-            Assert.IsInstanceOfType(generatedPlanets.First().Orbit, typeof(OrbitDetail));
+                        var star = generator.Generate(OrbitGeneratorTest.Rnd, uow, galaxy.Object, "");
+
+                        List<Planet> generatedPlanets = star.Planets.ToList();
+
+                        Assert.IsInstanceOfType(generatedPlanets.FirstOrDefault(), typeof(Planet));
+                        Assert.IsNotNull(generatedPlanets.FirstOrDefault());
+                        Assert.IsTrue(Math.Abs(generatedPlanets.First().GravityEarthCompared - generatedPlanets.First().Mass) < 0.001);
+                        Assert.IsInstanceOfType(generatedPlanets.First().Orbit, typeof(OrbitDetail));
+                    }
+                }
+            }
+            
+        }
+
+        [TestMethod]
+        public void TestOneLivingPlanet()
+        {
+            using (var cf = new ContextFactory(true))
+            {
+                var context = cf.Retrieve();
+                var cache = new DalCache();
+                var repos = new UowRepositories();
+                using (var repoFactories = new UowRepositoryFactories(context, cache, repos))
+                {
+                    using (var uow = new MainUow(context, repoFactories))
+                    {
+                        uow.StarRepository.CustomDbset(new List<Star>());
+                        var repo = new MockRepository(MockBehavior.Default);
+                        Mock<Galaxy> galaxy = repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
+
+                        var generator = FactoryGenerator.RetrieveStarSystemGenerator(
+                            FactoryGenerator.RetrieveConditions(false,false,false,false,false,false,true),
+                            OrbitGeneratorTest.Rnd, uow, new IntRange(0, 10), new IntRange(0, 10));
+
+                        var star = generator.Generate(OrbitGeneratorTest.Rnd, uow, galaxy.Object, "");
+
+                        List<Planet> generatedPlanets = star.Planets.ToList();
+                        Assert.IsTrue(generatedPlanets.Count(c => c.AtmospherePresent) >= 1);
+                    }
+                }
+            }
         }
 
         #region Additional test attributes

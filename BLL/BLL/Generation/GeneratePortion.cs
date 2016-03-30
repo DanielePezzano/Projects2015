@@ -1,6 +1,6 @@
 ﻿using System;
 using BLL.Generation.StarSystem;
-using BLL.Generation.StarSystem.Builders;
+using BLL.Generation.StarSystem.Factories;
 using BLL.Utilities.Structs;
 using UnitOfWork.Implementations.Uows;
 
@@ -42,14 +42,9 @@ namespace BLL.Generation
             if (referredGalaxy == null) return false;
             try
             {
-                var generator = new StarSystemGenerator(
-                    new StarBuilder(),
-                    new StarPlacer(_uow),
-                    _rangeX,
-                    _rangeY,
-                    _conditions);
-
-                generator.GenerateAndInsert(rnd, _uow, referredGalaxy, cacheKey);
+                var generator = FactoryGenerator.RetrieveStarSystemGenerator(_conditions, rnd, _uow, _rangeX, _rangeY);
+                generator.WriteToRepository(_uow, generator.Generate(rnd, _uow, referredGalaxy, cacheKey),
+                    referredGalaxy);
                 result = true;
             }
             catch (Exception)

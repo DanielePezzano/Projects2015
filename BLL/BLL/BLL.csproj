@@ -60,9 +60,10 @@
     <Compile Include="Generation\StarSystem\Builders\IBuilder.cs" />
     <Compile Include="Generation\StarSystem\Builders\PlanetBuilder.cs" />
     <Compile Include="Generation\StarSystem\Builders\SatelliteBuilder.cs" />
+    <Compile Include="Generation\StarSystem\Factories\FactoryGenerator.cs" />
     <Compile Include="Generation\StarSystem\OrbitGenerator.cs" />
     <Compile Include="Generation\StarSystem\PlanetCustomConditions.cs" />
-    <Compile Include="Generation\StarSystem\SolarSystemFactory.cs" />
+    <Compile Include="Generation\StarSystem\Factories\SolarSystemFactory.cs" />
     <Compile Include="Generation\StarSystem\PlanetProperties.cs" />
     <Compile Include="Generation\StarSystem\Builders\StarBuilder.cs" />
     <Compile Include="Generation\StarSystem\StarPlacer.cs" />
