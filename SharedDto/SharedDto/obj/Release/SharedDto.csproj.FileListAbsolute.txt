@@ -12,3 +12,17 @@ C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\S
 C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.csproj.GenerateResource.Cache
 C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.csprojResolveAssemblyReference.cache
 C:\Users\daniele\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.Resources.ValidationResource.resources
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\SharedDto.dll.config
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\SharedDto.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\SharedDto.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\EntityFramework.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\Models.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\EntityFramework.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.csprojResolveAssemblyReference.cache
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.Resources.ModelResources.resources
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.Resources.ValidationResource.resources
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.csproj.GenerateResource.Cache
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Release\SharedDto.pdb

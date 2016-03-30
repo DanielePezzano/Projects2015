@@ -57,8 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Generation\GeneratePortion.cs" />
+    <Compile Include="Generation\StarSystem\Builders\IBuilder.cs" />
+    <Compile Include="Generation\StarSystem\Builders\PlanetBuilder.cs" />
+    <Compile Include="Generation\StarSystem\Builders\SatelliteBuilder.cs" />
     <Compile Include="Generation\StarSystem\OrbitGenerator.cs" />
     <Compile Include="Generation\StarSystem\PlanetCustomConditions.cs" />
+    <Compile Include="Generation\StarSystem\SolarSystemFactory.cs" />
     <Compile Include="Generation\StarSystem\PlanetGenerator.cs" />
     <Compile Include="Generation\StarSystem\PlanetProperties.cs" />
     <Compile Include="Generation\StarSystem\StarGenerator.cs" />
@@ -82,7 +86,9 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Utilities\Enum\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\Models.dll" />
     <Content Include="Lib\UnitOfWork.dll" />

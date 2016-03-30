@@ -13,9 +13,7 @@ namespace BLL.Generation.StarSystem
     public sealed class PlanetGenerator : IDisposable
     {
         private readonly PlanetCustomConditions _conditions;
-
-        private double _mediumDensity = 5.5;
-            //densità media terrestre --> se densità calcolata <=3 probabilmente è gassoso        
+        private double _mediumDensity = 5.5; //densità media terrestre --> se densità calcolata <=3 probabilmente è gassoso        
 
         private DoubleRange _satelliteCloseRange = new DoubleRange(PlanetProperties.MinSatelliteDistance,
             PlanetProperties.MaxSatelliteDistance);
@@ -31,13 +29,10 @@ namespace BLL.Generation.StarSystem
 
         public void Dispose()
         {
-            if (!_disposed)
-            {
-                _disposed = true;
-                _satelliteCloseRange = new DoubleRange();
-                _star = null;
-            }
-            //GC.SuppressFinalize(this);
+            if (_disposed) return;
+            _disposed = true;
+            _satelliteCloseRange = new DoubleRange();
+            _star = null;
         }
 
         /// <summary>
@@ -93,12 +88,9 @@ namespace BLL.Generation.StarSystem
         private bool IsWaterPresent(bool hasAtmosphere, bool forcewater, bool isSatellite, Random rnd)
         {
             if (forcewater) return true;
-            if (hasAtmosphere)
-            {
-                if (!isSatellite) return (RandomNumbers.RandomInt(0, 10, rnd) <= 1);
-                return (RandomNumbers.RandomInt(0, 100, rnd) <= 1);
-            }
-            return false;
+            if (!hasAtmosphere) return false;
+            if (!isSatellite) return (RandomNumbers.RandomInt(0, 10, rnd) <= 1);
+            return (RandomNumbers.RandomInt(0, 100, rnd) <= 1);
         }
 
         /// <summary>
@@ -117,23 +109,19 @@ namespace BLL.Generation.StarSystem
         {
             if (forceliving) return 0.8 + RandomNumbers.RandomDouble(0.1, 1, rnd);
             double result;
-            var convertScaleMax = scaleMaxClose;
-            if (distance > closeRange.Max)
+            using (var scale = new ScaleConversion(10, ConvertScale(distance, closeRange, scaleMaxMed, scaleMaxGreatest, scaleMaxClose)))
             {
-                if (distance > closeRange.Max && distance <= (BasicConstants.EarthDistance + 2))
-                    convertScaleMax = scaleMaxMed;
-                else
-                    convertScaleMax = scaleMaxGreatest;
+                result = Math.Truncate(scale.Convert(RandomNumbers.RandomInt(1, 10, rnd)) * 100) / 100;
             }
-
-            using (var scale = new ScaleConversion(10, convertScaleMax))
-            {
-                result = scale.Convert(RandomNumbers.RandomInt(1, 10, rnd));
-            }
-
-            result = Math.Truncate(result*100)/100;
             if (Math.Abs(result) < 0.001) result = scaleMaxClose;
             return result;
+        }
+
+        private double ConvertScale(double distance, DoubleRange closeRange, double scaleMaxMed, double scaleMaxGreatest, double scaleMaxClose)
+        {
+            if (!(distance > closeRange.Max)) return scaleMaxClose;
+            if (distance > closeRange.Max && distance <= (BasicConstants.EarthDistance + 2)) return scaleMaxMed;
+            return scaleMaxGreatest;
         }
 
         /// <summary>
@@ -224,7 +212,6 @@ namespace BLL.Generation.StarSystem
         private static double CalculateRadius(double mass, double density, bool isSatellite = false)
         {
             if (!isSatellite) return Math.Truncate((mass/density)*100)/100;
-
             return Math.Truncate((density/(mass*BasicConstants.LunarVolumeFactor))*100)/100;
         }
 
@@ -240,11 +227,9 @@ namespace BLL.Generation.StarSystem
             for (var x = 0; x < satellites; x++)
             {
                 var toAdd = CreateSatellite(planet);
-                if (toAdd != null)
-                {
-                    CompleteSatelliteGeneration(toAdd, generator, planet.Orbit.DistanceR, rnd);
-                    planet.Satellites.Add(toAdd);
-                }
+                if (toAdd == null) continue;
+                CompleteSatelliteGeneration(toAdd, generator, planet.Orbit.DistanceR, rnd);
+                planet.Satellites.Add(toAdd);
             }
         }
 
@@ -261,7 +246,6 @@ namespace BLL.Generation.StarSystem
 
             if (result >= 100) return result;
             result = RandomNumbers.RandomInt(100, !atmpspherePresent ? 273 : 500, rnd);
-
             return result;
         }
 
@@ -271,22 +255,22 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         public Planet CreateBrandNewPlanet(Random rnd)
         {
-            var planet = new Planet
+            _mediumDensity = (_conditions.ForceLiving)
+                ? BasicConstants.EarthDensity + RandomNumbers.RandomDouble(-0.5, 0.5, rnd)
+                : RandomNumbers.RandomDouble(BasicConstants.MinDensity, BasicConstants.MaxDensity, rnd);
+
+           return new Planet
             {
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
                 Star = _star,
-                Name = "PL - " + DateTime.Now.ToFileTimeUtc()
+                Name = "PL - " + DateTime.Now.ToFileTimeUtc(),
+                Buildings = new List<Building>(),
+                User = null,
+                Satellites = new List<Satellite>(),
+                RingsPresent = (RandomNumbers.RandomInt(0, 100, rnd) == 0),
+                SatelliteSocial = new SatelliteSocials { Population = 0, TaxLevel = TaxLevel.Normal }
             };
-            _mediumDensity = (_conditions.ForceLiving)
-                ? BasicConstants.EarthDensity + RandomNumbers.RandomDouble(-0.5, 0.5, rnd)
-                : RandomNumbers.RandomDouble(BasicConstants.MinDensity, BasicConstants.MaxDensity, rnd);
-            planet.Buildings = new List<Building>();
-            planet.SatelliteSocial = new SatelliteSocials {Population = 0, TaxLevel = TaxLevel.Normal};
-            planet.User = null;
-            planet.RingsPresent = (RandomNumbers.RandomInt(0, 100, rnd) == 0);
-            planet.Satellites = new List<Satellite>();
-            return planet;
         }
 
         /// <summary>
@@ -296,7 +280,7 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         public Satellite CreateSatellite(Planet planet)
         {
-            var satellite = new Satellite
+            return new Satellite
             {
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
@@ -307,8 +291,6 @@ namespace BLL.Generation.StarSystem
                 User = null,
                 RingsPresent = false
             };
-
-            return satellite;
         }
 
         /// <summary>
@@ -325,18 +307,13 @@ namespace BLL.Generation.StarSystem
 
             satellite.Orbit = generator.GenerateSatellite(rnd);
             satellite.AtmospherePresent = IsAtmospherePresent(satellite.Orbit.DistanceR, rnd);
-            satellite.RadiationLevel = CalculateRadiationLevel(satellite.AtmospherePresent, _star.RadiationLevel,
-                planetDistance, false, BasicConstants.EarthDistance);
-            satellite.Mass = CalculateMass(satellite.Orbit.DistanceR, _satelliteCloseRange,
-                satelliteConditions.ForceLiving, BasicConstants.SatelliteMinCloseScale,
-                BasicConstants.SatelliteMedCloseScale, BasicConstants.SatelliteMaxCloseScale, rnd);
-            _mediumDensity = RandomNumbers.RandomDouble(BasicConstants.MinDensityForGas,
-                (BasicConstants.EarthDensity + 1), rnd);
-            satellite.SurfaceTemp = AssignSurfaceTemperature(planetDistance, satellite.AtmospherePresent,
-                _star.SurfaceTemp, rnd);
+            satellite.RadiationLevel = CalculateRadiationLevel(satellite.AtmospherePresent, _star.RadiationLevel,planetDistance, false, BasicConstants.EarthDistance);
+            satellite.Mass = CalculateMass(satellite.Orbit.DistanceR, _satelliteCloseRange,satelliteConditions.ForceLiving, BasicConstants.SatelliteMinCloseScale,BasicConstants.SatelliteMedCloseScale, BasicConstants.SatelliteMaxCloseScale, rnd);
+
+            _mediumDensity = RandomNumbers.RandomDouble(BasicConstants.MinDensityForGas,(BasicConstants.EarthDensity + 1), rnd);
+            satellite.SurfaceTemp = AssignSurfaceTemperature(planetDistance, satellite.AtmospherePresent,_star.SurfaceTemp, rnd);
             satellite.Radius = CalculateRadius(satellite.Mass, _mediumDensity, true);
-            satellite.Orbit.PeriodOfRotation = generator.CalculatePeriodOfRotation(satellite.Orbit.DistanceR,
-                satellite.Orbit.PeriodOfRevolution, _mediumDensity, rnd);
+            satellite.Orbit.PeriodOfRotation = generator.CalculatePeriodOfRotation(satellite.Orbit.DistanceR,satellite.Orbit.PeriodOfRevolution, _mediumDensity, rnd);
 
             var totalSpaces = AssignTotalSpaces(satellite.Mass, _mediumDensity, false);
             satellite.Spaces = PlanetProperties.CalculateSpaces(

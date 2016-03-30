@@ -9,3 +9,15 @@ C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramewo
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramework.SqlServer.xml
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\BLL.dll.config
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\BLL.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\BLL.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramework.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\Models.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\UnitOfWork.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramework.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Release\BLL.pdb

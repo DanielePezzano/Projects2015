@@ -33,7 +33,6 @@ namespace BLL.Generation.StarSystem
                 _closeRange = new DoubleRange();
                 _satelliteRange = new DoubleRange();
             }
-            //GC.SuppressFinalize(obj: this);
         }
 
         /// <summary>
@@ -44,8 +43,7 @@ namespace BLL.Generation.StarSystem
         {
             var result = range.Max;
             if (forceLiving) return (result + RandomNumbers.RandomDouble(range.Min, range.Max, rnd));
-            result = RandomNumbers.RandomDouble(range.Min, 40, rnd);
-            return result;
+            return RandomNumbers.RandomDouble(range.Min, 40, rnd);
         }
 
         /// <summary>
@@ -93,15 +91,14 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         public OrbitDetail Generate(Random rnd)
         {
-            var orbit = new OrbitDetail
+            var distance = CalculateDistance(_closeRange, _forceLiving, rnd);
+            return new OrbitDetail
             {
-                DistanceR = CalculateDistance(_closeRange, _forceLiving, rnd),
-                Eccentricity = RandomNumbers.RandomDouble(BasicConstants.MinEcc, BasicConstants.MaxEccc, rnd)
+                DistanceR = distance,
+                Eccentricity = RandomNumbers.RandomDouble(BasicConstants.MinEcc, BasicConstants.MaxEccc, rnd),
+                PeriodOfRevolution = CalculatePeriodOfRevolution(distance, _star.Radius,BasicConstants.StarRadToUaRate),
+                TetaZero = RandomNumbers.RandomDouble(0.1, 3, rnd)
             };
-            orbit.PeriodOfRevolution = CalculatePeriodOfRevolution(orbit.DistanceR, _star.Radius,
-                BasicConstants.StarRadToUaRate);
-            orbit.TetaZero = RandomNumbers.RandomDouble(0.1, 3, rnd);
-            return orbit;
         }
 
         /// <summary>
@@ -110,14 +107,14 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         public OrbitDetail GenerateSatellite(Random rnd)
         {
-            var orbit = new OrbitDetail
+            var distance = CalculateDistance(_satelliteRange, false, rnd);
+            return new OrbitDetail
             {
-                DistanceR = CalculateDistance(_satelliteRange, false, rnd),
-                Eccentricity = RandomNumbers.RandomDouble(BasicConstants.MinEcc, BasicConstants.MaxEccc, rnd)
+                DistanceR = distance,
+                Eccentricity = RandomNumbers.RandomDouble(BasicConstants.MinEcc, BasicConstants.MaxEccc, rnd),
+                PeriodOfRevolution = CalculatePeriodOfRevolution(distance, _planetRadius, 0),
+                TetaZero = RandomNumbers.RandomDouble(0.1, 3, rnd)
             };
-            orbit.PeriodOfRevolution = CalculatePeriodOfRevolution(orbit.DistanceR, _planetRadius, 0);
-            orbit.TetaZero = RandomNumbers.RandomDouble(0.1, 3, rnd);
-            return orbit;
         }
 
         #region Wrapper for private methods test
