@@ -111,77 +111,77 @@ namespace Models.Fleets.ShipClasses
 
         private int GetOreMaintCost()
         {
-            return (Hulls != null && Hulls.Count > 0)
+            return Hulls != null && Hulls.Count > 0
                 ? Hulls.Sum(x => x.OreMaintenanceCost)
                 : 0;
         }
 
         private int GetMoneyMaintCost()
         {
-            return (Hulls != null && Hulls.Count > 0)
+            return Hulls != null && Hulls.Count > 0
                 ? Hulls.Sum(x => x.MoneyMaintenanceCost)
                 : 0;
         }
 
         private int GetOreCost()
         {
-            return (Hulls != null && Hulls.Count > 0)
+            return Hulls != null && Hulls.Count > 0
                 ? Hulls.Sum(x => x.OreCost)
                 : 0;
         }
 
         private int GetMoneyCost()
         {
-            return (Hulls != null && Hulls.Count > 0)
+            return Hulls != null && Hulls.Count > 0
                 ? Hulls.Sum(x => x.MoneyCost)
                 : 0;
         }
 
         private int GetTotalToHitBonus()
         {
-            return (Hulls != null && Hulls.Count > 0)
+            return Hulls != null && Hulls.Count > 0
                 ? Hulls.Sum(x => x.ToHitBonus)
                 : 0;
         }
 
         private int GetEngineRadius()
         {
-            return (Hulls != null && Hulls.Count > 0)
+            return Hulls != null && Hulls.Count > 0
                 ? Hulls.Sum(x => x.EngineRadius)
                 : 0;
         }
 
         private int GetTravelSpeed()
         {
-            return (Hulls != null && Hulls.Count > 0)
+            return Hulls != null && Hulls.Count > 0
                 ? Hulls.Sum(x => x.TravelSpeed)
                 : 0;
         }
 
         private int GetCombatSpeed()
         {
-            return (Hulls != null && Hulls.Count > 0)
+            return Hulls != null && Hulls.Count > 0
                 ? Hulls.Sum(x => x.CombatSpeed)
                 : 0;
         }
 
         private int GetTotalShields()
         {
-            return (Hulls != null && Hulls.Count > 0)
+            return Hulls != null && Hulls.Count > 0
                 ? Hulls.Sum(x => x.TotalShields)
                 : 0;
         }
 
         private int GetTotalArmor()
         {
-            return (Hulls != null && Hulls.Count > 0)
+            return Hulls != null && Hulls.Count > 0
                 ? Hulls.Sum(x => x.TotalArmor)
                 : 0;
         }
 
         private int GetStructurePoints()
         {
-            return (Hulls != null && Hulls.Count > 0)
+            return Hulls != null && Hulls.Count > 0
                 ? Hulls.Sum(x => x.StructurePoints)
                 : 0;
         }

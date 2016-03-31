@@ -29,18 +29,16 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
 
         public void Dispose()
         {
-            if (!_disposed)
-            {
-                if (_factory != null) _factory.Dispose();
-                if (_repositories != null) _repositories.Dispose();
-                if (_mainUow != null) _mainUow.Dispose();
-                if (_repoFactory != null) _repoFactory.Dispose();
-                _disposed = true;
-            }
-           // GC.SuppressFinalize(this);
+            if (_disposed) return;
+            if (_factory != null) _factory.Dispose();
+            if (_repositories != null) _repositories.Dispose();
+            if (_mainUow != null) _mainUow.Dispose();
+            if (_repoFactory != null) _repoFactory.Dispose();
+            _disposed = true;
+            // GC.SuppressFinalize(this);
         }
 
-        public bool GenerateStarSystem(PlanetGenerationDto generationData, Random rnd)
+        public bool GenerateStarSystem(SystemGenerationDto generationData, Random rnd)
         {
             var rangeX = new IntRange(generationData.MinX, generationData.MaxX);
             var rangeY = new IntRange(generationData.MinY, generationData.MaxY);
@@ -55,16 +53,17 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
                 FoodRich = generationData.FoodRich
             };
 
-            var generator = new GeneratePortion(
-                rangeX.Min,
-                rangeX.Max,
-                rangeY.Min,
-                rangeY.Max,
-                _mainUow,
-                customConditions,
-                generationData.GalaxyId
-                );
-            return generator.Generate(rnd);
+            //var generator = new GeneratePortion(
+            //    rangeX.Min,
+            //    rangeX.Max,
+            //    rangeY.Min,
+            //    rangeY.Max,
+            //    _mainUow,
+            //    customConditions,
+            //    generationData.GalaxyId
+            //    );
+            //return generator.Generate(rnd);
+            return false;
         }
     }
 }

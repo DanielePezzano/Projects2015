@@ -39,7 +39,7 @@ namespace Models.Base
         [NotMapped]
         [Display(Name = "UsableSpacesLeft", ResourceType = typeof(Resources))]
         [DataMember]
-        public int WaterSpacesLeft { get { return (WaterSpaces - WaterUsedSpaces > 0) ? WaterSpaces - WaterUsedSpaces : 0; } }
+        public int WaterSpacesLeft { get { return WaterSpaces - WaterUsedSpaces > 0 ? WaterSpaces - WaterUsedSpaces : 0; } }
         [Required]
         [Display(Name = "GroundUsedSpaces", ResourceType = typeof(Resources))]
         [DataMember]
@@ -47,6 +47,6 @@ namespace Models.Base
         [NotMapped]
         [Display(Name = "GroudSpacesLeft", ResourceType = typeof(Resources))]
         [DataMember]
-        public int GroudSpacesLeft { get { return (GroundSpaces - GroudUsedSpaces > 0) ? GroundSpaces - GroudUsedSpaces : 0; } }
+        public int GroudSpacesLeft { get { return GroundSpaces - GroudUsedSpaces > 0 ? GroundSpaces - GroudUsedSpaces : 0; } }
     }
 }

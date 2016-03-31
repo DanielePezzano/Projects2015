@@ -25,6 +25,9 @@ C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Entity
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\EntityFramework.xml
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\obj\Debug\BusinessTest.csprojResolveAssemblyReference.cache
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Resources.resx
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Resources.Designer.cs
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\BusinessTest.dll.config
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\BusinessTest.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\BusinessTest.pdb
@@ -34,10 +37,11 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Entit
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Models.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Moq.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\UnitOfWork.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Models.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\UnitOfWork.pdb
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\BLL.pdb
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\EntityFramework.xml
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Moq.xml
-C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\obj\Debug\BusinessTest.csprojResolveAssemblyReference.cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\obj\Debug\BusinessTest.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\obj\Debug\BusinessTest.pdb

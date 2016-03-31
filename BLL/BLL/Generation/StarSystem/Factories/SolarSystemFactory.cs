@@ -104,20 +104,19 @@ namespace BLL.Generation.StarSystem.Factories
         {
             if (_conditions == null) throw new NullReferenceException("_Conditions must have a value");
 
-            var star = starGenerator.CreateBrandNewStar();
-            _associatedStar = star;
-            _orbitGenerator = new OrbitGenerator(star, _closeRange, _conditions);
+            _associatedStar = starGenerator.CreateBrandNewStar();
+            _orbitGenerator = FactoryGenerator.RetrieOrbitGenerator(_associatedStar, _closeRange, _conditions);
 
-            starPlacer.Place(star, rangeX, rangeY, _rnd, cacheKey);
+            starPlacer.Place(_associatedStar, rangeX, rangeY, _rnd, cacheKey);
 
-            if (!starGenerator.HasPlanets(starGenerator.CalculatePlanetProbability(star), _rnd) && !
-                (_conditions.ForceLiving || _conditions.ForceWater || _conditions.MostlyWater)) return star;
+            if (!starGenerator.HasPlanets(starGenerator.CalculatePlanetProbability(_associatedStar), _rnd) && !
+                (_conditions.ForceLiving || _conditions.ForceWater || _conditions.MostlyWater)) return _associatedStar;
 
-            _numberOfPlanets = starGenerator.CalculateNumberOfPlanets(starGenerator.CalculateMaxNumberOfPlanet(star),
+            _numberOfPlanets = starGenerator.CalculateNumberOfPlanets(starGenerator.CalculateMaxNumberOfPlanet(_associatedStar),
                 _rnd, _conditions);
 
             AddPlanets();
-            return star;
+            return _associatedStar;
         }
     }
 }

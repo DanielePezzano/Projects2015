@@ -41,10 +41,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\BLL.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -52,16 +48,9 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\Models.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="SharedDto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\SharedDto.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web.DynamicData" />
@@ -81,21 +70,8 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="UnitOfWork, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\UnitOfWork.dll</HintPath>
-    </Reference>
-    <Reference Include="WcfCommCrypto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\WcfCommCrypto.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Lib\BLL.dll" />
-    <Content Include="Lib\Models.dll" />
-    <Content Include="Lib\SharedDto.dll" />
-    <Content Include="Lib\UnitOfWork.dll" />
-    <Content Include="Lib\WcfCommCrypto.dll" />
     <Content Include="Universe.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -125,6 +101,28 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BLL\BLL\BLL.csproj">
+      <Project>{21205f33-94cb-4686-bc35-93111e3a9067}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\Models\Models.csproj">
+      <Project>{0309e052-c6a1-4c0f-adfd-6fd8b4c1cd2a}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SharedDto\SharedDto\SharedDto.csproj">
+      <Project>{cd2dbeff-0a8a-4082-a9a9-db91fd3ec6ec}</Project>
+      <Name>SharedDto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UnitOfWork\UnitOfWork\UnitOfWork.csproj">
+      <Project>{1542d9fb-7fde-4127-9014-562bc47a7ea7}</Project>
+      <Name>UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WcfCommCrypto\WcfCommCrypto\WcfCommCrypto.csproj">
+      <Project>{c29f4c65-da83-4ae5-bce9-6629904d8775}</Project>
+      <Name>WcfCommCrypto</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

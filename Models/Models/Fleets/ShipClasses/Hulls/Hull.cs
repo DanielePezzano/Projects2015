@@ -140,16 +140,16 @@ namespace Models.Fleets.ShipClasses.Hulls
 
         private int GetTotalUsedSpaces()
         {
-            var totalEngineSpaces = (Engines != null && Engines.Count > 0) ? Engines.Sum(x => x.SpacesNeeded) : 0;
-            var totalArmorSpaces = (Armors != null && Armors.Count > 0) ? Armors.Sum(x => x.SpacesNeeded) : 0;
-            var totalShieldSpaces = (Shields != null && Shields.Count > 0) ? Shields.Sum(x => x.SpacesNeeded) : 0;
-            var totalWeapons1 = (AntiShipWeapons != null && AntiShipWeapons.Count > 0)
+            var totalEngineSpaces = Engines != null && Engines.Count > 0 ? Engines.Sum(x => x.SpacesNeeded) : 0;
+            var totalArmorSpaces = Armors != null && Armors.Count > 0 ? Armors.Sum(x => x.SpacesNeeded) : 0;
+            var totalShieldSpaces = Shields != null && Shields.Count > 0 ? Shields.Sum(x => x.SpacesNeeded) : 0;
+            var totalWeapons1 = AntiShipWeapons != null && AntiShipWeapons.Count > 0
                 ? AntiShipWeapons.Sum(x => x.SpacesNeeded)
                 : 0;
-            var totalWeapons2 = (AntiPlanetWeapons != null && AntiPlanetWeapons.Count > 0)
+            var totalWeapons2 = AntiPlanetWeapons != null && AntiPlanetWeapons.Count > 0
                 ? AntiPlanetWeapons.Sum(x => x.SpacesNeeded)
                 : 0;
-            var totalSystemSp = (SubSystems != null && SubSystems.Count > 0) ? SubSystems.Sum(x => x.SpacesNeeded) : 0;
+            var totalSystemSp = SubSystems != null && SubSystems.Count > 0 ? SubSystems.Sum(x => x.SpacesNeeded) : 0;
 
             return totalArmorSpaces + totalEngineSpaces + totalShieldSpaces + totalWeapons1 + totalWeapons2 +
                    totalSystemSp;
@@ -157,58 +157,58 @@ namespace Models.Fleets.ShipClasses.Hulls
 
         private int GetTotalToHitBonus()
         {
-            return (SubSystems != null && SubSystems.Count > 0)
+            return SubSystems != null && SubSystems.Count > 0
                 ? SubSystems.Sum(x => x.ToHitBonus)
                 : 0;
         }
 
         private int GetTotalArmor()
         {
-            return (Armors != null && Armors.Count > 0)
+            return Armors != null && Armors.Count > 0
                 ? Armors.Sum(x => x.Protection)
                 : 0;
         }
 
         private int GetTotalShields()
         {
-            return (Shields != null && Shields.Count > 0)
+            return Shields != null && Shields.Count > 0
                 ? Shields.Sum(x => x.Protection)
                 : 0;
         }
 
         private int GetCombatSpeed()
         {
-            var engineBonus = (Engines != null && Engines.Count > 0) ? Engines.Sum(x => x.CombatSpeed) : 0;
-            var systemBonus = (SubSystems != null && SubSystems.Count > 0) ? SubSystems.Sum(x => x.CombatSpeedBonus) : 0;
+            var engineBonus = Engines != null && Engines.Count > 0 ? Engines.Sum(x => x.CombatSpeed) : 0;
+            var systemBonus = SubSystems != null && SubSystems.Count > 0 ? SubSystems.Sum(x => x.CombatSpeedBonus) : 0;
 
             return engineBonus + systemBonus;
         }
 
         private int GetTravelSpeed()
         {
-            var engineBonus = (Engines != null && Engines.Count > 0) ? Engines.Sum(x => x.TravelSpeed) : 0;
-            var systemBonus = (SubSystems != null && SubSystems.Count > 0) ? SubSystems.Sum(x => x.TravelSpeedBonus) : 0;
+            var engineBonus = Engines != null && Engines.Count > 0 ? Engines.Sum(x => x.TravelSpeed) : 0;
+            var systemBonus = SubSystems != null && SubSystems.Count > 0 ? SubSystems.Sum(x => x.TravelSpeedBonus) : 0;
 
             return engineBonus + systemBonus;
         }
 
         private int GetEngineRadius()
         {
-            return (SubSystems != null && SubSystems.Count > 0) ? SubSystems.Sum(x => x.Range) : 0;
+            return SubSystems != null && SubSystems.Count > 0 ? SubSystems.Sum(x => x.Range) : 0;
         }
 
         private int GetMoneyCost()
         {
-            var totalEngineMoneyCost = (Engines != null && Engines.Count > 0) ? Engines.Sum(x => x.MoneyCost) : 0;
-            var totalArmorMoneyCost = (Armors != null && Armors.Count > 0) ? Armors.Sum(x => x.MoneyCost) : 0;
-            var totalShieldMoneyCost = (Shields != null && Shields.Count > 0) ? Shields.Sum(x => x.MoneyCost) : 0;
-            var totalWeapons1MoneyCost = (AntiShipWeapons != null && AntiShipWeapons.Count > 0)
+            var totalEngineMoneyCost = Engines != null && Engines.Count > 0 ? Engines.Sum(x => x.MoneyCost) : 0;
+            var totalArmorMoneyCost = Armors != null && Armors.Count > 0 ? Armors.Sum(x => x.MoneyCost) : 0;
+            var totalShieldMoneyCost = Shields != null && Shields.Count > 0 ? Shields.Sum(x => x.MoneyCost) : 0;
+            var totalWeapons1MoneyCost = AntiShipWeapons != null && AntiShipWeapons.Count > 0
                 ? AntiShipWeapons.Sum(x => x.MoneyCost)
                 : 0;
-            var totalWeapons2MoneyCost = (AntiPlanetWeapons != null && AntiPlanetWeapons.Count > 0)
+            var totalWeapons2MoneyCost = AntiPlanetWeapons != null && AntiPlanetWeapons.Count > 0
                 ? AntiPlanetWeapons.Sum(x => x.MoneyCost)
                 : 0;
-            var totalSystemMoneyCost = (SubSystems != null && SubSystems.Count > 0)
+            var totalSystemMoneyCost = SubSystems != null && SubSystems.Count > 0
                 ? SubSystems.Sum(x => x.MoneyCost)
                 : 0;
 
@@ -218,16 +218,16 @@ namespace Models.Fleets.ShipClasses.Hulls
 
         private int GetOreCost()
         {
-            var totalEngineOreCost = (Engines != null && Engines.Count > 0) ? Engines.Sum(x => x.OreCost) : 0;
-            var totalArmorOreCost = (Armors != null && Armors.Count > 0) ? Armors.Sum(x => x.OreCost) : 0;
-            var totalShieldOreCost = (Shields != null && Shields.Count > 0) ? Shields.Sum(x => x.OreCost) : 0;
-            var totalWeapons1OreCost = (AntiShipWeapons != null && AntiShipWeapons.Count > 0)
+            var totalEngineOreCost = Engines != null && Engines.Count > 0 ? Engines.Sum(x => x.OreCost) : 0;
+            var totalArmorOreCost = Armors != null && Armors.Count > 0 ? Armors.Sum(x => x.OreCost) : 0;
+            var totalShieldOreCost = Shields != null && Shields.Count > 0 ? Shields.Sum(x => x.OreCost) : 0;
+            var totalWeapons1OreCost = AntiShipWeapons != null && AntiShipWeapons.Count > 0
                 ? AntiShipWeapons.Sum(x => x.OreCost)
                 : 0;
-            var totalWeapons2OreCost = (AntiPlanetWeapons != null && AntiPlanetWeapons.Count > 0)
+            var totalWeapons2OreCost = AntiPlanetWeapons != null && AntiPlanetWeapons.Count > 0
                 ? AntiPlanetWeapons.Sum(x => x.OreCost)
                 : 0;
-            var totalSystemOreCost = (SubSystems != null && SubSystems.Count > 0) ? SubSystems.Sum(x => x.OreCost) : 0;
+            var totalSystemOreCost = SubSystems != null && SubSystems.Count > 0 ? SubSystems.Sum(x => x.OreCost) : 0;
 
             return totalEngineOreCost + totalArmorOreCost + totalShieldOreCost + totalWeapons1OreCost +
                    totalWeapons2OreCost + totalSystemOreCost;
@@ -235,16 +235,16 @@ namespace Models.Fleets.ShipClasses.Hulls
 
         private int GetOreMaintCost()
         {
-            var totalEngineOreCost = (Engines != null && Engines.Count > 0) ? Engines.Sum(x => x.OreMaintenanceCost) : 0;
-            var totalArmorOreCost = (Armors != null && Armors.Count > 0) ? Armors.Sum(x => x.OreMaintenanceCost) : 0;
-            var totalShieldOreCost = (Shields != null && Shields.Count > 0) ? Shields.Sum(x => x.OreMaintenanceCost) : 0;
-            var totalWeapons1OreCost = (AntiShipWeapons != null && AntiShipWeapons.Count > 0)
+            var totalEngineOreCost = Engines != null && Engines.Count > 0 ? Engines.Sum(x => x.OreMaintenanceCost) : 0;
+            var totalArmorOreCost = Armors != null && Armors.Count > 0 ? Armors.Sum(x => x.OreMaintenanceCost) : 0;
+            var totalShieldOreCost = Shields != null && Shields.Count > 0 ? Shields.Sum(x => x.OreMaintenanceCost) : 0;
+            var totalWeapons1OreCost = AntiShipWeapons != null && AntiShipWeapons.Count > 0
                 ? AntiShipWeapons.Sum(x => x.OreMaintenanceCost)
                 : 0;
-            var totalWeapons2OreCost = (AntiPlanetWeapons != null && AntiPlanetWeapons.Count > 0)
+            var totalWeapons2OreCost = AntiPlanetWeapons != null && AntiPlanetWeapons.Count > 0
                 ? AntiPlanetWeapons.Sum(x => x.OreMaintenanceCost)
                 : 0;
-            var totalSystemOreCost = (SubSystems != null && SubSystems.Count > 0)
+            var totalSystemOreCost = SubSystems != null && SubSystems.Count > 0
                 ? SubSystems.Sum(x => x.OreMaintenanceCost)
                 : 0;
 
@@ -254,20 +254,20 @@ namespace Models.Fleets.ShipClasses.Hulls
 
         private int GetMoneyMaintCost()
         {
-            var totalEngineMoneyCost = (Engines != null && Engines.Count > 0)
+            var totalEngineMoneyCost = Engines != null && Engines.Count > 0
                 ? Engines.Sum(x => x.MoneyMaintenanceCost)
                 : 0;
-            var totalArmorMoneyCost = (Armors != null && Armors.Count > 0) ? Armors.Sum(x => x.MoneyMaintenanceCost) : 0;
-            var totalShieldMoneyCost = (Shields != null && Shields.Count > 0)
+            var totalArmorMoneyCost = Armors != null && Armors.Count > 0 ? Armors.Sum(x => x.MoneyMaintenanceCost) : 0;
+            var totalShieldMoneyCost = Shields != null && Shields.Count > 0
                 ? Shields.Sum(x => x.MoneyMaintenanceCost)
                 : 0;
-            var totalWeapons1MoneyCost = (AntiShipWeapons != null && AntiShipWeapons.Count > 0)
+            var totalWeapons1MoneyCost = AntiShipWeapons != null && AntiShipWeapons.Count > 0
                 ? AntiShipWeapons.Sum(x => x.MoneyMaintenanceCost)
                 : 0;
-            var totalWeapons2MoneyCost = (AntiPlanetWeapons != null && AntiPlanetWeapons.Count > 0)
+            var totalWeapons2MoneyCost = AntiPlanetWeapons != null && AntiPlanetWeapons.Count > 0
                 ? AntiPlanetWeapons.Sum(x => x.MoneyMaintenanceCost)
                 : 0;
-            var totalSystemMoneyCost = (SubSystems != null && SubSystems.Count > 0)
+            var totalSystemMoneyCost = SubSystems != null && SubSystems.Count > 0
                 ? SubSystems.Sum(x => x.MoneyMaintenanceCost)
                 : 0;
 

@@ -32,7 +32,7 @@ namespace BLL.Generation.StarSystem.Builders
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
                 Star = _star,
-                Name = "PL - " + DateTime.Now.ToFileTimeUtc(),
+                Name = "PL - " + RandomNumbers.RandomString(7),
                 Buildings = new List<Building>(),
                 Satellites = new List<Satellite>(),
                 User = null,

@@ -35,14 +35,12 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
 
         public void Dispose()
         {
-            if (!_disposed)
-            {
-                if (_factory != null) _factory.Dispose();
-                if (_repositories != null) _repositories.Dispose();
-                if (_mainUow != null) _mainUow.Dispose();
-                if (_repoFactory != null) _repoFactory.Dispose();
-                _disposed = true;
-            }
+            if (_disposed) return;
+            if (_factory != null) _factory.Dispose();
+            if (_repositories != null) _repositories.Dispose();
+            if (_mainUow != null) _mainUow.Dispose();
+            if (_repoFactory != null) _repoFactory.Dispose();
+            _disposed = true;
             //GC.SuppressFinalize(this);
         }
 
@@ -124,7 +122,7 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
             List<Star> starEntities;
             using (var retrieve = new RetrieveInformations(_mainUow, rangeX, rangeY))
             {
-                string cacheKey = rangeX.Min + CallSeparators.CoordX + rangeX.Max + CallSeparators.OtherSeparator +
+                var cacheKey = rangeX.Min + CallSeparators.CoordX + rangeX.Max + CallSeparators.OtherSeparator +
                                   rangeY.Min + CallSeparators.CoordY + rangeY.Max;
                 starEntities = retrieve.StarsInRange(cacheKey);
             }

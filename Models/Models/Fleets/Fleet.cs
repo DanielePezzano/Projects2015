@@ -79,42 +79,42 @@ namespace Models.Fleets
 
         private int GetTravelSpeed()
         {
-            return (ShipClasses != null && ShipClasses.Count > 0)
+            return ShipClasses != null && ShipClasses.Count > 0
                 ? ShipClasses.OrderBy(x => x.TravelSpeed).Select(x => x.TravelSpeed).First()
                 : 0;
         }
 
         private int GetRange()
         {
-            return (ShipClasses != null && ShipClasses.Count > 0)
+            return ShipClasses != null && ShipClasses.Count > 0
                 ? ShipClasses.OrderBy(x => x.EngineRadius).Select(x => x.EngineRadius).First()
                 : 0;
         }
 
         private int GetMoneyCost()
         {
-            return (ShipClasses != null && ShipClasses.Count > 0)
+            return ShipClasses != null && ShipClasses.Count > 0
                 ? ShipClasses.Sum(x => x.MoneyCost)
                 : 0;
         }
 
         private int GetMoneyMaintCost()
         {
-            return (ShipClasses != null && ShipClasses.Count > 0)
+            return ShipClasses != null && ShipClasses.Count > 0
                 ? ShipClasses.Sum(x => x.MoneyMaintenanceCost)
                 : 0;
         }
 
         private int GetOreCost()
         {
-            return (ShipClasses != null && ShipClasses.Count > 0)
+            return ShipClasses != null && ShipClasses.Count > 0
                 ? ShipClasses.Sum(x => x.OreCost)
                 : 0;
         }
 
         private int GetOreMaintCost()
         {
-            return (ShipClasses != null && ShipClasses.Count > 0)
+            return ShipClasses != null && ShipClasses.Count > 0
                 ? ShipClasses.Sum(x => x.OreMaintenanceCost)
                 : 0;
         }

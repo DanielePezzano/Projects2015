@@ -64,7 +64,7 @@ namespace BLL.Generation.StarSystem.Builders
             {
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
-                Name = "NS-" + DateTime.Now.ToFileTimeUtc(),
+                Name = "NS-" + RandomNumbers.RandomString(7),
                 StarColor = StarProperties.DetermineStarColor(_rnd.Next(StarProperties.MinBaseRange, 100)),
                 Planets = new List<Planet>()
             };

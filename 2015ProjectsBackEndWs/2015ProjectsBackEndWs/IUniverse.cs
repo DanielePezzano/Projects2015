@@ -17,7 +17,7 @@ namespace _2015ProjectsBackEndWs
         string RetrieveUniverseList();
 
         [OperationContract]
-        string GenerateStarSystem(PlanetGenerationDto generationData, string hashcall);
+        string GenerateStarSystem(SystemGenerationDto generationData, string hashcall);
 
         [OperationContract]
         bool CheckUserRegistration(string data);

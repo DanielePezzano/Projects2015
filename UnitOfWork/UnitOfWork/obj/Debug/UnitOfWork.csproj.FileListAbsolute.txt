@@ -18,3 +18,17 @@ C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin
 C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\obj\Debug\UnitOfWork.dll
 C:\Users\Daniele\Documents\Visual Studio 2013\Projects\UnitOfWork\UnitOfWork\obj\Debug\UnitOfWork.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Debug\UnitOfWork.csprojResolveAssemblyReference.cache
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\Resources.resx
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\Resources.Designer.cs
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\UnitOfWork.dll.config
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\UnitOfWork.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\UnitOfWork.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\EntityFramework.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\Models.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\Models.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\EntityFramework.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Debug\UnitOfWork.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Debug\UnitOfWork.pdb

@@ -1,0 +1,968 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Abandoned" xml:space="preserve">
+    <value>Abbandonato</value>
+    <comment>Stati Pianeti</comment>
+  </data>
+  <data name="ActivePopOnFoodProduction" xml:space="preserve">
+    <value>Popolazione attiva impiegata nella produzione di cibo</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="ActivePopOnOreProduction" xml:space="preserve">
+    <value>Popolazione attiva impiegata nella lavorazione di minerali</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="ActivePopOnResProduction" xml:space="preserve">
+    <value>Popolazione attiva impiegata nella ricerca</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="AimingComputer" xml:space="preserve">
+    <value>Computer di puntamento</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="AimingSystem" xml:space="preserve">
+    <value>Sistema di puntamento</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="AtmospherePresent" xml:space="preserve">
+    <value>Atmosfera Presente</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="BeamWeapon" xml:space="preserve">
+    <value>Arma a raggio</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Blocked" xml:space="preserve">
+    <value>Bloccato</value>
+    <comment>Stati Pianeti</comment>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blu</value>
+    <comment>Colori delle selle</comment>
+  </data>
+  <data name="BonusToHit" xml:space="preserve">
+    <value>Bonus a colpire</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Bulk" xml:space="preserve">
+    <value>Stiva</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Colonized" xml:space="preserve">
+    <value>Colonizzato</value>
+    <comment>Stati Pianeti</comment>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Colore</value>
+  </data>
+  <data name="CombatSpeed" xml:space="preserve">
+    <value>Velocità di combattimento</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="CombatSpeedBonus" xml:space="preserve">
+    <value>Bonus sulla velocità di combattimento (%)</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Command" xml:space="preserve">
+    <value>Comando</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Damage" xml:space="preserve">
+    <value>Danni</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descrizione</value>
+    <comment>Generic</comment>
+  </data>
+  <data name="Dwarf" xml:space="preserve">
+    <value>Nana</value>
+    <comment>Tipologia di stelle</comment>
+  </data>
+  <data name="Eccentricity" xml:space="preserve">
+    <value>Eccentricità</value>
+    <comment>Orbita</comment>
+  </data>
+  <data name="EccentricityHint" xml:space="preserve">
+    <value>Un numero compreso tra 0 ed 1 che misura quanto un orbita si avvicini ad una circonferenza perfetta (valore 1)</value>
+    <comment>Orbita</comment>
+  </data>
+  <data name="ECCM" xml:space="preserve">
+    <value>Contro-contromisure elettroniche</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="ECM" xml:space="preserve">
+    <value>Contromisure elettroniche</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="EnergyBonus" xml:space="preserve">
+    <value>Bonus Energia</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="EnergyCell" xml:space="preserve">
+    <value>Celle di energia</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="EngineRoom" xml:space="preserve">
+    <value>Sala Macchine</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="FlightComputer" xml:space="preserve">
+    <value>Computer di volo</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="FoodProduction" xml:space="preserve">
+    <value>Produzione oraria Cibo</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="GeneratedEnergy" xml:space="preserve">
+    <value>Energia Sviluppata</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Generic" xml:space="preserve">
+    <value>Generico</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Giant" xml:space="preserve">
+    <value>Gigante</value>
+    <comment>Tipologia di stelle</comment>
+  </data>
+  <data name="GravityCompared" xml:space="preserve">
+    <value>Gravità Comparata</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="GravityComparedHint" xml:space="preserve">
+    <value>Numero che indica la forza di gravità comparata a quella terrestre. Es, 1.3 =1.3 volte la gravità terrestre.</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="GreatDonations" xml:space="preserve">
+    <value>Grosse Donazioni</value>
+    <comment>Livello Tasse</comment>
+  </data>
+  <data name="GroudSpacesLeft" xml:space="preserve">
+    <value>Spazi terrestri rimasti</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="GroundSpaces" xml:space="preserve">
+    <value>Terraferma</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="GroundSpacesHint" xml:space="preserve">
+    <value>Spazi disponibili di terra ferma, destinabili per costruzioni e/o produzione</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="GroundUsedSpaces" xml:space="preserve">
+    <value>Spazi terrestri usati</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="HabitableSpaces" xml:space="preserve">
+    <value>Totale Spazi abitabili</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="HabitableSpacesHint" xml:space="preserve">
+    <value>Somma degli spazi terrestri e marini</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="High" xml:space="preserve">
+    <value>Tasse Elevate</value>
+    <comment>Livello Tasse</comment>
+  </data>
+  <data name="Hyper" xml:space="preserve">
+    <value>Ipergigante</value>
+    <comment>Tipologia di stelle</comment>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Tasse Leggere</value>
+    <comment>Livello Tasse</comment>
+  </data>
+  <data name="MailBody" xml:space="preserve">
+    <value>Testo Messaggio</value>
+  </data>
+  <data name="MalusToHit" xml:space="preserve">
+    <value>Malus a colpire</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Mass" xml:space="preserve">
+    <value>Massa</value>
+  </data>
+  <data name="MaxPopulation" xml:space="preserve">
+    <value>Popolazione Massima</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="MoneyCost" xml:space="preserve">
+    <value>Costo in Monete</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="MoneyMaintenanceCost" xml:space="preserve">
+    <value>Costo di manutenzione in Monete</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Tasse Normali</value>
+    <comment>Livello Tasse</comment>
+  </data>
+  <data name="Optimum" xml:space="preserve">
+    <value>Stato Ottimale</value>
+    <comment>Stati Pianeti</comment>
+  </data>
+  <data name="Orange" xml:space="preserve">
+    <value>Arancione</value>
+    <comment>Colori delle selle</comment>
+  </data>
+  <data name="OrbitDetails" xml:space="preserve">
+    <value>Dettagli Orbita</value>
+    <comment>Orbita</comment>
+  </data>
+  <data name="OreCost" xml:space="preserve">
+    <value>Costo in Minerali</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="OreMaintenanceCost" xml:space="preserve">
+    <value>Costo di manutenzione in Minerali</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="OreProduction" xml:space="preserve">
+    <value>Produzione oraria Minerale</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="PercCombatSpeedMalus" xml:space="preserve">
+    <value>Malus sulla velocità di combattimento (%)</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="PercTravelSpeedMalus" xml:space="preserve">
+    <value>Malus sulla velocità di crociera (%)</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="PeriodOfRevolution" xml:space="preserve">
+    <value>Tempo di Rivoluzione</value>
+    <comment>Orbita</comment>
+  </data>
+  <data name="PeriodOfRotation" xml:space="preserve">
+    <value>Tempo di Rotazione</value>
+    <comment>Orbita</comment>
+  </data>
+  <data name="Population" xml:space="preserve">
+    <value>Popolazione</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="Protection" xml:space="preserve">
+    <value>Protezione</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="ProtectionHint" xml:space="preserve">
+    <value>Danni Assorbibili</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="RadiatedGround" xml:space="preserve">
+    <value>Terreni contaminati</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="RadiatedHint" xml:space="preserve">
+    <value>Spazi non utilizzabili senza una bonifica e/o opportune protezioni</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="RadiatedWater" xml:space="preserve">
+    <value>Mari contaminati</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="RadiationHazard" xml:space="preserve">
+    <value>Pericolo Radiazioni</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="RadiationHazardHint" xml:space="preserve">
+    <value>Queste armi rendono inabitabili tanti spazi di un pianeta, quanti sono i turni di bombardamento</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="RadiationLevel" xml:space="preserve">
+    <value>Livello di radiazioni</value>
+  </data>
+  <data name="Radius" xml:space="preserve">
+    <value>Raggio</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>Autonomia</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="RangeHint" xml:space="preserve">
+    <value>Determina quanto lontano una cella di energia, può portare una nave</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="RateOfFire" xml:space="preserve">
+    <value>Cadenza di tiro</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="RateOfFireHint" xml:space="preserve">
+    <value>Quante volte un arma spara in un round</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="RayOfFire" xml:space="preserve">
+    <value>Raggio di fuoco</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="RayOfFireHint" xml:space="preserve">
+    <value>Distanza entro cui un arma risulta efficace</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Receiver" xml:space="preserve">
+    <value>A:</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Rossa</value>
+    <comment>Colori delle selle</comment>
+  </data>
+  <data name="RequiredEnergy" xml:space="preserve">
+    <value>Energia Richiesta</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="ResearchProduction" xml:space="preserve">
+    <value>Punti ricerca orari</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="Revolt" xml:space="preserve">
+    <value>Rivolte in atto!</value>
+    <comment>Stati Pianeti</comment>
+  </data>
+  <data name="RingsPresent" xml:space="preserve">
+    <value>Anelli Presenti</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="Rooms" xml:space="preserve">
+    <value>Alloggi</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="SatelliteProduction" xml:space="preserve">
+    <value>Indici Produttivi</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="SatelliteSocial" xml:space="preserve">
+    <value>Indici Sociali</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="SatelliteStatus" xml:space="preserve">
+    <value>Stato Satellite</value>
+  </data>
+  <data name="ScannerRadius" xml:space="preserve">
+    <value>Raggio dei rilevatori</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="ScannerRelevationBonus" xml:space="preserve">
+    <value>Bonus di Rilevazione (%)</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="ScannerRelevationMalus" xml:space="preserve">
+    <value>Malus di Rilevazione (%)</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Scanners" xml:space="preserve">
+    <value>Rilevatori</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Sender" xml:space="preserve">
+    <value>Da:</value>
+  </data>
+  <data name="SmallDonations" xml:space="preserve">
+    <value>Piccole Donazioni</value>
+    <comment>Livello Tasse</comment>
+  </data>
+  <data name="SpaceBonus" xml:space="preserve">
+    <value>Bonus sugli spazi occupati (%)</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="SpacesNeeded" xml:space="preserve">
+    <value>Spazi Richiesti</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>Modulo Speciale</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Starvation" xml:space="preserve">
+    <value>Mancanza di cibo!</value>
+    <comment>Stati Pianeti</comment>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>Tasse Esagerate</value>
+    <comment>Livello Tasse</comment>
+  </data>
+  <data name="SurfaceTemp" xml:space="preserve">
+    <value>Temperatura Superficiale</value>
+  </data>
+  <data name="SystemType" xml:space="preserve">
+    <value>Tipologia del sistema</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="TaxLevel" xml:space="preserve">
+    <value>Livello Tasse</value>
+    <comment>TaxLevel</comment>
+  </data>
+  <data name="TotalSpaces" xml:space="preserve">
+    <value>Dimensioni</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="TotalSpacesHint" xml:space="preserve">
+    <value>Rappresenta il numero di spazi totali</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="TravelSpeed" xml:space="preserve">
+    <value>Velocità di crociera</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="TravelSpeedBonus" xml:space="preserve">
+    <value>Bonus sulla velocità di crociera (%)</value>
+    <comment>Navi e Flotte</comment>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="Uncolonizable" xml:space="preserve">
+    <value>Non Colonizzabile</value>
+    <comment>Stati Pianeti</comment>
+  </data>
+  <data name="Uncolonized" xml:space="preserve">
+    <value>Non Colonizzato</value>
+    <comment>Stati Pianeti</comment>
+  </data>
+  <data name="UserImg" xml:space="preserve">
+    <value>Immagine Personale</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nome Utente</value>
+  </data>
+  <data name="WaterSpaces" xml:space="preserve">
+    <value>Oceani</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="WaterSpacesHint" xml:space="preserve">
+    <value>Spazi occupati da Acqua, destinabili per costruzioni e/o produzione, soltanto per le razze acquatiche.</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="WaterSpacesLeft" xml:space="preserve">
+    <value>Spazi marini utilizzabili rimasti</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="WaterUsedSpaces" xml:space="preserve">
+    <value>Spazi marini usati</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="Yellow" xml:space="preserve">
+    <value>Gialla</value>
+    <comment>Colori delle selle</comment>
+  </data>
+  <data name="AntiPlanetWeapon" xml:space="preserve">
+    <value>Sistema Arma Nave-Pianeta</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="AntiShipWeapon" xml:space="preserve">
+    <value>Sistema Arma Nave-Nave</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Armies" xml:space="preserve">
+    <value>Armate</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>Corazza</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Attack" xml:space="preserve">
+    <value>Attacco</value>
+    <comment>Tipo Missioni</comment>
+  </data>
+  <data name="Beams" xml:space="preserve">
+    <value>Armi a raggio</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="BetterLiving" xml:space="preserve">
+    <value>Miglioramento Vita</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Bombing" xml:space="preserve">
+    <value>Bombardamento</value>
+    <comment>Tipo Missioni</comment>
+  </data>
+  <data name="Bombs" xml:space="preserve">
+    <value>Bombe</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="BonusType" xml:space="preserve">
+    <value>Bonus</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Buildings" xml:space="preserve">
+    <value>Costruzioni</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="CivilBuilding" xml:space="preserve">
+    <value>Costruzioni civili</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Civils" xml:space="preserve">
+    <value>Civili</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="Colonization" xml:space="preserve">
+    <value>Colonizzazione</value>
+    <comment>Tipo Missioni</comment>
+  </data>
+  <data name="DefenceBuildings" xml:space="preserve">
+    <value>Sistemi di difesa</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Fattp</value>
+    <comment>Code/Generale</comment>
+  </data>
+  <data name="EnancheProduction" xml:space="preserve">
+    <value>Miglioramento Produttivo</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Energy" xml:space="preserve">
+    <value>Energia</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Engine" xml:space="preserve">
+    <value>Motori</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Enviroment" xml:space="preserve">
+    <value>Ambiente</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Field" xml:space="preserve">
+    <value>Categoria</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="FinishAt" xml:space="preserve">
+    <value>Termine</value>
+    <comment>Code</comment>
+  </data>
+  <data name="Food" xml:space="preserve">
+    <value>Cibo</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="Frame" xml:space="preserve">
+    <value>Struttura</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="InQueue" xml:space="preserve">
+    <value>In Coda</value>
+    <comment>Code</comment>
+  </data>
+  <data name="Invasion" xml:space="preserve">
+    <value>Invasione</value>
+    <comment>Tipo Missioni</comment>
+  </data>
+  <data name="Materials" xml:space="preserve">
+    <value>Materiali</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Mathematics" xml:space="preserve">
+    <value>Matematica</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="MilitaryBuildings" xml:space="preserve">
+    <value>Costruzioni militari</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="MissionType" xml:space="preserve">
+    <value>Tipo Missione</value>
+    <comment>Code/Generale</comment>
+  </data>
+  <data name="Movement" xml:space="preserve">
+    <value>Movimento</value>
+    <comment>Tipo Missioni</comment>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Numero</value>
+    <comment>Code/Generale</comment>
+  </data>
+  <data name="Ore" xml:space="preserve">
+    <value>Minerali</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="Phisycs" xml:space="preserve">
+    <value>Fisica</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Posizione</value>
+    <comment>Code/Generale</comment>
+  </data>
+  <data name="Projectile" xml:space="preserve">
+    <value>Arma a Proiettili</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Raid" xml:space="preserve">
+    <value>Razzia</value>
+    <comment>Tipo Missioni</comment>
+  </data>
+  <data name="ReducePollution" xml:space="preserve">
+    <value>Riduzione inquinamento</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="ResearchPoints" xml:space="preserve">
+    <value>Punti Ricerca</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="RulingSystem" xml:space="preserve">
+    <value>Sistema di governo</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Shield" xml:space="preserve">
+    <value>Scudi</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="ShipComponent" xml:space="preserve">
+    <value>Componenti Astronavi</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="ShipFrame" xml:space="preserve">
+    <value>Parti Astronavi</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Social" xml:space="preserve">
+    <value>Sociale</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="SocialLiving" xml:space="preserve">
+    <value>Ingegneria Sociale</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Space" xml:space="preserve">
+    <value>Spazio</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Spy" xml:space="preserve">
+    <value>Spionaggio</value>
+    <comment>Tipo Missioni</comment>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Stato</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="SubField" xml:space="preserve">
+    <value>Sottocategoria</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="TimeToComplete" xml:space="preserve">
+    <value>Tempo Di Completamento</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Sottosistemi</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Transport" xml:space="preserve">
+    <value>Trasporto</value>
+    <comment>Tipo Missioni</comment>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Valore</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="Weapons" xml:space="preserve">
+    <value>Armi</value>
+    <comment>Tecnologia</comment>
+  </data>
+  <data name="BuildingQueues" xml:space="preserve">
+    <value>Code Costruzione</value>
+    <comment>Code</comment>
+  </data>
+  <data name="FleetQueues" xml:space="preserve">
+    <value>Code Flotte</value>
+    <comment>Code</comment>
+  </data>
+  <data name="Mails" xml:space="preserve">
+    <value>Messaggi</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="Planet" xml:space="preserve">
+    <value>Pianeta</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="Planets" xml:space="preserve">
+    <value>Pianeti</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="Researches" xml:space="preserve">
+    <value>Ricerche</value>
+    <comment>Code</comment>
+  </data>
+  <data name="Satellite" xml:space="preserve">
+    <value>Corpo Celeste</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="Satellites" xml:space="preserve">
+    <value>Corpi Celesti</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="Technologies" xml:space="preserve">
+    <value>Tecnologie</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="CulturalTrait" xml:space="preserve">
+    <value>Tratto Culturale</value>
+    <comment>Razza</comment>
+  </data>
+  <data name="FoodConsumption" xml:space="preserve">
+    <value>Consumo Cibo</value>
+    <comment>Razza/Generale</comment>
+  </data>
+  <data name="Military" xml:space="preserve">
+    <value>Militare</value>
+    <comment>Razza/Generale</comment>
+  </data>
+  <data name="MoneyTax" xml:space="preserve">
+    <value>Generazione Ricchezza</value>
+    <comment>Razza/Generale</comment>
+  </data>
+  <data name="PhisycalTrait" xml:space="preserve">
+    <value>Tratto Fisico</value>
+    <comment>Razza</comment>
+  </data>
+  <data name="PopulationGrowth" xml:space="preserve">
+    <value>Crescita Popolazione</value>
+    <comment>Razza/Generale</comment>
+  </data>
+  <data name="SocialTrait" xml:space="preserve">
+    <value>Tratto Sociale</value>
+    <comment>Razza</comment>
+  </data>
+  <data name="SpecialTrait" xml:space="preserve">
+    <value>Tratto Speciale</value>
+    <comment>Razza</comment>
+  </data>
+  <data name="Structure" xml:space="preserve">
+    <value>Strutture</value>
+    <comment>Razza/Generale</comment>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Attivo</value>
+    <comment>Utente</comment>
+  </data>
+  <data name="Banned" xml:space="preserve">
+    <value>Bannato</value>
+    <comment>Utente</comment>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Vacanza</value>
+    <comment>Utente</comment>
+  </data>
+  <data name="PointsLeft" xml:space="preserve">
+    <value>Punti Rimasti</value>
+    <comment>Razza</comment>
+  </data>
+  <data name="PointsUsed" xml:space="preserve">
+    <value>Punti Usati</value>
+    <comment>Razza</comment>
+  </data>
+  <data name="RaceBonus" xml:space="preserve">
+    <value>Bonus di razza</value>
+    <comment>Razza</comment>
+  </data>
+  <data name="ScoreConstruction" xml:space="preserve">
+    <value>Punti Costruzioni</value>
+    <comment>Utente</comment>
+  </data>
+  <data name="ScoreCultural" xml:space="preserve">
+    <value>Punti Cultura</value>
+    <comment>Utente</comment>
+  </data>
+  <data name="ScoreMilitary" xml:space="preserve">
+    <value>Punti Militari</value>
+    <comment>Utente</comment>
+  </data>
+  <data name="ScoreResearch" xml:space="preserve">
+    <value>Punti Ricerca</value>
+    <comment>Utente</comment>
+  </data>
+  <data name="ToConfirm" xml:space="preserve">
+    <value>In attesa di Conferma</value>
+    <comment>Utente</comment>
+  </data>
+  <data name="TraitType" xml:space="preserve">
+    <value>Tipo di Tratto</value>
+    <comment>Razza</comment>
+  </data>
+  <data name="UserStatus" xml:space="preserve">
+    <value>Stato Utente</value>
+    <comment>Utente</comment>
+  </data>
+  <data name="AtBay" xml:space="preserve">
+    <value>Alla fonda</value>
+    <comment>Navi</comment>
+  </data>
+  <data name="AtBayHint" xml:space="preserve">
+    <value>Indica se una nave/flotta è in orbita su un pianeta o in viaggio</value>
+    <comment>Navi</comment>
+  </data>
+  <data name="HullType" xml:space="preserve">
+    <value>Tipo di scafo</value>
+    <comment>Navi</comment>
+  </data>
+  <data name="StructurePoints" xml:space="preserve">
+    <value>Punti Struttura</value>
+    <comment>Navi</comment>
+  </data>
+  <data name="StructurePointsHint" xml:space="preserve">
+    <value>Quanto danno assorbe la struttura prima di distruggersi</value>
+    <comment>Navi</comment>
+  </data>
+  <data name="UsedSpaces" xml:space="preserve">
+    <value>Spazi Utilizzati</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="BuildingType" xml:space="preserve">
+    <value>Tipo di costruzione</value>
+  </data>
+  <data name="FreeSpaces" xml:space="preserve">
+    <value>Spazi Disponibili</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Bianca</value>
+    <comment>Colori delle stelle</comment>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>Destinazione</value>
+    <comment>Code</comment>
+  </data>
+  <data name="StartPoint" xml:space="preserve">
+    <value>Punto di Partenza</value>
+    <comment>Code</comment>
+  </data>
+  <data name="UsableSpacesLeft" xml:space="preserve">
+    <value>Spazio Rimasto</value>
+    <comment>Generale</comment>
+  </data>
+  <data name="Habitable" xml:space="preserve">
+    <value>Abitabile</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+  <data name="IsGaseous" xml:space="preserve">
+    <value>Gassoso</value>
+    <comment>Caratteristiche Satellite</comment>
+  </data>
+</root>

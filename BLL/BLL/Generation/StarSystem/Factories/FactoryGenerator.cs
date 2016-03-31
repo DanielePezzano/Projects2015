@@ -1,6 +1,7 @@
 ﻿using System;
 using BLL.Generation.StarSystem.Builders;
 using BLL.Utilities.Structs;
+using Models.Universe;
 using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace BLL.Generation.StarSystem.Factories
@@ -37,11 +38,16 @@ namespace BLL.Generation.StarSystem.Factories
             IntRange rangeY)
         {
             return new StarSystemGenerator(
-                FactoryGenerator.RetrieveNewFactory(conditions, rnd),
-                FactoryGenerator.RetrieveNewStarBuilder(),
-                FactoryGenerator.RetrieveStarPlacer(uow),
+                RetrieveNewFactory(conditions, rnd),
+                RetrieveNewStarBuilder(),
+                RetrieveStarPlacer(uow),
                 rangeX,
                 rangeY);
+        }
+
+        public static OrbitGenerator RetrieOrbitGenerator(Star star, DoubleRange closeRange,PlanetCustomConditions conditions)
+        {
+            return new OrbitGenerator(star, closeRange, conditions);
         }
     }
 }

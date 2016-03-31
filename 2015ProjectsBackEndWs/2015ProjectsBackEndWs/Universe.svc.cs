@@ -29,7 +29,7 @@ namespace _2015ProjectsBackEndWs
         /// <param name="generationData"></param>
         /// <param name="hashcall"></param>
         /// <returns></returns>
-        public string GenerateStarSystem(PlanetGenerationDto generationData, string hashcall)
+        public string GenerateStarSystem(SystemGenerationDto generationData, string hashcall)
         {
             if (hashcall != null)
             {
@@ -193,7 +193,7 @@ namespace _2015ProjectsBackEndWs
         ///     If all Checks goes well, the system is created
         /// </summary>
         /// <param name="generationData"></param>
-        private static bool ProcessStarSystemGeneration(PlanetGenerationDto generationData)
+        private static bool ProcessStarSystemGeneration(SystemGenerationDto generationData)
         {
             bool generationResult;
             using (var setter = new SetOnly())

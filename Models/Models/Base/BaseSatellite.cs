@@ -39,7 +39,7 @@ namespace Models.Base
         [DataMember]
         public int MaxPopulation
         {
-            get { return (Spaces != null) ? Spaces.HabitableSpaces*2 : 0; }
+            get { return Spaces != null ? Spaces.HabitableSpaces*2 : 0; }
         }
 
         [Display(Name = "SatelliteSocial", ResourceType = typeof (Resources))]
