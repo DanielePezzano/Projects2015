@@ -9,7 +9,7 @@ namespace Models.Universe
     [DataContract(IsReference=true)]
     public class Galaxy : BaseEntity
     {
-        [Required()]
+        [Required]
         [Display(Name = "Name", ResourceType = typeof(Resources))]
         [DataMember]
         public string Name { get; set; }

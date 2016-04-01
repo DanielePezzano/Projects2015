@@ -21,7 +21,7 @@ namespace WcfCommCrypto
         public static string EncryptRijndael(string text, string saltKey, string inputKey)
         {
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
 
             var aesAlg = NewRijndaelManaged(saltKey, inputKey);
 
@@ -49,7 +49,7 @@ namespace WcfCommCrypto
         /// <returns/>
         private static RijndaelManaged NewRijndaelManaged(string salt, string inputKey)
         {
-            if (salt == null) throw new ArgumentNullException("salt");
+            if (salt == null) throw new ArgumentNullException(nameof(salt));
             var saltBytes = Encoding.ASCII.GetBytes(salt);
             var key = new Rfc2898DeriveBytes(inputKey, saltBytes);
             var aesAlg = new RijndaelManaged();
@@ -87,7 +87,7 @@ namespace WcfCommCrypto
         public static string DecryptRijndael(string cipherText, string saltKey, string inputKey)
         {
             if (string.IsNullOrEmpty(cipherText))
-                throw new ArgumentNullException("cipherText");
+                throw new ArgumentNullException(nameof(cipherText));
 
             if (!IsBase64String(cipherText))
                 throw new Exception("The cipherText input parameter is not base64 encoded");

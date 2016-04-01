@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BLL.Information;
 using BLL.Utilities.Structs;
 using Models.Universe;
@@ -36,10 +37,10 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
         public void Dispose()
         {
             if (_disposed) return;
-            if (_factory != null) _factory.Dispose();
-            if (_repositories != null) _repositories.Dispose();
-            if (_mainUow != null) _mainUow.Dispose();
-            if (_repoFactory != null) _repoFactory.Dispose();
+            _factory?.Dispose();
+            _repositories?.Dispose();
+            _mainUow?.Dispose();
+            _repoFactory?.Dispose();
             _disposed = true;
             //GC.SuppressFinalize(this);
         }
@@ -53,13 +54,12 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
             var result = new GalaxyList {Galaxies = new List<GalaxyForm>()};
             using (var retriever = new RetrieveInformations(_mainUow))
             {
-                foreach (var item in retriever.GetUniverseList())
+                foreach (var toAdd in retriever.GetUniverseList().Select(item => new GalaxyForm
                 {
-                    var toAdd = new GalaxyForm
-                    {
-                        GalaxyId = item.ItemId,
-                        Name = item.ItemName
-                    };
+                    GalaxyId = item.ItemId,
+                    Name = item.ItemName
+                }))
+                {
                     result.Galaxies.Add(toAdd);
                 }
             }
@@ -74,7 +74,7 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
         {
             var rangeX = new IntRange(universeRage.MinX, universeRage.MaxX);
             var rangeY = new IntRange(universeRage.MinY, universeRage.MaxY);
-            List<StarDto> stars = new List<StarDto>();
+            var stars = new List<StarDto>();
             var mapper = new StarEntityMapper();
             var starEntities = RetrieveInformation(ref rangeX, ref rangeY);
             if (starEntities != null)

@@ -14,15 +14,14 @@ namespace UnitOfWork.Cache
         {
             // 
             _callback = MyCachedItemRemovedCallback;
-            _policy = new CacheItemPolicy();
-            _policy.Priority = (myCacheItemPriority == DalCachePriority.Default)
-                ? CacheItemPriority.Default
-                : CacheItemPriority.NotRemovable;
-            _policy.AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(10.00);
-            _policy.RemovedCallback = _callback;
-            //policy.ChangeMonitors.Add(new HostFileChangeMonitor(FilePath));
-
-            // Add inside cache 
+            _policy = new CacheItemPolicy
+            {
+                Priority = myCacheItemPriority == DalCachePriority.Default
+                    ? CacheItemPriority.Default
+                    : CacheItemPriority.NotRemovable,
+                AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(10.00),
+                RemovedCallback = _callback
+            };
             Cache.Set(cacheKeyName, cacheItem, _policy);
         }
 
@@ -41,7 +40,7 @@ namespace UnitOfWork.Cache
             }
         }
 
-        private void MyCachedItemRemovedCallback(CacheEntryRemovedArguments arguments)
+        private static void MyCachedItemRemovedCallback(CacheEntryRemovedArguments arguments)
         {
             // Log these values from arguments list 
             //var strLog = string.Concat("Reason: ", arguments.RemovedReason.ToString(), " | Key-Name: ",

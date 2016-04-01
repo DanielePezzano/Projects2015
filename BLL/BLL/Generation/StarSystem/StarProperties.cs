@@ -21,7 +21,7 @@ namespace BLL.Generation.StarSystem
 
         public static StarType DetermineStarType(StarColor color, int seed)
         {
-            StarType result = StarType.Dwarf;
+            var result = StarType.Dwarf;
 
             switch (color)
             {
@@ -64,7 +64,7 @@ namespace BLL.Generation.StarSystem
         public static double CalculateResultInRange(int seed, double min, double max, int minResult)
         {
             double result;
-            using (RangeConversion rangeConverter = new RangeConversion(min, max, new ScaleConversion((MaxBaseRange-MinBaseRange), max - min)))
+            using (var rangeConverter = new RangeConversion(min, max, new ScaleConversion(MaxBaseRange-MinBaseRange, max - min)))
             {
                 result = rangeConverter.DoConversion(seed);
             }
@@ -78,7 +78,7 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         public static IntRange CalculateTemperatureRange(StarColor starcolor, StarType starType)
         {
-            IntRange result = new IntRange(2800, 3000);
+            var result = new IntRange(2800, 3000);
             switch (starcolor)
             {
                 case StarColor.Blue:
@@ -106,6 +106,11 @@ namespace BLL.Generation.StarSystem
                     if (starType == StarType.Giant) { result.Min = 5500; result.Max = 5800; }
                     if (starType == StarType.HyperGiant) { result.Min = 5800; result.Max = 6000; }
                     break;
+                default:
+                    if (starType == StarType.Dwarf) { result.Min = 5200; result.Max = 5500; }
+                    if (starType == StarType.Giant) { result.Min = 5500; result.Max = 5800; }
+                    if (starType == StarType.HyperGiant) { result.Min = 5800; result.Max = 6000; }
+                    break;
             }
             return result;
         }
@@ -116,7 +121,7 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         private static IntRange CalculateRadiationRange(StarColor starcolor)
         {
-            IntRange range = new IntRange(0, 10);
+            var range = new IntRange(0, 10);
             switch (starcolor)
             {
                 case StarColor.Blue:
@@ -132,6 +137,9 @@ namespace BLL.Generation.StarSystem
                 case StarColor.White:
                     range.Min = 7; range.Max = 11;
                     break;
+                default:
+                    range.Min = 7; range.Max = 11;
+                    break;
             }
             return range;
         }
@@ -143,7 +151,7 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         private static DoubleRange CalculateMassRange(StarColor starcolor, StarType starType)
         {
-            DoubleRange result = new DoubleRange(0.08, 1.0);
+            var result = new DoubleRange(0.08, 1.0);
             switch (starcolor)
             {
                 case StarColor.Blue:
@@ -167,6 +175,11 @@ namespace BLL.Generation.StarSystem
                     if (starType == StarType.Giant) { result.Min = 2.1; result.Max = 10; }
                     if (starType == StarType.HyperGiant) { result.Min = 10; result.Max = 150; }
                     break;
+                default:
+                    if (starType == StarType.Dwarf) { result.Min = 1.4; result.Max = 2.1; }
+                    if (starType == StarType.Giant) { result.Min = 2.1; result.Max = 10; }
+                    if (starType == StarType.HyperGiant) { result.Min = 10; result.Max = 150; }
+                    break;
             }
             return result;
         }
@@ -178,7 +191,7 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         private static DoubleRange CalculateRadiusRange(StarColor starColor, StarType starType)
         {
-            DoubleRange result = new DoubleRange(0.08, 1.0);
+            var result = new DoubleRange(0.08, 1.0);
             switch (starColor)
             {
                 case StarColor.Blue:
@@ -202,6 +215,11 @@ namespace BLL.Generation.StarSystem
                     if (starType == StarType.Giant) { result.Min = 2.1; result.Max = 10; }
                     if (starType == StarType.HyperGiant) { result.Min = 10; result.Max = 150; }
                     break;
+                default:
+                    if (starType == StarType.Dwarf) { result.Min = 1.4; result.Max = 2.1; }
+                    if (starType == StarType.Giant) { result.Min = 2.1; result.Max = 10; }
+                    if (starType == StarType.HyperGiant) { result.Min = 10; result.Max = 150; }
+                    break;
             }
             return result;
         }
@@ -214,7 +232,7 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         public static int DetermineSurfaceTemp(StarColor starColor, StarType starType, int seed)
         {
-            IntRange temperature = CalculateTemperatureRange(starColor, starType);
+            var temperature = CalculateTemperatureRange(starColor, starType);
             return (int)CalculateResultInRange(seed, temperature.Min, temperature.Max, 2800);
         }
         /// <summary>
@@ -225,7 +243,7 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         public static int DetermineStarRadiation(StarColor starColor, int seed)
         {
-            IntRange radiationRange = CalculateRadiationRange(starColor);
+            var radiationRange = CalculateRadiationRange(starColor);
             return (int)CalculateResultInRange(seed, radiationRange.Min, radiationRange.Max, 3);
         }
         /// <summary>
@@ -237,7 +255,7 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         public static double DetermineStarMass(StarType starType, StarColor starColor, int seed)
         {
-            DoubleRange mass = CalculateMassRange(starColor, starType);
+            var mass = CalculateMassRange(starColor, starType);
             return CalculateResultInRange(seed, mass.Min, mass.Max, 1);
         }
 
@@ -250,7 +268,7 @@ namespace BLL.Generation.StarSystem
         /// <returns></returns>
         public static double DetermineStarRadius(StarColor starColor, StarType starType, int seed)
         {
-            DoubleRange radius = CalculateRadiusRange(starColor, starType);
+            var radius = CalculateRadiusRange(starColor, starType);
             return CalculateResultInRange(seed, radius.Min, radius.Max, 1);
         }
 

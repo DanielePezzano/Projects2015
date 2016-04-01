@@ -41,8 +41,8 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\Moq.xml
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\SimpleFixture.xml
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\SimpleFixture.Moq.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\SharedDto.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\WcfCommCrypto.pdb
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\obj\Debug\wcfTester.csprojResolveAssemblyReference.cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\obj\Debug\wcfTester.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\obj\Debug\wcfTester.pdb
-C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\SharedDto.pdb
-C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\WcfCommCrypto.pdb

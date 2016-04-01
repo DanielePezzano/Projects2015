@@ -16,18 +16,12 @@ namespace Models.Fleets
         [NotMapped]
         [Display(Name = "TravelSpeed", ResourceType = typeof (Resources))]
         [DataMember]
-        public int TravelSpeed
-        {
-            get { return GetTravelSpeed(); }
-        }
+        public int TravelSpeed => GetTravelSpeed();
 
         [DataMember]
         [NotMapped]
         [Display(Name = "Range", Description = "RangeHint", ResourceType = typeof (Resources))]
-        public int Range
-        {
-            get { return GetRange(); }
-        }
+        public int Range => GetRange();
 
         [Required]
         [Display(Name = "AtBay", Description = "AtBayHint", ResourceType = typeof (Resources))]
@@ -37,34 +31,22 @@ namespace Models.Fleets
         [DataMember]
         [Display(Name = "MoneyCost", ResourceType = typeof (Resources))]
         [NotMapped]
-        public int MoneyCost
-        {
-            get { return GetMoneyCost(); }
-        }
+        public int MoneyCost => GetMoneyCost();
 
         [Display(Name = "OreCost", ResourceType = typeof (Resources))]
         [NotMapped]
         [DataMember]
-        public int OreCost
-        {
-            get { return GetOreCost(); }
-        }
+        public int OreCost => GetOreCost();
 
         [Display(Name = "MoneyMaintenanceCost", ResourceType = typeof (Resources))]
         [NotMapped]
         [DataMember]
-        public int MoneyMaintenanceCost
-        {
-            get { return GetMoneyMaintCost(); }
-        }
+        public int MoneyMaintenanceCost => GetMoneyMaintCost();
 
         [Display(Name = "OreMaintenanceCost", ResourceType = typeof (Resources))]
         [NotMapped]
         [DataMember]
-        public int OreMaintenanceCost
-        {
-            get { return GetOreMaintCost(); }
-        }
+        public int OreMaintenanceCost => GetOreMaintCost();
 
         [Required]
         [Display(Name = "Position", ResourceType = typeof (Resources))]

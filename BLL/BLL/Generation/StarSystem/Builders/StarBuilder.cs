@@ -76,7 +76,7 @@ namespace BLL.Generation.StarSystem.Builders
             return result;
         }
 
-        
+
 
         /// <summary>
         ///     Determine the probability range of planet existence, based on the star color
@@ -103,6 +103,9 @@ namespace BLL.Generation.StarSystem.Builders
                 case StarColor.Yellow:
                     myRange.Max = 70;
                     break;
+                default:
+                    myRange.Max = 70;
+                    break;
             }
             return myRange;
         }
@@ -117,7 +120,7 @@ namespace BLL.Generation.StarSystem.Builders
         public bool HasPlanets(IntRange planetProb, Random rnd)
         {
             var seed = RandomNumbers.RandomInt(0, 100, rnd);
-            return (seed <= planetProb.Max);
+            return seed <= planetProb.Max;
         }
 
         /// <summary>
@@ -127,10 +130,10 @@ namespace BLL.Generation.StarSystem.Builders
         /// <param name="rnd"></param>
         /// <param name="conditions"></param>
         /// <returns></returns>
-        public int CalculateNumberOfPlanets(IntRange planetRage, Random rnd,PlanetCustomConditions conditions)
+        public int CalculateNumberOfPlanets(IntRange planetRage, Random rnd, PlanetCustomConditions conditions)
         {
             int result;
-            using (var conversion = new ScaleConversion(100, (planetRage.Max - planetRage.Min)))
+            using (var conversion = new ScaleConversion(100, planetRage.Max - planetRage.Min))
             {
                 result = (int)conversion.Convert(RandomNumbers.RandomInt(0, 100, rnd));
             }

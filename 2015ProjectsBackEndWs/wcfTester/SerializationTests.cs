@@ -18,7 +18,7 @@ namespace wcfTester
                 Name = "testStar",
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
-                Galaxy = new Galaxy() {Name = "TestGalaxy", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
+                Galaxy = new Galaxy {Name = "TestGalaxy", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
                 Planets = new List<Planet>()
             };
 

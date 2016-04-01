@@ -23,15 +23,11 @@ namespace SharedDto
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                if (!_disposed)
-                {
-                    if (_memoryStream != null) _memoryStream.Dispose();
-                    if (_streamReader != null) _streamReader.Dispose();
-                    _disposed = true;
-                }
-            }
+            if (!disposing) return;
+            if (_disposed) return;
+            _memoryStream?.Dispose();
+            _streamReader?.Dispose();
+            _disposed = true;
         }
 
         public void Dispose()

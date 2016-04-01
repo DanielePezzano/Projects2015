@@ -28,7 +28,7 @@ namespace Models.Tech.Enum
         Enviroment,     //
         [Display(Name = "Mathematics", ResourceType = typeof(Resources))]
         [EnumMember]
-        Mathematics,
+        Mathematics
     }
     [DataContract]
     public enum TechnologySubField

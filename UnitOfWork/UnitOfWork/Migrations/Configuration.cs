@@ -14,11 +14,13 @@ namespace UnitOfWork.Migrations
 
         protected override void Seed(ProductionContext context)
         {
-            var seed = new Galaxy();
-            seed.CreatedAt = DateTime.Now;
-            seed.UpdatedAt = DateTime.Now;
-            seed.Name = "Galaxy Seed";
-            Console.WriteLine("Sono arrivato");
+            var seed = new Galaxy
+            {
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Name = "Galaxy Seed"
+            };
+            Console.WriteLine(@"Sono arrivato");
             context.Galaxys.AddOrUpdate(seed);
         }
     }

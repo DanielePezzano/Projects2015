@@ -12,7 +12,7 @@ namespace BLL.Generation.StarSystem
         private DoubleRange _closeRange;
         private bool _disposed;
         private DoubleRange _satelliteRange;
-        private PlanetCustomConditions _conditions;
+        private readonly PlanetCustomConditions _conditions;
 
         public OrbitGenerator(Star star, DoubleRange closeRange,
             PlanetCustomConditions conditions)
@@ -39,7 +39,7 @@ namespace BLL.Generation.StarSystem
         private double CalculateDistance(DoubleRange range, Random rnd)
         {
             var result = range.Max;
-            if (_conditions.ForceWater|| _conditions.ForceLiving || _conditions.MostlyWater) return (result + RandomNumbers.RandomDouble(range.Min, range.Max, rnd));
+            if (_conditions.ForceWater|| _conditions.ForceLiving || _conditions.MostlyWater) return result + RandomNumbers.RandomDouble(range.Min, range.Max, rnd);
             return RandomNumbers.RandomDouble(range.Min, 40, rnd);
         }
 
@@ -50,10 +50,10 @@ namespace BLL.Generation.StarSystem
         /// <param name="radius"></param>
         /// <param name="rate"></param>
         /// <returns></returns>
-        private double CalculatePeriodOfRevolution(double distance, double radius, double rate)
+        private static double CalculatePeriodOfRevolution(double distance, double radius, double rate)
         {
-            var totalDistance = distance + (radius*rate);
-            return Math.Truncate((Math.Sqrt(Math.Pow(totalDistance, 3))*0.78)*100)/100;
+            var totalDistance = distance + radius*rate;
+            return Math.Truncate(Math.Sqrt(Math.Pow(totalDistance, 3))*0.78*100)/100;
         }
 
         /// <summary>
@@ -68,17 +68,17 @@ namespace BLL.Generation.StarSystem
         public double CalculatePeriodOfRotation(double distance, double revolution, double density, Random rnd)
         {
             double result;
-            var isRetro = (RandomNumbers.RandomInt(0, 10, rnd) == 0);
+            var isRetro = RandomNumbers.RandomInt(0, 10, rnd) == 0;
             if (distance <= _closeRange.Max)
             {
-                result = Math.Truncate(((20*revolution/distance)*density)*100)/100;
+                result = Math.Truncate((20*revolution/distance)*density*100)/100;
             }
             else
             {
                 result = density <= 3 ? RandomNumbers.RandomDouble(0.4, 0.7, rnd) : RandomNumbers.RandomDouble(1, 7, rnd);
             }
             if (result < 0) return 1;
-            return (isRetro) ? (result*-1) : result;
+            return isRetro ? result*-1 : result;
         }
 
         /// <summary>

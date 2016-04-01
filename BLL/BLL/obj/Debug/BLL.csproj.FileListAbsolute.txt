@@ -24,7 +24,6 @@ C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\obj\Debug\BLL.pdb
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\Lib\Models.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\Lib\UnitOfWork.dll
-C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\Resources.resx
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\Resources.Designer.cs
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\BLL.dll.config
@@ -38,5 +37,6 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\Models.pdb
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\UnitOfWork.pdb
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\EntityFramework.xml
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Debug\BLL.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Debug\BLL.pdb

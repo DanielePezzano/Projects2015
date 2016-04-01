@@ -24,7 +24,7 @@ namespace BLL.Information
         public RetrieveInformations(MainUow uow, IntRange rangeX, IntRange rangeY)
         {
             if (uow != null) _mainUow = uow;
-            else throw new ArgumentNullException("uow");
+            else throw new ArgumentNullException(nameof(uow));
             _rangeX = rangeX;
             _rangeY = rangeY;
         }
@@ -35,16 +35,14 @@ namespace BLL.Information
         public RetrieveInformations(MainUow uow)
         {
             if (uow != null) _mainUow = uow;
-            else throw new ArgumentNullException("uow");
+            else throw new ArgumentNullException(nameof(uow));
         }
 
         public void Dispose()
         {
-            if (!_disposed)
-            {
-                _disposed = true;
-                if (_mainUow != null) _mainUow.Dispose();
-            }
+            if (_disposed) return;
+            _disposed = true;
+            _mainUow?.Dispose();
             //GC.SuppressFinalize(this);
         }
 

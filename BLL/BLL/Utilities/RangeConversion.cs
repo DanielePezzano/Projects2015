@@ -16,7 +16,7 @@ namespace BLL.Utilities
         public RangeConversion(double minTo, double maxTo,
             ScaleConversion scaleconverter)
         {
-            _minRangeTo = (minTo < maxTo) ? minTo : maxTo;
+            _minRangeTo = minTo < maxTo ? minTo : maxTo;
             _scaleConv = scaleconverter;
         }
 

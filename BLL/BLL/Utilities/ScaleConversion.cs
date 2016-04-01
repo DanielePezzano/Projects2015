@@ -28,7 +28,7 @@ namespace BLL.Utilities
         /// <returns></returns>
         public double Convert(double numberInFromBase)
         {
-            return (numberInFromBase * _toBase) / _fromBase;
+            return numberInFromBase * _toBase / _fromBase;
         }
 
         public void Dispose()

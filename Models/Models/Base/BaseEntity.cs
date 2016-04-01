@@ -27,13 +27,13 @@ namespace Models.Base
     [KnownType(typeof(User))]
     public class BaseEntity
     {
-        [Required()]
+        [Required]
         [DataMember]
         public int Id { get; set; }
-        [Required()]
+        [Required]
         [DataMember]
         public DateTime CreatedAt { get; set; }
-        [Required()]
+        [Required]
         [DataMember]
         public DateTime UpdatedAt { get; set; }
     }

@@ -86,11 +86,11 @@ namespace BLL.Generation.StarSystem
             var percGround = planetSpaces.GroundSpaces/(double) planetSpaces.Totalspaces;
             var percGroundRad = 100 - percWater - percWaterRad - percGround;
 
-            var foodProd = (baseGroundProduction*percGround) + baseWaterProduction*percWater;
-            var oreProd = (baseMineralProduction*percGround) + baseMineralProduction*percWater +
-                          (baseMineralProdOnRad*percGroundRad) + (baseMineralProdOnRad*percWaterRad);
-            result.FoodProduction = ((int) foodProd >= 0) ? (int) foodProd : 0;
-            result.OreProduction = ((int) oreProd >= 0) ? (int) oreProd : 0;
+            var foodProd = baseGroundProduction*percGround + baseWaterProduction*percWater;
+            var oreProd = baseMineralProduction*percGround + baseMineralProduction*percWater +
+                          baseMineralProdOnRad*percGroundRad + baseMineralProdOnRad*percWaterRad;
+            result.FoodProduction = (int) foodProd >= 0 ? (int) foodProd : 0;
+            result.OreProduction = (int) oreProd >= 0 ? (int) oreProd : 0;
             result.ResearchPointProduction = 10;
             return result;
         }
@@ -98,13 +98,12 @@ namespace BLL.Generation.StarSystem
         private static void ForcedLivingSpaces(Spaces result, int totalSpaces, bool mostlyWater, Random rnd)
         {
             var percWater = RandomNumbers.RandomDouble(0.10, 0.60, rnd);
-            double percRad = 0;
             if (mostlyWater)
             {
                 percWater = RandomNumbers.RandomDouble(0.6, 0.98, rnd);
             }
 
-            SetSpacesParameters(result, totalSpaces, percWater, percRad);
+            SetSpacesParameters(result, totalSpaces, percWater, 0);
         }
 
         private static void NormalSpacesCalculation(Spaces result, int totalSpaces, int radiationLevel, bool forceWater,
@@ -113,7 +112,7 @@ namespace BLL.Generation.StarSystem
             double percWater = 0;
             if (forceWater || hasWater)
             {
-                percWater = (mostlyWater)
+                percWater = mostlyWater
                     ? RandomNumbers.RandomDouble(0.6, 0.98, rnd)
                     : RandomNumbers.RandomDouble(0.10, 0.60, rnd);
             }
@@ -123,8 +122,8 @@ namespace BLL.Generation.StarSystem
             {
                 percRad = radiationLevel/10.00;
                 if (!hasWater)
-                    percRad = (percRad + percRad*0.5);
-                if (hasAtmosphere) percRad = (percRad - percRad*0.5);
+                    percRad = percRad + percRad*0.5;
+                if (hasAtmosphere) percRad = percRad - percRad*0.5;
                 if (percRad > 1) percRad = 1;
             }
 

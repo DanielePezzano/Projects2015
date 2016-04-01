@@ -8,12 +8,12 @@ namespace Models.Buildings
     [DataContract(IsReference=true)]
     public class BuildingSpec : BaseEntity
     {
-        [Required()]
+        [Required]
         [Display(Name = "BonusType", ResourceType = typeof(Resources))]
         [EnumDataType(typeof(BonusType))]
         [DataMember]
         public BonusType Bonus { get; set; }
-        [Required()]
+        [Required]
         [Display(Name = "Value", ResourceType = typeof(Resources))]
         [DataMember]
         public int Value { get; set; }

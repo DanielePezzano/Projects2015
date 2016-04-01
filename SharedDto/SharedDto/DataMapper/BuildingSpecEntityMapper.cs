@@ -15,7 +15,7 @@ namespace SharedDto.DataMapper
         public BuildingSpecsDto EntityToModel(BuildingSpec entity)
         {
             if (entity == null) return null;
-            BuildingSpecsDto result = new BuildingSpecsDto
+            var result = new BuildingSpecsDto
             {
                 Bonus = entity.Bonus,
                 Value = entity.Value

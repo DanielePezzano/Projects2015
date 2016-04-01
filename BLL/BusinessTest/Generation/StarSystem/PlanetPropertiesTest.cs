@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BLL.Generation.StarSystem;
-using Models.Base;
 
 namespace BusinessTest.Generation.StarSystem
 {
@@ -17,7 +16,7 @@ namespace BusinessTest.Generation.StarSystem
         public void TestCalculateSpaces()
         {
             //piccole radiazioni con atmosfera
-            Spaces x = PlanetProperties.CalculateSpaces(100, 6, new PlanetCustomConditions(), true, true, _rnd);
+            var x = PlanetProperties.CalculateSpaces(100, 6, new PlanetCustomConditions(), true, true, _rnd);
 
             Assert.IsTrue(x.HabitableSpaces < x.Totalspaces);
             Assert.IsTrue(x.Totalspaces == 100);

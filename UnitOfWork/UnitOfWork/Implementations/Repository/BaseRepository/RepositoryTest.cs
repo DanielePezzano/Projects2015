@@ -40,7 +40,7 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
 
         public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string cacheKey)
         {
-            return (IQueryable<T>) (DbSet.Where(predicate.Compile()).ToList());
+            return (IQueryable<T>) DbSet.Where(predicate.Compile()).ToList();
         }
 
         public IEnumerable<T> Get(

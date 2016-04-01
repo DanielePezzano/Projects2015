@@ -52,7 +52,7 @@ namespace SharedDto.DataMapper
             planet.WaterSpaces = entity.Spaces.WaterSpaces;
             planet.WaterSpacesLeft = entity.Spaces.WaterSpacesLeft;
             planet.WaterUsedSpaces = entity.Spaces.WaterUsedSpaces;
-            planet.UserId = (entity.User != null) ? (int?)entity.User.Id : null;
+            planet.UserId = entity.User?.Id;
             return planet;
         }
 

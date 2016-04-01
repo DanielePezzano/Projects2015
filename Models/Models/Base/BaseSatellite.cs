@@ -37,10 +37,7 @@ namespace Models.Base
         [NotMapped]
         [Display(Name = "MaxPopulation", ResourceType = typeof (Resources))]
         [DataMember]
-        public int MaxPopulation
-        {
-            get { return Spaces != null ? Spaces.HabitableSpaces*2 : 0; }
-        }
+        public int MaxPopulation => Spaces?.HabitableSpaces*2 ?? 0;
 
         [Display(Name = "SatelliteSocial", ResourceType = typeof (Resources))]
         [DataMember]
@@ -91,10 +88,9 @@ namespace Models.Base
         [NotMapped]
         [Display(Name = "GravityCompared", Description = "GravityComparedHint", ResourceType = typeof (Resources))]
         [DataMember]
-        public double GravityEarthCompared
-        {
-            get { return Mass; }
-        } // gravità rispetto alla terra (che si decide abbia 100 spazi come paragone)
+        public double GravityEarthCompared => Mass;
+
+        // gravità rispetto alla terra (che si decide abbia 100 spazi come paragone)
 
         [DataMember]
         [Display(Name = "Buildings", ResourceType = typeof (Resources))]

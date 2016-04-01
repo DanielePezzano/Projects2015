@@ -35,9 +35,9 @@ namespace BLL.Generation.StarSystem
             var count =
                 _uow.StarRepository.Count(
                     s =>
-                        s.CoordinateX >= (coord.X - MinDistance) && s.CoordinateX <= (coord.X + MinDistance) &&
-                        s.CoordinateX >= (coord.Y - MinDistance) && s.CoordinateX <= (coord.Y + MinDistance), cacheKey);
-            var result = (count <= 0);
+                        s.CoordinateX >= coord.X - MinDistance && s.CoordinateX <= coord.X + MinDistance &&
+                        s.CoordinateX >= coord.Y - MinDistance && s.CoordinateX <= coord.Y + MinDistance, cacheKey);
+            var result = count <= 0;
             return result;
         }
 

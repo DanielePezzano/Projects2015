@@ -62,35 +62,33 @@ namespace _2015ProjectsBackEndWs
         public string RetrieveUniversePortion(string data)
         {
             var result = CallsStatusResponse.GenericCallFailed;
-            if (!string.IsNullOrEmpty(data))
+            if (string.IsNullOrEmpty(data)) return result;
+            try
             {
-                try
+                //Decriptalo con la nostra chiave
+                var decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data,
+                    ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
+                    ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
+                var javascriptSerializer = new JavaScriptSerializer();
+                var universeRange = javascriptSerializer.Deserialize<UniverseRangeDto>(decriptedHash);
+                //is correctly deserialized and it was sent in time
+                if (universeRange != null &&
+                    Validation.Validate(universeRange.Auth, CallInstanceName.UniverseRangeDto))
                 {
-                    //Decriptalo con la nostra chiave
-                    var decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data,
-                        ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
-                        ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
-                    var javascriptSerializer = new JavaScriptSerializer();
-                    var universeRange = javascriptSerializer.Deserialize<UniverseRangeDto>(decriptedHash);
-                    //is correctly deserialized and it was sent in time
-                    if (universeRange != null &&
-                        Validation.Validate(universeRange.Auth, CallInstanceName.UniverseRangeDto))
+                    using (var getter = new GetOnly())
                     {
-                        using (var getter = new GetOnly())
+                        var starEntities = getter.ProcessRetrieveMethod(universeRange);
+                        using (var serializator = new ProcessSerialization())
                         {
-                            var starEntities = getter.ProcessRetrieveMethod(universeRange);
-                            using (var serializator = new ProcessSerialization())
-                            {
-                                result = serializator.SerializeJson(typeof (SectorDto),
-                                    new SectorDto {Stars = starEntities});
-                            }
+                            result = serializator.SerializeJson(typeof (SectorDto),
+                                new SectorDto {Stars = starEntities});
                         }
                     }
                 }
-                catch (Exception)
-                {
-                    //Da FAre: Sistema di gestione log di errore
-                }
+            }
+            catch (Exception)
+            {
+                //Da FAre: Sistema di gestione log di errore
             }
             return result;
         }
@@ -119,23 +117,21 @@ namespace _2015ProjectsBackEndWs
         public string RetrievePlanetInfo(string data)
         {
             var result = CallsStatusResponse.GenericCallFailed;
-            if (!string.IsNullOrEmpty(data))
+            if (string.IsNullOrEmpty(data)) return result;
+            //Decriptalo con la nostra chiave
+            var decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data,
+                ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
+                ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
+            var javascriptSerializer = new JavaScriptSerializer();
+            var info = javascriptSerializer.Deserialize<RetrievingInfoDto>(decriptedHash);
+            //is correctly deserialized and it was sent in time
+            if (info == null || !Validation.Validate(info.Auth, CallInstanceName.RetrievingInfoDto)) return result;
+            using (var getter = new GetOnly())
             {
-                //Decriptalo con la nostra chiave
-                var decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data,
-                    ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
-                    ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
-                var javascriptSerializer = new JavaScriptSerializer();
-                var info = javascriptSerializer.Deserialize<RetrievingInfoDto>(decriptedHash);
-                //is correctly deserialized and it was sent in time
-                if (info == null || !Validation.Validate(info.Auth, CallInstanceName.RetrievingInfoDto)) return result;
-                using (var getter = new GetOnly())
+                var planet = getter.RetrieveSinglePlanet(info.Id);
+                using (var serializator = new ProcessSerialization())
                 {
-                    var planet = getter.RetrieveSinglePlanet(info.Id);
-                    using (var serializator = new ProcessSerialization())
-                    {
-                        result = serializator.SerializeJson(typeof (PlanetDto), planet);
-                    }
+                    result = serializator.SerializeJson(typeof (PlanetDto), planet);
                 }
             }
             return result;
@@ -150,21 +146,16 @@ namespace _2015ProjectsBackEndWs
         /// <returns></returns>
         public bool CheckUserRegistration(string data)
         {
-            var result = false;
-            if (!string.IsNullOrEmpty(data))
+            bool result;
+            var decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data,
+                ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
+                ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
+            var javascriptSerializer = new JavaScriptSerializer();
+            var item = javascriptSerializer.Deserialize<RegisterModel>(decriptedHash);
+
+            using (var getter = new GetOnly())
             {
-                var decriptedHash = RijndaelManagedEncryption.DecryptRijndael(data,
-                    ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
-                    ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
-                var javascriptSerializer = new JavaScriptSerializer();
-                var item = javascriptSerializer.Deserialize<RegisterModel>(decriptedHash);
-                if (item != null)
-                {
-                    using (var getter = new GetOnly())
-                    {
-                        result = getter.IsEmailFree(item.Email);
-                    }
-                }
+                result = getter.IsEmailFree(item.Email);
             }
             return result;
         }

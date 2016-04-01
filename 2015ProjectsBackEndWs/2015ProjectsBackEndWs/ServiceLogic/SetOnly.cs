@@ -1,5 +1,4 @@
 ﻿using System;
-using BLL.Generation;
 using BLL.Generation.StarSystem;
 using BLL.Utilities.Structs;
 using SharedDto.UtilityDto;
@@ -30,10 +29,10 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
         public void Dispose()
         {
             if (_disposed) return;
-            if (_factory != null) _factory.Dispose();
-            if (_repositories != null) _repositories.Dispose();
-            if (_mainUow != null) _mainUow.Dispose();
-            if (_repoFactory != null) _repoFactory.Dispose();
+            _factory?.Dispose();
+            _repositories?.Dispose();
+            _mainUow?.Dispose();
+            _repoFactory?.Dispose();
             _disposed = true;
             // GC.SuppressFinalize(this);
         }

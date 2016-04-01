@@ -12,13 +12,13 @@ namespace BLL.Information
 
         public RetrieveUserInformation(MainUow uow)
         {
-            if (uow == null) throw new ArgumentNullException("uow");
+            if (uow == null) throw new ArgumentNullException(nameof(uow));
             MainUow = uow;
         }
 
         public RetrieveUserInformation(MainUow uow, string email)
         {
-            if (uow == null) throw new ArgumentNullException("uow");
+            if (uow == null) throw new ArgumentNullException(nameof(uow));
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("email");
             _email = email;
             MainUow = uow;
@@ -28,11 +28,9 @@ namespace BLL.Information
 
         public void Dispose()
         {
-            if (!_disposed)
-            {
-                _disposed = true;
-                if (MainUow != null) MainUow.Dispose();
-            }
+            if (_disposed) return;
+            _disposed = true;
+            MainUow?.Dispose();
             //GC.SuppressFinalize(this);
         }
 

@@ -37,34 +37,28 @@ namespace WcfCommCrypto
             var compareClientHash = RijndaelManagedEncryption.DecryptRijndael(clientHash, saltKey, inputKey);
                 //Client_datetime_firmaDto
 
-            if (!string.IsNullOrEmpty(compareAuthHash) && !string.IsNullOrEmpty(compareClientHash))
-            {
-                var clientHashSequence = compareClientHash.Split(separator);
-                /*
+            if (string.IsNullOrEmpty(compareAuthHash) || string.IsNullOrEmpty(compareClientHash)) return false;
+            var clientHashSequence = compareClientHash.Split(separator);
+            /*
                  * [0]=>client
                  * [1]=>datetime
                  * [2]=>firma DTO
                  */
 
-                if (clientHashSequence.Length == 3 && acceptedClients.Contains(clientHashSequence[0]))
-                {
-                    if (!string.IsNullOrEmpty(clientHashSequence[1]))
-                    {
-                        try
-                        {
-                            var serverTime = Convert.ToDateTime(clientHashSequence[1]);
-                            if (Math.Abs((serverTime - DateTime.Now).Minutes) <= 1 &&
-                                Math.Abs((serverTime - DateTime.Now).Minutes) >= 0 &&
-                                Sha1Managed.ValidateSha1HashData(compareAuthHash, authHash))
-                                result = true;
-                        }
-                        catch (Exception)
-                        {
-                            //DA FARE
-                            //IMPLEMENTA UN SISTEMA DI LOG (UNA LIBRERIA DI CLASSI CONDIVISA)
-                        }
-                    }
-                }
+            if (clientHashSequence.Length != 3 || !acceptedClients.Contains(clientHashSequence[0])) return false;
+            if (string.IsNullOrEmpty(clientHashSequence[1])) return false;
+            try
+            {
+                var serverTime = Convert.ToDateTime(clientHashSequence[1]);
+                if (Math.Abs((serverTime - DateTime.Now).Minutes) <= 1 &&
+                    Math.Abs((serverTime - DateTime.Now).Minutes) >= 0 &&
+                    Sha1Managed.ValidateSha1HashData(compareAuthHash, authHash))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                //DA FARE
+                //IMPLEMENTA UN SISTEMA DI LOG (UNA LIBRERIA DI CLASSI CONDIVISA)
             }
             return result;
         }

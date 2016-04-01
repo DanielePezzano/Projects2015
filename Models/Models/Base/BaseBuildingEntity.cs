@@ -13,30 +13,30 @@ namespace Models.Base
         [DataMember]
         public BuildingType BuildingType { get; set; }
         [Display(Name = "Name", ResourceType = typeof(Resources))]
-        [Required()]
+        [Required]
         [DataMember]
         public string Name { get; set; }
         [Display(Name = "Description", ResourceType = typeof(Resources))]
-        [Required()]
+        [Required]
         [DataMember]
         public string Description { get; set; }
         [Display(Name = "SpacesNeeded", ResourceType = typeof(Resources))]
-        [Required()]
+        [Required]
         [DataMember]
         public int SpaceNeeded { get; set; }
         [Display(Name = "UsedSpaces", ResourceType = typeof(Resources))]
         [DataMember]
         public int UsedSpaces { get; set; }
         [Display(Name = "Number", ResourceType = typeof(Resources))]
-        [Required()]
+        [Required]
         [DataMember]
         public int Number { get; set; }
         [Display(Name = "OreCost", ResourceType = typeof(Resources))]
-        [Required()]
+        [Required]
         [DataMember]
         public int OreCost { get; set; }
         [Display(Name = "MoneyCost", ResourceType = typeof(Resources))]
-        [Required()]
+        [Required]
         [DataMember]
         public int MoneyCost { get; set; }
         [Display(Name = "OreMaintenanceCost", ResourceType = typeof(Resources))]

@@ -70,10 +70,9 @@ namespace Models.Tech
         [Display(Name = "TimeToComplete", ResourceType = typeof (Resources))]
         [NotMapped]
         [DataMember]
-        public int TimeToComplete
-        {
-            get { return OreWeight*OreCost + MoneyWeight*MoneyCost + ResearchWeight*ResearchPoints; }
-        } //tempo in secondi per terminarla
+        public int TimeToComplete => OreWeight*OreCost + MoneyWeight*MoneyCost + ResearchWeight*ResearchPoints;
+
+        //tempo in secondi per terminarla
 
         [DataMember]
         public virtual ICollection<TechRequisiteNode> TechRequisites { get; set; }

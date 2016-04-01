@@ -18,12 +18,11 @@ namespace BLL.Generation.StarSystem.Builders
         private Random _rnd;
         private Planet _resultPlanet;
         private bool _isGasseous;
-        private bool _isHabitable;
 
         #region Private Method
         private void BasePlanet()
         {
-            _mediumDensity = (_conditions.ForceLiving || _conditions.ForceWater || _conditions.MostlyWater)
+            _mediumDensity = _conditions.ForceLiving || _conditions.ForceWater || _conditions.MostlyWater
                 ? BasicConstants.EarthDensity + RandomNumbers.RandomDouble(-0.5, 0.5, _rnd)
                 : RandomNumbers.RandomDouble(BasicConstants.MinDensity, BasicConstants.MaxDensity, _rnd);
 
@@ -36,7 +35,7 @@ namespace BLL.Generation.StarSystem.Builders
                 Buildings = new List<Building>(),
                 Satellites = new List<Satellite>(),
                 User = null,
-                RingsPresent = (RandomNumbers.RandomInt(0, 100, _rnd) == 0),
+                RingsPresent = RandomNumbers.RandomInt(0, 100, _rnd) == 0,
                 SatelliteSocial = new SatelliteSocials { Population = 0, TaxLevel = TaxLevel.Normal }
             };
         }
@@ -46,7 +45,7 @@ namespace BLL.Generation.StarSystem.Builders
             if (_conditions.ForceLiving || _conditions.ForceWater || _conditions.MostlyWater) return true;
             if (distance >= BasicConstants.MinAtmosphereDistance)
             {
-                return (RandomNumbers.RandomInt(0, 100, rnd) <= 30);
+                return RandomNumbers.RandomInt(0, 100, rnd) <= 30;
             }
             return false;
         }
@@ -67,7 +66,7 @@ namespace BLL.Generation.StarSystem.Builders
         {
             if (_conditions.ForceWater || _conditions.MostlyWater) return true;
             if (!_resultPlanet.AtmospherePresent) return false;
-            return (RandomNumbers.RandomInt(0, 10, rnd) <= 1);
+            return RandomNumbers.RandomInt(0, 10, rnd) <= 1;
         }
 
         private int CalculateTotalSpaces(double mass, bool isGasseous)
@@ -78,18 +77,18 @@ namespace BLL.Generation.StarSystem.Builders
                 result = 100 * (mass * _mediumDensity) / BasicConstants.EarthDensity;
             else
             {
-                result = (_mediumDensity >= 1)
-                    ? 10 * mass / (Math.Pow(BasicConstants.EarthDensity * _mediumDensity, 2))
+                result = _mediumDensity >= 1
+                    ? 10 * mass / Math.Pow(BasicConstants.EarthDensity * _mediumDensity, 2)
                     : 10 * mass * Math.Pow(_mediumDensity, 10) / BasicConstants.EarthDensity;
             }
             if ((int)result > 250) return 250;
             return (int)result;
         }
 
-        private double ConvertScale(double distance, DoubleRange closeRange, double scaleMaxMed, double scaleMaxGreatest, double scaleMaxClose)
+        private static double ConvertScale(double distance, DoubleRange closeRange, double scaleMaxMed, double scaleMaxGreatest, double scaleMaxClose)
         {
             if (!(distance > closeRange.Max)) return scaleMaxClose;
-            if (distance > closeRange.Max && distance <= (BasicConstants.EarthDistance + 2)) return scaleMaxMed;
+            if (distance > closeRange.Max && distance <= BasicConstants.EarthDistance + 2) return scaleMaxMed;
             return scaleMaxGreatest;
         }
 
@@ -117,27 +116,27 @@ namespace BLL.Generation.StarSystem.Builders
             else
             {
                 var temp = starRadiation - (int)(starRadiation * (distance - fixedDistance));
-                result += (temp > 0) ? temp : 3;
+                result += temp > 0 ? temp : 3;
             }
-            return (atmospherePresent) ? result / 2 : result;
+            return atmospherePresent ? result / 2 : result;
         }
 
-        private double CalculateMediumDensity(double mass, Random rnd)
+        private static double CalculateMediumDensity(double mass, Random rnd)
         {
             double res;
             if (mass >= BasicConstants.EarthMass)
                 res = RandomNumbers.RandomDouble(BasicConstants.MinDensity, BasicConstants.MaxDensity, rnd);
             else
-                res = RandomNumbers.RandomDouble(BasicConstants.MinDensityForGas, (BasicConstants.EarthDensity + 1),
+                res = RandomNumbers.RandomDouble(BasicConstants.MinDensityForGas, BasicConstants.EarthDensity + 1,
                     rnd);
             return res;
         }
 
-        private int CalculateSurfaceTemperature(double distance, bool atmpspherePresent, int starTemperature, Random rnd)
+        private static int CalculateSurfaceTemperature(double distance, bool atmpspherePresent, int starTemperature, Random rnd)
         {
             int result;
-            var temp = (starTemperature - (starTemperature * distance)) / 7.095;
-            if (atmpspherePresent) result = (int)(temp - (temp * 0.5));
+            var temp = (starTemperature - starTemperature * distance) / 7.095;
+            if (atmpspherePresent) result = (int)(temp - temp * 0.5);
             else result = (int)temp;
 
             if (result <= 100) return result;
@@ -147,7 +146,7 @@ namespace BLL.Generation.StarSystem.Builders
 
         private double CalculateRadius(double mass)
         {
-            return Math.Truncate((mass / _mediumDensity) * 100) / 100; 
+            return Math.Truncate(mass / _mediumDensity * 100) / 100; 
         }
         
 
@@ -209,12 +208,12 @@ namespace BLL.Generation.StarSystem.Builders
         {
             if (!_conditions.MineralPoor && !_conditions.MineralRich)
             {
-                _conditions.MineralRich = (RandomNumbers.RandomInt(0, 100, _rnd) == 0);
-                _conditions.MineralPoor = (!_conditions.MineralRich && RandomNumbers.RandomInt(0, 100, _rnd) <= 20);
+                _conditions.MineralRich = RandomNumbers.RandomInt(0, 100, _rnd) == 0;
+                _conditions.MineralPoor = !_conditions.MineralRich && RandomNumbers.RandomInt(0, 100, _rnd) <= 20;
             }
             if (_conditions.FoodRich || _conditions.FoodPoor) return;
-            _conditions.FoodRich = (RandomNumbers.RandomInt(0, 100, _rnd) == 0);
-            _conditions.FoodPoor = (!_conditions.FoodRich && RandomNumbers.RandomInt(0, 100, _rnd) <= 20);
+            _conditions.FoodRich = RandomNumbers.RandomInt(0, 100, _rnd) == 0;
+            _conditions.FoodPoor = !_conditions.FoodRich && RandomNumbers.RandomInt(0, 100, _rnd) <= 20;
         }
 
         private void AssignProduction()
@@ -225,7 +224,7 @@ namespace BLL.Generation.StarSystem.Builders
 
         private void AssignStatus()
         {
-            _resultPlanet.SatelliteStatus = (_isGasseous || _resultPlanet.Spaces.Totalspaces == 0)
+            _resultPlanet.SatelliteStatus = _isGasseous || _resultPlanet.Spaces.Totalspaces == 0
                 ? SatelliteStatus.Uncolonizable
                 : SatelliteStatus.Uncolonized;
         }

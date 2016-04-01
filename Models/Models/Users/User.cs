@@ -71,10 +71,7 @@ namespace Models.Users
         [NotMapped]
         [Display(Name = "PointsLeft", ResourceType = typeof (Resources))]
         [DataMember]
-        public int RacePointsLeft
-        {
-            get { return TotalPoints - RacePointsUsed; }
-        }
+        public int RacePointsLeft => TotalPoints - RacePointsUsed;
 
         [DataMember]
         [Display(Name = "Mails", ResourceType = typeof (Resources))]

@@ -24,10 +24,7 @@ namespace Models.Fleets.ShipClasses.Hulls
         [NotMapped]
         [Display(Name = "UsedSpaces", ResourceType = typeof (Resources))]
         [DataMember]
-        public int UsedSpaces
-        {
-            get { return GetTotalUsedSpaces(); }
-        }
+        public int UsedSpaces => GetTotalUsedSpaces();
 
         [Required]
         [Display(Name = "StructurePoints", Description = "StructurePointsHint", ResourceType = typeof (Resources))]
@@ -37,82 +34,52 @@ namespace Models.Fleets.ShipClasses.Hulls
         [NotMapped]
         [Display(Name = "Armor", ResourceType = typeof (Resources))]
         [DataMember]
-        public int TotalArmor
-        {
-            get { return GetTotalArmor(); }
-        }
+        public int TotalArmor => GetTotalArmor();
 
         [NotMapped]
         [Display(Name = "Shield", ResourceType = typeof (Resources))]
         [DataMember]
-        public int TotalShields
-        {
-            get { return GetTotalShields(); }
-        }
+        public int TotalShields => GetTotalShields();
 
         [NotMapped]
         [Display(Name = "CombatSpeed", ResourceType = typeof (Resources))]
         [DataMember]
-        public int CombatSpeed
-        {
-            get { return GetCombatSpeed(); }
-        }
+        public int CombatSpeed => GetCombatSpeed();
 
         [NotMapped]
         [Display(Name = "TravelSpeed", ResourceType = typeof (Resources))]
         [DataMember]
-        public int TravelSpeed
-        {
-            get { return GetTravelSpeed(); }
-        }
+        public int TravelSpeed => GetTravelSpeed();
 
         [NotMapped]
         [Display(Name = "Range", Description = "RangeHint", ResourceType = typeof (Resources))]
         [DataMember]
-        public int EngineRadius
-        {
-            get { return GetEngineRadius(); }
-        }
+        public int EngineRadius => GetEngineRadius();
 
         [NotMapped]
         [Display(Name = "BonusToHit", ResourceType = typeof (Resources))]
         [DataMember]
-        public int ToHitBonus
-        {
-            get { return GetTotalToHitBonus(); }
-        }
+        public int ToHitBonus => GetTotalToHitBonus();
 
         [Display(Name = "MoneyCost", ResourceType = typeof (Resources))]
         [NotMapped]
         [DataMember]
-        public int MoneyCost
-        {
-            get { return GetMoneyCost(); }
-        }
+        public int MoneyCost => GetMoneyCost();
 
         [Display(Name = "OreCost", ResourceType = typeof (Resources))]
         [NotMapped]
         [DataMember]
-        public int OreCost
-        {
-            get { return GetOreCost(); }
-        }
+        public int OreCost => GetOreCost();
 
         [Display(Name = "MoneyMaintenanceCost", ResourceType = typeof (Resources))]
         [NotMapped]
         [DataMember]
-        public int MoneyMaintenanceCost
-        {
-            get { return GetMoneyMaintCost(); }
-        }
+        public int MoneyMaintenanceCost => GetMoneyMaintCost();
 
         [Display(Name = "OreMaintenanceCost", ResourceType = typeof (Resources))]
         [NotMapped]
         [DataMember]
-        public int OreMaintenanceCost
-        {
-            get { return GetOreMaintCost(); }
-        }
+        public int OreMaintenanceCost => GetOreMaintCost();
 
         [DataMember]
         [Required]

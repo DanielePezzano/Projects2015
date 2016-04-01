@@ -10,6 +10,6 @@ namespace Models.Queues.Enum
         InQueue,
         [Display(Name = "Done", ResourceType = typeof(Resources))]
         [EnumMember]
-        Done,
+        Done
     }
 }

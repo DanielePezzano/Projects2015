@@ -27,11 +27,13 @@ namespace Models.Base
         [Display(Name = "TotalSpaces", Description = "TotalSpacesHint", ResourceType = typeof(Resources))]
         [NotMapped]
         [DataMember]
-        public int Totalspaces { get { return GroundRadiatedSpaces + WaterRadiatedSpaces + GroundSpaces + WaterSpaces; } }
+        public int Totalspaces => GroundRadiatedSpaces + WaterRadiatedSpaces + GroundSpaces + WaterSpaces;
+
         [NotMapped]
         [Display(Name = "HabitableSpaces", Description = "HabitableSpacesHint", ResourceType = typeof(Resources))]
         [DataMember]
-        public int HabitableSpaces { get { return WaterSpaces + GroundSpaces; } }
+        public int HabitableSpaces => WaterSpaces + GroundSpaces;
+
         [Required]
         [Display(Name = "WaterUsedSpaces", ResourceType = typeof(Resources))]
         [DataMember]
@@ -39,7 +41,8 @@ namespace Models.Base
         [NotMapped]
         [Display(Name = "UsableSpacesLeft", ResourceType = typeof(Resources))]
         [DataMember]
-        public int WaterSpacesLeft { get { return WaterSpaces - WaterUsedSpaces > 0 ? WaterSpaces - WaterUsedSpaces : 0; } }
+        public int WaterSpacesLeft => WaterSpaces - WaterUsedSpaces > 0 ? WaterSpaces - WaterUsedSpaces : 0;
+
         [Required]
         [Display(Name = "GroundUsedSpaces", ResourceType = typeof(Resources))]
         [DataMember]
@@ -47,6 +50,6 @@ namespace Models.Base
         [NotMapped]
         [Display(Name = "GroudSpacesLeft", ResourceType = typeof(Resources))]
         [DataMember]
-        public int GroudSpacesLeft { get { return GroundSpaces - GroudUsedSpaces > 0 ? GroundSpaces - GroudUsedSpaces : 0; } }
+        public int GroudSpacesLeft => GroundSpaces - GroudUsedSpaces > 0 ? GroundSpaces - GroudUsedSpaces : 0;
     }
 }

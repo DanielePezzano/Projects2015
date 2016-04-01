@@ -4,10 +4,10 @@ using Models.Universe;
 
 namespace BusinessTest.Generation.StarSystem
 {
-    [TestClass()]
+    [TestClass]
     public class StarGenerationTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void CreateBrandNewStarTest()
         {
             var generator = FactoryGenerator.RetrieveNewStarBuilder();

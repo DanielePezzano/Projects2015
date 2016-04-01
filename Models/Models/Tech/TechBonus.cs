@@ -8,12 +8,12 @@ namespace Models.Tech
     [DataContract(IsReference=true)]
     public class TechBonus : BaseEntity
     {
-        [Required()]
+        [Required]
         [Display(Name = "BonusType", ResourceType = typeof(Resources))]
         [DataMember]
         [EnumDataType(typeof(BonusType))]
         public BonusType Bonus { get; set; }
-        [Required()]
+        [Required]
         [Display(Name = "Value", ResourceType = typeof(Resources))]
         [DataMember]
         public int Value { get; set; }
