@@ -1,6 +1,5 @@
 ﻿using System;
-using BLL.Generation.StarSystem;
-using BLL.Utilities.Structs;
+using BLL.Generation.StarSystem.Factories;
 using SharedDto.UtilityDto;
 using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Uows;
@@ -39,30 +38,15 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
 
         public bool GenerateStarSystem(SystemGenerationDto generationData, Random rnd)
         {
-            var rangeX = new IntRange(generationData.MinX, generationData.MaxX);
-            var rangeY = new IntRange(generationData.MinY, generationData.MaxY);
-            var customConditions = new PlanetCustomConditions
-            {
-                ForceLiving = generationData.ForceLiving,
-                ForceWater = generationData.ForceWater,
-                MostlyWater = generationData.MostlyWater,
-                MineralPoor = generationData.MineralPoor,
-                MineralRich = generationData.MineralRich,
-                FoodPoor = generationData.FoodPoor,
-                FoodRich = generationData.FoodRich
-            };
-
-            //var generator = new GeneratePortion(
-            //    rangeX.Min,
-            //    rangeX.Max,
-            //    rangeY.Min,
-            //    rangeY.Max,
-            //    _mainUow,
-            //    customConditions,
-            //    generationData.GalaxyId
-            //    );
-            //return generator.Generate(rnd);
-            return false;
+            var rangeX = FactoryGenerator.RetrieveIntRange(generationData.MinX, generationData.MaxX);
+            var rangeY = FactoryGenerator.RetrieveIntRange(generationData.MinY, generationData.MaxY); 
+            var customConditions = FactoryGenerator.RetrieveConditions(generationData.ForceWater, generationData.FoodRich,
+                generationData.FoodPoor, generationData.MineralPoor, generationData.MineralRich,
+                generationData.MostlyWater, generationData.ForceLiving);
+            var starSystemGenerator = FactoryGenerator.RetrieveStarSystemGenerator(customConditions, rnd, _mainUow,
+                rangeX, rangeY);
+            var star = starSystemGenerator.Generate(rnd, _mainUow, "");
+            return star != null && starSystemGenerator.WriteToRepository(_mainUow, star, generationData.GalaxyId);
         }
     }
 }

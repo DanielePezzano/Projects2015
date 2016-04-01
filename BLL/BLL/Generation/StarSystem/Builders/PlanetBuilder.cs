@@ -58,7 +58,7 @@ namespace BLL.Generation.StarSystem.Builders
             var perc = 0;
             if (density > 2 && density <= BasicConstants.MinDensityForGas) perc = 20;
             if (density > 1 && density <= 2) perc = 70;
-            if (RandomNumbers.RandomInt(0, 100, rnd) <= perc) result = true;
+            if (RandomNumbers.RandomInt(1, 100, rnd) <= perc) result = true;
             _isGasseous = result;
         }
 

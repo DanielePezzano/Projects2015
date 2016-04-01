@@ -123,13 +123,11 @@ namespace BusinessTest.Generation.StarSystem
                     using (var uow = new MainUow(context, repoFactories))
                     {
                         uow.StarRepository.CustomDbset(new List<Star>());
-                        var repo = new MockRepository(MockBehavior.Default);
-                        var galaxy = repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
 
                         var generator = FactoryGenerator.RetrieveStarSystemGenerator(new PlanetCustomConditions(),
                             OrbitGeneratorTest.Rnd, uow, new IntRange(0, 10), new IntRange(0, 10));
 
-                        var star = generator.Generate(OrbitGeneratorTest.Rnd, uow, galaxy.Object, "");
+                        var star = generator.Generate(OrbitGeneratorTest.Rnd, uow,  "");
 
                         if (star.Planets.Count <= 0) return;
                         var generatedPlanets = star.Planets.ToList();
@@ -159,14 +157,12 @@ namespace BusinessTest.Generation.StarSystem
                     using (var uow = new MainUow(context, repoFactories))
                     {
                         uow.StarRepository.CustomDbset(new List<Star>());
-                        var repo = new MockRepository(MockBehavior.Default);
-                        var galaxy = repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
 
                         var generator = FactoryGenerator.RetrieveStarSystemGenerator(
                             FactoryGenerator.RetrieveConditions(false,false,false,false,false,false,true),
                             OrbitGeneratorTest.Rnd, uow, new IntRange(0, 10), new IntRange(0, 10));
 
-                        var star = generator.Generate(OrbitGeneratorTest.Rnd, uow, galaxy.Object, "");
+                        var star = generator.Generate(OrbitGeneratorTest.Rnd, uow,  "");
 
                         var generatedPlanets = star.Planets.ToList();
                         Assert.IsTrue(generatedPlanets.Count(c => c.IsHabitable) >= 1);
@@ -187,14 +183,12 @@ namespace BusinessTest.Generation.StarSystem
                     using (var uow = new MainUow(context, repoFactories))
                     {
                         uow.StarRepository.CustomDbset(new List<Star>());
-                        var repo = new MockRepository(MockBehavior.Default);
-                        var galaxy = repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
 
                         var generator = FactoryGenerator.RetrieveStarSystemGenerator(
                             FactoryGenerator.RetrieveConditions(false, false, false, false, false,true, false),
                             OrbitGeneratorTest.Rnd, uow, new IntRange(0, 10), new IntRange(0, 10));
 
-                        var star = generator.Generate(OrbitGeneratorTest.Rnd, uow, galaxy.Object, "");
+                        var star = generator.Generate(OrbitGeneratorTest.Rnd, uow, "");
 
                         var generatedPlanets = star.Planets.ToList();
                         Assert.IsTrue(generatedPlanets.Count(c => c.Spaces.WaterSpaces > c.Spaces.GroundSpaces) >= 1);

@@ -49,5 +49,10 @@ namespace BLL.Generation.StarSystem.Factories
         {
             return new OrbitGenerator(star, closeRange, conditions);
         }
+
+        public static IntRange RetrieveIntRange(int minX,int maxX)
+        {
+            return new IntRange(minX, maxX);
+        }
     }
 }
