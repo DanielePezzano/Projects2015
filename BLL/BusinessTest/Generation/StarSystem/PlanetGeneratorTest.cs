@@ -191,7 +191,11 @@ namespace BusinessTest.Generation.StarSystem
                         var star = generator.Generate(OrbitGeneratorTest.Rnd, uow, "");
 
                         var generatedPlanets = star.Planets.ToList();
-                        Assert.IsTrue(generatedPlanets.Count(c => c.Spaces.WaterSpaces > c.Spaces.GroundSpaces) >= 1);
+                        Console.WriteLine(@"pianeti " + generatedPlanets.Count(c => c.Spaces.WaterSpaces + c.Spaces.WaterRadiatedSpaces > c.Spaces.GroundSpaces));
+                        var check =
+                            generatedPlanets.Count(
+                                c => c.Spaces.WaterSpaces + c.Spaces.WaterRadiatedSpaces > c.Spaces.GroundSpaces) >= 1;
+                        Assert.IsTrue(check);
                     }
                 }
             }

@@ -91,6 +91,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SharedDto\SharedDto\SharedDto.csproj">
+      <Project>{CD2DBEFF-0A8A-4082-A9A9-DB91FD3EC6EC}</Project>
+      <Name>SharedDto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\2015ProjectsBackEndWs\2015ProjectsBackEndWs.csproj">
       <Project>{b2e59672-00df-4205-a3af-7ac235bb6b2b}</Project>
       <Name>2015ProjectsBackEndWs</Name>

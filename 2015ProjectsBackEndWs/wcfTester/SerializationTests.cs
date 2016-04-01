@@ -1,9 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
+using SharedDto.Universe.Planets;
+using SharedDto.Universe.Stars;
 
 namespace wcfTester
 {
@@ -13,14 +14,21 @@ namespace wcfTester
         [TestMethod]
         public void TestJsonStarDtoSerialization()
         {
-            var star = new Star
+            var starDto = new StarDto
             {
                 Name = "testStar",
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                Galaxy = new Galaxy {Name = "TestGalaxy", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
-                Planets = new List<Planet>()
+                GalaxyId = 1,
+                Planets = new List<PlanetDto>()
             };
+
+            //var star = new Star
+            //{
+            //    Name = "testStar",
+            //    CreatedAt = DateTime.Now,
+            //    UpdatedAt = DateTime.Now,
+            //    Galaxy = new Galaxy {Name = "TestGalaxy", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
+            //    Planets = new List<Planet>()
+            //};
 
             //var planet = new Planet
             //{
@@ -33,7 +41,7 @@ namespace wcfTester
             var stream = new MemoryStream();
             var ser = new DataContractJsonSerializer(typeof(Star));
 
-            ser.WriteObject(stream, star);
+            ser.WriteObject(stream, starDto);
             stream.Position = 0;
             var sr = new StreamReader(stream);
             var result = sr.ReadToEnd();

@@ -122,12 +122,13 @@ namespace BLL.Generation.StarSystem.Builders
         private static int CalculateSurfaceTemperature(double distance, bool atmpspherePresent, int starTemperature, Random rnd)
         {
             int result;
-            var temp = (starTemperature - starTemperature * distance) / 7.095;
-            if (atmpspherePresent) result = (int)(temp - temp * 0.5);
-            else result = (int)temp;
+            var delta = (-14 - 73.15) * (starTemperature / 5700.00);
+            var t = 14 + 1.25 * (delta * (1 - distance) / -0.5);
 
-            if (result <= 100) return result;
-            result = RandomNumbers.RandomInt(100, !atmpspherePresent ? 273 : 500, rnd);
+            if (atmpspherePresent) result = (int)Math.Truncate(t + t * 0.55);
+            else result = (int)t;
+
+            if (result < -270) result = -270;
             return result;
         }
 

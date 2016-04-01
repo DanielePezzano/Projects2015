@@ -69,6 +69,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Generation\Sector\SectorPropertiesTest.cs" />
     <Compile Include="Generation\StarSystem\OrbitGeneratorTest.cs" />
     <Compile Include="Generation\StarSystem\PlanetGeneratorTest.cs" />
     <Compile Include="Generation\StarSystem\StarGenerationTests.cs" />

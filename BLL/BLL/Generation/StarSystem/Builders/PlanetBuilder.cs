@@ -66,7 +66,7 @@ namespace BLL.Generation.StarSystem.Builders
         {
             if (_conditions.ForceWater || _conditions.MostlyWater) return true;
             if (!_resultPlanet.AtmospherePresent) return false;
-            return RandomNumbers.RandomInt(0, 10, rnd) <= 1;
+            return RandomNumbers.RandomInt(1, 10, rnd) == 1;
         }
 
         private int CalculateTotalSpaces(double mass, bool isGasseous)
@@ -124,7 +124,7 @@ namespace BLL.Generation.StarSystem.Builders
         private static double CalculateMediumDensity(double mass, Random rnd)
         {
             double res;
-            if (mass >= BasicConstants.EarthMass)
+            if (GenericUtils.IsInRangeDoubleCompared(mass, BasicConstants.EarthMass,5.0))
                 res = RandomNumbers.RandomDouble(BasicConstants.MinDensity, BasicConstants.MaxDensity, rnd);
             else
                 res = RandomNumbers.RandomDouble(BasicConstants.MinDensityForGas, BasicConstants.EarthDensity + 1,
@@ -135,12 +135,13 @@ namespace BLL.Generation.StarSystem.Builders
         private static int CalculateSurfaceTemperature(double distance, bool atmpspherePresent, int starTemperature, Random rnd)
         {
             int result;
-            var temp = (starTemperature - starTemperature * distance) / 7.095;
-            if (atmpspherePresent) result = (int)(temp - temp * 0.5);
-            else result = (int)temp;
+            var delta = (-14 - 73.15)*(starTemperature/5700.00);
+            var t = 14 + 1.25 * (delta*(1-distance)/-0.5);
 
-            if (result <= 100) return result;
-            result = RandomNumbers.RandomInt(100, !atmpspherePresent ? 273 : 500, rnd);
+            if (atmpspherePresent) result = (int) Math.Truncate(t + t * 0.55);
+            else result = (int)t;
+
+            if (result < -270) result = -270;
             return result;
         }
 

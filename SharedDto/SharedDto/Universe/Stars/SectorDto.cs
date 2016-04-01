@@ -8,5 +8,13 @@ namespace SharedDto.Universe.Stars
     {
         [DataMember]
         public List<StarDto> Stars { get; set; }
+        [DataMember]
+        public int MaxNumberOfStars { get; set; }
+        [DataMember]
+        public int MinX { get; set; }
+        [DataMember]
+        public int MaxX { get; set; }
+        [DataMember]
+        public int MinY { get; set; }
     }
 }

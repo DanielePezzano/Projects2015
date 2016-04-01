@@ -13,9 +13,19 @@ namespace BLL.Generation.StarSystem.Factories
             return new SolarSystemFactory(conditions,rnd);
         }
 
-        public static StarBuilder RetrieveNewStarBuilder()
+        public static StarBuilder RetrieveStarBuilder()
         {
             return new StarBuilder();
+        }
+
+        public static PlanetBuilder RetrievePlanetBuilder()
+        {
+            return new PlanetBuilder();
+        }
+
+        public static SatelliteBuilder RetrieveSatelliteBuilder()
+        {
+            return new SatelliteBuilder();
         }
 
         public static StarPlacer RetrieveStarPlacer(IUnitOfWork uow)
@@ -39,7 +49,7 @@ namespace BLL.Generation.StarSystem.Factories
         {
             return new StarSystemGenerator(
                 RetrieveNewFactory(conditions, rnd),
-                RetrieveNewStarBuilder(),
+                RetrieveStarBuilder(),
                 RetrieveStarPlacer(uow),
                 rangeX,
                 rangeY);
@@ -50,9 +60,9 @@ namespace BLL.Generation.StarSystem.Factories
             return new OrbitGenerator(star, closeRange, conditions);
         }
 
-        public static IntRange RetrieveIntRange(int minX,int maxX)
+        public static IntRange RetrieveIntRange(int min,int max)
         {
-            return new IntRange(minX, maxX);
+            return new IntRange(min, max);
         }
     }
 }

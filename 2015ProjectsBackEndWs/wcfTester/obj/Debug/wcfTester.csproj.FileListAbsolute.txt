@@ -21,8 +21,6 @@ C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\o
 C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\obj\Debug\wcfTester.pdb
 C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\WcfCommCrypto.dll
 C:\Users\daniele\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\SharedDto.dll
-C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\Resources.resx
-C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\Resources.Designer.cs
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\wcfTester.dll.config
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\wcfTester.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\wcfTester.pdb
@@ -46,3 +44,5 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\obj\Debug\wcfTester.csprojResolveAssemblyReference.cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\obj\Debug\wcfTester.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\obj\Debug\wcfTester.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\Resources.resx
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\Resources.Designer.cs

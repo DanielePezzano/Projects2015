@@ -10,7 +10,7 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void CreateBrandNewStarTest()
         {
-            var generator = FactoryGenerator.RetrieveNewStarBuilder();
+            var generator = FactoryGenerator.RetrieveStarBuilder();
             Assert.IsInstanceOfType(generator.CreateBrandNewStar(), typeof(Star));
         }
     }

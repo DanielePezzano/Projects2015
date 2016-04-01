@@ -36,7 +36,7 @@ namespace _2015ProjectsBackEndWs
                 var decriptedHash = RijndaelManagedEncryption.DecryptRijndael(hashcall,
                     ConfigurationManager.AppSettings[ConfAppSettings.SaltKey],
                     ConfigurationManager.AppSettings[ConfAppSettings.InputKey]);
-                if (decriptedHash.StartsWith(CallStartSentences.GeneratePortion))
+                if (decriptedHash.StartsWith(CallStartSentences.GenerateStarSystem))
                 {
                     if (!RepetitionChecker.Check(hashcall))
                     {

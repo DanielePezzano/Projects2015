@@ -52,10 +52,10 @@ namespace BLL.Generation.StarSystem.Factories
             var nos = CalculateNumberOfSatellite(planet.Mass, _rnd);
             for (var i = 0; i < nos; i++)
             {
-                _mySatBuilder = new SatelliteBuilder();
+                _mySatBuilder = FactoryGenerator.RetrieveSatelliteBuilder();
                 var toAdd =
                     (Satellite)
-                        _mySatBuilder.Build(_associatedStar, new PlanetCustomConditions(), _rnd, _orbitGenerator,
+                        _mySatBuilder.Build(_associatedStar, FactoryGenerator.RetrieveConditions(false,false,false,false,false,false,false), _rnd, _orbitGenerator,
                             _closeRange);
                 toAdd.Planet = planet;
                 planet.Satellites.Add(toAdd);
@@ -68,7 +68,7 @@ namespace BLL.Generation.StarSystem.Factories
 
             for (var x = 0; x < _numberOfPlanets; x++)
             {
-                _myPlanetBuilder = new PlanetBuilder();
+                _myPlanetBuilder = FactoryGenerator.RetrievePlanetBuilder();
                 var toAdd =
                     (Planet)
                         _myPlanetBuilder.Build(_associatedStar, _conditions, _rnd, _orbitGenerator, _closeRange);
