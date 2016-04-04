@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using SharedDto.Universe.Stars;
 
-namespace SharedDto.Universe.Stars
+namespace SharedDto.Universe.Sector
 {
     [DataContract]
     public class SectorDto

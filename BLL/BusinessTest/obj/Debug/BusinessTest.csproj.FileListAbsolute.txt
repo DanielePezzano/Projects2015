@@ -45,3 +45,5 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Moq.x
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\obj\Debug\BusinessTest.csprojResolveAssemblyReference.cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\obj\Debug\BusinessTest.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\obj\Debug\BusinessTest.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\SharedDto.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\SharedDto.pdb

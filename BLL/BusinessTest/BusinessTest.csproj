@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.XML" />
@@ -70,6 +71,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Generation\Sector\SectorPropertiesTest.cs" />
+    <Compile Include="Generation\Sector\SectorGenerationTest.cs" />
     <Compile Include="Generation\StarSystem\OrbitGeneratorTest.cs" />
     <Compile Include="Generation\StarSystem\PlanetGeneratorTest.cs" />
     <Compile Include="Generation\StarSystem\StarGenerationTests.cs" />
@@ -88,6 +90,10 @@
     <ProjectReference Include="..\..\Models\Models\Models.csproj">
       <Project>{0309e052-c6a1-4c0f-adfd-6fd8b4c1cd2a}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SharedDto\SharedDto\SharedDto.csproj">
+      <Project>{cd2dbeff-0a8a-4082-a9a9-db91fd3ec6ec}</Project>
+      <Name>SharedDto</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\UnitOfWork\UnitOfWork\UnitOfWork.csproj">
       <Project>{1542d9fb-7fde-4127-9014-562bc47a7ea7}</Project>

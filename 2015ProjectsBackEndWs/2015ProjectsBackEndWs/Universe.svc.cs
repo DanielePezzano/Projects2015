@@ -5,7 +5,7 @@ using SharedDto;
 using SharedDto.Form.Account;
 using SharedDto.Form.Universe;
 using SharedDto.Universe.Planets;
-using SharedDto.Universe.Stars;
+using SharedDto.Universe.Sector;
 using SharedDto.UtilityDto;
 using WcfCommCrypto;
 using _2015ProjectsBackEndWs.Security;

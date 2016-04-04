@@ -39,7 +39,7 @@ namespace wcfTester
             //};
 
             var stream = new MemoryStream();
-            var ser = new DataContractJsonSerializer(typeof(Star));
+            var ser = new DataContractJsonSerializer(typeof(StarDto));
 
             ser.WriteObject(stream, starDto);
             stream.Position = 0;

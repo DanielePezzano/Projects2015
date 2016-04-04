@@ -40,3 +40,5 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\EntityFramewor
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Debug\BLL.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\obj\Debug\BLL.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\SharedDto.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BLL\bin\Debug\SharedDto.pdb

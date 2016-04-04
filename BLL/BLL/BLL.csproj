@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Generation\Sector\Enums\SectorRegion.cs" />
+    <Compile Include="Generation\Sector\Factories\FactoryGenerator.cs" />
     <Compile Include="Generation\Sector\GenerateSector.cs" />
     <Compile Include="Generation\Sector\SectorProperties.cs" />
     <Compile Include="Generation\StarSystem\Builders\IBuilder.cs" />
@@ -89,6 +91,10 @@
     <ProjectReference Include="..\..\Models\Models\Models.csproj">
       <Project>{0309e052-c6a1-4c0f-adfd-6fd8b4c1cd2a}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SharedDto\SharedDto\SharedDto.csproj">
+      <Project>{cd2dbeff-0a8a-4082-a9a9-db91fd3ec6ec}</Project>
+      <Name>SharedDto</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\UnitOfWork\UnitOfWork\UnitOfWork.csproj">
       <Project>{1542d9fb-7fde-4127-9014-562bc47a7ea7}</Project>

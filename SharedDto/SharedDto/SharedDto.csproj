@@ -84,7 +84,9 @@
     <Compile Include="Universe\Building\BuildingDto.cs" />
     <Compile Include="Universe\Building\BuildingSpecsDto.cs" />
     <Compile Include="Universe\Planets\PlanetDto.cs" />
-    <Compile Include="Universe\Stars\SectorDto.cs" />
+    <Compile Include="Universe\Sector\SectorDto.cs" />
+    <Compile Include="Universe\Sector\SectorGenerationDto.cs" />
+    <Compile Include="Universe\Sector\SectorGenerationResult.cs" />
     <Compile Include="Universe\Stars\StarDto.cs" />
     <Compile Include="UtilityDto\SystemGenerationDto.cs" />
     <Compile Include="UtilityDto\RetrievingInfoDto.cs" />

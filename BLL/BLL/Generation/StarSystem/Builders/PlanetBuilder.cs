@@ -13,7 +13,7 @@ namespace BLL.Generation.StarSystem.Builders
     public class PlanetBuilder : IBuilder
     {
         private PlanetCustomConditions _conditions;
-        private double _mediumDensity = 5.5; //densità media terrestre --> se densità calcolata <=3 probabilmente è gassoso   
+        private double _mediumDensity = BasicConstants.EarthDensity; //densità media terrestre --> se densità calcolata <=3 probabilmente è gassoso   
         private Star _star;
         private Random _rnd;
         private Planet _resultPlanet;
@@ -22,9 +22,9 @@ namespace BLL.Generation.StarSystem.Builders
         #region Private Method
         private void BasePlanet()
         {
-            _mediumDensity = _conditions.ForceLiving || _conditions.ForceWater || _conditions.MostlyWater
-                ? BasicConstants.EarthDensity + RandomNumbers.RandomDouble(-0.5, 0.5, _rnd)
-                : RandomNumbers.RandomDouble(BasicConstants.MinDensity, BasicConstants.MaxDensity, _rnd);
+            //_mediumDensity = _conditions.ForceLiving || _conditions.ForceWater || _conditions.MostlyWater
+            //    ? BasicConstants.EarthDensity + RandomNumbers.RandomDouble(-0.5, 0.5, _rnd)
+            //    : RandomNumbers.RandomDouble(BasicConstants.MinDensity, BasicConstants.MaxDensity, _rnd);
 
             _resultPlanet = new Planet
             {
@@ -121,8 +121,11 @@ namespace BLL.Generation.StarSystem.Builders
             return atmospherePresent ? result / 2 : result;
         }
 
-        private static double CalculateMediumDensity(double mass, Random rnd)
+        private double CalculateMediumDensity(double mass, Random rnd)
         {
+            if (_conditions.ForceWater || _conditions.MostlyWater || _conditions.ForceLiving)
+                return RandomNumbers.RandomDouble(BasicConstants.EarthDensity - 0.5, BasicConstants.EarthDensity + 0.5,
+                    rnd);
             double res;
             if (GenericUtils.IsInRangeDoubleCompared(mass, BasicConstants.EarthMass,5.0))
                 res = RandomNumbers.RandomDouble(BasicConstants.MinDensity, BasicConstants.MaxDensity, rnd);
@@ -134,6 +137,7 @@ namespace BLL.Generation.StarSystem.Builders
 
         private static int CalculateSurfaceTemperature(double distance, bool atmpspherePresent, int starTemperature, Random rnd)
         {
+            if (rnd == null) throw new ArgumentNullException(nameof(rnd));
             int result;
             var delta = (-14 - 73.15)*(starTemperature/5700.00);
             var t = 14 + 1.25 * (delta*(1-distance)/-0.5);
