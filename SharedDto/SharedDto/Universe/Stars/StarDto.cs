@@ -11,6 +11,9 @@ namespace SharedDto.Universe.Stars
         public int GalaxyId { get; set; }
 
         [DataMember]
+        public int StarId { get; set; }
+
+        [DataMember]
         public int PositionX { get; set; }
 
         [DataMember]

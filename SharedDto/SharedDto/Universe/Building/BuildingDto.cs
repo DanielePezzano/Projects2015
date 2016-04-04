@@ -10,6 +10,8 @@ namespace SharedDto.Universe.Building
         [DataMember]
         public int Id { get; set; }
         [DataMember]
+        public int PlanetId { get; set; }
+        [DataMember]
         public BuildingType BuildingType { get; set; }
         [DataMember]
         public string Description { get; set; }

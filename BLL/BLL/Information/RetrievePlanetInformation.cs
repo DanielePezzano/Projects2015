@@ -13,7 +13,7 @@ namespace BLL.Information
         public RetrievePlanetInformation(MainUow uow, int itemId)
         {
             if (uow == null) throw new ArgumentNullException(nameof(uow));
-            if (itemId < 0) throw new ArgumentException("itemId");
+            if (itemId < 0) throw new ArgumentException(nameof(itemId));
             _mainUow = uow;
             _itemId = itemId;
         }
@@ -23,7 +23,6 @@ namespace BLL.Information
             if (_disposed) return;
             _disposed = true;
             _mainUow?.Dispose();
-            // GC.SuppressFinalize(this);
         }
 
         /// <summary>

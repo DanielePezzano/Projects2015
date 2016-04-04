@@ -28,6 +28,8 @@ namespace SharedDto.DataMapper
             result.StarColor = entity.StarColor.ToString();
             result.StarType = entity.StarType.ToString();
             result.SurfaceTemp = entity.SurfaceTemp;
+            result.GalaxyId = entity.Id;
+            result.StarId = entity.Id;
             return result;
         }
 

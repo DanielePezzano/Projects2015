@@ -29,6 +29,7 @@ namespace SharedDto.DataMapper
             result.OreMaintenanceCost = entity.OreMaintenanceCost;
             result.SpaceNeeded = entity.SpaceNeeded;
             result.UsedSpaces = entity.UsedSpaces;
+            result.PlanetId = entity.Planet.Id;
             return result;
         }
 
