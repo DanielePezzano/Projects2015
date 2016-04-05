@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Models.Base.Enum;
 using Models.Universe.Enum;
@@ -79,6 +80,15 @@ namespace SharedDto.Universe.Planets
         public double GravityEarthCompared { get; set; } // gravità rispetto alla terra (che si decide abbia 100 spazi come paragone)
         [DataMember]
         public int? UserId { get; set; }
+        [DataMember]
+        public DateTime LastUpdateOreProduction { get; set; }
+        [DataMember]
+        public DateTime LastUpdateFoodProduction { get; set; }
+        [DataMember]
+        public DateTime LastUpdateResearcDateTime { get; set; }
+        [DataMember]
+        public DateTime LastUpdatePopDateTime { get; set; }
+
         [DataMember]
         public List<BuildingDto> Buildings { get; set; }
     }

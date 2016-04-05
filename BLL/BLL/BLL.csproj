@@ -85,6 +85,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Engine\Planet\Production\" />
+    <Folder Include="Engine\Planet\Social\" />
     <Folder Include="Utilities\Enum\" />
   </ItemGroup>
   <ItemGroup>

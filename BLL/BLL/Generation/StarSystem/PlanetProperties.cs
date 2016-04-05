@@ -92,6 +92,9 @@ namespace BLL.Generation.StarSystem
             result.FoodProduction = (int) foodProd >= 0 ? (int) foodProd : 0;
             result.OreProduction = (int) oreProd >= 0 ? (int) oreProd : 0;
             result.ResearchPointProduction = 10;
+            result.LastFoodUpDateTime = DateTime.Now;
+            result.LastOreUpdateTime = DateTime.Now;
+            result.LastResearchUpdateTime = DateTime.Now;
             return result;
         }
 

@@ -1,4 +1,5 @@
-﻿using Models.Base.Enum;
+﻿using System;
+using Models.Base.Enum;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
@@ -18,6 +19,8 @@ namespace Models.Base
         [EnumDataType(typeof(TaxLevel))]
         [DataMember]
         public TaxLevel TaxLevel { get; set; }
+        [DataMember]
+        public DateTime LastPopulationUpdate { get; set; }
         
     }
 }

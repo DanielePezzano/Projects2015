@@ -53,6 +53,10 @@ namespace SharedDto.DataMapper
             planet.WaterSpacesLeft = entity.Spaces.WaterSpacesLeft;
             planet.WaterUsedSpaces = entity.Spaces.WaterUsedSpaces;
             planet.UserId = entity.User?.Id;
+            planet.LastUpdateResearcDateTime = entity.SatelliteProduction.LastResearchUpdateTime;
+            planet.LastUpdateFoodProduction = entity.SatelliteProduction.LastFoodUpDateTime;
+            planet.LastUpdateOreProduction = entity.SatelliteProduction.LastOreUpdateTime;
+            planet.LastUpdatePopDateTime = entity.SatelliteSocial.LastPopulationUpdate;
             return planet;
         }
 

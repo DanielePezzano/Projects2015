@@ -23,24 +23,23 @@ namespace BLL.Generation.Sector
 
         public static int RetrieveMaxNumberOfStars(SectorRegion sectorRegion)
         {
+            int result = 0;
             switch (sectorRegion)
             {
                 case SectorRegion.Centre:
-                    return Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionA"]);
+                    result = Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionA"]);
                     break;
                 case SectorRegion.Average:
-                    return Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionB"]);
+                    result = Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionB"]);
                     break;
                 case SectorRegion.JustOutside:
-                    return Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionC"]);
+                    result = Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionC"]);
                     break;
                 case SectorRegion.FarAway:
-                    return Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionD"]);
+                    result = Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionD"]);
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(sectorRegion), sectorRegion, null);
             }
-            return 0;
+            return result;
         }
     }
 }

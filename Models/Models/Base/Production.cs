@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
@@ -26,5 +27,11 @@ namespace Models.Base
         [DataMember]
         [Display(Name = "ActivePopOnResProduction", ResourceType = typeof(Resources))]
         public double ActivePopOnResProduction { get; set; }
+        [DataMember]
+        public DateTime LastFoodUpDateTime { get; set; }
+        [DataMember]
+        public DateTime LastOreUpdateTime { get; set; }
+        [DataMember]
+        public DateTime LastResearchUpdateTime { get; set; }
     }
 }
