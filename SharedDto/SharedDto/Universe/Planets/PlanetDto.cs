@@ -55,6 +55,10 @@ namespace SharedDto.Universe.Planets
         [DataMember]
         public int OreProduction { get; set; }
         [DataMember]
+        public int StoredFood { get; set; }
+        [DataMember]
+        public int StoredOre { get; set; }
+        [DataMember]
         public int ResearchPointProduction { get; set; }
         [DataMember]
         public bool AtmospherePresent { get; set; }

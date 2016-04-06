@@ -57,6 +57,8 @@ namespace SharedDto.DataMapper
             planet.LastUpdateFoodProduction = entity.SatelliteProduction.LastFoodUpDateTime;
             planet.LastUpdateOreProduction = entity.SatelliteProduction.LastOreUpdateTime;
             planet.LastUpdatePopDateTime = entity.SatelliteSocial.LastPopulationUpdate;
+            planet.StoredFood = entity.SatelliteProduction.StoredFood;
+            planet.StoredOre = entity.SatelliteProduction.StoredOre;
             return planet;
         }
 

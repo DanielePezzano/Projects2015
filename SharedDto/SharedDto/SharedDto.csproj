@@ -61,6 +61,7 @@
     <Compile Include="DataMapper\BuildingEntityMapper.cs" />
     <Compile Include="DataMapper\BuildingSpecEntityMapper.cs" />
     <Compile Include="DataMapper\PlanetEntityMapper.cs" />
+    <Compile Include="DataMapper\RaceEntityMapper.cs" />
     <Compile Include="DataMapper\StarEntityMapper.cs" />
     <Compile Include="Form\Account\ExternalLogin.cs" />
     <Compile Include="Form\Account\LocalPasswordModel.cs" />
@@ -84,6 +85,8 @@
     <Compile Include="Universe\Building\BuildingDto.cs" />
     <Compile Include="Universe\Building\BuildingSpecsDto.cs" />
     <Compile Include="Universe\Planets\PlanetDto.cs" />
+    <Compile Include="Universe\Race\RaceBonusDto.cs" />
+    <Compile Include="Universe\Race\RaceDto.cs" />
     <Compile Include="Universe\Sector\SectorDto.cs" />
     <Compile Include="Universe\Sector\SectorGenerationDto.cs" />
     <Compile Include="Universe\Sector\SectorGenerationResult.cs" />
@@ -98,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Universe\Technology\" />
+    <Folder Include="Universe\User\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ModelResources.resx">

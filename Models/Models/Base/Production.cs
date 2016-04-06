@@ -28,6 +28,12 @@ namespace Models.Base
         [Display(Name = "ActivePopOnResProduction", ResourceType = typeof(Resources))]
         public double ActivePopOnResProduction { get; set; }
         [DataMember]
+        [Display(Name = "Food", ResourceType = typeof(Resources))]
+        public int StoredFood { get; set; }
+        [DataMember]
+        [Display(Name = "Ore", ResourceType = typeof(Resources))]
+        public int StoredOre { get; set; }
+        [DataMember]
         public DateTime LastFoodUpDateTime { get; set; }
         [DataMember]
         public DateTime LastOreUpdateTime { get; set; }

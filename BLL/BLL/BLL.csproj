@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\Planet\Enum\PlanetUpdateSelector.cs" />
+    <Compile Include="Engine\Planet\Builder.cs" />
+    <Compile Include="Engine\Planet\Production\Builder\FactoryGenerator.cs" />
+    <Compile Include="Engine\Planet\IBuilder.cs" />
+    <Compile Include="Engine\Planet\Production\Builder\IUpdater.cs" />
+    <Compile Include="Engine\Planet\Production\Builder\OreUpdate.cs" />
     <Compile Include="Generation\Sector\Enums\SectorRegion.cs" />
     <Compile Include="Generation\Sector\Factories\FactoryGenerator.cs" />
     <Compile Include="Generation\Sector\GenerateSector.cs" />
@@ -76,6 +82,7 @@
     <Compile Include="Utilities\RangeConversion.cs" />
     <Compile Include="Utilities\ScaleConversion.cs" />
     <Compile Include="Utilities\Structs\Range.cs" />
+    <Compile Include="Utilities\Structs\TimeDiff.cs" />
     <Compile Include="Utilities\TimeConverter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -85,7 +92,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Engine\Planet\Production\" />
     <Folder Include="Engine\Planet\Social\" />
     <Folder Include="Utilities\Enum\" />
   </ItemGroup>
