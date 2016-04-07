@@ -46,4 +46,3 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\obj\Debug\wcfTester.pdb
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\Resources.resx
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\Resources.Designer.cs
-C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\wcfTester\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll

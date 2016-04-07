@@ -63,6 +63,8 @@
     <Compile Include="DataMapper\PlanetEntityMapper.cs" />
     <Compile Include="DataMapper\RaceEntityMapper.cs" />
     <Compile Include="DataMapper\StarEntityMapper.cs" />
+    <Compile Include="DataMapper\TechnologyBonusEntityMapper.cs" />
+    <Compile Include="DataMapper\TechnologyEntityMapper.cs" />
     <Compile Include="Form\Account\ExternalLogin.cs" />
     <Compile Include="Form\Account\LocalPasswordModel.cs" />
     <Compile Include="Form\Account\LoginModel.cs" />
@@ -91,6 +93,8 @@
     <Compile Include="Universe\Sector\SectorGenerationDto.cs" />
     <Compile Include="Universe\Sector\SectorGenerationResult.cs" />
     <Compile Include="Universe\Stars\StarDto.cs" />
+    <Compile Include="Universe\Technology\TechnologyBonusDto.cs" />
+    <Compile Include="Universe\Technology\TechnologyDto.cs" />
     <Compile Include="UtilityDto\SystemGenerationDto.cs" />
     <Compile Include="UtilityDto\RetrievingInfoDto.cs" />
     <Compile Include="UtilityDto\UniverseRangeDto.cs" />
@@ -100,7 +104,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Universe\Technology\" />
     <Folder Include="Universe\User\" />
   </ItemGroup>
   <ItemGroup>

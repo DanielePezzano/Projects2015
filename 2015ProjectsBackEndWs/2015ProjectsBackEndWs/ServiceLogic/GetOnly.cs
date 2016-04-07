@@ -74,12 +74,8 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
         {
             var rangeX = new IntRange(universeRage.MinX, universeRage.MaxX);
             var rangeY = new IntRange(universeRage.MinY, universeRage.MaxY);
-            var stars = new List<StarDto>();
-            var mapper = new StarEntityMapper();
             var starEntities = RetrieveInformation(ref rangeX, ref rangeY);
-            if (starEntities != null)
-                stars = mapper.EntityListToModel(starEntities);
-            return stars;
+            return starEntities != null ? StarEntityMapper.EntityListToModel(starEntities) : new List<StarDto>();
         }
 
         /// <summary>
@@ -91,8 +87,7 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
             PlanetDto result;
             using (var retrieve = new RetrievePlanetInformation(_mainUow, id))
             {
-                var mapper = new PlanetEntityMapper();
-                result = mapper.EntityToModel(retrieve.Retrieve(cacheKey));
+                result = PlanetEntityMapper.EntityToModel(retrieve.Retrieve(cacheKey));
             }
             return result;
         }

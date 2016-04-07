@@ -5,39 +5,38 @@ using SharedDto.Universe.Stars;
 
 namespace SharedDto.DataMapper
 {
-    public class StarEntityMapper
+    public static class StarEntityMapper
     {
         /// <summary>
         ///     Map an entity to the correspondent DTO
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public StarDto EntityToModel(Star entity)
+        public static StarDto EntityToModel(Star entity)
         {
-            if (entity == null) return null;
-            var result = new StarDto();
-            var mapper = new PlanetEntityMapper();
-            result.GalaxyId = entity.Galaxy.Id;
-            result.Mass = entity.Mass;
-            result.Name = entity.Name;
-            result.Planets = mapper.EntityListToModel(entity.Planets);
-            result.PositgionY = entity.CoordinateY;
-            result.PositionX = entity.CoordinateX;
-            result.RadiationLevel = entity.RadiationLevel;
-            result.Radius = entity.Radius;
-            result.StarColor = entity.StarColor.ToString();
-            result.StarType = entity.StarType.ToString();
-            result.SurfaceTemp = entity.SurfaceTemp;
-            result.GalaxyId = entity.Id;
-            result.StarId = entity.Id;
-            return result;
+            return new StarDto()
+            {
+                GalaxyId = entity.Galaxy.Id,
+                Mass = entity.Mass,
+                Name = entity.Name,
+                Planets = PlanetEntityMapper.EntityListToModel(entity.Planets),
+                PositgionY = entity.CoordinateY,
+                PositionX = entity.CoordinateX,
+                RadiationLevel = entity.RadiationLevel,
+                Radius = entity.Radius,
+                StarColor = entity.StarColor.ToString(),
+                StarType = entity.StarType.ToString(),
+                SurfaceTemp = entity.SurfaceTemp,
+                StarId = entity.Id
+            };
+            
         }
 
         /// <summary>
         ///     Map an entity List to the correspondent DTO List
         /// </summary>
         /// <returns></returns>
-        public List<StarDto> EntityListToModel(List<Star> stars)
+        public static List<StarDto> EntityListToModel(List<Star> stars)
         {
             return stars.Select(EntityToModel).ToList();
         }

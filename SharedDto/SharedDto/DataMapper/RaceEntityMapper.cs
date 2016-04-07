@@ -5,9 +5,9 @@ using SharedDto.Universe.Race;
 
 namespace SharedDto.DataMapper
 {
-    public sealed class RaceEntityMapper
+    public static class RaceEntityMapper
     {
-        private List<RaceBonusDto> EntityToRaceBonusDto(User entity)
+        private static List<RaceBonusDto> EntityToRaceBonusDto(User entity)
         {
             return entity.RaceBonuses.Select(bonus => new RaceBonusDto()
             {
@@ -15,7 +15,7 @@ namespace SharedDto.DataMapper
             }).ToList();
         }
 
-        public RaceDto EntityToModel(User entity)
+        public static RaceDto EntityToModel(User entity)
         {
             return new RaceDto()
             {

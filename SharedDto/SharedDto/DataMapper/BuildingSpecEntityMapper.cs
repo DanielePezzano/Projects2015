@@ -12,22 +12,20 @@ namespace SharedDto.DataMapper
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public BuildingSpecsDto EntityToModel(BuildingSpec entity)
+        public static BuildingSpecsDto EntityToModel(BuildingSpec entity)
         {
-            if (entity == null) return null;
-            var result = new BuildingSpecsDto
+            return new BuildingSpecsDto()
             {
                 Bonus = entity.Bonus,
                 Value = entity.Value
             };
-            return result;
         }
 
         /// <summary>
         /// Map an entity List to the correspondent DTO List
         /// </summary>
         /// <returns></returns>
-        public List<BuildingSpecsDto> EntityListToModel(ICollection<BuildingSpec> items)
+        public static List<BuildingSpecsDto> EntityListToModel(ICollection<BuildingSpec> items)
         {
             return items.Select(EntityToModel).ToList();
         }

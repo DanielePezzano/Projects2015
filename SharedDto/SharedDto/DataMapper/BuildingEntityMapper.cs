@@ -5,39 +5,39 @@ using SharedDto.Universe.Building;
 
 namespace SharedDto.DataMapper
 {
-    public sealed class BuildingEntityMapper
+    public static class BuildingEntityMapper
     {
         /// <summary>
         ///     Map an entity to the correspondent DTO
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public BuildingDto EntityToModel(Building entity)
+        public static BuildingDto EntityToModel(Building entity)
         {
-            if (entity == null) return null;
-            var result = new BuildingDto();
-            var mapper = new BuildingSpecEntityMapper();
-            result.BuildingType = entity.BuildingType;
-            result.Description = entity.Description;
-            result.Details = mapper.EntityListToModel(entity.BuildingSpecs);
-            result.Id = entity.Id;
-            result.MoneyCost = entity.MoneyCost;
-            result.MoneyMaintenanceCost = entity.MoneyMaintenanceCost;
-            result.Name = entity.Name;
-            result.Number = entity.Number;
-            result.OreCost = entity.OreCost;
-            result.OreMaintenanceCost = entity.OreMaintenanceCost;
-            result.SpaceNeeded = entity.SpaceNeeded;
-            result.UsedSpaces = entity.UsedSpaces;
-            result.PlanetId = entity.Planet.Id;
-            return result;
+            
+            return new BuildingDto()
+            {
+                BuildingType = entity.BuildingType,
+                Description = entity.Description,
+                Details = BuildingSpecEntityMapper.EntityListToModel(entity.BuildingSpecs),
+                Id = entity.Id,
+                MoneyCost = entity.MoneyCost,
+                MoneyMaintenanceCost = entity.MoneyMaintenanceCost,
+                Name = entity.Name,
+                Number = entity.Number,
+                OreCost = entity.OreCost,
+                OreMaintenanceCost = entity.OreMaintenanceCost,
+                SpaceNeeded = entity.SpaceNeeded,
+                UsedSpaces = entity.UsedSpaces,
+                PlanetId = entity.Planet.Id
+            };
         }
 
         /// <summary>
         ///     Map an entity List to the correspondent DTO List
         /// </summary>
         /// <returns></returns>
-        public List<BuildingDto> EntityListToModel(ICollection<Building> items)
+        public static List<BuildingDto> EntityListToModel(ICollection<Building> items)
         {
             return items.Select(EntityToModel).ToList();
         }

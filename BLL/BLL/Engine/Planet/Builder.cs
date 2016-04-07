@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using BLL.Engine.Planet.Enum;
 using BLL.Engine.Planet.Production.Builder;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Race;
+using SharedDto.Universe.Technology;
 using UnitOfWork.Implementations.Uows;
 using UnitOfWork.Interfaces.UnitOfWork;
 
@@ -12,14 +14,19 @@ namespace BLL.Engine.Planet
     {
         private PlanetDto _planetDto;
         private readonly RaceDto _raceDto;
+        private readonly List<TechnologyDto> _technologyDtos;
         private MainUow _uow;
         private readonly bool _isTest;
         private readonly PlanetUpdateSelector _selector;
         private IUpdater _updater;
         private readonly DateTime _timeNow;
 
-        public Builder(IUnitOfWork uow, PlanetDto planetDto, PlanetUpdateSelector chosenUpdate, RaceDto raceDto, bool isTest,DateTime timenow)
+        public Builder(IUnitOfWork uow, 
+            PlanetDto planetDto, PlanetUpdateSelector chosenUpdate, RaceDto raceDto,
+            List<TechnologyDto>  technologyDtos,
+            DateTime timenow, bool isTest)
         {
+            _technologyDtos = technologyDtos;
             _planetDto = planetDto;
             _uow = (MainUow) uow;
             _isTest = isTest;
@@ -58,7 +65,7 @@ namespace BLL.Engine.Planet
             switch (_selector)
             {
                 case PlanetUpdateSelector.OreProduction:
-                    _updater = FactoryGenerator.RetrieveBuilderOreUpdate(_planetDto, _raceDto, _timeNow);
+                    _updater = FactoryGenerator.RetrieveBuilderOreUpdate(_planetDto, _raceDto, _technologyDtos, _timeNow);
                     break;
                 case PlanetUpdateSelector.FoodProduction:
                     break;
