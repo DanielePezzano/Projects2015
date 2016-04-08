@@ -20,4 +20,3 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Debug\Models.R
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Debug\Models.csproj.GenerateResource.Cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Debug\Models.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Debug\Models.pdb
-C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache

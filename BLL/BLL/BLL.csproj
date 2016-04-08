@@ -54,8 +54,10 @@
     <Compile Include="Engine\Planet\Builder.cs" />
     <Compile Include="Engine\Planet\Production\Builder\FactoryGenerator.cs" />
     <Compile Include="Engine\Planet\IBuilder.cs" />
+    <Compile Include="Engine\Planet\Production\Builder\FoodUpdater.cs" />
     <Compile Include="Engine\Planet\Production\Builder\IUpdater.cs" />
     <Compile Include="Engine\Planet\Production\Builder\OreUpdate.cs" />
+    <Compile Include="Engine\Planet\Production\Builder\Updater.cs" />
     <Compile Include="Generation\Sector\Enums\SectorRegion.cs" />
     <Compile Include="Generation\Sector\Factories\FactoryGenerator.cs" />
     <Compile Include="Generation\Sector\GenerateSector.cs" />

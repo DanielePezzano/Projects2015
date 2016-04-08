@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using BLL.Utilities.Structs;
-using Models.Universe.Enum;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Race;
 using System.Linq;
@@ -11,34 +10,30 @@ using SharedDto.Universe.Technology;
 
 namespace BLL.Engine.Planet.Production.Builder
 {
-    public class OreUpdate : IUpdater
+    public class OreUpdate : Updater, IUpdater
     {
         private TimeDiff _diff;
-        private PlanetDto _planetDto;
         private readonly RaceDto _raceDto;
         private readonly List<TechnologyDto> _technologyDto;
-        private double _product;
         private readonly DateTime _nowTime;
 
-        public OreUpdate(PlanetDto planetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime)
+        public OreUpdate(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime)
         {
-            if (planetDto==null) throw  new ArgumentNullException(nameof(planetDto));
+            if (referredPlanetDto==null) throw  new ArgumentNullException(nameof(referredPlanetDto));
             if (raceDto == null) throw new ArgumentNullException(nameof(raceDto));
             if (technologyDto == null) throw new ArgumentNullException(nameof(technologyDto));
 
-            _planetDto = planetDto;
+            ReferredPlanetDto = referredPlanetDto;
             _technologyDto = technologyDto;
             _nowTime = nowTime;
             _raceDto = raceDto;
-            _diff = new TimeDiff(planetDto.LastUpdateOreProduction, nowTime);
+            _diff = new TimeDiff(referredPlanetDto.LastUpdateOreProduction, nowTime);
         }
 
         #region Private Methods
 
-        private void CalculateRateOfProduction()
+        protected override void CalculateRateOfProduction()
         {
-            _product = _planetDto.OreProduction * _diff.Hours;
-
             AdjustByActivePopulation();
             AdjustByBuildings();
             AdjustByTechnology();
@@ -46,67 +41,35 @@ namespace BLL.Engine.Planet.Production.Builder
             AdjustBySocial();
         }
 
-        private double CalculatePercentageOfPopulationUsedInProduction()
+        protected override double CalculatePercentageOfPopulationUsedInProduction()
         {
-            return _planetDto.ActivePopOnOreProduction/
-                   (_planetDto.ActivePopOnOreProduction + _planetDto.ActivePopOnFoodProduction +
-                    _planetDto.ActivePopOnResProduction);
+            return ReferredPlanetDto.ActivePopOnOreProduction/
+                   (ReferredPlanetDto.ActivePopOnOreProduction + ReferredPlanetDto.ActivePopOnFoodProduction +
+                    ReferredPlanetDto.ActivePopOnResProduction);
         }
-
-        private void AdjustByActivePopulation()
+        
+        protected override void AdjustByBuildings()
         {
-            _product += _product*CalculatePercentageOfPopulationUsedInProduction();
-        }
-
-        private void AdjustByBuildings()
-        {
-            foreach (var detail in _planetDto.Buildings.SelectMany(building => building.Details.Where(c => c.Bonus == BonusType.OreBonus)))
+            foreach (var detail in ReferredPlanetDto.Buildings.SelectMany(building => building.Details.Where(c => c.Bonus == BonusType.OreBonus)))
             {
-                _product += _product * detail.Value / 100;
+                Product += Product * detail.Value / 100;
             }
         }
 
-        private void AdjustByTechnology()
+        protected override void AdjustByTechnology()
         {
             foreach (var bonus in _technologyDto.SelectMany(technology => technology.TechnologyBonuses.Where(c => c.Bonus == BonusType.OreBonus)))
             {
-                _product += _product * bonus.Value / 100;
+                Product += Product * bonus.Value / 100;
             }
         }
+        
 
-        private void AdjustByStatus()
-        {
-            switch (_planetDto.Status)
-            {
-                case SatelliteStatus.Uncolonizable:
-                case SatelliteStatus.Uncolonized:
-                case SatelliteStatus.Abandoned:
-                    _product = 0;
-                    break;
-                case SatelliteStatus.Colonized:
-                    break;
-                case SatelliteStatus.Blocked:
-                    _product -= _product * 0.7;
-                    break;
-                case SatelliteStatus.Starvation:
-                    _product -= _product * 0.5;
-                    break;
-                case SatelliteStatus.Revolt:
-                    _product -= _product*0.4;
-                    break;
-                case SatelliteStatus.Optimum:
-                    _product += _product*0.15;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        private void AdjustBySocial()
+        protected override void AdjustBySocial()
         {
             foreach (var value in _raceDto.RaceBonuses.Where(c=>c.Bonus==RaceTraitsBonuses.OreProduction).Select(c=>c.Value))
             {
-                _product += _product*value/100;
+                Product += Product*value/100;
             }
         }
 
@@ -116,16 +79,17 @@ namespace BLL.Engine.Planet.Production.Builder
         {
             if (_diff.Hours > 0)
             {
+                Product = ReferredPlanetDto.OreProduction * _diff.Hours;
                 CalculateRateOfProduction();
             }
         }
 
         public void Update()
         {
-            if (_product <= 0) return;
+            if (Product <= 0) return;
 
-            _planetDto.StoredOre += (int) _product;
-            _planetDto.LastUpdateOreProduction = _nowTime;
+            ReferredPlanetDto.StoredOre += (int) Product;
+            ReferredPlanetDto.LastUpdateOreProduction = _nowTime;
 
         }
     }
