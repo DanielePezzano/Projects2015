@@ -26,7 +26,7 @@ namespace BLL.Engine.Planet.Production.Builder
                 case SatelliteStatus.Colonized:
                     break;
                 case SatelliteStatus.Blocked:
-                    Product -= Product * 0.7;
+                    Product -= Product * 0.8;
                     break;
                 case SatelliteStatus.Starvation:
                     Product -= Product * 0.5;

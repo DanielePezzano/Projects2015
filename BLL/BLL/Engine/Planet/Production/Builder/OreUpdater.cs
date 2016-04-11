@@ -10,14 +10,14 @@ using SharedDto.Universe.Technology;
 
 namespace BLL.Engine.Planet.Production.Builder
 {
-    public class OreUpdate : Updater, IUpdater
+    public class OreUpdater : Updater, IUpdater
     {
         private TimeDiff _diff;
         private readonly RaceDto _raceDto;
         private readonly List<TechnologyDto> _technologyDto;
         private readonly DateTime _nowTime;
 
-        public OreUpdate(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime)
+        public OreUpdater(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime)
         {
             if (referredPlanetDto==null) throw  new ArgumentNullException(nameof(referredPlanetDto));
             if (raceDto == null) throw new ArgumentNullException(nameof(raceDto));

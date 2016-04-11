@@ -68,6 +68,8 @@ namespace BLL.Engine.Planet
                     _updater = FactoryGenerator.RetrieveBuilderOreUpdate(_planetDto, _raceDto, _technologyDtos, _timeNow);
                     break;
                 case PlanetUpdateSelector.FoodProduction:
+                    _updater = FactoryGenerator.RetrieveBuilderFoodUpdate(_planetDto, _raceDto, _technologyDtos,
+                        _timeNow);
                     break;
                 case PlanetUpdateSelector.ResearchProduction:
                     break;
