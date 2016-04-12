@@ -965,4 +965,7 @@
     <value>Gassoso</value>
     <comment>Caratteristiche Satellite</comment>
   </data>
+  <data name="TotalIncome" xml:space="preserve">
+    <value>Bilancio Planetario</value>
+  </data>
 </root>

@@ -86,8 +86,15 @@
     </Compile>
     <Compile Include="Universe\Building\BuildingDto.cs" />
     <Compile Include="Universe\Building\BuildingSpecsDto.cs" />
+    <Compile Include="Universe\Fleet\AntiPlanetWeaponDto.cs" />
+    <Compile Include="Universe\Fleet\AntiShipWeaponDto.cs" />
+    <Compile Include="Universe\Fleet\ArmorDto.cs" />
+    <Compile Include="Universe\Fleet\EngineDto.cs" />
     <Compile Include="Universe\Fleet\FleetDto.cs" />
+    <Compile Include="Universe\Fleet\HullDto.cs" />
+    <Compile Include="Universe\Fleet\ShieldDto.cs" />
     <Compile Include="Universe\Fleet\ShipClassDto.cs" />
+    <Compile Include="Universe\Fleet\SystemsDto.cs" />
     <Compile Include="Universe\Planets\PlanetDto.cs" />
     <Compile Include="Universe\Race\RaceBonusDto.cs" />
     <Compile Include="Universe\Race\RaceDto.cs" />
@@ -106,6 +113,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Universe\Fleet\ShipClassDetails\" />
     <Folder Include="Universe\User\" />
   </ItemGroup>
   <ItemGroup>

@@ -1807,6 +1807,15 @@ namespace Models {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bilancio Planetario.
+        /// </summary>
+        public static string TotalIncome {
+            get {
+                return ResourceManager.GetString("TotalIncome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dimensioni.
         /// </summary>
         public static string TotalSpaces {
