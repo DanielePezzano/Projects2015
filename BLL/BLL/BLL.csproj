@@ -52,11 +52,13 @@
   <ItemGroup>
     <Compile Include="Engine\Planet\Enum\PlanetUpdateSelector.cs" />
     <Compile Include="Engine\Planet\Builder.cs" />
+    <Compile Include="Engine\Planet\Production\Builder\CostsUpdater.cs" />
     <Compile Include="Engine\Planet\Production\Builder\FactoryGenerator.cs" />
     <Compile Include="Engine\Planet\IBuilder.cs" />
     <Compile Include="Engine\Planet\Production\Builder\FoodUpdater.cs" />
     <Compile Include="Engine\Planet\Production\Builder\IUpdater.cs" />
-    <Compile Include="Engine\Planet\Production\Builder\OreUpdate.cs" />
+    <Compile Include="Engine\Planet\Production\Builder\OreUpdater.cs" />
+    <Compile Include="Engine\Planet\Production\Builder\ResearchUpdater.cs" />
     <Compile Include="Engine\Planet\Production\Builder\Updater.cs" />
     <Compile Include="Generation\Sector\Enums\SectorRegion.cs" />
     <Compile Include="Generation\Sector\Factories\FactoryGenerator.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Utilities\RandomNumbers.cs" />
     <Compile Include="Utilities\RangeConversion.cs" />
     <Compile Include="Utilities\ScaleConversion.cs" />
+    <Compile Include="Utilities\Structs\Costs.cs" />
     <Compile Include="Utilities\Structs\Range.cs" />
     <Compile Include="Utilities\Structs\TimeDiff.cs" />
     <Compile Include="Utilities\TimeConverter.cs" />

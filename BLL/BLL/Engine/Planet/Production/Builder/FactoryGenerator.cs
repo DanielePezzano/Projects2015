@@ -8,14 +8,19 @@ namespace BLL.Engine.Planet.Production.Builder
 {
     public static class FactoryGenerator
     {
-        public static OreUpdater RetrieveBuilderOreUpdate(PlanetDto planetDto, RaceDto raceDto,List<TechnologyDto> technologiesDto,DateTime nowTime)
+        public static OreUpdater RetrieveBuilderOreUpdater(PlanetDto planetDto, RaceDto raceDto,List<TechnologyDto> technologiesDto,DateTime nowTime)
         {
             return new OreUpdater(planetDto, raceDto, technologiesDto, nowTime);
         }
 
-        public static FoodUpdater RetrieveBuilderFoodUpdate(PlanetDto planetDto, RaceDto raceDto, List<TechnologyDto> technologyDtos,DateTime nowTime)
+        public static FoodUpdater RetrieveBuilderFoodUpdater(PlanetDto planetDto, RaceDto raceDto, List<TechnologyDto> technologyDtos,DateTime nowTime)
         {
             return new FoodUpdater(planetDto, raceDto, technologyDtos, nowTime);
+        }
+
+        public static ResearchUpdater RetrieveBuilderResearchUpdater(PlanetDto planetDto, RaceDto raceDto, List<TechnologyDto> technologyDtos, DateTime nowTime)
+        {
+            return new ResearchUpdater(planetDto, raceDto, technologyDtos, nowTime);
         }
     }
 }

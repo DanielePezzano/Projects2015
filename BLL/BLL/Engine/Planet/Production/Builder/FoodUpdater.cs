@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BLL.Utilities.Structs;
 using Models.Races.Enums;
 using Models.Tech.Enum;
 using SharedDto.Universe.Planets;
@@ -12,23 +11,12 @@ namespace BLL.Engine.Planet.Production.Builder
 {
     public class FoodUpdater : Updater, IUpdater
     {
-        private TimeDiff _diff;
-        private readonly RaceDto _raceDto;
-        private readonly List<TechnologyDto> _technologyDto;
         private double _foodConsumption;
-        private readonly DateTime _nowTime;
 
-        public FoodUpdater(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime)
+        public FoodUpdater(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime):
+            base(referredPlanetDto, raceDto, technologyDto, nowTime)
         {
-            if (referredPlanetDto == null) throw new ArgumentNullException(nameof(referredPlanetDto));
-            if (raceDto == null) throw new ArgumentNullException(nameof(raceDto));
-            if (technologyDto == null) throw new ArgumentNullException(nameof(technologyDto));
-
-            ReferredPlanetDto = referredPlanetDto;
-            _technologyDto = technologyDto;
-            _nowTime = nowTime;
-            _raceDto = raceDto;
-            _diff = new TimeDiff(referredPlanetDto.LastUpdateOreProduction, nowTime);
+            
         }
 
         #region Private Methods
@@ -94,11 +82,9 @@ namespace BLL.Engine.Planet.Production.Builder
 
         public void CheckTimeDifference()
         {
-            if (_diff.Hours > 0)
-            {
-                Product = ReferredPlanetDto.FoodProduction * _diff.Hours;
-                CalculateRateOfProduction();
-            }
+            if (_diff.Hours <= 0) return;
+            Product = ReferredPlanetDto.FoodProduction * _diff.Hours;
+            CalculateRateOfProduction();
         }
 
         

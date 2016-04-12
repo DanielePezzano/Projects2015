@@ -86,6 +86,8 @@
     </Compile>
     <Compile Include="Universe\Building\BuildingDto.cs" />
     <Compile Include="Universe\Building\BuildingSpecsDto.cs" />
+    <Compile Include="Universe\Fleet\FleetDto.cs" />
+    <Compile Include="Universe\Fleet\ShipClassDto.cs" />
     <Compile Include="Universe\Planets\PlanetDto.cs" />
     <Compile Include="Universe\Race\RaceBonusDto.cs" />
     <Compile Include="Universe\Race\RaceDto.cs" />

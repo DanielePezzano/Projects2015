@@ -56,8 +56,12 @@ namespace SharedDto.DataMapper
                 LastUpdateFoodProduction = entity.SatelliteProduction.LastFoodUpDateTime,
                 LastUpdateOreProduction = entity.SatelliteProduction.LastOreUpdateTime,
                 LastUpdatePopDateTime = entity.SatelliteSocial.LastPopulationUpdate,
+                LastMaintenanceDateTime = entity.SatelliteProduction.LastMaintenanceUpdateTime,
+                LastIncomeRevenueTime = entity.SatelliteProduction.LastIncomeRevenueTime,
                 StoredFood = entity.SatelliteProduction.StoredFood,
-                StoredOre = entity.SatelliteProduction.StoredOre
+                StoredOre = entity.SatelliteProduction.StoredOre,
+                PlanetIncomeBalance = entity.SatelliteProduction.TotalIncome,
+                ResearchPoints = entity.SatelliteProduction.ResearchPoints
             };
         }
 

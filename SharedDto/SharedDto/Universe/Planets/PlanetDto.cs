@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 using Models.Base.Enum;
 using Models.Universe.Enum;
 using SharedDto.Universe.Building;
+using SharedDto.Universe.Fleet;
 
 namespace SharedDto.Universe.Planets
 {
@@ -59,6 +60,12 @@ namespace SharedDto.Universe.Planets
         [DataMember]
         public int StoredOre { get; set; }
         [DataMember]
+        public int PlanetIncomeBalance { get; set; }
+        [DataMember]
+        public DateTime LastIncomeRevenueTime { get; set; }
+        [DataMember]
+        public int ResearchPoints { get; set; }
+        [DataMember]
         public int ResearchPointProduction { get; set; }
         [DataMember]
         public bool AtmospherePresent { get; set; }
@@ -92,8 +99,13 @@ namespace SharedDto.Universe.Planets
         public DateTime LastUpdateResearcDateTime { get; set; }
         [DataMember]
         public DateTime LastUpdatePopDateTime { get; set; }
+        [DataMember]
+        public DateTime LastMaintenanceDateTime { get; set; }
 
         [DataMember]
         public List<BuildingDto> Buildings { get; set; }
+
+        [DataMember]
+        public List<FleetDto> OrbitingFleetDtos { get; set; }
     }
 }

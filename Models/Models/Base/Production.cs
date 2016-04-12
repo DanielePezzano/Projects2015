@@ -33,11 +33,23 @@ namespace Models.Base
         [DataMember]
         [Display(Name = "Ore", ResourceType = typeof(Resources))]
         public int StoredOre { get; set; }
+        [Display(Name = "ResearchPoints", ResourceType = typeof(Resources))]
+        [DataMember]
+        public int ResearchPoints { get; set; }
+
+        [Display(Name = "TotalIncome", ResourceType = typeof(Resources))]
+        [DataMember]
+        public int TotalIncome { get; set; }
+
         [DataMember]
         public DateTime LastFoodUpDateTime { get; set; }
         [DataMember]
         public DateTime LastOreUpdateTime { get; set; }
         [DataMember]
         public DateTime LastResearchUpdateTime { get; set; }
+        [DataMember]
+        public DateTime LastMaintenanceUpdateTime { get; set; }
+        [DataMember]
+        public DateTime LastIncomeRevenueTime { get; set; }
     }
 }

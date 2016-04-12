@@ -56,6 +56,7 @@ namespace BLL.Engine.Planet
             {
                 toUpdate.SatelliteProduction.StoredFood = _planetDto.StoredFood;
                 toUpdate.SatelliteProduction.StoredOre = _planetDto.StoredOre;
+                toUpdate.SatelliteProduction.ResearchPoints = _planetDto.ResearchPoints;
             }
             _uow?.Save();
         }
@@ -65,13 +66,15 @@ namespace BLL.Engine.Planet
             switch (_selector)
             {
                 case PlanetUpdateSelector.OreProduction:
-                    _updater = FactoryGenerator.RetrieveBuilderOreUpdate(_planetDto, _raceDto, _technologyDtos, _timeNow);
+                    _updater = FactoryGenerator.RetrieveBuilderOreUpdater(_planetDto, _raceDto, _technologyDtos, _timeNow);
                     break;
                 case PlanetUpdateSelector.FoodProduction:
-                    _updater = FactoryGenerator.RetrieveBuilderFoodUpdate(_planetDto, _raceDto, _technologyDtos,
+                    _updater = FactoryGenerator.RetrieveBuilderFoodUpdater(_planetDto, _raceDto, _technologyDtos,
                         _timeNow);
                     break;
                 case PlanetUpdateSelector.ResearchProduction:
+                    _updater = FactoryGenerator.RetrieveBuilderResearchUpdater(_planetDto, _raceDto, _technologyDtos,
+                        _timeNow);
                     break;
                 case PlanetUpdateSelector.SocialStatus:
                     break;

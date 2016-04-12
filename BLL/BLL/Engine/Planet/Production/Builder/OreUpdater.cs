@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BLL.Utilities.Structs;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Race;
 using System.Linq;
@@ -12,22 +11,11 @@ namespace BLL.Engine.Planet.Production.Builder
 {
     public class OreUpdater : Updater, IUpdater
     {
-        private TimeDiff _diff;
-        private readonly RaceDto _raceDto;
-        private readonly List<TechnologyDto> _technologyDto;
-        private readonly DateTime _nowTime;
 
-        public OreUpdater(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime)
+        public OreUpdater(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime):
+            base(referredPlanetDto, raceDto, technologyDto, nowTime)
         {
-            if (referredPlanetDto==null) throw  new ArgumentNullException(nameof(referredPlanetDto));
-            if (raceDto == null) throw new ArgumentNullException(nameof(raceDto));
-            if (technologyDto == null) throw new ArgumentNullException(nameof(technologyDto));
-
-            ReferredPlanetDto = referredPlanetDto;
-            _technologyDto = technologyDto;
-            _nowTime = nowTime;
-            _raceDto = raceDto;
-            _diff = new TimeDiff(referredPlanetDto.LastUpdateOreProduction, nowTime);
+            
         }
 
         #region Private Methods
@@ -77,11 +65,9 @@ namespace BLL.Engine.Planet.Production.Builder
 
         public void CheckTimeDifference()
         {
-            if (_diff.Hours > 0)
-            {
-                Product = ReferredPlanetDto.OreProduction * _diff.Hours;
-                CalculateRateOfProduction();
-            }
+            if (_diff.Hours <= 0) return;
+            Product = ReferredPlanetDto.OreProduction * _diff.Hours;
+            CalculateRateOfProduction();
         }
 
         public void Update()

@@ -85,7 +85,7 @@ namespace BLL.Engine.Planet.Production.Builder
         {
             if (Product <= 0) return;
 
-            //ReferredPlanetDto.rese += (int)Product;
+            ReferredPlanetDto.ResearchPoints += (int)Product;
             ReferredPlanetDto.LastUpdateResearcDateTime = _nowTime;
         }
     }
