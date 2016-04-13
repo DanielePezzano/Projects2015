@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BLL.Utilities.Structs;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Race;
@@ -22,12 +23,20 @@ namespace BLL.Engine.Planet.Production.Builder
 
         private void CalculateBaseBuildingCosts()
         {
-            
+            foreach (var buildingDto in ReferredPlanetDto.Buildings)
+            {
+                _calculatedCosts.OreCost += buildingDto.OreMaintenanceCost;
+                _calculatedCosts.MoneyCost += buildingDto.MoneyMaintenanceCost;
+            }
         }
 
         private void CalculateBaseFleetCosts()
         {
-            
+            foreach (var orbitingFleetDto in ReferredPlanetDto.OrbitingFleetDtos.Where(c=>c.UserId==ReferredPlanetDto.UserId))
+            {
+                _calculatedCosts.OreCost += orbitingFleetDto.OreMaintenanceCost;
+                _calculatedCosts.MoneyCost += orbitingFleetDto.MoneyMaintenanceCost;
+            }
         }
 
         protected override void CalculateRateOfProduction()
