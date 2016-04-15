@@ -22,5 +22,10 @@ namespace BLL.Engine.Planet.Production.IstanceFactory
         {
             return new ResearchUpdater(planetDto, raceDto, technologyDtos, nowTime);
         }
+
+        public static CostsUpdater RetrieveBuilderCostUpdater(PlanetDto planetDto, RaceDto raceDto, List<TechnologyDto> technologyDtos, DateTime nowTime)
+        {
+            return new CostsUpdater(planetDto, raceDto, technologyDtos, nowTime);
+        }
     }
 }

@@ -50,17 +50,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\BaseClasses\BasePerformer.cs" />
     <Compile Include="Engine\Exceptions\EngineExceptions.cs" />
+    <Compile Include="Engine\Interfaces\IUpdater.cs" />
+    <Compile Include="Engine\Planet\BaseClasses\BaseUpdater.cs" />
+    <Compile Include="Engine\Planet\Exceptions\PlanetExceptions.cs" />
+    <Compile Include="Engine\Planet\IstanceFactory\FactoryGenerator.cs" />
+    <Compile Include="Engine\Planet\SocialPerformer.cs" />
     <Compile Include="Engine\Planet\Enums\PlanetUpdateSelector.cs" />
     <Compile Include="Engine\Planet\ProductionPerformer.cs" />
     <Compile Include="Engine\Planet\Production\CostsUpdater.cs" />
     <Compile Include="Engine\Planet\Production\IstanceFactory\FactoryGenerator.cs" />
     <Compile Include="Engine\Interfaces\IPerformer.cs" />
     <Compile Include="Engine\Planet\Production\FoodUpdater.cs" />
-    <Compile Include="Engine\Planet\Production\Interfaces\IUpdater.cs" />
+    <Compile Include="Engine\Planet\Production\Interfaces\IProcutionUpdater.cs" />
     <Compile Include="Engine\Planet\Production\OreUpdater.cs" />
     <Compile Include="Engine\Planet\Production\ResearchUpdater.cs" />
-    <Compile Include="Engine\Planet\Production\BaseClasses\Updater.cs" />
+    <Compile Include="Engine\Planet\Production\BaseClasses\ProductionUpdater.cs" />
+    <Compile Include="Engine\Planet\Social\BaseClasses\SocialUpdater.cs" />
+    <Compile Include="Engine\Planet\Social\Interfaces\ISocialUpdater.cs" />
+    <Compile Include="Engine\Planet\Social\PopulationUpdater.cs" />
     <Compile Include="Generation\Sector\Enums\SectorRegion.cs" />
     <Compile Include="Generation\Sector\IstanceFactory\FactoryGenerator.cs" />
     <Compile Include="Generation\Sector\GenerateSector.cs" />
@@ -99,7 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Engine\IstanceFactory\" />
-    <Folder Include="Engine\Planet\Social\" />
+    <Folder Include="Engine\Planet\Interfaces\" />
+    <Folder Include="Engine\Planet\Social\IstanceFactory\" />
     <Folder Include="Generation\Exceptions\" />
     <Folder Include="Generation\Interfaces\" />
     <Folder Include="Generation\IstanceFactory\" />

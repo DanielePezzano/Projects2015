@@ -132,6 +132,7 @@ namespace BusinessTest.Generation.StarSystem
                 }
             }
         }
+        
          [TestMethod]
         public void TestOneMostlyWater()
         {

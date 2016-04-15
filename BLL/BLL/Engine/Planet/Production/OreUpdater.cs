@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BLL.Engine.Interfaces;
 using BLL.Engine.Planet.Production.BaseClasses;
 using BLL.Engine.Planet.Production.Interfaces;
 using Models.Races.Enums;
@@ -11,7 +12,7 @@ using SharedDto.Universe.Technology;
 
 namespace BLL.Engine.Planet.Production
 {
-    public class OreUpdater : Updater, IUpdater
+    public class OreUpdater : ProductionUpdater, IProcutionUpdater, IUpdater
     {
         public bool UpdateToDo { get; set; }
 
@@ -28,8 +29,9 @@ namespace BLL.Engine.Planet.Production
             AdjustByActivePopulation();
             AdjustByBuildings();
             AdjustByTechnology();
-            Product = AdjustByStatus(Product);
             AdjustBySocial();
+
+            Product = AdjustByStatus(Product);
         }
 
         protected override double CalculatePercentageOfPopulationUsedInProduction()
@@ -49,7 +51,7 @@ namespace BLL.Engine.Planet.Production
 
         protected override void AdjustByTechnology()
         {
-            foreach (var bonus in _technologyDto.Where(c => c.SubField == "Buildings" && c.SubField != "ShipComponent" && c.SubField != "ShipFrame" && c.SubField != "Weapons").SelectMany(technologyDto => technologyDto.TechnologyBonuses.Where(c => c.Bonus == BonusType.OreBonus)))
+            foreach (var bonus in TechnologyDtos.Where(c => c.SubField == "Buildings" && c.SubField != "ShipComponent" && c.SubField != "ShipFrame" && c.SubField != "Weapons").SelectMany(technologyDto => technologyDto.TechnologyBonuses.Where(c => c.Bonus == BonusType.OreBonus)))
             {
                 Product += Product * bonus.Value / 100;
             }
@@ -58,7 +60,11 @@ namespace BLL.Engine.Planet.Production
 
         protected override void AdjustBySocial()
         {
-            foreach (var value in _raceDto.RaceBonuses.Where(c=>c.Bonus==RaceTraitsBonuses.OreProduction).Select(c=>c.Value))
+            if (ReferredRaceDto.RaceBonuses.Count <= 0) return;
+            foreach (
+                var value in
+                    ReferredRaceDto.RaceBonuses.Where(c => c.Bonus == RaceTraitsBonuses.OreProduction)
+                        .Select(c => c.Value))
             {
                 Product += Product*value/100;
             }
@@ -68,8 +74,8 @@ namespace BLL.Engine.Planet.Production
 
         public void CheckTimeDifference()
         {
-            if (_diff.Hours <= 0) return;
-            Product = ReferredPlanetDto.OreProduction * _diff.Hours;
+            if (Diff.Hours <= 0) return;
+            Product = ReferredPlanetDto.OreProduction * Diff.Hours;
             CalculateRateOfProduction();
         }
 
@@ -77,8 +83,8 @@ namespace BLL.Engine.Planet.Production
         {
             if (Product <= 0) return;
             UpdateToDo = true;
-            ReferredPlanetDto.StoredOre += (int) Product;
-            ReferredPlanetDto.LastUpdateOreProduction = _nowTime;
+            ReferredPlanetDto.StoredOre += (int)Math.Round(Product);
+            ReferredPlanetDto.LastUpdateOreProduction = TimeNow;
 
         }
     }

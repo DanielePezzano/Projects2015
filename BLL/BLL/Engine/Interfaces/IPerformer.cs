@@ -2,6 +2,6 @@
 {
     public interface IPerformer
     {
-        void Perform();
+        bool Perform();
     }
 }

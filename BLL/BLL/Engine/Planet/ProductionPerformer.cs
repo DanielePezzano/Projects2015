@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using BLL.Engine.BaseClasses;
 using BLL.Engine.Exceptions;
 using BLL.Engine.Interfaces;
 using BLL.Engine.Planet.Enums;
-using BLL.Engine.Planet.Production.Interfaces;
 using BLL.Engine.Planet.Production.IstanceFactory;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Race;
@@ -11,50 +11,45 @@ using SharedDto.Universe.Technology;
 
 namespace BLL.Engine.Planet
 {
-    public class ProductionPerformer : IPerformer
+    public class ProductionPerformer :BasePerformer, IPerformer
     {
-        private PlanetDto _planetDto;
-        private readonly RaceDto _raceDto;
-        private readonly List<TechnologyDto> _technologyDtos;
-        private readonly PlanetUpdateSelector _selector;
-        private IUpdater _updater;
-        private readonly DateTime _timeNow;
+        
 
         public ProductionPerformer(PlanetDto planetDto, PlanetUpdateSelector chosenUpdate, RaceDto raceDto,
             List<TechnologyDto>  technologyDtos,
-            DateTime timenow)
+            DateTime timenow):base(planetDto,chosenUpdate,raceDto,technologyDtos,timenow)
         {
-            _technologyDtos = technologyDtos;
-            _planetDto = planetDto;
-            _selector = chosenUpdate;
-            _raceDto = raceDto;
-            _timeNow = timenow;
+            
         }
 
-        public void Perform()
+        public bool Perform()
         {
             RetrieveUpdater();
-            _updater?.CheckTimeDifference();
-            if(_updater!=null && _updater.UpdateToDo) _updater?.Update();
+            Updater?.CheckTimeDifference();
+            Updater?.Update();
+            return Updater?.UpdateToDo ?? false;
         }
         
-        private void RetrieveUpdater()
+        protected  override  void RetrieveUpdater()
         {
-            switch (_selector)
+            switch (Selector)
             {
                 case PlanetUpdateSelector.OreProduction:
-                    _updater = FactoryGenerator.RetrieveBuilderOreUpdater(_planetDto, _raceDto, _technologyDtos, _timeNow);
+                    Updater = FactoryGenerator.RetrieveBuilderOreUpdater(ReferredPlanetDto, ReferredRaceDto, TechnologyDtos, TimeNow);
                     break;
                 case PlanetUpdateSelector.FoodProduction:
-                    _updater = FactoryGenerator.RetrieveBuilderFoodUpdater(_planetDto, _raceDto, _technologyDtos,
-                        _timeNow);
+                    Updater = FactoryGenerator.RetrieveBuilderFoodUpdater(ReferredPlanetDto, ReferredRaceDto, TechnologyDtos,
+                        TimeNow);
                     break;
                 case PlanetUpdateSelector.ResearchProduction:
-                    _updater = FactoryGenerator.RetrieveBuilderResearchUpdater(_planetDto, _raceDto, _technologyDtos,
-                        _timeNow);
+                    Updater = FactoryGenerator.RetrieveBuilderResearchUpdater(ReferredPlanetDto, ReferredRaceDto, TechnologyDtos,
+                        TimeNow);
+                    break;
+                case PlanetUpdateSelector.CostsUpdate:
+                    Updater = FactoryGenerator.RetrieveBuilderCostUpdater(ReferredPlanetDto, ReferredRaceDto, TechnologyDtos,
+                        TimeNow);
                     break;
                 case PlanetUpdateSelector.SocialStatus:
-                case PlanetUpdateSelector.CostsUpdate:
                     throw new Exception(EngineExceptions.WrongPerformerCall.ToString());
                 default:
                     throw new ArgumentOutOfRangeException();

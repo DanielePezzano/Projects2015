@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BLL.Utilities.Structs;
+using BLL.Engine.Planet.BaseClasses;
 using Models.Universe.Enum;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Race;
@@ -8,34 +8,21 @@ using SharedDto.Universe.Technology;
 
 namespace BLL.Engine.Planet.Production.BaseClasses
 {
-    public abstract class Updater
+    public abstract class ProductionUpdater : BaseUpdater
     {
-        protected double Product;
-        protected PlanetDto ReferredPlanetDto;
-        protected TimeDiff _diff;
-        protected readonly RaceDto _raceDto;
-        protected readonly List<TechnologyDto> _technologyDto;
-        protected readonly DateTime _nowTime;
-
-        protected Updater(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime)
+        
+        protected ProductionUpdater(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime)
+            :base(referredPlanetDto,raceDto,technologyDto,nowTime)
         {
-            if (referredPlanetDto == null) throw new ArgumentNullException(nameof(referredPlanetDto));
-            if (raceDto == null) throw new ArgumentNullException(nameof(raceDto));
-            if (technologyDto == null) throw new ArgumentNullException(nameof(technologyDto));
-
-            ReferredPlanetDto = referredPlanetDto;
-            _technologyDto = technologyDto;
-            _nowTime = nowTime;
-            _raceDto = raceDto;
-            _diff = new TimeDiff(referredPlanetDto.LastUpdateOreProduction, nowTime);
+            
         }
 
-        protected void AdjustByActivePopulation()
+        protected override void AdjustByActivePopulation()
         {
             Product += Product * CalculatePercentageOfPopulationUsedInProduction();
         }
 
-        protected double AdjustByStatus(double quantityToAdjust,bool increaseOnOptimum=true)
+        protected override double AdjustByStatus(double quantityToAdjust,bool increaseOnOptimum=true)
         {
             var result = quantityToAdjust;
             switch (ReferredPlanetDto.Status)
@@ -73,7 +60,6 @@ namespace BLL.Engine.Planet.Production.BaseClasses
         protected abstract double CalculatePercentageOfPopulationUsedInProduction();
         protected abstract void AdjustByBuildings();
         protected abstract void AdjustByTechnology();
-        
         protected abstract void AdjustBySocial();
     }
 }

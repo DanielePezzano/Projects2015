@@ -6,6 +6,9 @@
         FoodProduction,
         ResearchProduction,
         SocialStatus,
+        PopulationVariation,
+        BuildingConstruction,
+        ShipsConstruction,
         CostsUpdate
     }
 }

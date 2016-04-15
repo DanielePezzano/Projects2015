@@ -9,7 +9,7 @@ namespace BLL.Utilities.Structs
 
         public TimeDiff(DateTime timeA, DateTime timeB)
         {
-            var diff = timeA - timeB;
+            var diff = timeB - timeA;
             Hours = diff.Hours;
             Minutes = diff.Minutes;
         }

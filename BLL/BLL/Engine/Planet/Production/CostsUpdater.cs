@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BLL.Engine.Interfaces;
 using BLL.Engine.Planet.Production.BaseClasses;
 using BLL.Engine.Planet.Production.Interfaces;
 using BLL.Utilities.Structs;
@@ -12,7 +13,7 @@ using SharedDto.Universe.Technology;
 
 namespace BLL.Engine.Planet.Production
 {
-    public class CostsUpdater : Updater, IUpdater
+    public class CostsUpdater : ProductionUpdater, IProcutionUpdater, IUpdater
     {
         private Costs _calculatedCosts;
         public bool UpdateToDo { get; set; }
@@ -66,13 +67,20 @@ namespace BLL.Engine.Planet.Production
 
         protected override void AdjustBySocial()
         {
-            foreach (var value in _raceDto.RaceBonuses.Where(c => c.Bonus == RaceTraitsBonuses.MaintenanceOre).Select(c => c.Value))
+            if (ReferredRaceDto.RaceBonuses.Count <= 0) return;
+            foreach (
+                var value in
+                    ReferredRaceDto.RaceBonuses.Where(c => c.Bonus == RaceTraitsBonuses.MaintenanceOre)
+                        .Select(c => c.Value))
             {
-                _calculatedCosts.OreCost += _calculatedCosts.OreCost * value / 100;
+                _calculatedCosts.OreCost += _calculatedCosts.OreCost*value/100;
             }
-            foreach (var value in _raceDto.RaceBonuses.Where(c => c.Bonus == RaceTraitsBonuses.MaintenanceMoney).Select(c => c.Value))
+            foreach (
+                var value in
+                    ReferredRaceDto.RaceBonuses.Where(c => c.Bonus == RaceTraitsBonuses.MaintenanceMoney)
+                        .Select(c => c.Value))
             {
-                _calculatedCosts.MoneyCost += _calculatedCosts.MoneyCost * value / 100;
+                _calculatedCosts.MoneyCost += _calculatedCosts.MoneyCost*value/100;
             }
         }
 
@@ -83,7 +91,7 @@ namespace BLL.Engine.Planet.Production
 
         protected override void AdjustByTechnology()
         {
-            foreach (var bonus in _technologyDto.Where(c => c.SubField == "Buildings" && c.SubField != "ShipComponent" && c.SubField != "ShipFrame" && c.SubField != "Weapons").SelectMany(technologyDto => technologyDto.TechnologyBonuses.Where(c => c.Bonus == BonusType.MaintBonus)))
+            foreach (var bonus in TechnologyDtos.Where(c => c.SubField == "Buildings" && c.SubField != "ShipComponent" && c.SubField != "ShipFrame" && c.SubField != "Weapons").SelectMany(technologyDto => technologyDto.TechnologyBonuses.Where(c => c.Bonus == BonusType.MaintBonus)))
             {
                 _calculatedCosts.MoneyCost += _calculatedCosts.MoneyCost * bonus.Value / 100;
                 _calculatedCosts.OreCost += _calculatedCosts.OreCost * bonus.Value / 100;
@@ -94,7 +102,7 @@ namespace BLL.Engine.Planet.Production
 
         public void CheckTimeDifference()
         {
-            if (_diff.Hours <= 0) return;
+            if (Diff.Hours <= 0) return;
             
             CalculateRateOfProduction();
         }
@@ -103,9 +111,9 @@ namespace BLL.Engine.Planet.Production
         {
             if (Product <= 0) return;
             UpdateToDo = true;
-            ReferredPlanetDto.LastMaintenanceDateTime = _nowTime;
-            ReferredPlanetDto.StoredOre -= (_calculatedCosts.OreCost > 0) ? (int) _calculatedCosts.OreCost : 0;
-            ReferredPlanetDto.PlanetIncomeBalance -= (_calculatedCosts.MoneyCost > 0) ? (int)_calculatedCosts.MoneyCost : 0;
+            ReferredPlanetDto.LastMaintenanceDateTime = TimeNow;
+            ReferredPlanetDto.StoredOre -= (_calculatedCosts.OreCost > 0) ? (int)Math.Round( _calculatedCosts.OreCost) : 0;
+            ReferredPlanetDto.PlanetIncomeBalance -= (_calculatedCosts.MoneyCost > 0) ? (int)Math.Round(_calculatedCosts.MoneyCost) : 0;
         }
     }
 }

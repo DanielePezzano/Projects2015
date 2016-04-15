@@ -70,6 +70,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Engine\Planet\Production\OreProductionTest.cs" />
     <Compile Include="Generation\Sector\SectorPropertiesTest.cs" />
     <Compile Include="Generation\Sector\SectorGenerationTest.cs" />
     <Compile Include="Generation\StarSystem\OrbitGeneratorTest.cs" />
