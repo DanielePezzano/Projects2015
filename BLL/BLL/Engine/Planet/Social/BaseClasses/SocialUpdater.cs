@@ -15,6 +15,10 @@ namespace BLL.Engine.Planet.Social.BaseClasses
             
         }
 
+        #region Private MEthods
+
+        #endregion
+
         protected override void AdjustByActivePopulation()
         {
             throw new NotImplementedException();
@@ -24,5 +28,9 @@ namespace BLL.Engine.Planet.Social.BaseClasses
         {
             throw new NotImplementedException();
         }
+        
+        protected abstract void AdjustByBuildings();
+        protected abstract void AdjustByTechnology();
+        protected abstract void AdjustBySocial();
     }
 }

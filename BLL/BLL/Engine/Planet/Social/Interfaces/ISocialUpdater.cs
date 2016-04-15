@@ -2,6 +2,6 @@
 {
     public interface ISocialUpdater
     {
-        void CheckTimeDifference(); 
+        
     }
 }

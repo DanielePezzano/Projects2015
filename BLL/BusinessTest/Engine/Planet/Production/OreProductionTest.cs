@@ -4,6 +4,7 @@ using BLL.Engine.Planet;
 using BLL.Engine.Planet.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Races.Enums;
+using Models.Tech.Enum;
 using Models.Universe.Enum;
 using SharedDto.Universe.Building;
 using SharedDto.Universe.Planets;
@@ -23,6 +24,34 @@ namespace BusinessTest.Engine.Planet.Production
                  Value = 5
              }},
             RaceName = "TestOreProductiveRace"
+        };
+
+        TechnologyDto _technologyPhisycsDto = new TechnologyDto()
+        {
+            Name = "techTest",
+            Field = "Phisycs",
+            TechnologyBonuses = new List<TechnologyBonusDto>()
+            {
+                new TechnologyBonusDto()
+                {
+                    Bonus = BonusType.OreBonus,
+                    Value = 5
+                }
+            }
+        };
+
+        TechnologyDto _technologyBuildingDto = new TechnologyDto()
+        {
+            Name = "techTest",
+            Field = "Buildings",
+            TechnologyBonuses = new List<TechnologyBonusDto>()
+            {
+                new TechnologyBonusDto()
+                {
+                    Bonus = BonusType.OreBonus,
+                    Value = 5
+                }
+            }
         };
 
         [TestMethod]
@@ -221,6 +250,38 @@ namespace BusinessTest.Engine.Planet.Production
 
             Assert.IsTrue(productionPerformer.Perform());
             Assert.IsTrue(planet.StoredOre == 17);
+        }
+
+        [TestMethod]
+        public void ShouldBeHighWithTechToo()
+        {
+            var planet = new PlanetDto()
+            {
+                ActivePopOnFoodProduction = 0,
+                ActivePopOnOreProduction = 10,
+                ActivePopOnResProduction = 0,
+                OreProduction = 4,
+                StoredOre = 0,
+                Buildings = new List<BuildingDto>(),
+                LastUpdateOreProduction = DateTime.Now.AddHours(-1),
+                Status = SatelliteStatus.Colonized
+            };
+
+
+            var productionPerformer = new ProductionPerformer(
+                planet,
+                PlanetUpdateSelector.OreProduction,
+                _raceDto,
+                new List<TechnologyDto>()
+                {
+                    _technologyBuildingDto,
+                    _technologyPhisycsDto
+                },
+                DateTime.Now.AddHours(1)
+                );
+
+            Assert.IsTrue(productionPerformer.Perform());
+            Assert.IsTrue(planet.StoredOre == 18);
         }
     }
 }

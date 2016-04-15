@@ -91,7 +91,7 @@ namespace BLL.Engine.Planet.Production
 
         protected override void AdjustByTechnology()
         {
-            foreach (var bonus in TechnologyDtos.Where(c => c.SubField == "Buildings" && c.SubField != "ShipComponent" && c.SubField != "ShipFrame" && c.SubField != "Weapons").SelectMany(technologyDto => technologyDto.TechnologyBonuses.Where(c => c.Bonus == BonusType.MaintBonus)))
+            foreach (var bonus in TechnologyDtos.Where(c => c.Field == "Buildings" && c.Field != "ShipComponent" && c.Field != "ShipFrame" && c.Field != "Weapons").SelectMany(technologyDto => technologyDto.TechnologyBonuses.Where(c => c.Bonus == BonusType.MaintBonus)))
             {
                 _calculatedCosts.MoneyCost += _calculatedCosts.MoneyCost * bonus.Value / 100;
                 _calculatedCosts.OreCost += _calculatedCosts.OreCost * bonus.Value / 100;
