@@ -1,36 +1,31 @@
 ﻿using System;
-using BLL.Generation.StarSystem.Factories;
+using System.Collections.Generic;
 using BLL.Utilities;
-using BLL.Utilities.Structs;
 using SharedDto.Universe.Sector;
-using UnitOfWork.Implementations.Uows;
 using UnitOfWork.Interfaces.UnitOfWork;
 using System.Linq;
-using BLL.Generation.StarSystem;
+using BLL.Generation.StarSystem.IstanceFactory;
+using SharedDto.Universe.Stars;
+using SharedDto.UtilityDto;
 
 namespace BLL.Generation.Sector
 {
     public class GenerateSector
     {
         private readonly int _alreadyPresentStars;
-        private readonly IntRange _rangeX;
-        private readonly IntRange _rangeY;
         private IUnitOfWork _uow;
-        private readonly int _galaxyId;
         private readonly Random _rnd;
-
+        private SystemGenerationDto _systemGenerationDto;
         private int _generatedStars;
         private int _generatedPlanets;
         private int _habitabilePlanets;
 
-        public GenerateSector(int alreadyPresentStars, int minX, int maxX, int minY, int maxY, IUnitOfWork uow, Random rnd,int galaxyId)
+        public GenerateSector(int alreadyPresentStars, IUnitOfWork uow, Random rnd,SystemGenerationDto systemGenerationDto)
         {
             _alreadyPresentStars = alreadyPresentStars;
-            _rangeX = FactoryGenerator.RetrieveIntRange(minX, maxX);
-            _rangeY = FactoryGenerator.RetrieveIntRange(minY, maxY);
+            _systemGenerationDto = systemGenerationDto;
             _uow = uow;
             _rnd = rnd;
-            _galaxyId = galaxyId;
         }
 
         #region Private Methods
@@ -42,7 +37,7 @@ namespace BLL.Generation.Sector
         }
 
         private static SectorGenerationDto RetrieveSectorGenerationDto(int maxStars, SectorGenerationResult result,
-            int habPlanet, int totStarsAdded, int totPlanetsAdded)
+            int habPlanet, int totStarsAdded, int totPlanetsAdded,List<StarDto> generatedStars )
         {
             return new SectorGenerationDto()
             {
@@ -50,69 +45,71 @@ namespace BLL.Generation.Sector
                 GenerationResult = result,
                 HabitablePlanetsAdded = habPlanet,
                 StarsGenerated = totStarsAdded,
-                TotalPlanetsAdded = totPlanetsAdded
+                TotalPlanetsAdded = totPlanetsAdded,
+                GeneratedStarsList = generatedStars
             };
         }
 
-        private SectorGenerationDto RetrieveResultDto(bool isTest, int starToGenerate,int maxStars)
+        private SectorGenerationDto RetrieveResultDto(int starToGenerate,int maxStars)
         {
             var result = SectorGenerationResult.NoStarCreated;
             if (starToGenerate <= 0)
                 return RetrieveSectorGenerationDto(maxStars, result, _habitabilePlanets,
-                    _generatedStars, _generatedPlanets);
+                    _generatedStars, _generatedPlanets, new List<StarDto>());
 
             result = SectorGenerationResult.StarsAdded;
-            GenerateSystems(isTest, starToGenerate, FactoryGenerator.RetrieveConditions(false, false, false, false, false, false, false));
+            
             return RetrieveSectorGenerationDto(maxStars, result, _habitabilePlanets,
-                _generatedStars, _generatedPlanets);
+                _generatedStars, _generatedPlanets, GenerateSystems(starToGenerate));
         }
 
-        private void GenerateSystems(bool isTest, int starToGenerate,PlanetCustomConditions conditions)
+        private List<StarDto> GenerateSystems(int starToGenerate)
         {
+            var generatedStars = new List<StarDto>();
+
             for (var i = 0; i < starToGenerate; i++)
             {
-                var systemGenerator = FactoryGenerator.RetrieveStarSystemGenerator(
-                    conditions,
-                    _rnd,
-                    _uow,
-                    _rangeX,
-                    _rangeY
-                    );
-                var starToAdd = systemGenerator.Generate(_rnd, (MainUow)_uow, "");
+                var systemGenerator = FactoryGenerator.RetrieveStarSystemGenerator(_rnd, _uow, _systemGenerationDto);
+                var starToAdd = systemGenerator.Generate(_rnd, "");
                 if (starToAdd == null) continue;
 
-                if (!isTest) systemGenerator.WriteToRepository((MainUow)_uow, starToAdd, _galaxyId);
-                _generatedStars += 1;
+                //if (!isTest) systemGenerator.WriteToRepository((MainUow)_uow, starToAdd, _galaxyId);
+                generatedStars.Add(starToAdd);
                 _generatedPlanets += starToAdd.Planets.Count;
-                _habitabilePlanets += starToAdd.Planets.Count(c => c.IsHabitable);
+                _habitabilePlanets += starToAdd.Planets.Count(c => c.HabitableSpaces>0);
             }
+
+            return generatedStars;
         } 
         #endregion
 
         public SectorGenerationDto Generate(bool isTest=false)
         {
             ResetCounters();
-            var whereAmI = SectorProperties.WhereAmI(_rangeX.Max, _rangeY.Max);
+            var whereAmI = SectorProperties.WhereAmI(_systemGenerationDto.MaxX,_systemGenerationDto.MaxY);
             var maxStars = SectorProperties.RetrieveMaxNumberOfStars(whereAmI);
 
-            if (_alreadyPresentStars >= maxStars) return RetrieveSectorGenerationDto(maxStars, SectorGenerationResult.MaxStarReached, 0, 0, 0);
+            if (_alreadyPresentStars >= maxStars)
+                return RetrieveSectorGenerationDto(maxStars, SectorGenerationResult.MaxStarReached, 0, 0, 0,
+                    new List<StarDto>());
 
             var maxGenerableStars = maxStars - _alreadyPresentStars;
             var starToGenerate = RandomNumbers.RandomInt(0, maxGenerableStars, _rnd);
 
-            return RetrieveResultDto(isTest, starToGenerate, maxStars);
+            return RetrieveResultDto(starToGenerate, maxStars);
         }
 
-        public SectorGenerationDto GenerateSpecificStar(PlanetCustomConditions conditions,bool isTest=false)
+        public SectorGenerationDto GenerateSpecificStar()
         {
             ResetCounters();
-            var whereAmI = SectorProperties.WhereAmI(_rangeX.Max, _rangeY.Max);
+            var whereAmI = SectorProperties.WhereAmI(_systemGenerationDto.MaxX, _systemGenerationDto.MaxY);
             var maxStars = SectorProperties.RetrieveMaxNumberOfStars(whereAmI);
 
-            if (_alreadyPresentStars >= maxStars) return RetrieveSectorGenerationDto(maxStars, SectorGenerationResult.MaxStarReached, 0, 0, 0);
+            if (_alreadyPresentStars >= maxStars)
+                return RetrieveSectorGenerationDto(maxStars, SectorGenerationResult.MaxStarReached, 0, 0, 0,
+                    new List<StarDto>());
 
-            GenerateSystems(isTest, 1, conditions);
-            return RetrieveResultDto(isTest, 1, maxStars);
+            return RetrieveResultDto(1, maxStars);
         }
         
     }

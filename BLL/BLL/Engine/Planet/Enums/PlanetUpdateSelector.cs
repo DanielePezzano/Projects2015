@@ -1,4 +1,4 @@
-﻿namespace BLL.Engine.Planet.Enum
+﻿namespace BLL.Engine.Planet.Enums
 {
     public enum PlanetUpdateSelector
     {
@@ -6,6 +6,6 @@
         FoodProduction,
         ResearchProduction,
         SocialStatus,
-        Buildings
+        CostsUpdate
     }
 }

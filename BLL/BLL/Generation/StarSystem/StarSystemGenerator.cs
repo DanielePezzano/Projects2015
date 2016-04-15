@@ -1,9 +1,7 @@
 ﻿using System;
 using BLL.Generation.StarSystem.Builders;
-using BLL.Generation.StarSystem.Factories;
 using BLL.Utilities.Structs;
-using Models.Universe;
-using UnitOfWork.Implementations.Uows;
+using SharedDto.Universe.Stars;
 
 namespace BLL.Generation.StarSystem
 {
@@ -27,40 +25,40 @@ namespace BLL.Generation.StarSystem
             _rangeY = rangeY;
         }
 
-        private static void AssociateSystemToGalaxy(MainUow uow, int galaxyId, Star generatedStar)
+        //private static void AssociateSystemToGalaxy(MainUow uow, int galaxyId, Star generatedStar)
+        //{
+        //    var toAssociate = uow.GalaxyRepository.GetByKey(galaxyId, "");
+        //    if (toAssociate != null) generatedStar.Galaxy = toAssociate;
+        //}
+
+        public StarDto Generate(Random rnd, string cacheKey)
         {
-            var toAssociate = uow.GalaxyRepository.GetByKey(galaxyId, "");
-            if (toAssociate != null) generatedStar.Galaxy = toAssociate;
-        }
-        
-        public Star Generate(Random rnd, MainUow uow, string cacheKey)
-        {
-           return _solarSystemFactory.Constuct(_starGenerator, _starPlacer, _rangeX, _rangeY, cacheKey);
+           return _solarSystemFactory.Constuct(_starGenerator, _starPlacer, _rangeX, _rangeY);
         }
 
-        public bool WriteToRepository(MainUow uow, Star generatedStarSystem, int galaxyId)
-        {
-            var result = false;
-            try
-            {
-                AssociateSystemToGalaxy(uow, galaxyId, generatedStarSystem);
-                uow.StarRepository.Add(generatedStarSystem);
-                foreach (var planet in generatedStarSystem.Planets)
-                {
-                    uow.PlanetRepository.Add(planet);
-                    foreach (var satellite in planet.Satellites)
-                    {
-                        uow.SatelliteRepository.Add(satellite);
-                    }
-                }
-                uow.Save();
-                result = true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            return result;
-        }
+        //public bool WriteToRepository(MainUow uow, Star generatedStarSystem, int galaxyId)
+        //{
+        //    var result = false;
+        //    try
+        //    {
+        //        AssociateSystemToGalaxy(uow, galaxyId, generatedStarSystem);
+        //        uow.StarRepository.Add(generatedStarSystem);
+        //        foreach (var planet in generatedStarSystem.Planets)
+        //        {
+        //            uow.PlanetRepository.Add(planet);
+        //            foreach (var satellite in planet.Satellites)
+        //            {
+        //                uow.SatelliteRepository.Add(satellite);
+        //            }
+        //        }
+        //        uow.Save();
+        //        result = true;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //    }
+        //    return result;
+        //}
     }
 }

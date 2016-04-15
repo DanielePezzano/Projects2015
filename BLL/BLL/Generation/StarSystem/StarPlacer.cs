@@ -1,7 +1,7 @@
 ﻿using System;
 using BLL.Utilities.Structs;
-using Models.Universe;
 using Models.Universe.Strcut;
+using SharedDto.Universe.Stars;
 using UnitOfWork.Implementations.Uows;
 using UnitOfWork.Interfaces.UnitOfWork;
 
@@ -27,16 +27,15 @@ namespace BLL.Generation.StarSystem
         ///     are there any stars whitin the minimum distance?
         /// </summary>
         /// <param name="coord"></param>
-        /// <param name="cacheKey"></param>
         /// <returns></returns>
-        private bool ValidPlace(Coordinates coord, string cacheKey)
+        private bool ValidPlace(Coordinates coord)
         {
             //find the stars within minimum distance
             var count =
                 _uow.StarRepository.Count(
                     s =>
                         s.CoordinateX >= coord.X - MinDistance && s.CoordinateX <= coord.X + MinDistance &&
-                        s.CoordinateX >= coord.Y - MinDistance && s.CoordinateX <= coord.Y + MinDistance, cacheKey);
+                        s.CoordinateX >= coord.Y - MinDistance && s.CoordinateX <= coord.Y + MinDistance, "");
             var result = count <= 0;
             return result;
         }
@@ -49,13 +48,12 @@ namespace BLL.Generation.StarSystem
         /// <param name="star"></param>
         /// <param name="rangeY"></param>
         /// <param name="rnd">Random Seeder</param>
-        /// <param name="cacheKey">Valid Place Cache Key</param>
         /// <param name="rangeX"></param>
-        public void Place(Star star, IntRange rangeX, IntRange rangeY, Random rnd, string cacheKey)
+        public void Place(StarDto star, IntRange rangeX, IntRange rangeY, Random rnd)
         {
             var invalidPlaceCounter = 0;
             var coord = GenerateRandomCoordinates(rangeX.Min, rangeX.Max, rangeY.Min, rangeY.Max, rnd);
-            var validCoordinates = ValidPlace(coord, cacheKey);
+            var validCoordinates = ValidPlace(coord);
 
             while (!validCoordinates)
             {
@@ -68,17 +66,17 @@ namespace BLL.Generation.StarSystem
                     rangeY.Max += MinDistance;
                 }
                 coord = GenerateRandomCoordinates(rangeX.Min, rangeX.Max, rangeY.Min, rangeY.Max, rnd);
-                validCoordinates = ValidPlace(coord, string.Empty);
+                validCoordinates = ValidPlace(coord);
             }
-            star.CoordinateX = coord.X;
-            star.CoordinateY = coord.Y;
+            star.PositionX = coord.X;
+            star.PositgionY = coord.Y;
         }
 
         #region Wrapper for testing private methods
 
         public bool ValidPlaceTest(Coordinates coordinate)
         {
-            return ValidPlace(coordinate, string.Empty);
+            return ValidPlace(coordinate);
         }
 
         public Coordinates GenerateRandomCoordinatesTest(int minX, int maxX, int minY, int maxY, Random rnd)

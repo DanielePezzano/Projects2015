@@ -1,5 +1,5 @@
 ﻿using System;
-using BLL.Generation.StarSystem.Factories;
+using BLL.Generation.StarSystem.IstanceFactory;
 using SharedDto.UtilityDto;
 using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Uows;
@@ -43,10 +43,11 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
             var customConditions = FactoryGenerator.RetrieveConditions(generationData.ForceWater, generationData.FoodRich,
                 generationData.FoodPoor, generationData.MineralPoor, generationData.MineralRich,
                 generationData.MostlyWater, generationData.ForceLiving);
-            var starSystemGenerator = FactoryGenerator.RetrieveStarSystemGenerator(customConditions, rnd, _mainUow,
-                rangeX, rangeY);
-            var star = starSystemGenerator.Generate(rnd, _mainUow, "");
-            return star != null && starSystemGenerator.WriteToRepository(_mainUow, star, generationData.GalaxyId);
+            //var starSystemGenerator = FactoryGenerator.RetrieveStarSystemGenerator(customConditions, rnd, _mainUow,
+            //    rangeX, rangeY);
+            //var star = starSystemGenerator.Generate(rnd, _mainUow, "");
+            //return star != null && starSystemGenerator.WriteToRepository(_mainUow, star, generationData.GalaxyId);
+            return false;
         }
     }
 }

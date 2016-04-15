@@ -1,4 +1,7 @@
-﻿namespace SharedDto.Universe.Sector
+﻿using System.Collections.Generic;
+using SharedDto.Universe.Stars;
+
+namespace SharedDto.Universe.Sector
 {
     public class SectorGenerationDto
     {
@@ -7,5 +10,6 @@
         public int MaxStarsAllowed;
         public int TotalPlanetsAdded;
         public int HabitablePlanetsAdded;
+        public List<StarDto> GeneratedStarsList { get; set; }
     }
 }

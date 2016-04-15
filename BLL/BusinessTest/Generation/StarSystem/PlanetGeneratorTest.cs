@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BLL.Generation.StarSystem;
-using BLL.Generation.StarSystem.Factories;
-using BLL.Utilities.Structs;
+using BLL.Generation.StarSystem.IstanceFactory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
 using Moq;
+using SharedDto.Universe.Planets;
+using SharedDto.UtilityDto;
 using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Uows;
@@ -64,20 +64,28 @@ namespace BusinessTest.Generation.StarSystem
                     {
                         uow.StarRepository.CustomDbset(new List<Star>());
 
-                        var generator = FactoryGenerator.RetrieveStarSystemGenerator(new PlanetCustomConditions(),
-                            OrbitGeneratorTest.Rnd, uow, new IntRange(0, 10), new IntRange(0, 10));
+                        var generator = FactoryGenerator.RetrieveStarSystemGenerator(
+                            OrbitGeneratorTest.Rnd, uow, 
+                            new SystemGenerationDto()
+                            {
+                                FoodPoor = false,
+                                FoodRich = false,
+                                ForceWater = false,
+                                ForceLiving = true,
+                                MostlyWater = false,
+                                MineralRich = false,
+                                MineralPoor = false,
+                                MinX = 0,MaxX = 10,MinY = 0,MaxY = 10
+                            
+                            });
 
-                        var star = generator.Generate(OrbitGeneratorTest.Rnd, uow,  "");
+                        var star = generator.Generate(OrbitGeneratorTest.Rnd,  "");
 
                         if (star.Planets.Count <= 0) return;
                         var generatedPlanets = star.Planets.ToList();
 
-                        Assert.IsInstanceOfType(generatedPlanets.FirstOrDefault(), typeof (Planet));
+                        Assert.IsInstanceOfType(generatedPlanets.FirstOrDefault(), typeof (PlanetDto));
                         Assert.IsNotNull(generatedPlanets.FirstOrDefault());
-                        Assert.IsTrue(
-                            Math.Abs(generatedPlanets.First().GravityEarthCompared - generatedPlanets.First().Mass) <
-                            0.001);
-                        Assert.IsInstanceOfType(generatedPlanets.First().Orbit, typeof (OrbitDetail));
                     }
                 }
             }
@@ -99,13 +107,27 @@ namespace BusinessTest.Generation.StarSystem
                         uow.StarRepository.CustomDbset(new List<Star>());
 
                         var generator = FactoryGenerator.RetrieveStarSystemGenerator(
-                            FactoryGenerator.RetrieveConditions(false,false,false,false,false,false,true),
-                            OrbitGeneratorTest.Rnd, uow, new IntRange(0, 10), new IntRange(0, 10));
+                            OrbitGeneratorTest.Rnd, uow, new SystemGenerationDto()
+                            {
+                                FoodPoor = false,
+                                FoodRich = false,
+                                ForceWater = false,
+                                ForceLiving = true,
+                                MostlyWater = false,
+                                MineralRich = false,
+                                MineralPoor = false,
+                                MinX = 0,
+                                MaxX = 10,
+                                MinY = 0,
+                                MaxY = 10
 
-                        var star = generator.Generate(OrbitGeneratorTest.Rnd, uow,  "");
+                            });
+
+                        var star = generator.Generate(OrbitGeneratorTest.Rnd,  "");
 
                         var generatedPlanets = star.Planets.ToList();
                         Assert.IsTrue(generatedPlanets.Count(c => c.IsHabitable) >= 1);
+                        Assert.IsTrue(generatedPlanets.Where(c=>c.IsHabitable).Select(c=>c.MaxPopulation).First()>0);
                     }
                 }
             }
@@ -125,16 +147,29 @@ namespace BusinessTest.Generation.StarSystem
                         uow.StarRepository.CustomDbset(new List<Star>());
 
                         var generator = FactoryGenerator.RetrieveStarSystemGenerator(
-                            FactoryGenerator.RetrieveConditions(false, false, false, false, false,true, false),
-                            OrbitGeneratorTest.Rnd, uow, new IntRange(0, 10), new IntRange(0, 10));
+                            OrbitGeneratorTest.Rnd, uow, new SystemGenerationDto()
+                            {
+                                FoodPoor = false,
+                                FoodRich = false,
+                                ForceWater = false,
+                                ForceLiving = false,
+                                MostlyWater = true,
+                                MineralRich = false,
+                                MineralPoor = false,
+                                MinX = 0,
+                                MaxX = 10,
+                                MinY = 0,
+                                MaxY = 10
 
-                        var star = generator.Generate(OrbitGeneratorTest.Rnd, uow, "");
+                            });
+
+                        var star = generator.Generate(OrbitGeneratorTest.Rnd, "");
 
                         var generatedPlanets = star.Planets.ToList();
-                        Console.WriteLine(@"pianeti " + generatedPlanets.Count(c => c.Spaces.WaterSpaces + c.Spaces.WaterRadiatedSpaces > c.Spaces.GroundSpaces));
+                        Console.WriteLine(@"pianeti " + generatedPlanets.Count(c => c.WaterSpaces + c.WaterRadiatedSpaces > c.GroundSpaces));
                         var check =
                             generatedPlanets.Count(
-                                c => c.Spaces.WaterSpaces + c.Spaces.WaterRadiatedSpaces > c.Spaces.GroundSpaces) >= 1;
+                                c => c.WaterSpaces + c.WaterRadiatedSpaces > c.GroundSpaces) >= 1;
                         Assert.IsTrue(check);
                     }
                 }

@@ -4,7 +4,7 @@ using SharedDto.Universe.Planets;
 using SharedDto.Universe.Race;
 using SharedDto.Universe.Technology;
 
-namespace BLL.Engine.Planet.Production.Builder
+namespace BLL.Engine.Planet.Production.IstanceFactory
 {
     public static class FactoryGenerator
     {

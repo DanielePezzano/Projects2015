@@ -46,10 +46,10 @@ namespace Models.Base
         [Required]
         [Display(Name = "GroundUsedSpaces", ResourceType = typeof(Resources))]
         [DataMember]
-        public int GroudUsedSpaces { get; set; }
+        public int GroundUsedSpaces { get; set; }
         [NotMapped]
         [Display(Name = "GroudSpacesLeft", ResourceType = typeof(Resources))]
         [DataMember]
-        public int GroudSpacesLeft => GroundSpaces - GroudUsedSpaces > 0 ? GroundSpaces - GroudUsedSpaces : 0;
+        public int GroundSpacesLeft => GroundSpaces - GroundUsedSpaces > 0 ? GroundSpaces - GroundUsedSpaces : 0;
     }
 }

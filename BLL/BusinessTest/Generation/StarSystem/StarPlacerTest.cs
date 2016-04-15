@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using BLL.Generation.StarSystem;
 using BLL.Generation.StarSystem.Builders;
-using BLL.Generation.StarSystem.Factories;
+using BLL.Generation.StarSystem.IstanceFactory;
 using BLL.Utilities.Structs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
@@ -108,7 +108,7 @@ namespace BusinessTest.Generation.StarSystem
                         #endregion
 
                         var placer = new StarPlacer(uow);
-                        placer.Place(generated, new IntRange(40, 90), new IntRange(40, 90), _rnd, string.Empty);
+                        placer.Place(generated, new IntRange(40, 90), new IntRange(40, 90), _rnd);
                         //Assert.IsInstanceOfType(generated.Coordinate, typeof(Coordinates));
                     }
                 }

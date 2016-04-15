@@ -101,11 +101,17 @@ namespace SharedDto.Universe.Planets
         public DateTime LastUpdatePopDateTime { get; set; }
         [DataMember]
         public DateTime LastMaintenanceDateTime { get; set; }
+        [DataMember]
+        public bool IsGaseous { get; set; }
+        [DataMember]
+        public bool IsHabitable { get; set; }
 
         [DataMember]
         public List<BuildingDto> Buildings { get; set; }
 
         [DataMember]
         public List<FleetDto> OrbitingFleetDtos { get; set; }
+        [DataMember]
+        public List<PlanetDto> Satellites { get; set; }
     }
 }

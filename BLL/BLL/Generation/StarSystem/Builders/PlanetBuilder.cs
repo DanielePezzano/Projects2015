@@ -1,42 +1,38 @@
-﻿using Models.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using BLL.Generation.StarSystem.Interfaces;
 using BLL.Utilities;
 using BLL.Utilities.Structs;
 using Models.Base.Enum;
-using Models.Buildings;
 using Models.Universe;
 using Models.Universe.Enum;
+using SharedDto.Universe.Building;
+using SharedDto.Universe.Planets;
+using SharedDto.Universe.Stars;
+using SharedDto.UtilityDto;
 
 namespace BLL.Generation.StarSystem.Builders
 {
     public class PlanetBuilder : IBuilder
     {
-        private PlanetCustomConditions _conditions;
+        private SystemGenerationDto _conditions;
         private double _mediumDensity = BasicConstants.EarthDensity; //densità media terrestre --> se densità calcolata <=3 probabilmente è gassoso   
-        private Star _star;
+        private StarDto _star;
         private Random _rnd;
-        private Planet _resultPlanet;
+        private PlanetDto _resultPlanet;
         private bool _isGasseous;
 
         #region Private Method
         private void BasePlanet()
         {
-            //_mediumDensity = _conditions.ForceLiving || _conditions.ForceWater || _conditions.MostlyWater
-            //    ? BasicConstants.EarthDensity + RandomNumbers.RandomDouble(-0.5, 0.5, _rnd)
-            //    : RandomNumbers.RandomDouble(BasicConstants.MinDensity, BasicConstants.MaxDensity, _rnd);
-
-            _resultPlanet = new Planet
+            _resultPlanet = new PlanetDto()
             {
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                Star = _star,
-                Name = "PL - " + RandomNumbers.RandomString(7),
-                Buildings = new List<Building>(),
-                Satellites = new List<Satellite>(),
-                User = null,
+                Name = _star.Name+"-"+ RandomNumbers.RandomString(7),
+                Buildings = new List<BuildingDto>(),
+                Satellites = new List<PlanetDto>(),
                 RingsPresent = RandomNumbers.RandomInt(0, 100, _rnd) == 0,
-                SatelliteSocial = new SatelliteSocials { Population = 0, TaxLevel = TaxLevel.Normal }
+                Population = 0,
+                TaxLevel = TaxLevel.Normal
             };
         }
 
@@ -162,25 +158,30 @@ namespace BLL.Generation.StarSystem.Builders
 
         private void AssignOrbit(OrbitGenerator generator)
         {
-            _resultPlanet.Orbit = generator.Generate(_rnd);
+            var orbit =generator.Generate(_rnd);
+            _resultPlanet.DistanceR = orbit.DistanceR;
+            _resultPlanet.Eccentricity = orbit.Eccentricity;
+            _resultPlanet.PeriodOfRevolution = orbit.PeriodOfRevolution;
+            _resultPlanet.PeriodOfRotation = orbit.PeriodOfRotation;
+            _resultPlanet.TetaZero = orbit.TetaZero;
         }
 
         private void AssignRadiation(int radiationLevelStar)
         {
             _resultPlanet.RadiationLevel = CalculateRadiationLevel(_resultPlanet.AtmospherePresent, radiationLevelStar,
-                _resultPlanet.Orbit.DistanceR,  BasicConstants.EarthDistance);
+                _resultPlanet.DistanceR,  BasicConstants.EarthDistance);
         }
 
         private void AssignMass(DoubleRange closeRange)
         {
-            _resultPlanet.Mass = CalculateMass(_resultPlanet.Orbit.DistanceR, closeRange, 
+            _resultPlanet.Mass = CalculateMass(_resultPlanet.DistanceR, closeRange, 
                 BasicConstants.PlanetMinCloseScale, BasicConstants.PlanetMedCloseScale,
                 BasicConstants.PlanetMaxCloseScale, _rnd);
         }
 
-        private void AssignSurfaceTemperature(Star star)
+        private void AssignSurfaceTemperature(StarDto star)
         {
-            _resultPlanet.SurfaceTemp = CalculateSurfaceTemperature(_resultPlanet.Orbit.DistanceR,
+            _resultPlanet.SurfaceTemp = CalculateSurfaceTemperature(_resultPlanet.DistanceR,
                 _resultPlanet.AtmospherePresent, star.SurfaceTemp, _rnd);
         }
 
@@ -192,21 +193,35 @@ namespace BLL.Generation.StarSystem.Builders
 
         private void AssignPeriodOfRotation(OrbitGenerator generator)
         {
-            _resultPlanet.Orbit.PeriodOfRotation = generator.CalculatePeriodOfRotation(_resultPlanet.Orbit.DistanceR,
-                _resultPlanet.Orbit.PeriodOfRevolution, _mediumDensity, _rnd);
+            _resultPlanet.PeriodOfRotation = generator.CalculatePeriodOfRotation(_resultPlanet.DistanceR,
+                _resultPlanet.PeriodOfRevolution, _mediumDensity, _rnd);
         }
 
         private void AssignTotalSpaces()
         {
             IsGasseous(_mediumDensity, _rnd, _resultPlanet.AtmospherePresent);
 
-            _resultPlanet.Spaces = PlanetProperties.CalculateSpaces(
+            var spaces = PlanetProperties.CalculateSpaces(
                 CalculateTotalSpaces(_resultPlanet.Mass,_isGasseous),
                 _resultPlanet.RadiationLevel,
                 _conditions,
                 IsWaterPresent(_rnd),
                 _resultPlanet.AtmospherePresent,
                 _rnd);
+
+            _resultPlanet.GroundRadiatedSpaces = spaces.GroundRadiatedSpaces;
+            _resultPlanet.GroundSpaces = spaces.GroundSpaces;
+            _resultPlanet.GroundSpacesLeft = spaces.GroundSpacesLeft;
+            _resultPlanet.GroundUsedSpaces = spaces.GroundUsedSpaces;
+
+            _resultPlanet.WaterRadiatedSpaces = spaces.WaterRadiatedSpaces;
+            _resultPlanet.WaterSpaces = spaces.WaterSpaces;
+            _resultPlanet.WaterSpacesLeft = spaces.WaterSpacesLeft;
+            _resultPlanet.WaterUsedSpaces = spaces.WaterUsedSpaces;
+
+            _resultPlanet.HabitableSpaces = spaces.HabitableSpaces;
+            _resultPlanet.Totalspaces = spaces.Totalspaces;
+            _resultPlanet.MaxPopulation = spaces.HabitableSpaces;
         }
 
         private void CheckConditionRichness()
@@ -223,13 +238,29 @@ namespace BLL.Generation.StarSystem.Builders
 
         private void AssignProduction()
         {
-            _resultPlanet.SatelliteProduction = PlanetProperties.CalculateProduction(_resultPlanet.Spaces, _mediumDensity,
+            var production = PlanetProperties.CalculateProduction(_resultPlanet, _mediumDensity,
                 BasicConstants.EarthDensity, _conditions);
+
+            _resultPlanet.ActivePopOnResProduction = production.ActivePopOnResProduction;
+            _resultPlanet.ActivePopOnFoodProduction = production.ActivePopOnFoodProduction;
+            _resultPlanet.ActivePopOnOreProduction = production.ActivePopOnOreProduction;
+            _resultPlanet.FoodProduction = production.FoodProduction;
+            _resultPlanet.OreProduction = production.OreProduction;
+            _resultPlanet.ResearchPointProduction = production.ResearchPointProduction;
+            _resultPlanet.LastUpdateOreProduction = production.LastOreUpdateTime;
+            _resultPlanet.LastIncomeRevenueTime = production.LastIncomeRevenueTime;
+            _resultPlanet.LastMaintenanceDateTime = production.LastMaintenanceUpdateTime;
+            _resultPlanet.LastUpdateFoodProduction = production.LastFoodUpDateTime;
+            _resultPlanet.LastUpdateOreProduction = production.LastOreUpdateTime;
+            _resultPlanet.LastUpdatePopDateTime = DateTime.Now;
+            _resultPlanet.StoredFood = production.StoredFood;
+            _resultPlanet.StoredOre = production.StoredOre;
+            _resultPlanet.PlanetIncomeBalance = production.TotalIncome;
         }
 
         private void AssignStatus()
         {
-            _resultPlanet.SatelliteStatus = _isGasseous || _resultPlanet.Spaces.Totalspaces == 0
+            _resultPlanet.Status = _isGasseous || _resultPlanet.Totalspaces == 0
                 ? SatelliteStatus.Uncolonizable
                 : SatelliteStatus.Uncolonized;
         }
@@ -242,7 +273,7 @@ namespace BLL.Generation.StarSystem.Builders
 
         #endregion
 
-        public BaseEntity Build(Star star, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange)
+        public PlanetDto Build(StarDto star, SystemGenerationDto conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange)
         {
             _star = star;
             _conditions = conditions;
@@ -250,7 +281,7 @@ namespace BLL.Generation.StarSystem.Builders
 
             BasePlanet();
             AssignOrbit(generator);
-            AssignAtmoshpere(_resultPlanet.Orbit.DistanceR, rnd);
+            AssignAtmoshpere(_resultPlanet.DistanceR, rnd);
             AssignRadiation(_star.RadiationLevel);
             AssignMass(closeRange);
             AssignSurfaceTemperature(star);

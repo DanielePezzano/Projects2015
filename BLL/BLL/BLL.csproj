@@ -50,27 +50,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\Planet\Enum\PlanetUpdateSelector.cs" />
-    <Compile Include="Engine\Planet\Builder.cs" />
-    <Compile Include="Engine\Planet\Production\Builder\CostsUpdater.cs" />
-    <Compile Include="Engine\Planet\Production\Builder\FactoryGenerator.cs" />
-    <Compile Include="Engine\Planet\IBuilder.cs" />
-    <Compile Include="Engine\Planet\Production\Builder\FoodUpdater.cs" />
-    <Compile Include="Engine\Planet\Production\Builder\IUpdater.cs" />
-    <Compile Include="Engine\Planet\Production\Builder\OreUpdater.cs" />
-    <Compile Include="Engine\Planet\Production\Builder\ResearchUpdater.cs" />
-    <Compile Include="Engine\Planet\Production\Builder\Updater.cs" />
+    <Compile Include="Engine\Exceptions\EngineExceptions.cs" />
+    <Compile Include="Engine\Planet\Enums\PlanetUpdateSelector.cs" />
+    <Compile Include="Engine\Planet\ProductionPerformer.cs" />
+    <Compile Include="Engine\Planet\Production\CostsUpdater.cs" />
+    <Compile Include="Engine\Planet\Production\IstanceFactory\FactoryGenerator.cs" />
+    <Compile Include="Engine\Interfaces\IPerformer.cs" />
+    <Compile Include="Engine\Planet\Production\FoodUpdater.cs" />
+    <Compile Include="Engine\Planet\Production\Interfaces\IUpdater.cs" />
+    <Compile Include="Engine\Planet\Production\OreUpdater.cs" />
+    <Compile Include="Engine\Planet\Production\ResearchUpdater.cs" />
+    <Compile Include="Engine\Planet\Production\BaseClasses\Updater.cs" />
     <Compile Include="Generation\Sector\Enums\SectorRegion.cs" />
-    <Compile Include="Generation\Sector\Factories\FactoryGenerator.cs" />
+    <Compile Include="Generation\Sector\IstanceFactory\FactoryGenerator.cs" />
     <Compile Include="Generation\Sector\GenerateSector.cs" />
     <Compile Include="Generation\Sector\SectorProperties.cs" />
-    <Compile Include="Generation\StarSystem\Builders\IBuilder.cs" />
+    <Compile Include="Generation\StarSystem\Interfaces\IBuilder.cs" />
     <Compile Include="Generation\StarSystem\Builders\PlanetBuilder.cs" />
     <Compile Include="Generation\StarSystem\Builders\SatelliteBuilder.cs" />
-    <Compile Include="Generation\StarSystem\Factories\FactoryGenerator.cs" />
+    <Compile Include="Generation\StarSystem\IstanceFactory\FactoryGenerator.cs" />
     <Compile Include="Generation\StarSystem\OrbitGenerator.cs" />
     <Compile Include="Generation\StarSystem\PlanetCustomConditions.cs" />
-    <Compile Include="Generation\StarSystem\Factories\SolarSystemFactory.cs" />
+    <Compile Include="Generation\StarSystem\SolarSystemFactory.cs" />
     <Compile Include="Generation\StarSystem\PlanetProperties.cs" />
     <Compile Include="Generation\StarSystem\Builders\StarBuilder.cs" />
     <Compile Include="Generation\StarSystem\StarPlacer.cs" />
@@ -97,7 +98,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Engine\IstanceFactory\" />
     <Folder Include="Engine\Planet\Social\" />
+    <Folder Include="Generation\Exceptions\" />
+    <Folder Include="Generation\Interfaces\" />
+    <Folder Include="Generation\IstanceFactory\" />
+    <Folder Include="Generation\Sector\BaseClasses\" />
+    <Folder Include="Generation\Sector\Interfaces\" />
     <Folder Include="Utilities\Enum\" />
   </ItemGroup>
   <ItemGroup>

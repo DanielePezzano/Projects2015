@@ -1,6 +1,8 @@
 ﻿using System;
 using BLL.Utilities;
 using Models.Base;
+using SharedDto.Universe.Planets;
+using SharedDto.UtilityDto;
 
 namespace BLL.Generation.StarSystem
 {
@@ -19,7 +21,7 @@ namespace BLL.Generation.StarSystem
         /// <param name="hasAtmosphere">has atmosphere</param>
         /// <param name="rnd"></param>
         /// <returns></returns>
-        public static Spaces CalculateSpaces(int totalSpaces, int radiationLevel, PlanetCustomConditions conditions,
+        public static Spaces CalculateSpaces(int totalSpaces, int radiationLevel, SystemGenerationDto conditions,
             bool hasWater, bool hasAtmosphere, Random rnd)
         {
             var result = new Spaces();
@@ -40,19 +42,25 @@ namespace BLL.Generation.StarSystem
         /// <summary>
         ///     This will calculate production for planet
         /// </summary>
-        /// <param name="planetSpaces"></param>
+        /// <param name="planetDto"></param>
         /// <param name="density"></param>
         /// <param name="earthDensity"></param>
         /// <param name="conditions"></param>
         /// <returns></returns>
-        public static Production CalculateProduction(Spaces planetSpaces, double density, double earthDensity,
-            PlanetCustomConditions conditions)
+        public static Production CalculateProduction(PlanetDto planetDto, double density, double earthDensity,
+            SystemGenerationDto conditions)
         {
             var result = new Production
             {
                 ActivePopOnFoodProduction = 0,
                 ActivePopOnOreProduction = 0,
-                ActivePopOnResProduction = 0
+                ActivePopOnResProduction = 0,
+                LastOreUpdateTime = DateTime.Now,
+                LastResearchUpdateTime = DateTime.Now,
+                LastFoodUpDateTime = DateTime.Now,
+                LastMaintenanceUpdateTime = DateTime.Now,
+                LastIncomeRevenueTime = DateTime.Now,
+                ResearchPointProduction=10
             };
 
             var baseWaterProduction = 0.24;
@@ -81,9 +89,9 @@ namespace BLL.Generation.StarSystem
                 baseGroundProduction -= baseGroundProduction*0.5;
             }
 
-            var percWater = planetSpaces.WaterSpaces/(double) planetSpaces.Totalspaces;
-            var percWaterRad = planetSpaces.WaterRadiatedSpaces/(double) planetSpaces.Totalspaces;
-            var percGround = planetSpaces.GroundSpaces/(double) planetSpaces.Totalspaces;
+            var percWater = planetDto.WaterSpaces/(double) planetDto.Totalspaces;
+            var percWaterRad = planetDto.WaterRadiatedSpaces/(double) planetDto.Totalspaces;
+            var percGround = planetDto.GroundSpaces/(double) planetDto.Totalspaces;
             var percGroundRad = 100 - percWater - percWaterRad - percGround;
 
             var foodProd = baseGroundProduction*percGround + baseWaterProduction*percWater;
@@ -91,10 +99,6 @@ namespace BLL.Generation.StarSystem
                           baseMineralProdOnRad*percGroundRad + baseMineralProdOnRad*percWaterRad;
             result.FoodProduction = (int) foodProd >= 0 ? (int) foodProd : 0;
             result.OreProduction = (int) oreProd >= 0 ? (int) oreProd : 0;
-            result.ResearchPointProduction = 10;
-            result.LastFoodUpDateTime = DateTime.Now;
-            result.LastOreUpdateTime = DateTime.Now;
-            result.LastResearchUpdateTime = DateTime.Now;
             return result;
         }
 
@@ -141,7 +145,7 @@ namespace BLL.Generation.StarSystem
             result.WaterSpaces = (int) (nonradiatedSpaces*percWater);
             result.GroundRadiatedSpaces = radiatedSpaces - result.WaterRadiatedSpaces;
             result.GroundSpaces = nonradiatedSpaces - result.WaterSpaces;
-            result.GroudUsedSpaces = 0;
+            result.GroundUsedSpaces = 0;
             result.WaterUsedSpaces = 0;
         }
     }

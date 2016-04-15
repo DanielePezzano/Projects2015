@@ -6,7 +6,7 @@ using SharedDto.Universe.Planets;
 using SharedDto.Universe.Race;
 using SharedDto.Universe.Technology;
 
-namespace BLL.Engine.Planet.Production.Builder
+namespace BLL.Engine.Planet.Production.BaseClasses
 {
     public abstract class Updater
     {
@@ -35,32 +35,38 @@ namespace BLL.Engine.Planet.Production.Builder
             Product += Product * CalculatePercentageOfPopulationUsedInProduction();
         }
 
-        protected void AdjustByStatus()
+        protected double AdjustByStatus(double quantityToAdjust,bool increaseOnOptimum=true)
         {
+            var result = quantityToAdjust;
             switch (ReferredPlanetDto.Status)
             {
                 case SatelliteStatus.Uncolonizable:
                 case SatelliteStatus.Uncolonized:
                 case SatelliteStatus.Abandoned:
-                    Product = 0;
+                    result= 0;
                     break;
                 case SatelliteStatus.Colonized:
                     break;
                 case SatelliteStatus.Blocked:
-                    Product -= Product * 0.8;
+                    if (increaseOnOptimum) result -= result * 0.8;
+                    else result += result * 0.8;
                     break;
                 case SatelliteStatus.Starvation:
-                    Product -= Product * 0.5;
+                    if (increaseOnOptimum) result -= result * 0.5;
+                    else result += result * 0.5;
                     break;
                 case SatelliteStatus.Revolt:
-                    Product -= Product * 0.4;
+                    if (increaseOnOptimum) result -= result * 0.4;
+                    else result += result * 0.4;
                     break;
                 case SatelliteStatus.Optimum:
-                    Product += Product * 0.15;
+                    if (increaseOnOptimum) result += result * 0.15;
+                    else result -= result * 0.15;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            return result;
         }
 
         protected abstract void CalculateRateOfProduction();

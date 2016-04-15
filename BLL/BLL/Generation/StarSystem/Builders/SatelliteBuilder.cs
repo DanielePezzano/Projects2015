@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using BLL.Generation.StarSystem.Interfaces;
 using BLL.Utilities;
 using BLL.Utilities.Structs;
 using Models.Base;
@@ -8,12 +9,16 @@ using Models.Base.Enum;
 using Models.Buildings;
 using Models.Universe;
 using Models.Universe.Enum;
+using SharedDto.Universe.Planets;
+using SharedDto.Universe.Stars;
+using SharedDto.UtilityDto;
 
 namespace BLL.Generation.StarSystem.Builders
 {
+    [Obsolete]
     public class SatelliteBuilder : IBuilder
     {
-        private PlanetCustomConditions _conditions;
+        private SystemGenerationDto _conditions;
         private double _mediumDensity; //densità media terrestre --> se densità calcolata <=3 probabilmente è gassoso   
         private Star _star;
         private Random _rnd;
@@ -192,8 +197,8 @@ namespace BLL.Generation.StarSystem.Builders
 
         private void AssignProduction()
         {
-            _resultSat.SatelliteProduction = PlanetProperties.CalculateProduction(_resultSat.Spaces, _mediumDensity,
-                BasicConstants.EarthDensity, _conditions);
+            //_resultSat.SatelliteProduction = PlanetProperties.CalculateProduction(_resultSat.Spaces, _mediumDensity,
+            //    BasicConstants.EarthDensity, _conditions);
         }
 
         private void CheckConditionRichness()
@@ -217,29 +222,34 @@ namespace BLL.Generation.StarSystem.Builders
         }
         #endregion
 
-        public BaseEntity Build(Star star, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange)
+        //public BaseEntity Build(StarDto star, SystemGenerationDto conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange)
+        //{
+        //    _star = star;
+        //    _conditions = conditions;
+        //    _rnd = rnd;
+        //    _mediumDensity = 5.5;
+
+        //    CreateSatellite();
+        //    AssignOrbit(generator);
+        //    AssignAtmosphere();
+        //    AssignRadiationLevel();
+        //    AssignMass();
+        //    AssignSurfaceTemperature(star);
+        //    AssignRadius();
+        //    AssignPeriodOfRotation(generator);
+        //    AssignTotalSpaces();
+
+        //    CheckConditionRichness();
+        //    AssignProduction();
+        //    AssignStatus();
+        //    CompleteGeneration();
+
+        //    return _resultSat;
+        //}
+
+        public PlanetDto Build(StarDto star, SystemGenerationDto conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange)
         {
-            _star = star;
-            _conditions = conditions;
-            _rnd = rnd;
-            _mediumDensity = 5.5;
-
-            CreateSatellite();
-            AssignOrbit(generator);
-            AssignAtmosphere();
-            AssignRadiationLevel();
-            AssignMass();
-            AssignSurfaceTemperature(star);
-            AssignRadius();
-            AssignPeriodOfRotation(generator);
-            AssignTotalSpaces();
-
-            CheckConditionRichness();
-            AssignProduction();
-            AssignStatus();
-            CompleteGeneration();
-
-            return _resultSat;
+            throw new NotImplementedException();
         }
     }
 }

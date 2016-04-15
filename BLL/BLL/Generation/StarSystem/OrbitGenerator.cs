@@ -2,20 +2,22 @@
 using BLL.Utilities;
 using BLL.Utilities.Structs;
 using Models.Universe;
+using SharedDto.Universe.Stars;
+using SharedDto.UtilityDto;
 
 namespace BLL.Generation.StarSystem
 {
     public sealed class OrbitGenerator : IDisposable
     {
         private double _planetRadius;
-        private readonly Star _star;
+        private readonly StarDto _star;
         private DoubleRange _closeRange;
         private bool _disposed;
         private DoubleRange _satelliteRange;
-        private readonly PlanetCustomConditions _conditions;
+        private readonly SystemGenerationDto _conditions;
 
-        public OrbitGenerator(Star star, DoubleRange closeRange,
-            PlanetCustomConditions conditions)
+        public OrbitGenerator(StarDto star, DoubleRange closeRange,
+            SystemGenerationDto conditions)
         {
             _star = star;
             _conditions = conditions;
@@ -36,7 +38,7 @@ namespace BLL.Generation.StarSystem
         ///     Calculate the distance expressed in UA
         /// </summary>
         /// <returns></returns>
-        private double CalculateDistance(DoubleRange range, Random rnd)
+        public double CalculateDistance(DoubleRange range, Random rnd)
         {
             var result = range.Max;
             if (_conditions.ForceWater|| _conditions.ForceLiving || _conditions.MostlyWater) return result + RandomNumbers.RandomDouble(range.Min, range.Max, rnd);
@@ -50,7 +52,7 @@ namespace BLL.Generation.StarSystem
         /// <param name="radius"></param>
         /// <param name="rate"></param>
         /// <returns></returns>
-        private static double CalculatePeriodOfRevolution(double distance, double radius, double rate)
+        public double CalculatePeriodOfRevolution(double distance, double radius, double rate)
         {
             var totalDistance = distance + radius*rate;
             return Math.Truncate(Math.Sqrt(Math.Pow(totalDistance, 3))*0.78*100)/100;
@@ -121,19 +123,5 @@ namespace BLL.Generation.StarSystem
         {
             _planetRadius = radius;
         }
-
-        #region Wrapper for private methods test
-
-        public double CalculateDistanceTest()
-        {
-            return CalculateDistance(_closeRange, new Random());
-        }
-
-        public double CalculatePeriodOfRevolutionTest(double distance)
-        {
-            return CalculatePeriodOfRevolution(distance, _star.Radius, BasicConstants.StarRadToUaRate);
-        }
-
-        #endregion
     }
 }

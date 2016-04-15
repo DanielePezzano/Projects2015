@@ -1,5 +1,8 @@
-﻿namespace BLL.Generation.StarSystem
+﻿using System;
+
+namespace BLL.Generation.StarSystem
 {
+    [Obsolete]
     public sealed class PlanetCustomConditions
     {
         public PlanetCustomConditions()

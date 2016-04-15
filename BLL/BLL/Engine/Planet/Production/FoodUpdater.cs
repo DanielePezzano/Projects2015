@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BLL.Engine.Planet.Production.BaseClasses;
+using BLL.Engine.Planet.Production.Interfaces;
 using Models.Races.Enums;
 using Models.Tech.Enum;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Race;
 using SharedDto.Universe.Technology;
 
-namespace BLL.Engine.Planet.Production.Builder
+namespace BLL.Engine.Planet.Production
 {
     public class FoodUpdater : Updater, IUpdater
     {
         private double _foodConsumption;
+        public bool UpdateToDo { get; set; }
 
         public FoodUpdater(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime):
             base(referredPlanetDto, raceDto, technologyDto, nowTime)
@@ -25,7 +28,7 @@ namespace BLL.Engine.Planet.Production.Builder
             AdjustByActivePopulation();
             AdjustByBuildings();
             AdjustByTechnology();
-            AdjustByStatus();
+            Product = AdjustByStatus(Product);
             AdjustBySocial();
             AdjustByFoodConsumption();
         }
@@ -72,7 +75,7 @@ namespace BLL.Engine.Planet.Production.Builder
 
         protected override void AdjustByTechnology()
         {
-            foreach (var bonus in _technologyDto.SelectMany(technology => technology.TechnologyBonuses.Where(c => c.Bonus == BonusType.Foodbonus)))
+            foreach (var bonus in _technologyDto.Where(c => c.SubField == "Buildings" && c.SubField != "ShipComponent" && c.SubField != "ShipFrame" && c.SubField != "Weapons").SelectMany(technologyDto => technologyDto.TechnologyBonuses.Where(c => c.Bonus == BonusType.Foodbonus)))
             {
                 Product += Product * bonus.Value / 100;
             }
@@ -92,7 +95,7 @@ namespace BLL.Engine.Planet.Production.Builder
         public void Update()
         {
             if (Product <= 0) return;
-
+            UpdateToDo = true;
             ReferredPlanetDto.StoredFood += (int)Product;
             ReferredPlanetDto.LastUpdateFoodProduction = _nowTime;
         }

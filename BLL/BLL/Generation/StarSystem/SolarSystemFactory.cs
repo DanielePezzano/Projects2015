@@ -1,27 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using BLL.Generation.StarSystem.Builders;
+using BLL.Generation.StarSystem.Interfaces;
+using BLL.Generation.StarSystem.IstanceFactory;
 using BLL.Utilities;
 using BLL.Utilities.Structs;
 using Models.Universe;
+using SharedDto.Universe.Planets;
+using SharedDto.Universe.Stars;
+using SharedDto.UtilityDto;
 
-namespace BLL.Generation.StarSystem.Factories
+namespace BLL.Generation.StarSystem
 {
     public class SolarSystemFactory
     {
-        private readonly PlanetCustomConditions _conditions;
-        private Star _associatedStar;
+        private readonly SystemGenerationDto _conditions;
+        private StarDto _associatedStar;
         private IBuilder _myPlanetBuilder;
         private IBuilder _mySatBuilder;
         private readonly Random _rnd;
         private OrbitGenerator _orbitGenerator;
         private readonly DoubleRange _closeRange = new DoubleRange(0.1, 0.7);
         private int _numberOfPlanets;
-        private List<Planet> _generatedPlanets;
+        private List<PlanetDto> _generatedPlanets;
 
-        public SolarSystemFactory(Star associatedStar, PlanetCustomConditions conditions, Random rnd, OrbitGenerator generator,int numberOfPlanets)
+        public SolarSystemFactory(StarDto associatedStar, SystemGenerationDto systemGenerationDto, Random rnd, OrbitGenerator generator, int numberOfPlanets)
         {
-            _conditions = conditions;
+            _conditions = systemGenerationDto;
             _associatedStar = associatedStar;
             _rnd = rnd;
             _numberOfPlanets = numberOfPlanets;
@@ -29,9 +34,9 @@ namespace BLL.Generation.StarSystem.Factories
             
         }
 
-        public SolarSystemFactory(PlanetCustomConditions conditions, Random rnd)
+        public SolarSystemFactory(SystemGenerationDto systemGenerationDto, Random rnd)
         {
-            _conditions = conditions;
+            _conditions = systemGenerationDto;
             _rnd = rnd;
         }
 
@@ -47,37 +52,36 @@ namespace BLL.Generation.StarSystem.Factories
             return RandomNumbers.RandomInt(0, maxNumb, rnd);
         }
 
-        private void AddSatellites(Planet planet)
+        private void AddSatellites(PlanetDto planet)
         {
             var nos = CalculateNumberOfSatellite(planet.Mass, _rnd);
             for (var i = 0; i < nos; i++)
             {
-                _mySatBuilder = FactoryGenerator.RetrieveSatelliteBuilder();
+                _mySatBuilder = FactoryGenerator.RetrievePlanetBuilder();
                 var toAdd =
-                    (Satellite)
-                        _mySatBuilder.Build(_associatedStar, FactoryGenerator.RetrieveConditions(false,false,false,false,false,false,false), _rnd, _orbitGenerator,
-                            _closeRange);
-                toAdd.Planet = planet;
+                    _mySatBuilder.Build(_associatedStar,
+                        FactoryGenerator.RetrieveSystemGenerationDto(false, false, false, false, false, false, false, 0,
+                            0, 0, 0), _rnd, _orbitGenerator, _closeRange);
                 planet.Satellites.Add(toAdd);
             }
         }
 
         private void AddPlanets()
         {
-            _generatedPlanets = new List<Planet>();
+            _generatedPlanets = new List<PlanetDto>();
 
             for (var x = 0; x < _numberOfPlanets; x++)
             {
                 _myPlanetBuilder = FactoryGenerator.RetrievePlanetBuilder();
                 var toAdd =
-                    (Planet)
-                        _myPlanetBuilder.Build(_associatedStar, _conditions, _rnd, _orbitGenerator, _closeRange);
+                    _myPlanetBuilder.Build(_associatedStar, _conditions, _rnd, _orbitGenerator, _closeRange);
                 _orbitGenerator.AssignPlanetRadius(toAdd.Radius);
                 AddSatellites(toAdd);
-                _associatedStar.Planets?.Add(toAdd);
                 _generatedPlanets.Add(toAdd);
                 ResetForcingConditions();
             }
+
+            _associatedStar.Planets = _generatedPlanets;
         }
 
         private void ResetForcingConditions()
@@ -92,31 +96,38 @@ namespace BLL.Generation.StarSystem.Factories
             _conditions.MostlyWater = false;
         }
 
+        private void CalculateNumberOfPlanets(StarBuilder starGenerator)
+        {
+            _numberOfPlanets = starGenerator.CalculateNumberOfPlanets(starGenerator.CalculateMaxNumberOfPlanet(_associatedStar),
+                _rnd, _conditions);
+        }
+
         #endregion
         
 
-        public List<Planet> RetrievePlanets()
+        public List<PlanetDto> RetrievePlanets()
         {
             return _generatedPlanets;
         }
 
-        public Star Constuct(StarBuilder starGenerator, StarPlacer starPlacer, IntRange rangeX, IntRange rangeY, string cacheKey)
+        public StarDto Constuct(StarBuilder starGenerator, StarPlacer starPlacer, IntRange rangeX, IntRange rangeY)
         {
             if (_conditions == null) throw new NullReferenceException("_Conditions must have a value");
 
             _associatedStar = starGenerator.CreateBrandNewStar();
             _orbitGenerator = FactoryGenerator.RetrieOrbitGenerator(_associatedStar, _closeRange, _conditions);
 
-            starPlacer.Place(_associatedStar, rangeX, rangeY, _rnd, cacheKey);
+            starPlacer.Place(_associatedStar, rangeX, rangeY, _rnd);
 
             if (!starGenerator.HasPlanets(starGenerator.CalculatePlanetProbability(_associatedStar), _rnd) && !
                 (_conditions.ForceLiving || _conditions.ForceWater || _conditions.MostlyWater)) return _associatedStar;
 
-            _numberOfPlanets = starGenerator.CalculateNumberOfPlanets(starGenerator.CalculateMaxNumberOfPlanet(_associatedStar),
-                _rnd, _conditions);
+            CalculateNumberOfPlanets(starGenerator);
 
             AddPlanets();
             return _associatedStar;
         }
+
+        
     }
 }

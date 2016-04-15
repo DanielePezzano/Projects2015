@@ -23,4 +23,17 @@
             Max = max;
         }
     }
+
+    public static class UtilitiesFactory
+    {
+        public static IntRange RetrieveRange(int min, int max)
+        {
+            return new IntRange(min, max);
+        }
+
+        public static DoubleRange RetrieveDoubleRange(double min, double max)
+        {
+            return new DoubleRange(min,max);
+        }
+    }
 }

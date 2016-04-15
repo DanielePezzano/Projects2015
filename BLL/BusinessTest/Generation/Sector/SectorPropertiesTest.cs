@@ -44,29 +44,29 @@ namespace BusinessTest.Generation.Sector
         [TestMethod]
         public void ShouldHaveALotOfStars()
         {
-            int Max = Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionA"]);
-            Assert.IsTrue(Max==SectorProperties.RetrieveMaxNumberOfStars(SectorRegion.Centre));
+            int max = Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionA"]);
+            Assert.IsTrue(max==SectorProperties.RetrieveMaxNumberOfStars(SectorRegion.Centre));
         }
 
         [TestMethod]
         public void ShouldHaveANotSoMuchOfStars()
         {
-            int Max = Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionB"]);
-            Assert.IsTrue(Max == SectorProperties.RetrieveMaxNumberOfStars(SectorRegion.Average));
+            int max = Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionB"]);
+            Assert.IsTrue(max == SectorProperties.RetrieveMaxNumberOfStars(SectorRegion.Average));
         }
 
         [TestMethod]
         public void ShouldHaveABitLessOfStars()
         {
-            int Max = Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionC"]);
-            Assert.IsTrue(Max == SectorProperties.RetrieveMaxNumberOfStars(SectorRegion.JustOutside));
+            int max = Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionC"]);
+            Assert.IsTrue(max == SectorProperties.RetrieveMaxNumberOfStars(SectorRegion.JustOutside));
         }
 
         [TestMethod]
         public void ShouldHaveALesserOfStars()
         {
-            int Max = Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionD"]);
-            Assert.IsTrue(Max == SectorProperties.RetrieveMaxNumberOfStars(SectorRegion.FarAway));
+            int max = Convert.ToInt32(ConfigurationManager.AppSettings["MaxStarRegionD"]);
+            Assert.IsTrue(max == SectorProperties.RetrieveMaxNumberOfStars(SectorRegion.FarAway));
         }
     }
 }

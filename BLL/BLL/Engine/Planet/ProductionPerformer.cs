@@ -1,66 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using BLL.Engine.Planet.Enum;
-using BLL.Engine.Planet.Production.Builder;
+using BLL.Engine.Exceptions;
+using BLL.Engine.Interfaces;
+using BLL.Engine.Planet.Enums;
+using BLL.Engine.Planet.Production.Interfaces;
+using BLL.Engine.Planet.Production.IstanceFactory;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Race;
 using SharedDto.Universe.Technology;
-using UnitOfWork.Implementations.Uows;
-using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace BLL.Engine.Planet
 {
-    public class Builder : IBuilder
+    public class ProductionPerformer : IPerformer
     {
         private PlanetDto _planetDto;
         private readonly RaceDto _raceDto;
         private readonly List<TechnologyDto> _technologyDtos;
-        private MainUow _uow;
-        private readonly bool _isTest;
         private readonly PlanetUpdateSelector _selector;
         private IUpdater _updater;
         private readonly DateTime _timeNow;
 
-        public Builder(IUnitOfWork uow, 
-            PlanetDto planetDto, PlanetUpdateSelector chosenUpdate, RaceDto raceDto,
+        public ProductionPerformer(PlanetDto planetDto, PlanetUpdateSelector chosenUpdate, RaceDto raceDto,
             List<TechnologyDto>  technologyDtos,
-            DateTime timenow, bool isTest)
+            DateTime timenow)
         {
             _technologyDtos = technologyDtos;
             _planetDto = planetDto;
-            _uow = (MainUow) uow;
-            _isTest = isTest;
             _selector = chosenUpdate;
             _raceDto = raceDto;
             _timeNow = timenow;
         }
 
-        public void Build()
+        public void Perform()
         {
             RetrieveUpdater();
             _updater?.CheckTimeDifference();
-            _updater?.Update();
-            if (!_isTest) WriteUpdate();
+            if(_updater!=null && _updater.UpdateToDo) _updater?.Update();
         }
-
-        public PlanetDto RetrievePlanetDto()
-        {
-            return _planetDto;
-        }
-
         
-        private void WriteUpdate()
-        {
-           var toUpdate = _uow?.PlanetRepository.GetByKey(_planetDto.Id, "");
-            if (toUpdate != null)
-            {
-                toUpdate.SatelliteProduction.StoredFood = _planetDto.StoredFood;
-                toUpdate.SatelliteProduction.StoredOre = _planetDto.StoredOre;
-                toUpdate.SatelliteProduction.ResearchPoints = _planetDto.ResearchPoints;
-            }
-            _uow?.Save();
-        }
-
         private void RetrieveUpdater()
         {
             switch (_selector)
@@ -77,9 +54,8 @@ namespace BLL.Engine.Planet
                         _timeNow);
                     break;
                 case PlanetUpdateSelector.SocialStatus:
-                    break;
-                case PlanetUpdateSelector.Buildings:
-                    break;
+                case PlanetUpdateSelector.CostsUpdate:
+                    throw new Exception(EngineExceptions.WrongPerformerCall.ToString());
                 default:
                     throw new ArgumentOutOfRangeException();
             }
