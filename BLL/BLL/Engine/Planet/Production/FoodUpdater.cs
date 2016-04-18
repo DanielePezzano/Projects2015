@@ -4,6 +4,8 @@ using System.Linq;
 using BLL.Engine.Interfaces;
 using BLL.Engine.Planet.Production.BaseClasses;
 using BLL.Engine.Planet.Production.Interfaces;
+using BLL.Engine.Planet.Structs;
+using Models.Buildings.Enums;
 using Models.Races.Enums;
 using Models.Tech.Enum;
 using SharedDto.Universe.Planets;
@@ -16,6 +18,7 @@ namespace BLL.Engine.Planet.Production
     {
         private double _foodConsumption;
         public bool UpdateToDo { get; set; }
+        public StatusCheckResult ConsistencyCheckFood { get; set; }
 
         public FoodUpdater(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime):
             base(referredPlanetDto, raceDto, technologyDto, nowTime)
@@ -31,7 +34,9 @@ namespace BLL.Engine.Planet.Production
             AdjustByTechnology();
             AdjustBySocial();
             AdjustByFoodConsumption();
-            Product = AdjustByStatus(Product);
+            ConsistencyCheckFood = AdjustByStatus(Product);
+
+            Product = ConsistencyCheckFood.Value;
         }
 
         protected void CalculateFoodConsumption()
@@ -46,9 +51,7 @@ namespace BLL.Engine.Planet.Production
 
         protected override double CalculatePercentageOfPopulationUsedInProduction()
         {
-            return ReferredPlanetDto.ActivePopOnFoodProduction /
-                  (ReferredPlanetDto.ActivePopOnOreProduction + ReferredPlanetDto.ActivePopOnFoodProduction +
-                   ReferredPlanetDto.ActivePopOnResProduction);
+            return ReferredPlanetDto.ActivePopOnFoodProduction;
         }
 
         private void AdjustByFoodConsumption()
@@ -60,7 +63,7 @@ namespace BLL.Engine.Planet.Production
 
         protected override void AdjustByBuildings()
         {
-            foreach (var detail in ReferredPlanetDto.Buildings.SelectMany(building => building.Details.Where(c => c.Bonus == BonusType.Foodbonus)))
+            foreach (var detail in ReferredPlanetDto.Buildings.Where(c=>c.BuildingType==BuildingType.Civil).SelectMany(building => building.Details.Where(c=>c.Bonus==BonusType.Foodbonus)))
             {
                 Product += Product * detail.Value / 100;
             }
@@ -99,10 +102,12 @@ namespace BLL.Engine.Planet.Production
 
         public void Update()
         {
-            if (Product <= 0) return;
+            if (!ConsistencyCheckFood.ConsistencyCheck) return;
             UpdateToDo = true;
             ReferredPlanetDto.StoredFood += (int)Math.Round(Product);
             ReferredPlanetDto.LastUpdateFoodProduction = TimeNow;
+
+            if (ReferredPlanetDto.StoredFood <= 0) ReferredPlanetDto.StoredFood = 0;
         }
     }
 }

@@ -4,7 +4,9 @@ using System.Linq;
 using BLL.Engine.Interfaces;
 using BLL.Engine.Planet.Production.BaseClasses;
 using BLL.Engine.Planet.Production.Interfaces;
+using BLL.Engine.Planet.Structs;
 using BLL.Utilities.Structs;
+using Models.Buildings.Enums;
 using Models.Races.Enums;
 using Models.Tech.Enum;
 using SharedDto.Universe.Planets;
@@ -17,6 +19,8 @@ namespace BLL.Engine.Planet.Production
     {
         private Costs _calculatedCosts;
         public bool UpdateToDo { get; set; }
+        public StatusCheckResult ConsistencyCheckMoney { get; set; }
+        public StatusCheckResult ConsistencyCheckOre { get; set; }
 
         public CostsUpdater(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime):
             base(referredPlanetDto,raceDto,technologyDto,nowTime)
@@ -52,13 +56,17 @@ namespace BLL.Engine.Planet.Production
             AdjustByBuildings();
             AdjustBySocial();
             AdjustByTechnology();
-            _calculatedCosts.OreCost = AdjustByStatus(_calculatedCosts.OreCost, false);
-            _calculatedCosts.MoneyCost = AdjustByStatus(_calculatedCosts.MoneyCost, false);
+
+            ConsistencyCheckOre = AdjustByStatus(_calculatedCosts.OreCost, false);
+            ConsistencyCheckMoney = AdjustByStatus(_calculatedCosts.MoneyCost, false);
+
+            _calculatedCosts.OreCost = ConsistencyCheckOre.Value;
+            _calculatedCosts.MoneyCost = ConsistencyCheckMoney.Value;
         }
 
         protected override void AdjustByBuildings()
         {
-            foreach (var bonus in ReferredPlanetDto.Buildings.SelectMany(building => building.Details.Where(c => c.Bonus == BonusType.MaintBonus)))
+            foreach (var bonus in ReferredPlanetDto.Buildings.Where(c => c.BuildingType == BuildingType.Civil).SelectMany(building => building.Details.Where(c => c.Bonus == BonusType.MaintBonus)))
             {
                 _calculatedCosts.MoneyCost += _calculatedCosts.MoneyCost * bonus.Value / 100;
                 _calculatedCosts.OreCost += _calculatedCosts.OreCost * bonus.Value / 100;
@@ -109,11 +117,17 @@ namespace BLL.Engine.Planet.Production
 
         public void Update()
         {
-            if (Product <= 0) return;
-            UpdateToDo = true;
+            if (ConsistencyCheckMoney.ConsistencyCheck == false && ConsistencyCheckOre.ConsistencyCheck == false)
+                return;
+            UpdateToDo = ConsistencyCheckMoney.ConsistencyCheck || ConsistencyCheckOre.ConsistencyCheck;
+
             ReferredPlanetDto.LastMaintenanceDateTime = TimeNow;
-            ReferredPlanetDto.StoredOre -= (_calculatedCosts.OreCost > 0) ? (int)Math.Round( _calculatedCosts.OreCost) : 0;
-            ReferredPlanetDto.PlanetIncomeBalance -= (_calculatedCosts.MoneyCost > 0) ? (int)Math.Round(_calculatedCosts.MoneyCost) : 0;
+
+            if (ConsistencyCheckOre.ConsistencyCheck) ReferredPlanetDto.StoredOre -= (_calculatedCosts.OreCost > 0) ? (int)Math.Round(_calculatedCosts.OreCost) : 0;
+            if (ConsistencyCheckOre.ConsistencyCheck) ReferredPlanetDto.PlanetIncomeBalance -= (_calculatedCosts.MoneyCost > 0) ? (int)Math.Round(_calculatedCosts.MoneyCost) : 0;
+
+            if (ReferredPlanetDto.StoredOre < 0) ReferredPlanetDto.StoredOre = 0;
+            if (ReferredPlanetDto.PlanetIncomeBalance < 0) ReferredPlanetDto.PlanetIncomeBalance = 0;
         }
     }
 }

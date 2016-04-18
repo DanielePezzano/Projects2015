@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BLL.Engine.Planet.Exceptions;
+using BLL.Engine.Planet.Structs;
 using BLL.Utilities.Structs;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Race;
@@ -39,7 +40,7 @@ namespace BLL.Engine.Planet.BaseClasses
                 throw new Exception(PlanetExceptions.TechnologyListNull.ToString());
         }
 
-        protected abstract double AdjustByStatus(double quantityToAdjust, bool increaseOnOptimum = true);
+        protected abstract StatusCheckResult AdjustByStatus(double quantityToAdjust, bool increaseOnOptimum = true);
         protected abstract void AdjustByActivePopulation();
     }
 }

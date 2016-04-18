@@ -4,6 +4,8 @@ using System.Linq;
 using BLL.Engine.Interfaces;
 using BLL.Engine.Planet.Production.BaseClasses;
 using BLL.Engine.Planet.Production.Interfaces;
+using BLL.Engine.Planet.Structs;
+using Models.Buildings.Enums;
 using Models.Races.Enums;
 using Models.Tech.Enum;
 using SharedDto.Universe.Planets;
@@ -15,6 +17,7 @@ namespace BLL.Engine.Planet.Production
     public class ResearchUpdater : ProductionUpdater, IProcutionUpdater, IUpdater
     {
         public bool UpdateToDo { get; set; }
+        public StatusCheckResult ConsistencyCheckResearch { get; set; }
 
         public ResearchUpdater(PlanetDto referredPlanetDto, RaceDto raceDto, List<TechnologyDto> technologyDto, DateTime nowTime):
             base(referredPlanetDto,raceDto,technologyDto,nowTime)
@@ -30,12 +33,14 @@ namespace BLL.Engine.Planet.Production
             AdjustByBuildings();
             AdjustByTechnology();
             AdjustBySocial();
-            Product = AdjustByStatus(Product);
+            ConsistencyCheckResearch = AdjustByStatus(Product);
+
+            Product = ConsistencyCheckResearch.Value;
         }
 
         protected override void AdjustByBuildings()
         {
-            foreach (var detail in ReferredPlanetDto.Buildings.SelectMany(building => building.Details.Where(c => c.Bonus == BonusType.Researchbonus)))
+            foreach (var detail in ReferredPlanetDto.Buildings.Where(c => c.BuildingType == BuildingType.Civil).SelectMany(building => building.Details.Where(c => c.Bonus == BonusType.Researchbonus)))
             {
                 Product += Product * detail.Value / 100;
             }
@@ -52,9 +57,7 @@ namespace BLL.Engine.Planet.Production
 
         protected override double CalculatePercentageOfPopulationUsedInProduction()
         {
-            return ReferredPlanetDto.ActivePopOnResProduction /
-                 (ReferredPlanetDto.ActivePopOnOreProduction + ReferredPlanetDto.ActivePopOnFoodProduction +
-                  ReferredPlanetDto.ActivePopOnResProduction);
+            return ReferredPlanetDto.ActivePopOnResProduction;
         }
 
         protected override void AdjustByTechnology()
@@ -77,7 +80,7 @@ namespace BLL.Engine.Planet.Production
 
         public void Update()
         {
-            if (Product <= 0) return;
+            if (ConsistencyCheckResearch.ConsistencyCheck == false || Product < 1) return;
             UpdateToDo = true;
             ReferredPlanetDto.ResearchPoints += (int)Math.Round(Product);
             ReferredPlanetDto.LastUpdateResearcDateTime = TimeNow;

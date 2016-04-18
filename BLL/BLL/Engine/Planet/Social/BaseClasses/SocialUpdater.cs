@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BLL.Engine.Planet.BaseClasses;
+using BLL.Engine.Planet.Structs;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Race;
 using SharedDto.Universe.Technology;
@@ -24,7 +25,7 @@ namespace BLL.Engine.Planet.Social.BaseClasses
             throw new NotImplementedException();
         }
 
-        protected override double AdjustByStatus(double quantityToAdjust, bool increaseOnOptimum = true)
+        protected override StatusCheckResult AdjustByStatus(double quantityToAdjust, bool increaseOnOptimum = true)
         {
             throw new NotImplementedException();
         }

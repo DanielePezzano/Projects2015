@@ -70,6 +70,7 @@
     <Compile Include="Engine\Planet\Social\BaseClasses\SocialUpdater.cs" />
     <Compile Include="Engine\Planet\Social\Interfaces\ISocialUpdater.cs" />
     <Compile Include="Engine\Planet\Social\PopulationUpdater.cs" />
+    <Compile Include="Engine\Planet\Structs\StatusCheckResult.cs" />
     <Compile Include="Generation\Sector\Enums\SectorRegion.cs" />
     <Compile Include="Generation\Sector\IstanceFactory\FactoryGenerator.cs" />
     <Compile Include="Generation\Sector\GenerateSector.cs" />
