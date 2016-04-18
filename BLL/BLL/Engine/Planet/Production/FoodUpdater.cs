@@ -41,7 +41,7 @@ namespace BLL.Engine.Planet.Production
 
         protected void CalculateFoodConsumption()
         {
-            _foodConsumption = ReferredPlanetDto.Population * Diff.Hours;
+            _foodConsumption = ReferredPlanetDto.Population * Diff.Hours*0.8;
 
             foreach (var foodConsumptionBonus in ReferredRaceDto.RaceBonuses.Where(c => c.Bonus == RaceTraitsBonuses.FoodConsumption).Select(c => c.Value))
             {

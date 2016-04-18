@@ -27,10 +27,10 @@ namespace BusinessTest.Engine.Planet.Production
             RaceName = "TestOreProductiveRace"
         };
 
-        TechnologyDto _technologyPhisycsDto = new TechnologyDto()
+        TechnologyDto _technologySocialDto = new TechnologyDto()
         {
             Name = "techTest",
-            Field = "Phisycs",
+            Field = "Social",
             TechnologyBonuses = new List<TechnologyBonusDto>()
             {
                 new TechnologyBonusDto()
@@ -67,15 +67,20 @@ namespace BusinessTest.Engine.Planet.Production
                 }
             }
         };
-
+        /*
+         * Nota sulla popolazione attiva: di norma è il 30% della popolazione totale,
+         * ma potremmo pensare di legare questa percentuale all'eventuale presenza
+         * di bonus demografici.
+         * quindi se pensiamo a pop=100 => p.A = 30 da dividere nei vari settori.
+         */
         PlanetDto planet = new PlanetDto()
             {
-                ActivePopOnFoodProduction = 8,
-                ActivePopOnOreProduction = 10,
+                ActivePopOnFoodProduction = 20,
+                ActivePopOnOreProduction = 8,
                 ActivePopOnResProduction = 2,
                 FoodProduction = 4,
                 StoredFood = 0,
-                Population = 30
+                Population = 100
                 
             };
 
@@ -189,7 +194,7 @@ namespace BusinessTest.Engine.Planet.Production
         public void ShouldBe116WithoutTechAndRace()
         {
             planet.Buildings = new List<BuildingDto>();
-            planet.LastUpdateOreProduction = DateTime.Now.AddHours(-1);
+            planet.LastUpdateOreProduction = DateTime.Now.AddHours(-2);
             planet.Status = SatelliteStatus.Colonized;
 
 
@@ -206,67 +211,75 @@ namespace BusinessTest.Engine.Planet.Production
                 );
 
             Assert.IsTrue(productionPerformer.Perform());
-            Assert.IsTrue(planet.StoredFood == 4);
+            Assert.IsTrue(planet.StoredFood == 0);
         }
 
-        //[TestMethod]
-        //public void ShouldBeHighWithoutTech()
-        //{
-        //    var planet = new PlanetDto()
-        //    {
-        //        ActivePopOnFoodProduction = 0,
-        //        ActivePopOnOreProduction = 10,
-        //        ActivePopOnResProduction = 0,
-        //        OreProduction = 4,
-        //        StoredOre = 0,
-        //        Buildings = new List<BuildingDto>(),
-        //        LastUpdateOreProduction = DateTime.Now.AddHours(-1),
-        //        Status = SatelliteStatus.Colonized
-        //    };
+        [TestMethod]
+        public void ShouldBeHighWithoutTech()
+        {
+            planet.Buildings = new List<BuildingDto>();
+            planet.LastUpdateOreProduction = DateTime.Now.AddHours(-2);
+            planet.Status = SatelliteStatus.Colonized;
 
 
-        //    var productionPerformer = new ProductionPerformer(
-        //        planet,
-        //        PlanetUpdateSelector.OreProduction,
-        //        _raceDto,
-        //        new List<TechnologyDto>(),
-        //        DateTime.Now.AddHours(1)
-        //        );
+            var productionPerformer = new ProductionPerformer(
+                planet,
+                PlanetUpdateSelector.FoodProduction,
+                _raceDto,
+                new List<TechnologyDto>(),
+                DateTime.Now.AddHours(1)
+                );
 
-        //    Assert.IsTrue(productionPerformer.Perform());
-        //    Assert.IsTrue(planet.StoredOre == 17);
-        //}
+            Assert.IsTrue(productionPerformer.Perform());
+            Assert.IsTrue(planet.StoredFood ==12);
+        }
 
-        //[TestMethod]
-        //public void ShouldBeHighWithTechToo()
-        //{
-        //    var planet = new PlanetDto()
-        //    {
-        //        ActivePopOnFoodProduction = 0,
-        //        ActivePopOnOreProduction = 10,
-        //        ActivePopOnResProduction = 0,
-        //        OreProduction = 4,
-        //        StoredOre = 0,
-        //        Buildings = new List<BuildingDto>(),
-        //        LastUpdateOreProduction = DateTime.Now.AddHours(-1),
-        //        Status = SatelliteStatus.Colonized
-        //    };
+        [TestMethod]
+        public void ShouldBeHighWithTechToo()
+        {
+            planet.Buildings = new List<BuildingDto>();
+            planet.LastUpdateOreProduction = DateTime.Now.AddHours(-2);
+            planet.Status = SatelliteStatus.Colonized;
 
 
-        //    var productionPerformer = new ProductionPerformer(
-        //        planet,
-        //        PlanetUpdateSelector.OreProduction,
-        //        _raceDto,
-        //        new List<TechnologyDto>()
-        //        {
-        //            _technologyBuildingDto,
-        //            _technologyPhisycsDto
-        //        },
-        //        DateTime.Now.AddHours(1)
-        //        );
+            var productionPerformer = new ProductionPerformer(
+                planet,
+                PlanetUpdateSelector.FoodProduction,
+                _raceDto,
+                new List<TechnologyDto>()
+                {
+                    _technologyBuildingDto,
+                    _technologySocialDto
+                },
+                DateTime.Now.AddHours(1)
+                );
 
-        //    Assert.IsTrue(productionPerformer.Perform());
-        //    Assert.IsTrue(planet.StoredOre == 18);
-        //}
+            Assert.IsTrue(productionPerformer.Perform());
+            Assert.IsTrue(planet.StoredFood == 25);
+        }
+
+        [TestMethod]
+        public void ShouldBeHigerhWithBuildings()
+        {
+            planet.Buildings = new List<BuildingDto>() {_building};
+            planet.LastUpdateOreProduction = DateTime.Now.AddHours(-2);
+            planet.Status = SatelliteStatus.Colonized;
+
+
+            var productionPerformer = new ProductionPerformer(
+                planet,
+                PlanetUpdateSelector.FoodProduction,
+                _raceDto,
+                new List<TechnologyDto>()
+                {
+                    _technologyBuildingDto,
+                    _technologySocialDto
+                },
+                DateTime.Now.AddHours(1)
+                );
+
+            Assert.IsTrue(productionPerformer.Perform());
+            Assert.IsTrue(planet.StoredFood == 38);
+        }
     }
 }

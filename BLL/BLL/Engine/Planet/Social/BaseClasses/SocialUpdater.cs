@@ -16,7 +16,7 @@ namespace BLL.Engine.Planet.Social.BaseClasses
             
         }
 
-        #region Private MEthods
+        #region Private Methods
 
         #endregion
 
