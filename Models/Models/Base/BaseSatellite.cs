@@ -33,6 +33,7 @@ namespace Models.Base
         [Required]
         [DataMember]
         public Spaces Spaces { get; set; }
+        
 
         [NotMapped]
         [Display(Name = "MaxPopulation", ResourceType = typeof (Resources))]

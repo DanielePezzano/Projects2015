@@ -14,6 +14,9 @@ namespace Models.Universe
         public virtual ICollection<Satellite> Satellites { get; set; }
 
         [DataMember]
+        public bool IsHomePlanet { get; set; }
+
+        [DataMember]
         public virtual User User { get; set; }
 
         [DataMember]

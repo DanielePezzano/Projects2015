@@ -105,6 +105,8 @@ namespace SharedDto.Universe.Planets
         public bool IsGaseous { get; set; }
         [DataMember]
         public bool IsHabitable { get; set; }
+        [DataMember]
+        public bool IsHomePlanet { get; set; }
 
         [DataMember]
         public List<BuildingDto> Buildings { get; set; }

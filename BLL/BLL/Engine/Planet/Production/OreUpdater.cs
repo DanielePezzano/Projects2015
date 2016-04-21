@@ -34,8 +34,8 @@ namespace BLL.Engine.Planet.Production
             AdjustByTechnology();
             AdjustBySocial();
             ConsistencyCheckOre = AdjustByStatus(Product);
-            
-            Product = ConsistencyCheckOre.Value;
+
+            Product = ConsistencyCheckOre.Value*0.2;
         }
 
         protected override double CalculatePercentageOfPopulationUsedInProduction()

@@ -35,7 +35,7 @@ namespace BLL.Engine.Planet.Production
             AdjustBySocial();
             ConsistencyCheckResearch = AdjustByStatus(Product);
 
-            Product = ConsistencyCheckResearch.Value;
+            Product = ConsistencyCheckResearch.Value*0.7;
         }
 
         protected override void AdjustByBuildings()
@@ -74,7 +74,7 @@ namespace BLL.Engine.Planet.Production
         public void CheckTimeDifference()
         {
             if (Diff.Hours <= 0) return;
-            Product = ReferredPlanetDto.FoodProduction * Diff.Hours;
+            Product = ReferredPlanetDto.ResearchPointProduction * Diff.Hours;
             CalculateRateOfProduction();
         }
 
