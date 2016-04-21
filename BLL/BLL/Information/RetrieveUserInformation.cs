@@ -1,5 +1,6 @@
 ﻿using System;
 using UnitOfWork.Implementations.Uows;
+using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace BLL.Information
 {
@@ -7,21 +8,22 @@ namespace BLL.Information
     {
         private readonly string _email = string.Empty;
         private bool _disposed;
+        private bool _isTest;
 
-        public MainUow MainUow { get; set; }
+        public IUnitOfWork MainUow { get; set; }
 
-        public RetrieveUserInformation(MainUow uow)
+        public RetrieveUserInformation(IUnitOfWork uow, bool isTest = false)
         {
             if (uow == null) throw new ArgumentNullException(nameof(uow));
             MainUow = uow;
+            _isTest = isTest;
         }
 
-        public RetrieveUserInformation(MainUow uow, string email)
+        public RetrieveUserInformation(IUnitOfWork uow, string email, bool isTest = false):
+            this(uow,isTest)
         {
-            if (uow == null) throw new ArgumentNullException(nameof(uow));
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("email");
             _email = email;
-            MainUow = uow;
         }
 
         
@@ -30,8 +32,8 @@ namespace BLL.Information
         {
             if (_disposed) return;
             _disposed = true;
-            MainUow?.Dispose();
-            //GC.SuppressFinalize(this);
+            if (_isTest) ((ProductionUow)MainUow)?.Dispose();
+            else ((TestUow)MainUow)?.Dispose();
         }
 
         /// <summary>
@@ -40,7 +42,9 @@ namespace BLL.Information
         /// <returns></returns>
         public bool ExistsEmail()
         {
-            return MainUow.UserRepository.Count(c => c.Email == _email, "WhereEmailEqualsTo=>" + _email) > 0;
+            return (_isTest)?
+                ((TestUow)MainUow)?.UserRepository.Count(c => c.Email == _email, "WhereEmailEqualsTo=>" + _email) > 0 :
+                ((ProductionUow)MainUow)?.UserRepository.Count(c => c.Email == _email, "WhereEmailEqualsTo=>" + _email) > 0;
         }
     }
 }

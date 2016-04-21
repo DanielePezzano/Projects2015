@@ -16,7 +16,7 @@ namespace BusinessTest.Information
         private Mock<Planet> _planet1;
         private MockRepository _repo;
         private Mock<Star> _star1;
-        private MainUow _uow;
+        private TestUow _uow;
 
         [TestInitialize]
         public void MyTestInitialize()
@@ -30,12 +30,12 @@ namespace BusinessTest.Information
             _planet1.Object.Name = "Test Planet";
             _planet1.Object.Id = 100;
 
-            _contextFactory = new ContextFactory(true);
+            _contextFactory = new ContextFactory("UniverseConnection", true);
             var context = _contextFactory.Retrieve();
             var cache = new DalCache();
             var repos = new UowRepositories();
             var repoFactories = new UowRepositoryFactories(context, cache, repos);
-            _uow = new MainUow(context, repoFactories);
+            _uow = new TestUow(context, repoFactories);
 
             _uow.StarRepository.Add(_star1.Object);
             _uow.PlanetRepository.Add(_planet1.Object);
@@ -44,7 +44,7 @@ namespace BusinessTest.Information
         [TestMethod]
         public void TestRetrievePlanetInformations()
         {
-            using (var info = new RetrievePlanetInformation(_uow, 100))
+            using (var info = new RetrievePlanetInformation(_uow, 100,true))
             {
                 Assert.IsNotNull(info.Retrieve(string.Empty));
                 Assert.IsTrue(info.Retrieve(string.Empty).Id == 100);

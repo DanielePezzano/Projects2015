@@ -1,6 +1,4 @@
-﻿
-
-using UnitOfWork.Cache;
+﻿using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Uows.UowDto;
 namespace UnitOfWork.Interfaces.Context
 {

@@ -14,7 +14,7 @@ namespace BusinessTest.Information
     {
         private ContextFactory _contextFactory;
         private MockRepository _repo;
-        private MainUow _uow;
+        private TestUow _uow;
         private Mock<User> _user;
 
         [TestInitialize]
@@ -24,21 +24,21 @@ namespace BusinessTest.Information
             _user = _repo.Create<User>();
             _user.Object.Email = "danieleTest@test.com";
 
-            _contextFactory = new ContextFactory(true);
+            _contextFactory = new ContextFactory("UniverseConnection", true);
             var context = _contextFactory.Retrieve();
             var cache = new DalCache();
             var repos = new UowRepositories();
             var repoFactories = new UowRepositoryFactories(context, cache, repos);
-            _uow = new MainUow(context, repoFactories);
+            _uow = new TestUow(context, repoFactories);
             _uow.UserRepository.Add(_user.Object);
         }
 
         [TestMethod]
         public void TestExistsEmail()
         {
-            var user = new RetrieveUserInformation(_uow, "danieleTest@test.com");
+            var user = new RetrieveUserInformation(_uow, "danieleTest@test.com",true);
             Assert.IsTrue(user.ExistsEmail());
-            user = new RetrieveUserInformation(_uow, "danieleddddTest@test.com");
+            user = new RetrieveUserInformation(_uow, "danieleddddTest@test.com",true);
             Assert.IsFalse(user.ExistsEmail());
         }
     }

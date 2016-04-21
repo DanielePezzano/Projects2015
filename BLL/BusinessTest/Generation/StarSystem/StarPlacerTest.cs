@@ -30,7 +30,7 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestCoordinatesGeneration()
         {
-            var placer = FactoryGenerator.RetrieveStarPlacer(null);
+            var placer = FactoryGenerator.RetrieveStarPlacer(null, true);
             var coord = placer.GenerateRandomCoordinatesTest(230, 400, 230, 400, _rnd);
             Assert.IsTrue(coord.X > 0);
             Assert.IsTrue(coord.Y > 0);
@@ -43,20 +43,20 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestValidPlace()
         {
-            using (var cf = new ContextFactory(true))
+            using (var cf = new ContextFactory("UniverseConnection", true))
             {
                 var context = cf.Retrieve();
                 var cache = new DalCache();
                 var repos = new UowRepositories();
                 using (var repoFactories = new UowRepositoryFactories(context, cache, repos))
                 {
-                    using (var uow = new MainUow(context, repoFactories))
+                    using (var uow = new TestUow(context, repoFactories))
                     {
                         uow.StarRepository.CustomDbset(new List<Star>());
                         var repo = new MockRepository(MockBehavior.Default);
 
                         repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
-                        var placer = new StarPlacer(uow);
+                        var placer = new StarPlacer(uow,true);
                         var coord = placer.GenerateRandomCoordinatesTest(230, 400, 230, 400, _rnd);
                         Assert.IsTrue(placer.ValidPlaceTest(coord));
                     }
@@ -67,14 +67,14 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestCreation()
         {
-            using (var cf = new ContextFactory(true))
+            using (var cf = new ContextFactory("UniverseConnection", true))
             {
                 var context = cf.Retrieve();
                 var cache = new DalCache();
                 var repos = new UowRepositories();
                 using (var repoFactories = new UowRepositoryFactories(context, cache, repos))
                 {
-                    using (var uow = new MainUow(context, repoFactories))
+                    using (var uow = new TestUow(context, repoFactories))
                     {
                         #region Prepare object for test
 
@@ -107,7 +107,7 @@ namespace BusinessTest.Generation.StarSystem
 
                         #endregion
 
-                        var placer = new StarPlacer(uow);
+                        var placer = new StarPlacer(uow,true);
                         placer.Place(generated, new IntRange(40, 90), new IntRange(40, 90), _rnd);
                         //Assert.IsInstanceOfType(generated.Coordinate, typeof(Coordinates));
                     }

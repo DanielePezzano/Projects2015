@@ -10,10 +10,10 @@ namespace UnitOfWork.Implementations.Context
         private bool _disposed;
         private IContext _context;
 
-        public ContextFactory(bool isTest=false)
+        public ContextFactory(string connectionString,bool isTest=false)
         {
             if (isTest) _context = new TestContext();
-            else _context = new ProductionContext();
+            else _context = new ProductionContext(connectionString);
         }
 
         public IContext Retrieve()

@@ -10,11 +10,13 @@ namespace BLL.Generation.StarSystem
     public sealed class StarPlacer
     {
         private const int MinDistance = 25;
-        private readonly MainUow _uow;
+        private readonly IUnitOfWork _uow;
+        private bool _isTest;
 
-        public StarPlacer(IUnitOfWork uow)
+        public StarPlacer(IUnitOfWork uow, bool isTest = false)
         {
-            _uow = (MainUow) uow;
+            _uow = uow;
+            _isTest = isTest;
         }
 
         private static Coordinates GenerateRandomCoordinates(int minX, int maxX, int minY, int maxY, Random rnd)
@@ -31,8 +33,11 @@ namespace BLL.Generation.StarSystem
         private bool ValidPlace(Coordinates coord)
         {
             //find the stars within minimum distance
-            var count =
-                _uow.StarRepository.Count(
+            var count =(_isTest) ? ((TestUow)_uow)?.StarRepository.Count(
+                    s =>
+                        s.CoordinateX >= coord.X - MinDistance && s.CoordinateX <= coord.X + MinDistance &&
+                        s.CoordinateX >= coord.Y - MinDistance && s.CoordinateX <= coord.Y + MinDistance, ""):
+                ((ProductionUow)_uow)?.StarRepository.Count(
                     s =>
                         s.CoordinateX >= coord.X - MinDistance && s.CoordinateX <= coord.X + MinDistance &&
                         s.CoordinateX >= coord.Y - MinDistance && s.CoordinateX <= coord.Y + MinDistance, "");

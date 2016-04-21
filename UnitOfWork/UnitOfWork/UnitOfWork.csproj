@@ -61,13 +61,19 @@
     <Compile Include="Implementations\Repository\BaseRepository\RepositoryProduction.cs" />
     <Compile Include="Implementations\Repository\BaseRepository\RepositoryTest.cs" />
     <Compile Include="Implementations\Repository\RepositoryFactory.cs" />
-    <Compile Include="Implementations\Uows\MainUow.cs" />
+    <Compile Include="Implementations\Uows\BaseClass\BaseUow.cs" />
+    <Compile Include="Implementations\Uows\ProductionUow.cs" />
+    <Compile Include="Implementations\Uows\TestUow.cs" />
     <Compile Include="Implementations\Uows\UowDto\UowRepositories.cs" />
     <Compile Include="Implementations\Uows\UowDto\UowRepositoryFactories.cs" />
     <Compile Include="Interfaces\Context\IContext.cs" />
     <Compile Include="Interfaces\Context\IContextFactory.cs" />
+    <Compile Include="Interfaces\Repository\IAsyncRepository.cs" />
+    <Compile Include="Interfaces\Repository\IQueryableRepository.cs" />
     <Compile Include="Interfaces\Repository\IRepository.cs" />
+    <Compile Include="Interfaces\Repository\ITestableRepository.cs" />
     <Compile Include="Interfaces\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\UnitOfWork\IUnitOfWorkAsync.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

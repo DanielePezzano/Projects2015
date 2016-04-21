@@ -19,19 +19,19 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
     public sealed class GetOnly : IDisposable
     {
         private readonly ContextFactory _factory;
-        private readonly MainUow _mainUow;
+        private readonly ProductionUow _mainUow;
         private readonly UowRepositoryFactories _repoFactory;
         private readonly UowRepositories _repositories;
         private bool _disposed;
 
         public GetOnly()
         {
-            _factory = new ContextFactory();
+            _factory = new ContextFactory("UniverseConnection");
             var context = _factory.Retrieve();
             _repositories = _factory.CreateRepositories();
             var cache = _factory.CreateCache();
             _repoFactory = new UowRepositoryFactories(context, cache, _repositories);
-            _mainUow = new MainUow(context, _repoFactory);
+            _mainUow = new ProductionUow(context, _repoFactory);
         }
 
         public void Dispose()

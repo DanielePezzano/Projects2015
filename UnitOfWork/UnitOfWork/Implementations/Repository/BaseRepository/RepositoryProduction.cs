@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
 using Models.Base;
 using UnitOfWork.Cache;
 using UnitOfWork.Cache.Enum;
@@ -11,7 +13,7 @@ using UnitOfWork.Interfaces.Repository;
 
 namespace UnitOfWork.Implementations.Repository.BaseRepository
 {
-    public class RepositoryProduction<T> : IRepository<T> where T : BaseEntity
+    public class RepositoryProduction<T> : IRepository<T>,IQueryableRepository<T>,IAsyncRepository<T> where T : BaseEntity
     {
         internal ProductionContext Context;
         internal DbSet<T> DbSet;
@@ -172,19 +174,24 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
         {
         }
 
-        private IEnumerable<T> ProcessGet(Expression<Func<T, bool>> filter, string includeProperties)
+        private IEnumerable<T> ProcessGet(Expression<Func<T, bool>> predicate, string includeProperties)
         {
             IQueryable<T> query = DbSet;
 
-            if (filter != null)
+            if (predicate != null)
             {
-                query = query.Where(filter);
+                query = query.Where(predicate);
             }
 
             query = includeProperties.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
                 .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
             IEnumerable<T> result = query.ToList();
             return result;
+        }
+
+        public async Task<IEnumerable<T>> GetAync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken)
+        {
+            return await DbSet.Where(predicate).ToArrayAsync(cancellationToken);
         }
     }
 }

@@ -9,7 +9,7 @@ using UnitOfWork.Interfaces.Repository;
 
 namespace UnitOfWork.Implementations.Repository.BaseRepository
 {
-    public class RepositoryTest<T> : IRepository<T> where T : BaseEntity
+    public class RepositoryTest<T> : IRepository<T>,ITestableRepository<T> where T : BaseEntity
     {
         internal TestContext Context;
         internal List<T> DbSet;
@@ -28,20 +28,20 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             DbSet = setter;
         }
 
-        public IQueryable<T> GetAll(string cacheKey)
-        {
-            return (IQueryable<T>) DbSet;
-        }
+        //public IQueryable<T> GetAll(string cacheKey)
+        //{
+        //    return (IQueryable<T>) DbSet;
+        //}
 
         public T GetByKey(int id, string cacheKey)
         {
             return DbSet.FirstOrDefault(c => c.Id == id);
         }
 
-        public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string cacheKey)
-        {
-            return (IQueryable<T>) DbSet.Where(predicate.Compile()).ToList();
-        }
+        //public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string cacheKey)
+        //{
+        //    return (IQueryable<T>) DbSet.Where(predicate.Compile()).ToList();
+        //}
 
         public IEnumerable<T> Get(
             string cacheKey,
@@ -83,6 +83,16 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
         public int Count(Expression<Func<T, bool>> predicate, string cacheKey)
         {
             return DbSet.Count(predicate.Compile());
+        }
+
+        public IEnumerable<T> GetAll(string cacheKey)
+        {
+            return DbSet;
+        }
+
+        public IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate, string cacheKey)
+        {
+            return DbSet.Where(predicate.Compile());
         }
     }
 }

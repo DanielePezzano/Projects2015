@@ -21,7 +21,7 @@ namespace BusinessTest.Information
         private Mock<Star> _star2;
         private Mock<Star> _star3;
         private Mock<Star> _star4;
-        private MainUow _uow;
+        private TestUow _uow;
 
         [TestInitialize]
         public void MyTestInitialize()
@@ -44,12 +44,12 @@ namespace BusinessTest.Information
 
             _galaxy.SetupProperty(x => x.Stars,
                 new List<Star> {_star2.Object, _star3.Object, _star1.Object, _star4.Object});
-            _contextFactory = new ContextFactory(true);
+            _contextFactory = new ContextFactory("UniverseConnection", true);
             var context = _contextFactory.Retrieve();
             var cache = new DalCache();
             var repos = new UowRepositories();
             var repoFactories = new UowRepositoryFactories(context, cache, repos);
-            _uow = new MainUow(context, repoFactories);
+            _uow = new TestUow(context, repoFactories);
 
             _uow.StarRepository.Add(_star1.Object);
             _uow.StarRepository.Add(_star2.Object);
@@ -60,7 +60,7 @@ namespace BusinessTest.Information
         [TestMethod]
         public void TestStarsInRange()
         {
-            var retrieve = new RetrieveInformations(_uow, new IntRange(20, 50), new IntRange(0, 100));
+            var retrieve = new RetrieveInformations(_uow, new IntRange(20, 50), new IntRange(0, 100), true);
             var stars = retrieve.StarsInRange(string.Empty);
             Assert.AreEqual(2, stars.Count);
         }

@@ -29,9 +29,9 @@ namespace BLL.Generation.StarSystem.IstanceFactory
             return new SatelliteBuilder();
         }
 
-        public static StarPlacer RetrieveStarPlacer(IUnitOfWork uow)
+        public static StarPlacer RetrieveStarPlacer(IUnitOfWork uow,bool isTest)
         {
-            return new StarPlacer(uow);
+            return new StarPlacer(uow,isTest);
         }
         [Obsolete]
         public static PlanetCustomConditions RetrieveConditions(bool water, bool foodRich, bool foodPoor, bool mineralPoor, bool mineralRich, bool mostlyWater, bool forceLiving)
@@ -45,12 +45,12 @@ namespace BLL.Generation.StarSystem.IstanceFactory
             return new PlanetCustomConditions(false, false, false, false, false, false, false);
         }
 
-        public static StarSystemGenerator RetrieveStarSystemGenerator(Random rnd, IUnitOfWork uow, SystemGenerationDto systemGenerationDto)
+        public static StarSystemGenerator RetrieveStarSystemGenerator(Random rnd, IUnitOfWork uow, SystemGenerationDto systemGenerationDto,bool isTest=false)
         {
             return new StarSystemGenerator(
                 RetrieveNewFactory(systemGenerationDto, rnd),
                 RetrieveStarBuilder(),
-                RetrieveStarPlacer(uow),
+                RetrieveStarPlacer(uow, isTest),
                 UtilitiesFactory.RetrieveRange(systemGenerationDto.MinX,systemGenerationDto.MaxX),
                 UtilitiesFactory.RetrieveRange(systemGenerationDto.MinY,systemGenerationDto.MaxY));
         }

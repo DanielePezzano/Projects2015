@@ -25,6 +25,11 @@ namespace UnitOfWork.Implementations.Context
             IsTest = true;
         }
 
+        public bool SaveChanges()
+        {
+            return true;
+        }
+
         public List<Galaxy> Galaxys { get; set; }
         public List<Star> Stars { get; set; }
         public List<Satellite> Satellites { get; set; }

@@ -5,13 +5,15 @@ using BLL.Information.Struct;
 using BLL.Utilities.Structs;
 using Models.Universe;
 using UnitOfWork.Implementations.Uows;
+using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace BLL.Information
 {
     public sealed class RetrieveInformations : IDisposable
     {
-        private readonly MainUow _mainUow;
+        private readonly IUnitOfWork _mainUow;
         private bool _disposed;
+        private bool _isTest;
         private IntRange _rangeX;
         private IntRange _rangeY;
 
@@ -21,18 +23,20 @@ namespace BLL.Information
         /// <param name="uow"></param>
         /// <param name="rangeX"></param>
         /// <param name="rangeY"></param>
-        public RetrieveInformations(MainUow uow, IntRange rangeX, IntRange rangeY)
+        /// <param name="isTest"></param>
+        public RetrieveInformations(IUnitOfWork uow, IntRange rangeX, IntRange rangeY, bool isTest=false)
         {
             if (uow != null) _mainUow = uow;
             else throw new ArgumentNullException(nameof(uow));
             _rangeX = rangeX;
             _rangeY = rangeY;
+            _isTest = isTest;
         }
 
         /// <summary>
         ///     Costruttore generico
         /// </summary>
-        public RetrieveInformations(MainUow uow)
+        public RetrieveInformations(ProductionUow uow)
         {
             if (uow != null) _mainUow = uow;
             else throw new ArgumentNullException(nameof(uow));
@@ -42,8 +46,8 @@ namespace BLL.Information
         {
             if (_disposed) return;
             _disposed = true;
-            _mainUow?.Dispose();
-            //GC.SuppressFinalize(this);
+            if (_isTest) ((TestUow)_mainUow)?.Dispose();
+            else ((ProductionUow)_mainUow)?.Dispose();
         }
 
         /// <summary>
@@ -56,8 +60,11 @@ namespace BLL.Information
             List<Star> result;
             try
             {
-                result =
-                    _mainUow.StarRepository.FindBy(
+                result = (_isTest) ? ((TestUow)_mainUow)?.StarRepository.FindBy(
+                        c =>
+                            c.CoordinateX >= _rangeX.Min && c.CoordinateY <= _rangeX.Max && c.CoordinateY >= _rangeY.Min &&
+                            c.CoordinateY <= _rangeY.Max, cacheKey).OrderBy(c => c.Id).ToList():
+                    ((ProductionUow)_mainUow)?.StarRepository.FindBy(
                         c =>
                             c.CoordinateX >= _rangeX.Min && c.CoordinateY <= _rangeX.Max && c.CoordinateY >= _rangeY.Min &&
                             c.CoordinateY <= _rangeY.Max, cacheKey).OrderBy(c => c.Id).ToList();
@@ -65,8 +72,11 @@ namespace BLL.Information
             catch (InvalidCastException)
             {
                 //Accade soltanto in fase di test, perché l'unità di lavoro del repository di test non implementa FindBy
-                result =
-                    _mainUow.StarRepository.Get(string.Empty,
+                result = (_isTest) ?((TestUow)_mainUow)?.StarRepository.Get(string.Empty,
+                        c =>
+                            c.CoordinateX >= _rangeX.Min && c.CoordinateY <= _rangeX.Max && c.CoordinateY >= _rangeY.Min &&
+                            c.CoordinateY <= _rangeY.Max).ToList():
+                            ((ProductionUow)_mainUow)?.StarRepository.Get(string.Empty,
                         c =>
                             c.CoordinateX >= _rangeX.Min && c.CoordinateY <= _rangeX.Max && c.CoordinateY >= _rangeY.Min &&
                             c.CoordinateY <= _rangeY.Max).ToList();
@@ -81,13 +91,15 @@ namespace BLL.Information
         public List<DropDownInfo> GetUniverseList()
         {
             var result = new List<DropDownInfo>();
-            foreach (
-                var item in _mainUow.GalaxyRepository.GetAll("RetrieveUniverseListForm").Select(c => new {c.Name, c.Id})
-                )
-            {
-                var toAdd = new DropDownInfo(item.Id, item.Name);
-                result.Add(toAdd);
-            }
+            var collection = (_isTest)
+                ? ((TestUow) _mainUow)?.GalaxyRepository.GetAll("RetrieveUniverseListForm")
+                    .Select(c => new {c.Name, c.Id})
+                : ((ProductionUow) _mainUow)?.GalaxyRepository.GetAll("RetrieveUniverseListForm")
+                    .Select(c => new {c.Name, c.Id});
+
+            if (collection == null) return result;
+
+            result.AddRange(collection.Select(item => new DropDownInfo(item.Id, item.Name)));
             return result;
         }
     }

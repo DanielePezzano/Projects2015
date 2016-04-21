@@ -53,14 +53,14 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestPlanetGeneration()
         {
-            using (var cf = new ContextFactory(true))
+            using (var cf = new ContextFactory("UniverseConnection", true))
             {
                 var context = cf.Retrieve();
                 var cache = new DalCache();
                 var repos = new UowRepositories();
                 using (var repoFactories = new UowRepositoryFactories(context, cache, repos))
                 {
-                    using (var uow = new MainUow(context, repoFactories))
+                    using (var uow = new TestUow(context, repoFactories))
                     {
                         uow.StarRepository.CustomDbset(new List<Star>());
 
@@ -76,8 +76,8 @@ namespace BusinessTest.Generation.StarSystem
                                 MineralRich = false,
                                 MineralPoor = false,
                                 MinX = 0,MaxX = 10,MinY = 0,MaxY = 10
-                            
-                            });
+
+                            }, true);
 
                         var star = generator.Generate(OrbitGeneratorTest.Rnd,  "");
 
@@ -95,14 +95,14 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestOneLivingPlanet()
         {
-            using (var cf = new ContextFactory(true))
+            using (var cf = new ContextFactory("UniverseConnection", true))
             {
                 var context = cf.Retrieve();
                 var cache = new DalCache();
                 var repos = new UowRepositories();
                 using (var repoFactories = new UowRepositoryFactories(context, cache, repos))
                 {
-                    using (var uow = new MainUow(context, repoFactories))
+                    using (var uow = new TestUow(context, repoFactories))
                     {
                         uow.StarRepository.CustomDbset(new List<Star>());
 
@@ -121,7 +121,7 @@ namespace BusinessTest.Generation.StarSystem
                                 MinY = 0,
                                 MaxY = 10
 
-                            });
+                            },true);
 
                         var star = generator.Generate(OrbitGeneratorTest.Rnd,  "");
 
@@ -136,14 +136,14 @@ namespace BusinessTest.Generation.StarSystem
          [TestMethod]
         public void TestOneMostlyWater()
         {
-            using (var cf = new ContextFactory(true))
+            using (var cf = new ContextFactory("UniverseConnection", true))
             {
                 var context = cf.Retrieve();
                 var cache = new DalCache();
                 var repos = new UowRepositories();
                 using (var repoFactories = new UowRepositoryFactories(context, cache, repos))
                 {
-                    using (var uow = new MainUow(context, repoFactories))
+                    using (var uow = new TestUow(context, repoFactories))
                     {
                         uow.StarRepository.CustomDbset(new List<Star>());
 
@@ -162,7 +162,7 @@ namespace BusinessTest.Generation.StarSystem
                                 MinY = 0,
                                 MaxY = 10
 
-                            });
+                            }, true);
 
                         var star = generator.Generate(OrbitGeneratorTest.Rnd, "");
 

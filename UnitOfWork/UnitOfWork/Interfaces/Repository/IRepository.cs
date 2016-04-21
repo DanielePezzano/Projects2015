@@ -8,10 +8,9 @@ namespace UnitOfWork.Interfaces.Repository
 {
     public interface IRepository<T> where T : BaseEntity
     {
-        IQueryable<T> GetAll(string cacheKey);
+        
         T GetByKey(int id, string cacheKey);
         void CustomDbset(List<T> setter);
-        IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string cacheKey);
         IEnumerable<T> Get(
             string cacheKey,
             Expression<Func<T, bool>> filter = null,

@@ -1,5 +1,4 @@
-﻿
-namespace UnitOfWork.Interfaces.Context
+﻿namespace UnitOfWork.Interfaces.Context
 {
     public interface IContext
     {
