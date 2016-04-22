@@ -58,11 +58,6 @@
     <Compile Include="CallsStatusResponse.cs" />
     <Compile Include="CallStartSentences.cs" />
     <Compile Include="ConfAppSettings.cs" />
-    <Compile Include="DataMapper\BuildingEntityMapper.cs" />
-    <Compile Include="DataMapper\BuildingSpecEntityMapper.cs" />
-    <Compile Include="DataMapper\RaceEntityMapper.cs" />
-    <Compile Include="DataMapper\TechnologyBonusEntityMapper.cs" />
-    <Compile Include="DataMapper\TechnologyEntityMapper.cs" />
     <Compile Include="Form\Account\ExternalLogin.cs" />
     <Compile Include="Form\Account\LocalPasswordModel.cs" />
     <Compile Include="Form\Account\LoginModel.cs" />
@@ -94,7 +89,9 @@
     <Compile Include="Universe\Fleet\ShieldDto.cs" />
     <Compile Include="Universe\Fleet\ShipClassDto.cs" />
     <Compile Include="Universe\Fleet\SystemsDto.cs" />
+    <Compile Include="Universe\Mails\MailDto.cs" />
     <Compile Include="Universe\Planets\PlanetDto.cs" />
+    <Compile Include="Universe\Queues\ResearchDto.cs" />
     <Compile Include="Universe\Race\RaceBonusDto.cs" />
     <Compile Include="Universe\Race\RaceDto.cs" />
     <Compile Include="Universe\Sector\SectorDto.cs" />
@@ -103,6 +100,7 @@
     <Compile Include="Universe\Stars\StarDto.cs" />
     <Compile Include="Universe\Technology\TechnologyBonusDto.cs" />
     <Compile Include="Universe\Technology\TechnologyDto.cs" />
+    <Compile Include="Universe\User\UserDto.cs" />
     <Compile Include="UtilityDto\SystemGenerationDto.cs" />
     <Compile Include="UtilityDto\RetrievingInfoDto.cs" />
     <Compile Include="UtilityDto\UniverseRangeDto.cs" />
@@ -113,7 +111,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Universe\Fleet\ShipClassDetails\" />
-    <Folder Include="Universe\User\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ModelResources.resx">

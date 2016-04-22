@@ -96,7 +96,7 @@ namespace DAL.Mappers.Universe
                 ActivePopOnOreProduction = planetEntity.SatelliteProduction.ActivePopOnOreProduction,
                 ActivePopOnResProduction = planetEntity.SatelliteProduction.ActivePopOnResProduction,
                 AtmospherePresent = planetEntity.AtmospherePresent,
-                //Buildings = BuildingEntityMapper.EntityListToModel(planetEntity.Buildings),
+                Buildings = MapperFactory.RetrieveBuildingMapper(UnitOfWork,IsTest).EntityListToModel(planetEntity.Buildings),
                 DistanceR = planetEntity.Orbit.DistanceR,
                 Eccentricity = planetEntity.Orbit.Eccentricity,
                 FoodProduction = planetEntity.SatelliteProduction.FoodProduction,

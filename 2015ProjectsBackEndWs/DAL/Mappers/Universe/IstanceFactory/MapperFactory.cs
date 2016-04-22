@@ -8,5 +8,15 @@ namespace DAL.Mappers.Universe.IstanceFactory
         {
             return new PlanetMapper(uow,IsTest);
         }
+
+        public static BuildingMapper RetrieveBuildingMapper(IUnitOfWork uow, bool isTest = false)
+        {
+            return new BuildingMapper(uow, isTest);
+        }
+
+        public static BuildingSpecsMapper RetrieveBuildingSpecsMapper(IUnitOfWork uow, bool isTest = false)
+        {
+            return new BuildingSpecsMapper(uow, isTest);
+        }
     }
 }

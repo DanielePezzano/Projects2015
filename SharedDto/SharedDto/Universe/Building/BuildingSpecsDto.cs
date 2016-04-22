@@ -1,10 +1,11 @@
 ﻿using System.Runtime.Serialization;
 using Models.Tech.Enum;
+using SharedDto.Interfaces;
 
 namespace SharedDto.Universe.Building
 {
     [DataContract]
-    public class BuildingSpecsDto
+    public class BuildingSpecsDto:IDto
     {
         [DataMember]
         public BonusType Bonus { get; set; }

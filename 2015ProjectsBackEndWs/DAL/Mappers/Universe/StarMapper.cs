@@ -35,7 +35,6 @@ namespace DAL.Mappers.Universe
             Entity =new Star()
             {
                 Id = starDto.StarId,
-                //Galaxy = 
                 Planets = MapperFactory.RetrievePlanetMapper(UnitOfWork, IsTest).ModelListToEntity(starDto.Planets),
                 CoordinateX = starDto.PositionX,
                 CoordinateY = starDto.PositionY,

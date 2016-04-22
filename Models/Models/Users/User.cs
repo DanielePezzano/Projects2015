@@ -36,23 +36,7 @@ namespace Models.Users
         [Display(Name = "UserImg", ResourceType = typeof (Resources))]
         [DataMember]
         public string Photo { get; set; }
-
-        [DataMember]
-        [Display(Name = "ScoreConstruction", ResourceType = typeof (Resources))]
-        public int ScoreConstruction { get; set; }
-
-        [Display(Name = "ScoreResearch", ResourceType = typeof (Resources))]
-        [DataMember]
-        public int ScoreResearch { get; set; }
-
-        [Display(Name = "ScoreMilitary", ResourceType = typeof (Resources))]
-        [DataMember]
-        public int ScoreMilitary { get; set; }
-
-        [Display(Name = "ScoreCultural", ResourceType = typeof (Resources))]
-        [DataMember]
-        public int ScoreCultural { get; set; }
-
+        
         [Display(Name = "UserStatus", ResourceType = typeof (Resources))]
         [DataMember]
         [EnumDataType(typeof (UserStatus))]

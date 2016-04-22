@@ -53,9 +53,13 @@
   <ItemGroup>
     <Compile Include="Mappers\BaseClasses\BaseMapper.cs" />
     <Compile Include="Mappers\Interfaces\IMapper.cs" />
+    <Compile Include="Mappers\Universe\BuildingMapper.cs" />
+    <Compile Include="Mappers\Universe\BuildingSpecsMapper.cs" />
     <Compile Include="Mappers\Universe\IstanceFactory\MapperFactory.cs" />
     <Compile Include="Mappers\Universe\PlanetMapper.cs" />
     <Compile Include="Mappers\Universe\StarMapper.cs" />
+    <Compile Include="Mappers\User\IstanceFactory\MapperFactory.cs" />
+    <Compile Include="Mappers\User\UserMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +84,8 @@
     <Folder Include="Mappers\IstanceFactory\" />
     <Folder Include="Mappers\Universe\BaseClasses\" />
     <Folder Include="Mappers\Universe\Interfaces\" />
+    <Folder Include="Mappers\User\BaseClasses\" />
+    <Folder Include="Mappers\User\Interfaces\" />
     <Folder Include="Operations\BaseClasses\" />
     <Folder Include="Operations\Interfaces\" />
     <Folder Include="Operations\IstanceFactory\" />

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Models.Buildings.Enums;
+using SharedDto.Interfaces;
 
 namespace SharedDto.Universe.Building
 {
     [DataContract]
-    public class BuildingDto
+    public class BuildingDto:IDto
     {
         [DataMember]
         public int Id { get; set; }
