@@ -16,6 +16,7 @@ using UnitOfWork.Implementations.Uows.UowDto;
 
 namespace _2015ProjectsBackEndWs.ServiceLogic
 {
+    [Obsolete]
     public sealed class GetOnly : IDisposable
     {
         private readonly ContextFactory _factory;
@@ -75,7 +76,8 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
             var rangeX = new IntRange(universeRage.MinX, universeRage.MaxX);
             var rangeY = new IntRange(universeRage.MinY, universeRage.MaxY);
             var starEntities = RetrieveInformation(ref rangeX, ref rangeY);
-            return starEntities != null ? StarEntityMapper.EntityListToModel(starEntities) : new List<StarDto>();
+            //return starEntities != null ? StarEntityMapper.EntityListToModel(starEntities) : new List<StarDto>();
+            return new List<StarDto>();
         }
 
         /// <summary>
@@ -85,11 +87,11 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
         {
             var cacheKey = "SelectPlanetWhereId=" + id;
             PlanetDto result;
-            using (var retrieve = new RetrievePlanetInformation(_mainUow, id))
-            {
-                result = PlanetEntityMapper.EntityToModel(retrieve.Retrieve(cacheKey));
-            }
-            return result;
+            //using (var retrieve = new RetrievePlanetInformation(_mainUow, id))
+            //{
+            //    result = PlanetEntityMapper.EntityToModel(retrieve.Retrieve(cacheKey));
+            //}
+            return new PlanetDto();
         }
 
         /// <summary>

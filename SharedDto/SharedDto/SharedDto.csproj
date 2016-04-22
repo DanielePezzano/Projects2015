@@ -60,9 +60,7 @@
     <Compile Include="ConfAppSettings.cs" />
     <Compile Include="DataMapper\BuildingEntityMapper.cs" />
     <Compile Include="DataMapper\BuildingSpecEntityMapper.cs" />
-    <Compile Include="DataMapper\PlanetEntityMapper.cs" />
     <Compile Include="DataMapper\RaceEntityMapper.cs" />
-    <Compile Include="DataMapper\StarEntityMapper.cs" />
     <Compile Include="DataMapper\TechnologyBonusEntityMapper.cs" />
     <Compile Include="DataMapper\TechnologyEntityMapper.cs" />
     <Compile Include="Form\Account\ExternalLogin.cs" />
@@ -72,6 +70,7 @@
     <Compile Include="Form\Account\RegisterModel.cs" />
     <Compile Include="Form\Universe\GalaxyForm.cs" />
     <Compile Include="Form\Universe\GalaxyList.cs" />
+    <Compile Include="Interfaces\IDto.cs" />
     <Compile Include="ProcessSerialization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ModelResources.Designer.cs">

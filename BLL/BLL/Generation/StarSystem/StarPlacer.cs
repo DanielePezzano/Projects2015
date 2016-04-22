@@ -74,7 +74,7 @@ namespace BLL.Generation.StarSystem
                 validCoordinates = ValidPlace(coord);
             }
             star.PositionX = coord.X;
-            star.PositgionY = coord.Y;
+            star.PositionY = coord.Y;
         }
 
         #region Wrapper for testing private methods

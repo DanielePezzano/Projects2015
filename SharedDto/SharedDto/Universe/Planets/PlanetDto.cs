@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Models.Base.Enum;
 using Models.Universe.Enum;
+using SharedDto.Interfaces;
 using SharedDto.Universe.Building;
 using SharedDto.Universe.Fleet;
 
 namespace SharedDto.Universe.Planets
 {
     [DataContract]
-    public class PlanetDto
+    public class PlanetDto:IDto
     {
         [DataMember]
         public int Id { get; set; }
