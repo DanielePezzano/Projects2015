@@ -1,35 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
-using DAL.Mappers.Universe.IstanceFactory;
+using DAL.Operations;
+using DAL.Operations.BaseClasses;
 using Models.Base;
-using Models.Universe;
-using Models.Universe.Enum;
+using Models.Users.Enum;
 using SharedDto.Interfaces;
-using SharedDto.Universe.Stars;
-using UnitOfWork.Implementations.Uows;
-using UnitOfWork.Interfaces.UnitOfWork;
+using SharedDto.Universe.User;
 
 namespace DAL.Mappers.User
 {
     class UserMapper : BaseMapper, IMapper
     {
-        public UserMapper(IUnitOfWork uow, bool isTest=false) : base(uow, isTest)
+        public UserMapper(string connectionString, BaseOperations operations, bool isTest = false)
+            : base(isTest, connectionString, operations)
         {
         }
 
         public override bool ExistsEntity()
         {
-            return (IsTest)
-                ? ((TestUow) UnitOfWork)?.UserRepository.Count(c => c.Id == Entity.Id,"USERCOUNT"+Entity.Id) > 0
-                : ((ProductionUow) UnitOfWork)?.UserRepository.Count(c => c.Id == Entity.Id,"USERCOUNT"+Entity.Id) > 0;
+             var cacheKey = $"USERCOUNT{Entity.Id}";
+            return Operations.Any(MappedRepositories.PlanetRepository, Entity.Id, cacheKey);
         }
 
         public BaseEntity MapToEntity(IDto dto)
         {
-            throw new NotImplementedException();
+            var userDto = (UserDto) dto;
+            Entity = new Models.Users.User()
+            {
+                Id = userDto.Id,
+                Email = userDto.Email,
+                Photo = userDto.Photo,
+                RaceName = userDto.Race.RaceName,
+                RacePointsUsed = userDto.Race.RacePointsUsed,
+                Status = (UserStatus)Enum.Parse(typeof(UserStatus),userDto.Status),
+                UpdatedAt = DateTime.Now,
+                UserName = userDto.Username,
+                Planets = 
+            };
         }
 
         public IDto MapToDto(BaseEntity entity)

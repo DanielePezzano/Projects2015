@@ -9,7 +9,7 @@ using UnitOfWork.Interfaces.Repository;
 
 namespace UnitOfWork.Implementations.Repository.BaseRepository
 {
-    public class RepositoryTest<T> : IRepository<T>,ITestableRepository<T> where T : BaseEntity
+    public class RepositoryTest<T> :BaseRepository, IRepository<T>,ITestableRepository<T> where T : BaseEntity
     {
         internal TestContext Context;
         internal List<T> DbSet;
@@ -83,6 +83,11 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
         public int Count(Expression<Func<T, bool>> predicate, string cacheKey)
         {
             return DbSet.Count(predicate.Compile());
+        }
+
+        public bool Any(Expression<Func<T, bool>> predicate, string cacheKey)
+        {
+            return DbSet.Count(predicate.Compile()) > 0;
         }
 
         public IEnumerable<T> GetAll(string cacheKey)

@@ -1,19 +1,23 @@
-﻿using Models.Base;
-using UnitOfWork.Interfaces.UnitOfWork;
+﻿using System;
+using DAL.Operations.BaseClasses;
+using Models.Base;
 
 namespace DAL.Mappers.BaseClasses
 {
     public abstract class BaseMapper
     {
-        public bool ExsistEntity { get; set; }
-        protected bool IsTest { get; set; }
-        protected IUnitOfWork UnitOfWork { get; set; }
-        protected BaseEntity Entity { get; set; }
+        protected BaseOperations Operations { get; set; }
+        public bool ExsistEntity;
+        protected bool IsTest;
+        protected BaseEntity Entity;
+        protected string ConnectionString;
 
-        protected BaseMapper(IUnitOfWork uow, bool isTest)
+        protected BaseMapper(bool isTest, string connectionString, BaseOperations operations)
         {
+            if (operations == null) throw new ArgumentNullException(nameof(operations));
+            Operations = operations;
             IsTest = isTest;
-            UnitOfWork = uow;
+            ConnectionString = connectionString;
         }
 
         public abstract bool ExistsEntity();

@@ -4,19 +4,19 @@ using System.Linq;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
 using DAL.Mappers.Universe.IstanceFactory;
+using DAL.Operations;
+using DAL.Operations.BaseClasses;
 using Models.Base;
 using Models.Buildings;
 using SharedDto.Interfaces;
 using SharedDto.Universe.Building;
-using UnitOfWork.Implementations.Uows;
-using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace DAL.Mappers.Universe
 {
     public class BuildingMapper : BaseMapper, IMapper
     {
 
-        public BuildingMapper(IUnitOfWork uow,bool isTest=false):base(uow,isTest)
+        public BuildingMapper(string connectionString,BaseOperations operations,bool isTest=false):base(isTest,connectionString,operations)
         {
             
         }
@@ -52,7 +52,7 @@ namespace DAL.Mappers.Universe
             {
                 BuildingType = buildingEntity.BuildingType,
                 Description = buildingEntity.Description,
-                Details = MapperFactory.RetrieveBuildingSpecsMapper(UnitOfWork,IsTest).EntityListToModel(buildingEntity.BuildingSpecs),
+                Details = MapperFactory.RetrieveBuildingSpecsMapper(ConnectionString,Operations,IsTest).EntityListToModel(buildingEntity.BuildingSpecs),
                 Id = buildingEntity.Id,
                 MoneyCost = buildingEntity.MoneyCost,
                 MoneyMaintenanceCost = buildingEntity.MoneyMaintenanceCost,
@@ -68,9 +68,8 @@ namespace DAL.Mappers.Universe
 
         public override bool ExistsEntity()
         {
-            return (IsTest)
-                ? ((TestUow) UnitOfWork)?.BuildingRepository.Count(c => c.Id == Entity.Id,"COUNTBUILDING"+Entity.Id) > 0
-                : ((ProductionUow) UnitOfWork)?.BuildingRepository.Count(c => c.Id == Entity.Id,"COUNTBUILDING"+Entity.Id) > 0;
+            var cacheKey = $"COUNTBUILDING{Entity.Id}";
+            return Operations.Any(MappedRepositories.BuildingRepository, Entity.Id, cacheKey);
         }
 
 

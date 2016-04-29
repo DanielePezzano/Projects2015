@@ -13,7 +13,7 @@ using UnitOfWork.Interfaces.Repository;
 
 namespace UnitOfWork.Implementations.Repository.BaseRepository
 {
-    public class RepositoryProduction<T> : IRepository<T>,IQueryableRepository<T>,IAsyncRepository<T> where T : BaseEntity
+    public class RepositoryProduction<T> :BaseRepository, IRepository<T>,IQueryableRepository<T>,IAsyncRepository<T> where T : BaseEntity
     {
         internal ProductionContext Context;
         internal DbSet<T> DbSet;
@@ -167,6 +167,25 @@ namespace UnitOfWork.Implementations.Repository.BaseRepository
             }
             else
                 result = DbSet.Count(predicate);
+            return result;
+        }
+
+        public bool Any(Expression<Func<T, bool>> predicate, string cacheKey)
+        {
+            bool result;
+            if (!string.IsNullOrEmpty(cacheKey))
+            {
+                var cached = RepoCache.GetMyCachedItem(cacheKey);
+                if (cached == null)
+                {
+                    result = DbSet.Count(predicate) > 0;
+                    RepoCache.AddToMyCache(cacheKey, result, DalCachePriority.Default);
+                }
+                else
+                    result = (bool) cached;
+            }
+            else
+                result = DbSet.Count(predicate) > 0;
             return result;
         }
 

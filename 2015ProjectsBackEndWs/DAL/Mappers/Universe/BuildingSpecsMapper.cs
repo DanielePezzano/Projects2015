@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
+using DAL.Operations;
+using DAL.Operations.BaseClasses;
 using Models.Base;
 using Models.Buildings;
 using SharedDto.Interfaces;
 using SharedDto.Universe.Building;
-using UnitOfWork.Implementations.Uows;
-using UnitOfWork.Interfaces.UnitOfWork;
 namespace DAL.Mappers.Universe
 {
     public class BuildingSpecsMapper : BaseMapper, IMapper
     {
-        public BuildingSpecsMapper(IUnitOfWork uow, bool isTest) : base(uow, isTest)
+        public BuildingSpecsMapper(string connectionString,BaseOperations operations,bool isTest=false):base(isTest,connectionString,operations)
         {
         }
 
         public override bool ExistsEntity()
         {
-            return (IsTest)
-                ? ((TestUow) UnitOfWork)?.BuildingSpecRepository.Count(c => c.Id == Entity.Id,"COUNTBUILDINGSPECS"+Entity.Id) > 0
-                : ((ProductionUow) UnitOfWork)?.BuildingSpecRepository.Count(c => c.Id == Entity.Id,"COUNTBUILDINGSPECS"+Entity.Id) > 0;
+            var cacheKey = $"COUNTBUILDINGSPECS{Entity.Id}";
+            return Operations.Any(MappedRepositories.BuildingSpecRepository, Entity.Id, cacheKey);
         }
 
         public BaseEntity MapToEntity(IDto dto)

@@ -20,5 +20,6 @@ namespace UnitOfWork.Interfaces.Repository
         void Edit(T entity);
         int Count(string cacheKey);
         int Count(Expression<Func<T, bool>> predicate, string cacheKey);
+        bool Any(Expression<Func<T, bool>> predicate, string cacheKey);
     }
 }

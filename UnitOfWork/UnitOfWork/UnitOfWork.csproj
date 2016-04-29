@@ -58,8 +58,10 @@
     <Compile Include="Implementations\Context\ContextFactory.cs" />
     <Compile Include="Implementations\Context\ProductionContext.cs" />
     <Compile Include="Implementations\Context\TestContext.cs" />
+    <Compile Include="Implementations\Repository\BaseRepository\BaseRepository.cs" />
     <Compile Include="Implementations\Repository\BaseRepository\RepositoryProduction.cs" />
     <Compile Include="Implementations\Repository\BaseRepository\RepositoryTest.cs" />
+    <Compile Include="Implementations\Repository\Enums\RepositoryTypeList.cs" />
     <Compile Include="Implementations\Repository\RepositoryFactory.cs" />
     <Compile Include="Implementations\Uows\BaseClass\BaseUow.cs" />
     <Compile Include="Implementations\Uows\ProductionUow.cs" />
@@ -83,9 +85,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implementations\Repository\enum\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\Models\Models\Models.csproj">
       <Project>{0309e052-c6a1-4c0f-adfd-6fd8b4c1cd2a}</Project>

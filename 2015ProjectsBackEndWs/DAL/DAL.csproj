@@ -60,6 +60,11 @@
     <Compile Include="Mappers\Universe\StarMapper.cs" />
     <Compile Include="Mappers\User\IstanceFactory\MapperFactory.cs" />
     <Compile Include="Mappers\User\UserMapper.cs" />
+    <Compile Include="Operations\BaseClasses\BaseOperations.cs" />
+    <Compile Include="Operations\Extensions\OpExtensions.cs" />
+    <Compile Include="Operations\IstanceFactory\OperationsFactory.cs" />
+    <Compile Include="Operations\MappedRepositories.cs" />
+    <Compile Include="Operations\SpecificOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,9 +91,7 @@
     <Folder Include="Mappers\Universe\Interfaces\" />
     <Folder Include="Mappers\User\BaseClasses\" />
     <Folder Include="Mappers\User\Interfaces\" />
-    <Folder Include="Operations\BaseClasses\" />
     <Folder Include="Operations\Interfaces\" />
-    <Folder Include="Operations\IstanceFactory\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
