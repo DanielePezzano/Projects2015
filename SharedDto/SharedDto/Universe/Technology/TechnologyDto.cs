@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using SharedDto.BaseClasses;
+using SharedDto.Interfaces;
 
 namespace SharedDto.Universe.Technology
 {
     [DataContract]
-    public class TechnologyDto
+    public class TechnologyDto : BaseDto,IDto
     {
-        [DataMember]
-        public int Id { get; set; }
         [DataMember]
         public string Name { get; set; }
         [DataMember]

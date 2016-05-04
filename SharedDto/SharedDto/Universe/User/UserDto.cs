@@ -31,7 +31,9 @@ namespace SharedDto.Universe.User
         [DataMember]
         public List<MailDto> Messages { get; set; }
         [DataMember]
-        public List<PlanetDto> PlanetsAndSatellites { get; set; }
+        public List<PlanetDto> Planets { get; set; }
+        [DataMember]
+        public List<PlanetDto> Satellites { get; set; }
         [DataMember]
         public List<TechnologyDto> Technologies { get; set; }
         [DataMember]

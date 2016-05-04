@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using SharedDto.BaseClasses;
+using SharedDto.Interfaces;
 
 namespace SharedDto.Universe.Fleet
 {
     [DataContract]
-    public class ShipClassDto
+    public class ShipClassDto : BaseDto, IDto, ICosts
     {
         [DataMember]
         public int StructurePoints { get; set; }
@@ -28,10 +30,6 @@ namespace SharedDto.Universe.Fleet
         public int MoneyMaintenanceCost { get; set; }
         [DataMember]
         public int OreMaintenanceCost { get; set; }
-        [DataMember]
-        public int UserId { get; set; }
-        [DataMember]
-        public int Id { get; set; }
         [DataMember]
         public List<HullDto> HullDtos { get; set; }
     }

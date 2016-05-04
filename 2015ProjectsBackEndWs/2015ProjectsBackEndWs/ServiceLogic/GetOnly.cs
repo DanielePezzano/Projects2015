@@ -5,7 +5,6 @@ using BLL.Information;
 using BLL.Utilities.Structs;
 using Models.Universe;
 using SharedDto;
-using SharedDto.DataMapper;
 using SharedDto.Form.Universe;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Stars;

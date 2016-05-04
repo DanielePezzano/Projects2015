@@ -33,7 +33,7 @@ namespace DAL.Mappers.Universe
             var starDto = (StarDto) dto;
             Entity =new Star()
             {
-                Id = starDto.StarId,
+                Id = starDto.Id,
                 Planets = MapperFactory.RetrievePlanetMapper(ConnectionString,Operations,IsTest).ModelListToEntity(starDto.Planets),
                 CoordinateX = starDto.PositionX,
                 CoordinateY = starDto.PositionY,
@@ -65,13 +65,19 @@ namespace DAL.Mappers.Universe
                 StarColor = starEntity.StarColor.ToString(),
                 StarType = starEntity.StarType.ToString(),
                 SurfaceTemp = starEntity.SurfaceTemp,
-                StarId = entity.Id
+                Id = entity.Id
             };
         }
 
         public List<StarDto> EntityListToModel(ICollection<Star> entityList)
         {
             return entityList.Select(MapToDto).Select(dto => dto).Cast<StarDto>().ToList();
+        }
+
+        
+        public List<Star> ModelListToEntity(List<StarDto> entityList)
+        {
+            return entityList.Select(MapToEntity).Select(dto => dto).Cast<Star>().ToList();
         }
     }
 }

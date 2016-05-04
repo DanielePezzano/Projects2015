@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Models.Races.Enums;
+using SharedDto.BaseClasses;
+using SharedDto.Interfaces;
 
 namespace SharedDto.Universe.Race
 {
     [DataContract]
-    public class RaceBonusDto
+    public class RaceBonusDto :BaseDto, IDto
     {
         [EnumDataType(typeof(RaceTraitsBonuses))]
         [DataMember]

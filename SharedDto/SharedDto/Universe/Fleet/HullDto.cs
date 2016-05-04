@@ -1,15 +1,20 @@
 ﻿
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Security.AccessControl;
+using SharedDto.BaseClasses;
+using SharedDto.Interfaces;
 
 namespace SharedDto.Universe.Fleet
 {
     [DataContract]
-    public class HullDto
+    public class HullDto :BaseDto, IDto
     {
         [DataMember]
         public int TotalSpaces { get; set; }
+        [DataMember]
+        public string Name { get; set; }
+        [DataMember]
+        public string Description { get; set; }
         [DataMember]
         public int UsedSpaces { get; set; }
         [DataMember]

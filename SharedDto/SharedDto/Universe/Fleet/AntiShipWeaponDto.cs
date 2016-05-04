@@ -1,10 +1,12 @@
 ﻿
 using System.Runtime.Serialization;
+using SharedDto.BaseClasses;
+using SharedDto.Interfaces;
 
 namespace SharedDto.Universe.Fleet
 {
     [DataContract]
-    public class AntiShipWeaponDto
+    public class AntiShipWeaponDto : BaseDto, IDto, ICosts, ISpaces
     {
         [DataMember]
         public string Name { get; set; }
@@ -29,6 +31,14 @@ namespace SharedDto.Universe.Fleet
         [DataMember]
         public int RayOfFire { get; set; }
         [DataMember]
-        public int TechnologyId { get; set; }
+        public int OreCost { get; set; }
+        [DataMember]
+        public int MoneyCost { get; set; }
+        [DataMember]
+        public int OreMaintenanceCost { get; set; }
+        [DataMember]
+        public int MoneyMaintenanceCost { get; set; }
+        [DataMember]
+        public int SpacesNeeded { get; set; }
     }
 }

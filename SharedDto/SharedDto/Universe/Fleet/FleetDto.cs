@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Models.Universe.Strcut;
+using SharedDto.BaseClasses;
+using SharedDto.Interfaces;
 
 namespace SharedDto.Universe.Fleet
 {
     [DataContract]
-    public class FleetDto
+    public class FleetDto : BaseDto,IDto
     {
         [DataMember]
         public int FleetId { get; set; }

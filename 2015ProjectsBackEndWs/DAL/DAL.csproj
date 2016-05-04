@@ -52,13 +52,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mappers\BaseClasses\BaseMapper.cs" />
+    <Compile Include="Mappers\Fleets\AntiPlanetWeaponMapper.cs" />
+    <Compile Include="Mappers\Fleets\AntiShipWeaponMapper.cs" />
+    <Compile Include="Mappers\Fleets\ArmorMapper.cs" />
+    <Compile Include="Mappers\Fleets\EngineMapper.cs" />
+    <Compile Include="Mappers\Fleets\FleetMapper.cs" />
+    <Compile Include="Mappers\Fleets\Enums\FleetMapperTypes.cs" />
+    <Compile Include="Mappers\Fleets\HullMapper.cs" />
+    <Compile Include="Mappers\Fleets\IstanceFactory\FleetMapperFactory.cs" />
+    <Compile Include="Mappers\Fleets\ShieldMapper.cs" />
+    <Compile Include="Mappers\Fleets\ShipClassMapper.cs" />
+    <Compile Include="Mappers\Fleets\SystemsMapper.cs" />
     <Compile Include="Mappers\Interfaces\IMapper.cs" />
     <Compile Include="Mappers\Universe\BuildingMapper.cs" />
     <Compile Include="Mappers\Universe\BuildingSpecsMapper.cs" />
     <Compile Include="Mappers\Universe\IstanceFactory\MapperFactory.cs" />
     <Compile Include="Mappers\Universe\PlanetMapper.cs" />
     <Compile Include="Mappers\Universe\StarMapper.cs" />
-    <Compile Include="Mappers\User\IstanceFactory\MapperFactory.cs" />
+    <Compile Include="Mappers\User\IstanceFactory\UserMapperFactory.cs" />
+    <Compile Include="Mappers\User\RaceBonusMapper.cs" />
     <Compile Include="Mappers\User\UserMapper.cs" />
     <Compile Include="Operations\BaseClasses\BaseOperations.cs" />
     <Compile Include="Operations\Extensions\OpExtensions.cs" />
@@ -86,6 +98,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Mappers\Fleets\BaseClass\" />
+    <Folder Include="Mappers\Fleets\Interfaces\" />
     <Folder Include="Mappers\IstanceFactory\" />
     <Folder Include="Mappers\Universe\BaseClasses\" />
     <Folder Include="Mappers\Universe\Interfaces\" />

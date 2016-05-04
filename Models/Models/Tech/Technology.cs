@@ -58,6 +58,10 @@ namespace Models.Tech
         public int OreCost { get; set; }
 
         [Required]
+        [DataMember]
+        public int SpaceNeeded { get; set; }
+
+        [Required]
         [Display(Name = "MoneyCost", ResourceType = typeof (Resources))]
         [DataMember]
         public int MoneyCost { get; set; }

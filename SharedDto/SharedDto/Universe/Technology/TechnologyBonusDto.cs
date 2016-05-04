@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Models.Tech.Enum;
+using SharedDto.BaseClasses;
+using SharedDto.Interfaces;
 
 namespace SharedDto.Universe.Technology
 {
     [DataContract]
-    public class TechnologyBonusDto
+    public class TechnologyBonusDto : BaseDto,IDto
     {
         [DataMember]
         [EnumDataType(typeof(BonusType))]

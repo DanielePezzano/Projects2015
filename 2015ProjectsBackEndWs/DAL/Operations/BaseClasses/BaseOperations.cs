@@ -2,7 +2,6 @@
 using DAL.Operations.Extensions;
 using DAL.Operations.IstanceFactory;
 using Models.Base;
-using UnitOfWork.Implementations.Repository.BaseRepository;
 using UnitOfWork.Interfaces.Repository;
 
 namespace DAL.Operations.BaseClasses
@@ -23,18 +22,31 @@ namespace DAL.Operations.BaseClasses
             bool result=false;
             using (var operation = OperationsFactory.RetrieveBaseOperations(ConnectionString, IsTest))
             {
-                var repo = RepoSelector<BaseEntity>(repository, entityId, cacheKey, operation);
+                var repo = RepoSelector<BaseEntity>(repository, cacheKey, operation);
                 if (repo != null) result = repo.Any(c => c.Id == entityId, cacheKey);
             }
             return result;
         }
 
-        private IRepository<T> RepoSelector<T>(MappedRepositories repository, int entityId, string cacheKey, SpecificOperations operation) where T : BaseEntity
+        public BaseEntity GetById(MappedRepositories repository, int entityId, string cacheKey)
+        {
+            BaseEntity resBaseEntity = null;
+            using (var operation = OperationsFactory.RetrieveBaseOperations(ConnectionString, IsTest))
+            {
+                var repo = RepoSelector<BaseEntity>(repository, cacheKey, operation);
+                if (repo != null) resBaseEntity = repo.GetByKey(entityId, cacheKey);
+            }
+            return resBaseEntity;
+        }
+
+        protected IRepository<T> RepoSelector<T>(MappedRepositories repository, string cacheKey, SpecificOperations operation) where T : BaseEntity
         {
             IRepository<T>result = null;
             switch (repository)
             {
                 case MappedRepositories.AntiPlanetWeaponRepository:
+                    result = (IsTest) ? (IRepository<T>)operation.SetTestUow().AntiPlanetWeaponRepository :
+                       (IRepository<T>)operation.SetProductionUow().AntiPlanetWeaponRepository;
                     break;
                 case MappedRepositories.AntiShipWeaponRepository:
                     break;
@@ -53,8 +65,12 @@ namespace DAL.Operations.BaseClasses
                 case MappedRepositories.FleetRepository:
                     break;
                 case MappedRepositories.BuildingSpecRepository:
+                    result = (IsTest) ? (IRepository<T>)operation.SetTestUow().BuildingSpecRepository :
+                      (IRepository<T>)operation.SetProductionUow().BuildingSpecRepository;
                     break;
                 case MappedRepositories.BuildingRepository:
+                    result = (IsTest) ? (IRepository<T>)operation.SetTestUow().BuildingRepository :
+                     (IRepository<T>)operation.SetProductionUow().BuildingRepository;
                     break;
                 case MappedRepositories.GalaxyLogRepository:
                     break;
@@ -67,6 +83,8 @@ namespace DAL.Operations.BaseClasses
                 case MappedRepositories.ResearchQueueRepository:
                     break;
                 case MappedRepositories.RaceBonusRepository:
+                    result = (IsTest) ? (IRepository<T>)operation.SetTestUow().RaceBonusRepository :
+                       (IRepository<T>)operation.SetProductionUow().RaceBonusRepository;
                     break;
                 case MappedRepositories.TechNodesRepository:
                     break;
@@ -77,8 +95,12 @@ namespace DAL.Operations.BaseClasses
                 case MappedRepositories.InternalMailRepository:
                     break;
                 case MappedRepositories.PlanetRepository:
+                    result = (IsTest) ? (IRepository<T>)operation.SetTestUow().PlanetRepository :
+                     (IRepository<T>)operation.SetProductionUow().PlanetRepository;
                     break;
                 case MappedRepositories.SatelliteRepository:
+                    result = (IsTest) ? (IRepository<T>)operation.SetTestUow().SatelliteRepository :
+                     (IRepository<T>)operation.SetProductionUow().SatelliteRepository;
                     break;
                 case MappedRepositories.StarRepository:
                     result= (IsTest) ? (IRepository<T>)operation.SetTestUow().StarRepository :
@@ -87,6 +109,8 @@ namespace DAL.Operations.BaseClasses
                 case MappedRepositories.GalaxyRepository:
                     break;
                 case MappedRepositories.UserRepository:
+                    result = (IsTest) ? (IRepository<T>)operation.SetTestUow().UserRepository :
+                     (IRepository<T>)operation.SetProductionUow().UserRepository;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(repository), repository, null);

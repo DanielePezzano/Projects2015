@@ -16,11 +16,7 @@ namespace Models.Fleets.ShipClasses.System
         [Display(Name = "BonusToHit", ResourceType = typeof (Resources))]
         [DataMember]
         public int ToHitBonus { get; set; }
-
-        [Display(Name = "MalusToHit", ResourceType = typeof (Resources))]
-        [DataMember]
-        public int ToHitMalus { get; set; }
-
+        
         [Display(Name = "TravelSpeedBonus", ResourceType = typeof (Resources))]
         [DataMember]
         public int TravelSpeedBonus { get; set; }
@@ -44,11 +40,7 @@ namespace Models.Fleets.ShipClasses.System
         [Display(Name = "ScannerRelevationBonus", ResourceType = typeof (Resources))]
         [DataMember]
         public double ScannerRelevationBonus { get; set; }
-
-        [Display(Name = "ScannerRelevationMalus", ResourceType = typeof (Resources))]
-        [DataMember]
-        public double ScannerRelevationMalus { get; set; }
-
+        
         [Display(Name = "SystemType", ResourceType = typeof (Resources))]
         [DataMember]
         public SystemType SystemType { get; set; }

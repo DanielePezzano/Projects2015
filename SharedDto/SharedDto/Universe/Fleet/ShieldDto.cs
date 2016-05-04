@@ -1,9 +1,11 @@
 ﻿using System.Runtime.Serialization;
+using SharedDto.BaseClasses;
+using SharedDto.Interfaces;
 
 namespace SharedDto.Universe.Fleet
 {
     [DataContract]
-    public class ShieldDto
+    public class ShieldDto : BaseDto, IDto, ICosts, ISpaces
     {
         [DataMember]
         public string Name { get; set; }
@@ -14,6 +16,14 @@ namespace SharedDto.Universe.Fleet
         [DataMember]
         public int RequiredEnergy { get; set; }
         [DataMember]
-        public int TechnologyId { get; set; }
+        public int SpacesNeeded { get; set; }
+        [DataMember]
+        public int OreCost { get; set; }
+        [DataMember]
+        public int MoneyCost { get; set; }
+        [DataMember]
+        public int OreMaintenanceCost { get; set; }
+        [DataMember]
+        public int MoneyMaintenanceCost { get; set; }
     }
 }

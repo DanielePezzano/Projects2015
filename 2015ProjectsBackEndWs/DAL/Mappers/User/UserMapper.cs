@@ -1,6 +1,8 @@
 ﻿using System;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
+using DAL.Mappers.Universe.IstanceFactory;
+using DAL.Mappers.User.IstanceFactory;
 using DAL.Operations;
 using DAL.Operations.BaseClasses;
 using Models.Base;
@@ -36,8 +38,13 @@ namespace DAL.Mappers.User
                 Status = (UserStatus)Enum.Parse(typeof(UserStatus),userDto.Status),
                 UpdatedAt = DateTime.Now,
                 UserName = userDto.Username,
-                Planets = 
+                Planets = MapperFactory.RetrievePlanetMapper(ConnectionString,Operations,IsTest).ModelListToEntity(userDto.Planets),
+                Satellites = MapperFactory.RetrievePlanetMapper(ConnectionString,Operations,IsTest).ModelListToSatellites(userDto.Satellites),
+                RaceBonuses = UserMapperFactory.RetrieveBonusMapper(ConnectionString,Operations,IsTest).ModelListToEntity(userDto.Race.RaceBonuses),
+                //Fleets = 
             };
+
+            return Entity;
         }
 
         public IDto MapToDto(BaseEntity entity)

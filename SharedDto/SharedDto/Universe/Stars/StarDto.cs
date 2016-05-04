@@ -1,18 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using SharedDto.BaseClasses;
 using SharedDto.Interfaces;
 using SharedDto.Universe.Planets;
 
 namespace SharedDto.Universe.Stars
 {
     [DataContract]
-    public class StarDto:IDto
+    public class StarDto : BaseDto,IDto
     {
         [DataMember]
         public int GalaxyId { get; set; }
-
-        [DataMember]
-        public int StarId { get; set; }
 
         [DataMember]
         public int PositionX { get; set; }

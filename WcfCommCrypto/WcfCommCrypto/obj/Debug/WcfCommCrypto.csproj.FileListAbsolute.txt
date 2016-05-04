@@ -7,4 +7,3 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\Debug\WcfCommCrypto.pdb
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\obj\Debug\WcfCommCrypto.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\obj\Debug\WcfCommCrypto.pdb
-C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\obj\Debug\WcfCommCrypto.csprojResolveAssemblyReference.cache
