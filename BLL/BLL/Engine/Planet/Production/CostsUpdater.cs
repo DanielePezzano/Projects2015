@@ -42,7 +42,7 @@ namespace BLL.Engine.Planet.Production
 
         private void CalculateBaseFleetCosts()
         {
-            foreach (var orbitingFleetDto in ReferredPlanetDto.OrbitingFleetDtos.Where(c=>c.UserId==ReferredPlanetDto.UserId))
+            foreach (var orbitingFleetDto in ReferredPlanetDto.OrbitingFleetDtos.Where(c => c.AtBay && c.AtBayPlanetId == ReferredPlanetDto.Id))
             {
                 _calculatedCosts.OreCost += orbitingFleetDto.OreMaintenanceCost;
                 _calculatedCosts.MoneyCost += orbitingFleetDto.MoneyMaintenanceCost;

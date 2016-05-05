@@ -25,6 +25,7 @@ namespace DAL.Mappers.Fleets.IstanceFactory
                     return new EngineMapper(isTest, connectionString, operations);
                     break;
                 case FleetMapperTypes.Fleet:
+                    return new FleetMapper(isTest,connectionString,operations);
                     break;
                 case FleetMapperTypes.Hull:
                     return new HullMapper(isTest, connectionString, operations);

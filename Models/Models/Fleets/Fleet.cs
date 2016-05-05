@@ -29,6 +29,9 @@ namespace Models.Fleets
         public bool AtBay { get; set; }
 
         [DataMember]
+        public int AtBayPlanetId { get; set; }
+
+        [DataMember]
         [Display(Name = "MoneyCost", ResourceType = typeof (Resources))]
         [NotMapped]
         public int MoneyCost => GetMoneyCost();

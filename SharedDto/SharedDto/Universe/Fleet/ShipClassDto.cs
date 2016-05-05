@@ -11,6 +11,10 @@ namespace SharedDto.Universe.Fleet
         [DataMember]
         public int StructurePoints { get; set; }
         [DataMember]
+        public string Name { get; set; }
+        [DataMember]
+        public string Description { get; set; }
+        [DataMember]
         public int TotalArmor { get; set; }
         [DataMember]
         public int TotalShields { get; set; }

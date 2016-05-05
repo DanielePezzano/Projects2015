@@ -10,9 +10,9 @@ namespace SharedDto.Universe.Fleet
     public class FleetDto : BaseDto,IDto
     {
         [DataMember]
-        public int FleetId { get; set; }
+        public string Name { get; set; }
         [DataMember]
-        public int UserId { get; set; }
+        public string Description { get; set; }
         [DataMember]
         public int TravelSpeed { get; set; }
         [DataMember]
@@ -23,6 +23,8 @@ namespace SharedDto.Universe.Fleet
         public int MoneyCost { get; set; }
         [DataMember]
         public int OreCost { get; set; }
+        [DataMember]
+        public int AtBayPlanetId { get; set; }
         [DataMember]
         public int MoneyMaintenanceCost { get; set; }
         [DataMember]
