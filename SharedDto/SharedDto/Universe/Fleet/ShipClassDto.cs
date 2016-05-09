@@ -6,7 +6,7 @@ using SharedDto.Interfaces;
 namespace SharedDto.Universe.Fleet
 {
     [DataContract]
-    public class ShipClassDto : BaseDto, IDto, ICosts
+    public class ShipClassDto : BaseDto, IDto, ICosts, IMaintenanceCost
     {
         [DataMember]
         public int StructurePoints { get; set; }

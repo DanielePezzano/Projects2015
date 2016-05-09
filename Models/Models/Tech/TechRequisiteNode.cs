@@ -1,5 +1,7 @@
-﻿using Models.Base;
+﻿using System.ComponentModel.DataAnnotations;
+using Models.Base;
 using System.Runtime.Serialization;
+using Models.Tech.Enum;
 
 namespace Models.Tech
 {
@@ -9,6 +11,7 @@ namespace Models.Tech
         [DataMember]
         public virtual Technology Technology { get; set; }
         [DataMember]
-        public virtual Technology Requisite { get; set; }
+        [EnumDataType(typeof(RequisiteType))]
+        public RequisiteType RequisiteType { get; set; }
     }
 }

@@ -7,7 +7,6 @@ using Models.Fleets.ShipClasses.Hulls;
 using Models.Fleets.ShipClasses.Shields;
 using Models.Fleets.ShipClasses.System;
 using Models.Fleets.ShipClasses.Weapons;
-using Models.Logs;
 using Models.Queues;
 using Models.Races;
 using Models.Tech;
@@ -48,55 +47,27 @@ namespace UnitOfWork.Implementations.Uows
         #region Repositories properties
 
         public RepositoryTest<AntiPlanetWeapon> AntiPlanetWeaponRepository => (RepositoryTest<AntiPlanetWeapon>)_repoFactories.Repositories.AntiPlanetWeaponRepo;
-
         public RepositoryTest<AntiShipWeapon> AntiShipWeaponRepository => (RepositoryTest<AntiShipWeapon>)_repoFactories.Repositories.AntiShipWeaponRepo;
-
         public RepositoryTest<ShipSystem> ShipSystemRepository =>(RepositoryTest<ShipSystem>) _repoFactories.Repositories.ShipSystemRepo;
-
         public RepositoryTest<Shield> ShieldRepository =>(RepositoryTest<Shield>) _repoFactories.Repositories.ShieldRepo;
-
         public RepositoryTest<Hull> HullRepository =>(RepositoryTest<Hull>) _repoFactories.Repositories.HullRepo;
-
         public RepositoryTest<Engine> EngineRepository => (RepositoryTest<Engine>)_repoFactories.Repositories.EngineRepo;
-
         public RepositoryTest<Armor> ArmorRepository => (RepositoryTest<Armor>)_repoFactories.Repositories.ArmorRepo;
-
         public RepositoryTest<ShipClass> ShipClassRepository => (RepositoryTest<ShipClass>)_repoFactories.Repositories.ShipClassRepo;
-
         public RepositoryTest<Fleet> FleetRepository => (RepositoryTest<Fleet>)_repoFactories.Repositories.FleetRepo;
-
         public RepositoryTest<BuildingSpec> BuildingSpecRepository => (RepositoryTest<BuildingSpec>)_repoFactories.Repositories.BuildingSpecRepo;
-
         public RepositoryTest<Building> BuildingRepository =>(RepositoryTest<Building>) _repoFactories.Repositories.BuildingRepo;
-
-        public RepositoryTest<GalaxyLog> GalaxyLogRepository => (RepositoryTest<GalaxyLog>)_repoFactories.Repositories.GalaxyLogRepo;
-
-        public RepositoryTest<UserLog> UserLogRepository => (RepositoryTest<UserLog>)_repoFactories.Repositories.UserLogRepo;
-
         public RepositoryTest<BuildingQueue> BuildingQueueRepository =>(RepositoryTest<BuildingQueue>) _repoFactories.Repositories.BuildingQueueRepo;
-
         public RepositoryTest<FleetQueue> FleetQueueRepository => (RepositoryTest<FleetQueue>)_repoFactories.Repositories.FleetQueueRepo;
-
         public RepositoryTest<ResearchQueue> ResearchQueueRepository => (RepositoryTest<ResearchQueue>)_repoFactories.Repositories.ResQueueRepo;
-
         public RepositoryTest<RaceBonus> RaceBonusRepository =>(RepositoryTest<RaceBonus>) _repoFactories.Repositories.RaceBonusRepo;
-
         public RepositoryTest<TechRequisiteNode> TechNodesRepository => (RepositoryTest<TechRequisiteNode>)_repoFactories.Repositories.TechNodeRepo;
-
         public RepositoryTest<Technology> TechnologyRepository =>(RepositoryTest<Technology>)_repoFactories.Repositories.TechnologyRepo;
-
         public RepositoryTest<TechBonus> TechBonusRepository => (RepositoryTest<TechBonus>)_repoFactories.Repositories.TechBonusRepo;
-
-        public RepositoryTest<InternalMail> InternalMailRepository =>(RepositoryTest<InternalMail>) _repoFactories.Repositories.InternalMailRepo;
-
         public RepositoryTest<Planet> PlanetRepository =>(RepositoryTest<Planet>) _repoFactories.Repositories.PlanetRepo;
-
         public RepositoryTest<Satellite> SatelliteRepository =>(RepositoryTest<Satellite>)_repoFactories.Repositories.SatelliteRepo;
-
         public RepositoryTest<Star> StarRepository => (RepositoryTest<Star>)_repoFactories.Repositories.StarRepo;
-
         public RepositoryTest<Galaxy> GalaxyRepository =>(RepositoryTest<Galaxy>) _repoFactories.Repositories.GalaxyRepo;
-
         public RepositoryTest<User> UserRepository =>(RepositoryTest<User>) _repoFactories.Repositories.UserRepo;
 
         #endregion

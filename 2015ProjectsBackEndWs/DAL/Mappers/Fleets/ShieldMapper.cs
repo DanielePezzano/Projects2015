@@ -11,7 +11,7 @@ using SharedDto.Universe.Fleet;
 
 namespace DAL.Mappers.Fleets
 {
-    public class ShieldMapper : BaseMapper, IMapper
+    public class ShieldMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
         public ShieldMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
         {

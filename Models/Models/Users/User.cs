@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 using Models.Base;
 using Models.Fleets;
 using Models.Fleets.ShipClasses;
-using Models.Logs;
 using Models.Queues;
 using Models.Races;
 using Models.Tech;
@@ -57,10 +56,6 @@ namespace Models.Users
         [DataMember]
         public int RacePointsLeft => TotalPoints - RacePointsUsed;
 
-        [DataMember]
-        [Display(Name = "Mails", ResourceType = typeof (Resources))]
-        public virtual ICollection<InternalMail> Mails { get; set; }
-
         [Display(Name = "Planets", ResourceType = typeof (Resources))]
         [DataMember]
         public virtual ICollection<Planet> Planets { get; set; }
@@ -78,10 +73,7 @@ namespace Models.Users
         public virtual ICollection<ResearchQueue> Researches { get; set; }
 
         [DataMember]
-        public virtual ICollection<UserLog> Logs { get; set; }
-
-        [DataMember]
-        public virtual ICollection<ShipClass> SchipClasses { get; set; }
+        public virtual ICollection<ShipClass> ShipClasses { get; set; }
 
         [DataMember]
         public virtual ICollection<Fleet> Fleets { get; set; }

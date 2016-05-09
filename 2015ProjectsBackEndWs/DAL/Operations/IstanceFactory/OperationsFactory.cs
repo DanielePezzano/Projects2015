@@ -9,9 +9,9 @@ namespace DAL.Operations.IstanceFactory
 {
     public static class OperationsFactory
     {
-        public static SpecificOperations RetrieveBaseOperations(string connectionString, bool isTest = false)
+        public static UserOperations RetrieveBaseOperations(string connectionString, bool isTest = false)
         {
-            return new SpecificOperations(connectionString,isTest);
+            return new UserOperations(connectionString,isTest);
         }
 
         public static ContextFactory RetrieveContextFactory(string connectionString, bool isTest)

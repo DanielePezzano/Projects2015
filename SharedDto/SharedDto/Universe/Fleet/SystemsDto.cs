@@ -5,7 +5,7 @@ using SharedDto.Interfaces;
 namespace SharedDto.Universe.Fleet
 {
     [DataContract]
-    public class SystemsDto : BaseDto, IDto, ICosts, ISpaces
+    public class SystemsDto : BaseDto, IDto, ICosts, ISpaces, IMaintenanceCost
     {
         [DataMember]
         public string Name { get; set; }

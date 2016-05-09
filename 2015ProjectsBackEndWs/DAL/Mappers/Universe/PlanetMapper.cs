@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
+using DAL.Mappers.Universe.Enums;
 using DAL.Mappers.Universe.IstanceFactory;
 using DAL.Operations;
 using DAL.Operations.BaseClasses;
@@ -13,7 +14,7 @@ using SharedDto.Universe.Planets;
 
 namespace DAL.Mappers.Universe
 {
-    public class PlanetMapper : BaseMapper, IMapper
+    public class PlanetMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
         public PlanetMapper(string connectionString,BaseOperations operations,bool isTest=false):base(isTest,connectionString,operations)
         {
@@ -67,7 +68,7 @@ namespace DAL.Mappers.Universe
                     TaxLevel = planetDto.TaxLevel,
                     LastPopulationUpdate = planetDto.LastUpdatePopDateTime
                 },
-                Satellites = MapperFactory.RetrievePlanetMapper(ConnectionString,Operations,IsTest).ModelListToSatellites(planetDto.Satellites),
+                Satellites = ModelListToSatellites(planetDto.Satellites),
                 Spaces = new Spaces()
                 {
                     WaterRadiatedSpaces = planetDto.WaterRadiatedSpaces,
@@ -80,7 +81,8 @@ namespace DAL.Mappers.Universe
                 },
                 UpdatedAt = DateTime.Now,
                 SurfaceTemp = planetDto.SurfaceTemp,
-                SatelliteStatus = planetDto.Status
+                SatelliteStatus = planetDto.Status,
+                Buildings = ((BuildingMapper)MapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UniverseMapperTypes.Buildings)).ModelListToEntity(planetDto.Buildings),
             };
 
             return Entity;
@@ -95,7 +97,7 @@ namespace DAL.Mappers.Universe
                 ActivePopOnOreProduction = planetEntity.SatelliteProduction.ActivePopOnOreProduction,
                 ActivePopOnResProduction = planetEntity.SatelliteProduction.ActivePopOnResProduction,
                 AtmospherePresent = planetEntity.AtmospherePresent,
-                Buildings = MapperFactory.RetrieveBuildingMapper(ConnectionString,Operations,IsTest).EntityListToModel(planetEntity.Buildings),
+                Buildings = ((BuildingMapper)MapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UniverseMapperTypes.Buildings)).EntityListToModel(planetEntity.Buildings),
                 DistanceR = planetEntity.Orbit.DistanceR,
                 Eccentricity = planetEntity.Orbit.Eccentricity,
                 FoodProduction = planetEntity.SatelliteProduction.FoodProduction,
@@ -136,7 +138,11 @@ namespace DAL.Mappers.Universe
                 StoredFood = planetEntity.SatelliteProduction.StoredFood,
                 StoredOre = planetEntity.SatelliteProduction.StoredOre,
                 PlanetIncomeBalance = planetEntity.SatelliteProduction.TotalIncome,
-                ResearchPoints = planetEntity.SatelliteProduction.ResearchPoints 
+                ResearchPoints = planetEntity.SatelliteProduction.ResearchPoints,
+                IsGaseous = planetEntity.IsGaseous,
+                IsHabitable = planetEntity.IsHabitable,
+                IsHomePlanet = planetEntity.IsHomePlanet,
+                Satellites = EntityListToSatelliteModel(planetEntity.Satellites),
             };
         }
 
@@ -159,6 +165,11 @@ namespace DAL.Mappers.Universe
         public List<Satellite> ModelListToSatellites(List<PlanetDto> entityList)
         {
             return entityList.Select(MapToEntity).Select(dto => dto).Cast<Satellite>().ToList();
+        }
+
+        public List<PlanetDto> EntityListToSatelliteModel(ICollection<Satellite> entityList)
+        {
+            return entityList.Select(MapToDto).Select(dto => dto).Cast<PlanetDto>().ToList();
         }
     }
 }

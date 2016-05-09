@@ -3,9 +3,8 @@ using SharedDto.Interfaces;
 
 namespace DAL.Mappers.Interfaces
 {
-    public interface IMapper
+    public interface IMapToEntity
     {
         BaseEntity MapToEntity(IDto dto);
-        IDto MapToDto(BaseEntity entity);
     }
 }

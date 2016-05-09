@@ -8,7 +8,6 @@ using Models.Fleets.ShipClasses.Hulls;
 using Models.Fleets.ShipClasses.Shields;
 using Models.Fleets.ShipClasses.System;
 using Models.Fleets.ShipClasses.Weapons;
-using Models.Logs;
 using Models.Queues;
 using Models.Races;
 using Models.Tech;
@@ -35,7 +34,6 @@ namespace UnitOfWork.Implementations.Context
         public List<Satellite> Satellites { get; set; }
         public List<Planet> Planets { get; set; }
         public List<User> Users { get; set; }
-        public List<InternalMail> InternalMails { get; set; }
         public List<TechBonus> TechBonuses { get; set; }
         public List<Technology> Technologies { get; set; }
         public List<TechRequisiteNode> TechRequisiteNodes { get; set; }
@@ -43,8 +41,6 @@ namespace UnitOfWork.Implementations.Context
         public List<ResearchQueue> ResearchQueues { get; set; }
         public List<FleetQueue> FleetQueues { get; set; }
         public List<BuildingQueue> BuildingQueues { get; set; }
-        public List<UserLog> UserLogs { get; set; }
-        public List<GalaxyLog> GalaxyLogs { get; set; }
         public List<Building> Buildings { get; set; }
         public List<BuildingSpec> BuildingSpecs { get; set; }
         public List<Fleet> Fleets { get; set; }

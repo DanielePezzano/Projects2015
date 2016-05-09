@@ -15,7 +15,7 @@ using SharedDto.Universe.Fleet;
 
 namespace DAL.Mappers.Fleets
 {
-    public class HullMapper : BaseMapper, IMapper
+    public class HullMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
         public HullMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
         {

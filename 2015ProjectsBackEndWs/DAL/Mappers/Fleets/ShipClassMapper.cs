@@ -13,7 +13,7 @@ using SharedDto.Universe.Fleet;
 
 namespace DAL.Mappers.Fleets
 {
-    public class ShipClassMapper : BaseMapper, IMapper
+    public class ShipClassMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
         public ShipClassMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
         {

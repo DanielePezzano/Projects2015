@@ -8,7 +8,6 @@ using Models.Fleets.ShipClasses.Hulls;
 using Models.Fleets.ShipClasses.Shields;
 using Models.Fleets.ShipClasses.System;
 using Models.Fleets.ShipClasses.Weapons;
-using Models.Logs;
 using Models.Queues;
 using Models.Races;
 using Models.Tech;
@@ -22,7 +21,6 @@ namespace UnitOfWork.Implementations.Uows.UowDto
     {
         private bool _disposed;
         public IRepository<User> UserRepo { get; set; }
-        public IRepository<InternalMail> InternalMailRepo { get; set; }
         public IRepository<Galaxy> GalaxyRepo { get; set; }
         public IRepository<Star> StarRepo { get; set; }
         public IRepository<Satellite> SatelliteRepo { get; set; }
@@ -34,8 +32,6 @@ namespace UnitOfWork.Implementations.Uows.UowDto
         public IRepository<ResearchQueue> ResQueueRepo { get; set; }
         public IRepository<FleetQueue> FleetQueueRepo { get; set; }
         public IRepository<BuildingQueue> BuildingQueueRepo { get; set; }
-        public IRepository<UserLog> UserLogRepo { get; set; }
-        public IRepository<GalaxyLog> GalaxyLogRepo { get; set; }
         public IRepository<Building> BuildingRepo { get; set; }
         public IRepository<BuildingSpec> BuildingSpecRepo { get; set; }
         public IRepository<Fleet> FleetRepo { get; set; }
@@ -69,8 +65,6 @@ namespace UnitOfWork.Implementations.Uows.UowDto
             if (FleetRepo != null) FleetRepo = null;
             if (BuildingSpecRepo != null) BuildingSpecRepo = null;
             if (BuildingRepo != null) BuildingRepo = null;
-            if (GalaxyLogRepo != null) GalaxyLogRepo = null;
-            if (UserLogRepo != null) UserLogRepo = null;
             if (BuildingQueueRepo != null) BuildingQueueRepo = null;
             if (FleetQueueRepo != null) FleetQueueRepo = null;
             if (ResQueueRepo != null) ResQueueRepo = null;
@@ -82,7 +76,6 @@ namespace UnitOfWork.Implementations.Uows.UowDto
             if (SatelliteRepo != null) SatelliteRepo = null;
             if (StarRepo != null) StarRepo = null;
             if (GalaxyRepo != null) GalaxyRepo = null;
-            if (InternalMailRepo != null) InternalMailRepo = null;
             if (UserRepo != null) UserRepo = null;
         }
     }

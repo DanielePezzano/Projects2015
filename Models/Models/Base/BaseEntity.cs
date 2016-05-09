@@ -12,7 +12,6 @@ namespace Models.Base
 {
     [DataContract(IsReference=true)]
     [KnownType(typeof(BaseBuildingEntity))]
-    [KnownType(typeof(BaseLogEntity))]
     [KnownType(typeof(BaseQueueEntity))]
     [KnownType(typeof(BaseSatellite))]
     [KnownType(typeof(BuildingSpec))]
@@ -23,7 +22,6 @@ namespace Models.Base
     [KnownType(typeof(TechRequisiteNode))]
     [KnownType(typeof(Star))]
     [KnownType(typeof(Galaxy))]
-    [KnownType(typeof(InternalMail))]
     [KnownType(typeof(User))]
     public class BaseEntity
     {

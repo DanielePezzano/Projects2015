@@ -11,7 +11,7 @@ using SharedDto.Interfaces;
 using SharedDto.Universe.Building;
 namespace DAL.Mappers.Universe
 {
-    public class BuildingSpecsMapper : BaseMapper, IMapper
+    public class BuildingSpecsMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
         public BuildingSpecsMapper(string connectionString,BaseOperations operations,bool isTest=false):base(isTest,connectionString,operations)
         {

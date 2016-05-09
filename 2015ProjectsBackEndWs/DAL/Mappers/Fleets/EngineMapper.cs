@@ -11,7 +11,7 @@ using SharedDto.Universe.Fleet;
 
 namespace DAL.Mappers.Fleets
 {
-    public class EngineMapper : BaseMapper, IMapper
+    public class EngineMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
         public EngineMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
         {

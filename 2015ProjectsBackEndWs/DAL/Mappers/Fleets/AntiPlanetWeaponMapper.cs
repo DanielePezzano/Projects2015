@@ -12,7 +12,7 @@ using SharedDto.Universe.Fleet;
 
 namespace DAL.Mappers.Fleets
 {
-    public class AntiPlanetWeaponMapper : BaseMapper, IMapper
+    public class AntiPlanetWeaponMapper : BaseMapper, IMapToDto,IMapToEntity
     {
         public AntiPlanetWeaponMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
         {

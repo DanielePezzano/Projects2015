@@ -2,11 +2,12 @@
 using System.Runtime.Serialization;
 using SharedDto.BaseClasses;
 using SharedDto.Interfaces;
+using SharedDto.Universe.Queues;
 
 namespace SharedDto.Universe.Technology
 {
     [DataContract]
-    public class TechnologyDto : BaseDto,IDto
+    public class TechnologyDto : BaseDto, IDto, ICosts, ISpaces
     {
         [DataMember]
         public string Name { get; set; }
@@ -23,8 +24,12 @@ namespace SharedDto.Universe.Technology
         [DataMember]
         public int ResearchPoints { get; set; } //punti ricerca da investire
         [DataMember]
-        public List<int> NeededTechnologies { get; set; }
+        public List<TechnologyRequisiteDto> NeededTechnologies { get; set; }
         [DataMember]
         public List<TechnologyBonusDto> TechnologyBonuses { get; set; }
+        [DataMember]
+        public List<ResearchDto> ResearchDtos { get; set; }
+        [DataMember]
+        public int SpacesNeeded { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using SharedDto.Interfaces;
 using SharedDto.Universe.Fleet;
 using SharedDto.Universe.Mails;
 using SharedDto.Universe.Planets;
+using SharedDto.Universe.Queues;
 using SharedDto.Universe.Race;
 using SharedDto.Universe.Technology;
 
@@ -29,13 +30,13 @@ namespace SharedDto.Universe.User
         [DataMember]
         public RaceDto Race { get; set; }
         [DataMember]
-        public List<MailDto> Messages { get; set; }
-        [DataMember]
         public List<PlanetDto> Planets { get; set; }
         [DataMember]
         public List<PlanetDto> Satellites { get; set; }
         [DataMember]
         public List<TechnologyDto> Technologies { get; set; }
+        [DataMember]
+        public List<ResearchDto> Researches { get; set; }
         [DataMember]
         public List<FleetDto> Fleets { get; set; }
         [DataMember]

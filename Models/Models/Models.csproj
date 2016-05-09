@@ -70,11 +70,6 @@
     <Compile Include="Fleets\ShipClasses\System\ShipSystem.cs" />
     <Compile Include="Fleets\ShipClasses\Weapons\AntiPlanetWeapon.cs" />
     <Compile Include="Fleets\ShipClasses\Weapons\AntiShipWeapon.cs" />
-    <Compile Include="Base\BaseLog.cs" />
-    <Compile Include="Logs\Enum\GalaxyLogType.cs" />
-    <Compile Include="Logs\Enum\UserLogType.cs" />
-    <Compile Include="Logs\GalaxyLog.cs" />
-    <Compile Include="Logs\UserLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\BaseQueue.cs" />
     <Compile Include="Queues\BuildingQueue.cs" />
@@ -93,6 +88,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Tech\Enum\BonusType.cs" />
+    <Compile Include="Tech\Enum\RequisiteType.cs" />
     <Compile Include="Tech\Enum\TechnologyField.cs" />
     <Compile Include="Tech\TechBonus.cs" />
     <Compile Include="Tech\Technology.cs" />
@@ -106,7 +102,6 @@
     <Compile Include="Universe\Strcut\Coordinates.cs" />
     <Compile Include="Universe\Universe.cs" />
     <Compile Include="Users\Enum\UserStatus.cs" />
-    <Compile Include="Users\InternalMail.cs" />
     <Compile Include="Universe\Satellite.cs" />
     <Compile Include="Universe\Star.cs" />
     <Compile Include="Users\User.cs" />

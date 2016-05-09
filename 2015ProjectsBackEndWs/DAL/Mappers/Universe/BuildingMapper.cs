@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
+using DAL.Mappers.Universe.Enums;
 using DAL.Mappers.Universe.IstanceFactory;
 using DAL.Operations;
 using DAL.Operations.BaseClasses;
@@ -13,7 +14,7 @@ using SharedDto.Universe.Building;
 
 namespace DAL.Mappers.Universe
 {
-    public class BuildingMapper : BaseMapper, IMapper
+    public class BuildingMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
 
         public BuildingMapper(string connectionString,BaseOperations operations,bool isTest=false):base(isTest,connectionString,operations)
@@ -27,7 +28,7 @@ namespace DAL.Mappers.Universe
 
             Entity= new Building()
             {
-                //BuildingSpecs 
+                BuildingSpecs =((BuildingSpecsMapper)MapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UniverseMapperTypes.BuildingSpecs)).ModelListToEntity(buildingDto.Details),
                 BuildingType = buildingDto.BuildingType,
                 Description = buildingDto.Description,
                 Id = buildingDto.Id,
@@ -52,7 +53,7 @@ namespace DAL.Mappers.Universe
             {
                 BuildingType = buildingEntity.BuildingType,
                 Description = buildingEntity.Description,
-                Details = MapperFactory.RetrieveBuildingSpecsMapper(ConnectionString,Operations,IsTest).EntityListToModel(buildingEntity.BuildingSpecs),
+                Details = ((BuildingSpecsMapper)MapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UniverseMapperTypes.BuildingSpecs)).EntityListToModel(buildingEntity.BuildingSpecs),
                 Id = buildingEntity.Id,
                 MoneyCost = buildingEntity.MoneyCost,
                 MoneyMaintenanceCost = buildingEntity.MoneyMaintenanceCost,

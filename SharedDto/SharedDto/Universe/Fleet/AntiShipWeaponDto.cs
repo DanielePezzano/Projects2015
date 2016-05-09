@@ -6,7 +6,7 @@ using SharedDto.Interfaces;
 namespace SharedDto.Universe.Fleet
 {
     [DataContract]
-    public class AntiShipWeaponDto : BaseDto, IDto, ICosts, ISpaces
+    public class AntiShipWeaponDto : BaseDto, IDto, ICosts, ISpaces, IMaintenanceCost
     {
         [DataMember]
         public string Name { get; set; }

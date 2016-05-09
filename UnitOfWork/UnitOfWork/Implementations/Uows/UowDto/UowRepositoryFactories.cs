@@ -8,7 +8,6 @@ using Models.Fleets.ShipClasses.Hulls;
 using Models.Fleets.ShipClasses.Shields;
 using Models.Fleets.ShipClasses.System;
 using Models.Fleets.ShipClasses.Weapons;
-using Models.Logs;
 using Models.Queues;
 using Models.Races;
 using Models.Tech;
@@ -74,10 +73,6 @@ namespace UnitOfWork.Implementations.Uows.UowDto
                 Repositories.BuildingRepo = RepositoryFactory<Building>.GetRepository(_context, _cache);
             if (Repositories.GalaxyRepo == null)
                 Repositories.GalaxyRepo = RepositoryFactory<Galaxy>.GetRepository(_context, _cache);
-            if (Repositories.GalaxyLogRepo == null)
-                Repositories.GalaxyLogRepo = RepositoryFactory<GalaxyLog>.GetRepository(_context, _cache);
-            if (Repositories.UserLogRepo == null)
-                Repositories.UserLogRepo = RepositoryFactory<UserLog>.GetRepository(_context, _cache);
             if (Repositories.BuildingQueueRepo == null)
                 Repositories.BuildingQueueRepo = RepositoryFactory<BuildingQueue>.GetRepository(_context, _cache);
             if (Repositories.FleetQueueRepo == null)
@@ -92,8 +87,6 @@ namespace UnitOfWork.Implementations.Uows.UowDto
                 Repositories.TechnologyRepo = RepositoryFactory<Technology>.GetRepository(_context, _cache);
             if (Repositories.TechBonusRepo == null)
                 Repositories.TechBonusRepo = RepositoryFactory<TechBonus>.GetRepository(_context, _cache);
-            if (Repositories.InternalMailRepo == null)
-                Repositories.InternalMailRepo = RepositoryFactory<InternalMail>.GetRepository(_context, _cache);
             if (Repositories.PlanetRepo == null)
                 Repositories.PlanetRepo = RepositoryFactory<Planet>.GetRepository(_context, _cache);
             if (Repositories.SatelliteRepo == null)

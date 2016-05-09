@@ -11,7 +11,6 @@ using Models.Fleets.ShipClasses.Hulls;
 using Models.Fleets.ShipClasses.Shields;
 using Models.Fleets.ShipClasses.System;
 using Models.Fleets.ShipClasses.Weapons;
-using Models.Logs;
 using Models.Queues;
 using Models.Races;
 using Models.Tech;
@@ -62,55 +61,27 @@ namespace UnitOfWork.Implementations.Uows
         #region Repositories properties
 
         public RepositoryProduction<AntiPlanetWeapon> AntiPlanetWeaponRepository => (RepositoryProduction<AntiPlanetWeapon>)_repoFactories.Repositories.AntiPlanetWeaponRepo;
-
         public RepositoryProduction<AntiShipWeapon> AntiShipWeaponRepository => (RepositoryProduction<AntiShipWeapon>)_repoFactories.Repositories.AntiShipWeaponRepo;
-
         public RepositoryProduction<ShipSystem> ShipSystemRepository =>(RepositoryProduction<ShipSystem>) _repoFactories.Repositories.ShipSystemRepo;
-
         public RepositoryProduction<Shield> ShieldRepository =>(RepositoryProduction<Shield>) _repoFactories.Repositories.ShieldRepo;
-
         public RepositoryProduction<Hull> HullRepository =>(RepositoryProduction<Hull>) _repoFactories.Repositories.HullRepo;
-
         public RepositoryProduction<Engine> EngineRepository => (RepositoryProduction<Engine>)_repoFactories.Repositories.EngineRepo;
-
         public RepositoryProduction<Armor> ArmorRepository => (RepositoryProduction<Armor>)_repoFactories.Repositories.ArmorRepo;
-
         public RepositoryProduction<ShipClass> ShipClassRepository => (RepositoryProduction<ShipClass>)_repoFactories.Repositories.ShipClassRepo;
-
         public RepositoryProduction<Fleet> FleetRepository => (RepositoryProduction<Fleet>)_repoFactories.Repositories.FleetRepo;
-
         public RepositoryProduction<BuildingSpec> BuildingSpecRepository => (RepositoryProduction<BuildingSpec>)_repoFactories.Repositories.BuildingSpecRepo;
-
         public RepositoryProduction<Building> BuildingRepository =>(RepositoryProduction<Building>) _repoFactories.Repositories.BuildingRepo;
-
-        public RepositoryProduction<GalaxyLog> GalaxyLogRepository => (RepositoryProduction<GalaxyLog>)_repoFactories.Repositories.GalaxyLogRepo;
-
-        public RepositoryProduction<UserLog> UserLogRepository => (RepositoryProduction<UserLog>)_repoFactories.Repositories.UserLogRepo;
-
         public RepositoryProduction<BuildingQueue> BuildingQueueRepository =>(RepositoryProduction<BuildingQueue>) _repoFactories.Repositories.BuildingQueueRepo;
-
         public RepositoryProduction<FleetQueue> FleetQueueRepository => (RepositoryProduction<FleetQueue>)_repoFactories.Repositories.FleetQueueRepo;
-
         public RepositoryProduction<ResearchQueue> ResearchQueueRepository => (RepositoryProduction<ResearchQueue>)_repoFactories.Repositories.ResQueueRepo;
-
         public RepositoryProduction<RaceBonus> RaceBonusRepository =>(RepositoryProduction<RaceBonus>) _repoFactories.Repositories.RaceBonusRepo;
-
         public RepositoryProduction<TechRequisiteNode> TechNodesRepository => (RepositoryProduction<TechRequisiteNode>)_repoFactories.Repositories.TechNodeRepo;
-
         public RepositoryProduction<Technology> TechnologyRepository =>(RepositoryProduction<Technology>)_repoFactories.Repositories.TechnologyRepo;
-
         public RepositoryProduction<TechBonus> TechBonusRepository => (RepositoryProduction<TechBonus>)_repoFactories.Repositories.TechBonusRepo;
-
-        public RepositoryProduction<InternalMail> InternalMailRepository =>(RepositoryProduction<InternalMail>) _repoFactories.Repositories.InternalMailRepo;
-
         public RepositoryProduction<Planet> PlanetRepository =>(RepositoryProduction<Planet>) _repoFactories.Repositories.PlanetRepo;
-
         public RepositoryProduction<Satellite> SatelliteRepository =>(RepositoryProduction<Satellite>)_repoFactories.Repositories.SatelliteRepo;
-
         public RepositoryProduction<Star> StarRepository => (RepositoryProduction<Star>)_repoFactories.Repositories.StarRepo;
-
         public RepositoryProduction<Galaxy> GalaxyRepository =>(RepositoryProduction<Galaxy>) _repoFactories.Repositories.GalaxyRepo;
-
         public RepositoryProduction<User> UserRepository =>(RepositoryProduction<User>) _repoFactories.Repositories.UserRepo;
 
         #endregion

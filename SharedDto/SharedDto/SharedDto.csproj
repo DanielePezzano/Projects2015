@@ -68,6 +68,8 @@
     <Compile Include="Form\Universe\GalaxyList.cs" />
     <Compile Include="Interfaces\ICosts.cs" />
     <Compile Include="Interfaces\IDto.cs" />
+    <Compile Include="Interfaces\IMaintenanceCost.cs" />
+    <Compile Include="Interfaces\IQueue.cs" />
     <Compile Include="Interfaces\ISpaces.cs" />
     <Compile Include="ProcessSerialization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Universe\Stars\StarDto.cs" />
     <Compile Include="Universe\Technology\TechnologyBonusDto.cs" />
     <Compile Include="Universe\Technology\TechnologyDto.cs" />
+    <Compile Include="Universe\Technology\TechnologyRequisiteDto.cs" />
     <Compile Include="Universe\User\UserDto.cs" />
     <Compile Include="UtilityDto\SystemGenerationDto.cs" />
     <Compile Include="UtilityDto\RetrievingInfoDto.cs" />

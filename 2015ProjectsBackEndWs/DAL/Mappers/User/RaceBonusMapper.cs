@@ -12,7 +12,7 @@ using SharedDto.Universe.Race;
 
 namespace DAL.Mappers.User
 {
-    public class RaceBonusMapper : BaseMapper, IMapper
+    public class RaceBonusMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
         public RaceBonusMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
         {

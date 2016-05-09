@@ -11,7 +11,7 @@ using SharedDto.Universe.Fleet;
 
 namespace DAL.Mappers.Fleets
 {
-    public class ArmorMapper : BaseMapper, IMapper
+    public class ArmorMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
         public ArmorMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
         {
