@@ -9,13 +9,13 @@ namespace BLL.Information
     public sealed class RetrieveUserInformation : IDisposable
     {
         private readonly string _email = string.Empty;
-        private BaseOperations _operations;
+        private UserOperations _operations;
         private bool _disposed;
         private bool _isTest;
 
         public IUnitOfWork MainUow { get; set; }
 
-        public RetrieveUserInformation(IUnitOfWork uow, BaseOperations operations, bool isTest = false)
+        public RetrieveUserInformation(IUnitOfWork uow, UserOperations operations, bool isTest = false)
         {
             if (uow == null) throw new ArgumentNullException(nameof(uow));
             MainUow = uow;
@@ -46,7 +46,7 @@ namespace BLL.Information
         /// <returns></returns>
         public bool ExistsEmail()
         {
-            var cacheKey = $"WhereEmailEqualsTo=>{_email}";
+            return _operations.SearchByEmail(_email);
             
             return (_isTest)?
                 ((TestUow)MainUow)?.UserRepository.Count(c => c.Email == _email, "" + _email) > 0 :

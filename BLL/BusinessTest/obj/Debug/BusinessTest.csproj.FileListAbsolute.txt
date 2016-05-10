@@ -47,3 +47,5 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\obj\Debug\Busin
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\obj\Debug\BusinessTest.pdb
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\SharedDto.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\SharedDto.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\DAL.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\DAL.pdb

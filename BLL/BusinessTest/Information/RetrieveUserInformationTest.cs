@@ -36,9 +36,9 @@ namespace BusinessTest.Information
         [TestMethod]
         public void TestExistsEmail()
         {
-            var user = new RetrieveUserInformation(_uow, "danieleTest@test.com",true);
+            var user = new RetrieveUserInformation(_uow, "danieleTest@test.com", DAL.Operations.IstanceFactory.OperationsFactory.RetrieveBaseOperations("UniverseConnection",true), true);
             Assert.IsTrue(user.ExistsEmail());
-            user = new RetrieveUserInformation(_uow, "danieleddddTest@test.com",true);
+            user = new RetrieveUserInformation(_uow, "danieleddddTest@test.com", DAL.Operations.IstanceFactory.OperationsFactory.RetrieveBaseOperations("UniverseConnection", true), true);
             Assert.IsFalse(user.ExistsEmail());
         }
     }

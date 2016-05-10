@@ -83,7 +83,7 @@
     <Compile Include="Operations\Extensions\OpExtensions.cs" />
     <Compile Include="Operations\IstanceFactory\OperationsFactory.cs" />
     <Compile Include="Operations\MappedRepositories.cs" />
-    <Compile Include="Operations\SpecificOperations.cs" />
+    <Compile Include="Operations\UserOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +112,7 @@
     <Folder Include="Mappers\Universe\Interfaces\" />
     <Folder Include="Mappers\User\BaseClasses\" />
     <Folder Include="Mappers\User\Interfaces\" />
+    <Folder Include="Operations\Enums\" />
     <Folder Include="Operations\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

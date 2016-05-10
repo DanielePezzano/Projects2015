@@ -101,11 +101,11 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
         public bool IsEmailFree(string email)
         {
             bool result;
-            using (var retrieve = new RetrieveUserInformation(_mainUow, email))
-            {
-                result = !retrieve.ExistsEmail();
-            }
-            return result;
+            //using (var retrieve = new RetrieveUserInformation(_mainUow, email))
+            //{
+            //    result = !retrieve.ExistsEmail();
+            //}
+            return false;
         }
 
         /// <summary>
