@@ -1,4 +1,5 @@
 ﻿using BLL.Information;
+using DAL.Operations.IstanceFactory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Users;
 using Moq;
@@ -34,12 +35,19 @@ namespace BusinessTest.Information
         }
 
         [TestMethod]
-        public void TestExistsEmail()
+        public void MailShouldExists()
         {
-            var user = new RetrieveUserInformation(_uow, "danieleTest@test.com", DAL.Operations.IstanceFactory.OperationsFactory.RetrieveBaseOperations("UniverseConnection",true), true);
-            Assert.IsTrue(user.ExistsEmail());
-            user = new RetrieveUserInformation(_uow, "danieleddddTest@test.com", DAL.Operations.IstanceFactory.OperationsFactory.RetrieveBaseOperations("UniverseConnection", true), true);
-            Assert.IsFalse(user.ExistsEmail());
+            var user = new RetrieveUserInformation("danieleTest@test.com", IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
+
+            Assert.IsTrue(user.ExistsEmail(_uow));
+            
+        }
+
+        [TestMethod]
+        public void MailShouldNotExists()
+        {
+            var user = new RetrieveUserInformation("danieleddddTest@test.com", IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
+            Assert.IsFalse(user.ExistsEmail(_uow));
         }
     }
 }

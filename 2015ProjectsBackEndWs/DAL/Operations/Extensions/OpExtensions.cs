@@ -8,22 +8,43 @@ namespace DAL.Operations.Extensions
     {
         public static ProductionUow SetProductionUow(this BaseOperations operations)
         {
-            var cf = OperationsFactory.RetrieveContextFactory(operations.ConnectionString, false);
+            var cf = IstancesCreator.RetrieveContextFactory(operations.ConnectionString, false);
             var context = cf.Retrieve();
-            var repoFactories = OperationsFactory.RetrieveRepositoryFactories(context,
-                OperationsFactory.RetrieveDalCache(), OperationsFactory.RetrieveRepositories());
+            var repoFactories = IstancesCreator.RetrieveRepositoryFactories(context,
+                IstancesCreator.RetrieveDalCache(), IstancesCreator.RetrieveRepositories());
             
-            return OperationsFactory.RetrieveProductionUow(context,repoFactories);
+            return IstancesCreator.RetrieveProductionUow(context,repoFactories);
+        }
+
+        public static ProductionUow SetProductionUow(this BaseOpAbstract operations,string connectionString) 
+        {
+            var cf = IstancesCreator.RetrieveContextFactory(connectionString, false);
+            var context = cf.Retrieve();
+            var repoFactories = IstancesCreator.RetrieveRepositoryFactories(context,
+                IstancesCreator.RetrieveDalCache(), IstancesCreator.RetrieveRepositories());
+
+            return IstancesCreator.RetrieveProductionUow(context, repoFactories);
         }
 
         public static TestUow SetTestUow(this BaseOperations operations)
         {
-            var cf = OperationsFactory.RetrieveContextFactory(operations.ConnectionString, false);
+            var cf = IstancesCreator.RetrieveContextFactory(operations.ConnectionString, false);
             var context = cf.Retrieve();
-            var repoFactories = OperationsFactory.RetrieveRepositoryFactories(context,
-                OperationsFactory.RetrieveDalCache(), OperationsFactory.RetrieveRepositories());
+            var repoFactories = IstancesCreator.RetrieveRepositoryFactories(context,
+                IstancesCreator.RetrieveDalCache(), IstancesCreator.RetrieveRepositories());
 
-            return OperationsFactory.RetrieveTestUow(context, repoFactories);
+            return IstancesCreator.RetrieveTestUow(context, repoFactories);
         }
+
+        public static TestUow SetTestUow(this BaseOpAbstract operations, string connectionString) 
+        {
+            var cf = IstancesCreator.RetrieveContextFactory(connectionString, true);
+            var context = cf.Retrieve();
+            var repoFactories = IstancesCreator.RetrieveRepositoryFactories(context,
+                IstancesCreator.RetrieveDalCache(), IstancesCreator.RetrieveRepositories());
+
+            return IstancesCreator.RetrieveTestUow(context, repoFactories);
+        }
+
     }
 }

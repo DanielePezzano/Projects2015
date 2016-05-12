@@ -79,11 +79,16 @@
     <Compile Include="Mappers\User\TechMapper.cs" />
     <Compile Include="Mappers\User\TechRequisiteMapper.cs" />
     <Compile Include="Mappers\User\UserMapper.cs" />
+    <Compile Include="Operations\BaseClasses\BaseOpAbstract.cs" />
     <Compile Include="Operations\BaseClasses\BaseOperations.cs" />
+    <Compile Include="Operations\BaseClasses\OperationResult.cs" />
+    <Compile Include="Operations\Enums\MappedOperations.cs" />
     <Compile Include="Operations\Extensions\OpExtensions.cs" />
-    <Compile Include="Operations\IstanceFactory\OperationsFactory.cs" />
+    <Compile Include="Operations\Implementations\AntiPlanetWpOperations.cs" />
+    <Compile Include="Operations\IstanceFactory\IstancesCreator.cs" />
+    <Compile Include="Operations\IstanceFactory\OpFactory.cs" />
     <Compile Include="Operations\MappedRepositories.cs" />
-    <Compile Include="Operations\UserOperations.cs" />
+    <Compile Include="Operations\Implementations\UserOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,7 +117,6 @@
     <Folder Include="Mappers\Universe\Interfaces\" />
     <Folder Include="Mappers\User\BaseClasses\" />
     <Folder Include="Mappers\User\Interfaces\" />
-    <Folder Include="Operations\Enums\" />
     <Folder Include="Operations\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

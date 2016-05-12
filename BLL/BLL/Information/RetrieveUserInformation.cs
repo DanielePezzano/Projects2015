@@ -1,7 +1,8 @@
 ﻿using System;
 using DAL.Operations;
-using DAL.Operations.BaseClasses;
-using UnitOfWork.Implementations.Uows;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
+using Models.Users;
 using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace BLL.Information
@@ -9,22 +10,18 @@ namespace BLL.Information
     public sealed class RetrieveUserInformation : IDisposable
     {
         private readonly string _email = string.Empty;
-        private UserOperations _operations;
+        private OpFactory _opFactory;
         private bool _disposed;
-        private bool _isTest;
 
         public IUnitOfWork MainUow { get; set; }
 
-        public RetrieveUserInformation(IUnitOfWork uow, UserOperations operations, bool isTest = false)
+        public RetrieveUserInformation(OpFactory opFactory)
         {
-            if (uow == null) throw new ArgumentNullException(nameof(uow));
-            MainUow = uow;
-            _operations = operations;
-            _isTest = isTest;
+            _opFactory = opFactory;
         }
 
-        public RetrieveUserInformation(IUnitOfWork uow, string email, UserOperations operations, bool isTest = false):
-            this(uow, operations, isTest)
+        public RetrieveUserInformation(string email, OpFactory opFactory) :
+            this(opFactory)
         {
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("email");
             _email = email;
@@ -36,21 +33,16 @@ namespace BLL.Information
         {
             if (_disposed) return;
             _disposed = true;
-            if (_isTest) ((ProductionUow)MainUow)?.Dispose();
-            else ((TestUow)MainUow)?.Dispose();
         }
 
         /// <summary>
         ///     controlla l'esistenza di un email nel database.
         /// </summary>
         /// <returns></returns>
-        public bool ExistsEmail()
+        public bool ExistsEmail(IUnitOfWork uow=null)
         {
-            return _operations.SearchByEmail(_email);
-            
-            return (_isTest)?
-                ((TestUow)MainUow)?.UserRepository.Count(c => c.Email == _email, "" + _email) > 0 :
-                ((ProductionUow)MainUow)?.UserRepository.Count(c => c.Email == _email, "WhereEmailEqualsTo=>" + _email) > 0;
+            var cacheKey = $"WhereEmailEqualsTo=>{_email}";
+            return _opFactory.SetOperation<User>(MappedRepositories.UserRepository, MappedOperations.FindByEmail, cacheKey,c=>c.Email==_email,uow).CheckResult;
         }
     }
 }
