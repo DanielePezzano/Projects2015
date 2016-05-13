@@ -1,4 +1,5 @@
 ﻿using DAL.Operations.Enums;
+using Models.Base;
 using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace DAL.Operations.BaseClasses
@@ -7,11 +8,11 @@ namespace DAL.Operations.BaseClasses
     {
         protected bool IsTest;
         protected string ConnectionString;
-        protected IUnitOfWork Uow;
+        public IUnitOfWork Uow;
         public string CacheKey;
         public int EntityId;
         public OperationResult OperationResult;
-        
+
 
         protected BaseOpAbstract(bool isTest, string connectionString)
         {
@@ -19,10 +20,20 @@ namespace DAL.Operations.BaseClasses
             ConnectionString = connectionString;
         }
 
+        protected void SetUsedUnitOfWork()
+        {
+            OperationResult.UsedUnitOfWork = Uow;
+        }
+
+        protected void SaveUow()
+        {
+            Uow?.Save();
+        }
+
+        protected abstract void SaveEntity(BaseEntity entity);
         protected abstract void Any();
         protected abstract void GetById();
         protected abstract void Find(dynamic predicate);
         public abstract void Perform(MappedOperations desiredOperation, dynamic predicate=null);
-
     }
 }

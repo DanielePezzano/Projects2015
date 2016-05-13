@@ -9,6 +9,7 @@ using Models.Universe;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Stars;
 using SharedDto.UtilityDto;
+using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace BLL.Generation.StarSystem
 {
@@ -110,14 +111,14 @@ namespace BLL.Generation.StarSystem
             return _generatedPlanets;
         }
 
-        public StarDto Constuct(StarBuilder starGenerator, StarPlacer starPlacer, IntRange rangeX, IntRange rangeY)
+        public StarDto Constuct(StarBuilder starGenerator, StarPlacer starPlacer, IntRange rangeX, IntRange rangeY, IUnitOfWork uow = null)
         {
             if (_conditions == null) throw new NullReferenceException("_Conditions must have a value");
 
             _associatedStar = starGenerator.CreateBrandNewStar();
-            _orbitGenerator = FactoryGenerator.RetrieOrbitGenerator(_associatedStar, _closeRange, _conditions);
+            _orbitGenerator = FactoryGenerator.RetrieveOrbitGenerator(_associatedStar, _closeRange, _conditions);
 
-            starPlacer.Place(_associatedStar, rangeX, rangeY, _rnd);
+            starPlacer.Place(_associatedStar, rangeX, rangeY, _rnd, uow);
 
             if (!starGenerator.HasPlanets(starGenerator.CalculatePlanetProbability(_associatedStar), _rnd) && !
                 (_conditions.ForceLiving || _conditions.ForceWater || _conditions.MostlyWater)) return _associatedStar;

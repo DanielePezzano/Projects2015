@@ -1,4 +1,4 @@
-﻿namespace DAL.Operations
+﻿namespace DAL.Operations.Enums
 {
     public enum MappedRepositories
     {
@@ -24,6 +24,7 @@
         SatelliteRepository,
         StarRepository,
         GalaxyRepository,
-        UserRepository
+        UserRepository,
+        AllRepository
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using DAL.Operations.BaseClasses;
 using DAL.Operations.Enums;
 using DAL.Operations.Extensions;
+using Models.Base;
 using UnitOfWork.Interfaces.Repository;
 using Models.Users;
 using UnitOfWork.Implementations.Uows;
@@ -11,7 +11,7 @@ using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace DAL.Operations.Implementations
 {
-    public class UserOperations:BaseOpAbstract
+    public class UserOperations : BaseOpAbstract
     {
         
 
@@ -27,40 +27,69 @@ namespace DAL.Operations.Implementations
 
         private IRepository<User> RetrieveUow()
         {
-            if (!IsTest) return this.SetProductionUow(ConnectionString).UserRepository;
-            if (((TestUow)Uow) != null) return ((TestUow)Uow).UserRepository;
-            return this.SetTestUow(ConnectionString).UserRepository;
+            if (!IsTest)
+            {
+                Uow = Uow ?? this.SetProductionUow(ConnectionString);
+                SetUsedUnitOfWork();
+                return ((ProductionUow)Uow).UserRepository;
+            }
+            if (((TestUow)Uow) != null)
+            {
+                SetUsedUnitOfWork();
+                return ((TestUow)Uow).UserRepository;
+            }
+            Uow = this.SetTestUow(ConnectionString);
+            SetUsedUnitOfWork();
+            return ((TestUow)Uow).UserRepository;
         }
 
         protected override void Any()
         {
-            var uow = RetrieveUow();
-            if (uow != null) OperationResult.CheckResult = uow.Any(c => c.Id == EntityId, CacheKey);
+            var repository = RetrieveUow();
+            if (repository != null) OperationResult.CheckResult = repository.Any(c => c.Id == EntityId, CacheKey);
         }
 
         protected override void GetById()
         {
-            var uow = RetrieveUow();
-            if (uow != null) OperationResult.Entity = uow.GetByKey(EntityId, CacheKey);
+            var repository = RetrieveUow();
+            if (repository != null) OperationResult.Entity = repository.GetByKey(EntityId, CacheKey);
         }
 
         protected override void Find(dynamic predicate)
         {
-            var uow = RetrieveUow();
-            if (uow != null) OperationResult.ListResult = uow.Get(CacheKey, predicate);
+            var repository = RetrieveUow();
+            if (repository != null) OperationResult.RawResult = repository.Get(CacheKey, predicate);
+        }
+
+        protected override void SaveEntity(BaseEntity entity)
+        {
+            OperationResult.Entity = entity;
+            if (OperationResult.Entity == null || (User)OperationResult.Entity == null) return;
+            var repository = RetrieveUow();
+            if (repository == null) return;
+            repository.Add((User)OperationResult.Entity);
+            SaveUow();
+            OperationResult.RawResult = entity.Id;
         }
 
         protected void FindByEmail(dynamic predicate)
         {
             Find(predicate);
-            OperationResult.CheckResult = (OperationResult.ListResult as List<User>) != null &&
-                                          (OperationResult.ListResult as List<User>).Count > 0;
+            OperationResult.CheckResult = (OperationResult.RawResult as List<User>) != null &&
+                                          (OperationResult.RawResult as List<User>).Count > 0;
         }
 
         public override void Perform(MappedOperations desiredOperation, dynamic predicate = null)
         {
             switch (desiredOperation)
             {
+                case MappedOperations.SaveEntity:
+                    SaveEntity(predicate);
+                    break;
+                case MappedOperations.Update:
+                    break;
+                case MappedOperations.Delete:
+                    break;
                 case MappedOperations.Any:
                     Any();
                     break;
@@ -72,6 +101,9 @@ namespace DAL.Operations.Implementations
                     break;
                 case MappedOperations.FindByEmail:
                     FindByEmail(predicate);
+                    break;
+                case MappedOperations.SaveUow:
+                    SaveUow();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(desiredOperation), desiredOperation, null);

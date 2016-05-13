@@ -1,5 +1,6 @@
 ﻿using System;
 using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
 using DAL.Operations.Implementations;
 using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Context;
@@ -12,7 +13,7 @@ namespace DAL.Operations.IstanceFactory
 {
     public static class IstancesCreator
     {
-        public static OpFactory RetrieveOpFactory(string connectionString, bool istest)
+        public static OpFactory RetrieveOpFactory(string connectionString, bool istest=false)
         {
             return new OpFactory(connectionString,istest);
         }
@@ -93,7 +94,7 @@ namespace DAL.Operations.IstanceFactory
                 case MappedRepositories.SatelliteRepository:
                     break;
                 case MappedRepositories.StarRepository:
-                    break;
+                    return (isTest) ? new StarOperations(uow, connectionString) : new StarOperations(connectionString);
                 case MappedRepositories.GalaxyRepository:
                     break;
                 case MappedRepositories.UserRepository:

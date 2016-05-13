@@ -6,15 +6,6 @@ namespace DAL.Operations.Extensions
 {
     public static class OpExtensions
     {
-        public static ProductionUow SetProductionUow(this BaseOperations operations)
-        {
-            var cf = IstancesCreator.RetrieveContextFactory(operations.ConnectionString, false);
-            var context = cf.Retrieve();
-            var repoFactories = IstancesCreator.RetrieveRepositoryFactories(context,
-                IstancesCreator.RetrieveDalCache(), IstancesCreator.RetrieveRepositories());
-            
-            return IstancesCreator.RetrieveProductionUow(context,repoFactories);
-        }
 
         public static ProductionUow SetProductionUow(this BaseOpAbstract operations,string connectionString) 
         {
@@ -26,15 +17,6 @@ namespace DAL.Operations.Extensions
             return IstancesCreator.RetrieveProductionUow(context, repoFactories);
         }
 
-        public static TestUow SetTestUow(this BaseOperations operations)
-        {
-            var cf = IstancesCreator.RetrieveContextFactory(operations.ConnectionString, false);
-            var context = cf.Retrieve();
-            var repoFactories = IstancesCreator.RetrieveRepositoryFactories(context,
-                IstancesCreator.RetrieveDalCache(), IstancesCreator.RetrieveRepositories());
-
-            return IstancesCreator.RetrieveTestUow(context, repoFactories);
-        }
 
         public static TestUow SetTestUow(this BaseOpAbstract operations, string connectionString) 
         {

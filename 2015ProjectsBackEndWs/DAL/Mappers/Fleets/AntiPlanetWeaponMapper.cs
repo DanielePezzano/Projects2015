@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Fleets.ShipClasses.Weapons;
 using SharedDto.Interfaces;
@@ -14,14 +14,16 @@ namespace DAL.Mappers.Fleets
 {
     public class AntiPlanetWeaponMapper : BaseMapper, IMapToDto,IMapToEntity
     {
-        public AntiPlanetWeaponMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
+        public AntiPlanetWeaponMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
         {
         }
 
         public override bool ExistsEntity()
         {
             var cacheKey = $"ANTIPLANETWEAPON{Entity.Id}";
-            return Operations.Any(MappedRepositories.AntiPlanetWeaponRepository, Entity.Id, cacheKey);
+             return
+                Operations.SetOperation(MappedRepositories.AntiPlanetWeaponRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
         public BaseEntity MapToEntity(IDto dto)

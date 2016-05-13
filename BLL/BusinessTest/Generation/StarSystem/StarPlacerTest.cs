@@ -4,6 +4,7 @@ using BLL.Generation.StarSystem;
 using BLL.Generation.StarSystem.Builders;
 using BLL.Generation.StarSystem.IstanceFactory;
 using BLL.Utilities.Structs;
+using DAL.Operations.IstanceFactory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
 using Moq;
@@ -30,7 +31,8 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void TestCoordinatesGeneration()
         {
-            var placer = FactoryGenerator.RetrieveStarPlacer(null, true);
+            var placer =
+                FactoryGenerator.RetrieveStarPlacer(IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
             var coord = placer.GenerateRandomCoordinatesTest(230, 400, 230, 400, _rnd);
             Assert.IsTrue(coord.X > 0);
             Assert.IsTrue(coord.Y > 0);
@@ -56,9 +58,9 @@ namespace BusinessTest.Generation.StarSystem
                         var repo = new MockRepository(MockBehavior.Default);
 
                         repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
-                        var placer = new StarPlacer(uow,true);
+                        var placer = new StarPlacer(IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
                         var coord = placer.GenerateRandomCoordinatesTest(230, 400, 230, 400, _rnd);
-                        Assert.IsTrue(placer.ValidPlaceTest(coord));
+                        Assert.IsTrue(placer.ValidPlace(coord,uow));
                     }
                 }
             }
@@ -107,8 +109,8 @@ namespace BusinessTest.Generation.StarSystem
 
                         #endregion
 
-                        var placer = new StarPlacer(uow,true);
-                        placer.Place(generated, new IntRange(40, 90), new IntRange(40, 90), _rnd);
+                        var placer = new StarPlacer(IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
+                        placer.Place(generated, new IntRange(40, 90), new IntRange(40, 90), _rnd,uow);
                         //Assert.IsInstanceOfType(generated.Coordinate, typeof(Coordinates));
                     }
                 }

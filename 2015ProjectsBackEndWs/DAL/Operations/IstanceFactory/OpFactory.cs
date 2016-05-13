@@ -31,6 +31,7 @@ namespace DAL.Operations.IstanceFactory
         public OperationResult SetOperation<T>(MappedRepositories selectedRepositories, MappedOperations desiredOperation, string cacheKey, Expression<Func<T, bool>> predicate,IUnitOfWork uow=null) where T : BaseEntity
         {
             var operation = IstancesCreator.SelectOperator(selectedRepositories, IsTest, _connectionString, uow);
+            if (!IsTest && uow != null) operation.Uow = uow;
             operation.CacheKey = cacheKey;
             operation.Perform(desiredOperation,predicate);
             return operation.OperationResult;

@@ -1,14 +1,14 @@
 ﻿using System;
+using DAL.Operations.IstanceFactory;
 using SharedDto.UtilityDto;
-using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace BLL.Generation.Sector.IstanceFactory
 {
     public static class FactoryGenerator
     {
-        public static GenerateSector RetrieveGenerateSector(int alreadyPresentStars, IUnitOfWork uow, Random rnd,SystemGenerationDto systemGenerationDto)
+        public static GenerateSector RetrieveGenerateSector(int alreadyPresentStars, Random rnd, SystemGenerationDto systemGenerationDto, OpFactory opFactory)
         {
-            return new GenerateSector(alreadyPresentStars,uow,rnd,systemGenerationDto);
+            return new GenerateSector(alreadyPresentStars,rnd,systemGenerationDto,opFactory);
         }
     }
 }

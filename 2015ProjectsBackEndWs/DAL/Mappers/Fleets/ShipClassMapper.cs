@@ -4,8 +4,8 @@ using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Fleets.Enums;
 using DAL.Mappers.Fleets.IstanceFactory;
 using DAL.Mappers.Interfaces;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Fleets.ShipClasses;
 using SharedDto.Interfaces;
@@ -15,14 +15,16 @@ namespace DAL.Mappers.Fleets
 {
     public class ShipClassMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public ShipClassMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
+        public ShipClassMapper( string connectionString, OpFactory operations) : base(connectionString, operations)
         {
         }
 
         public override bool ExistsEntity()
         {
             var cacheKey = $"SHIPCLASS{Entity.Id}";
-            return Operations.Any(MappedRepositories.ShipClassRepository, Entity.Id, cacheKey);
+             return
+                Operations.SetOperation(MappedRepositories.ShipClassRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
         public BaseEntity MapToEntity(IDto dto)
@@ -33,7 +35,7 @@ namespace DAL.Mappers.Fleets
                 Id = shipDto.Id,
                 Name = shipDto.Name,
                 Description = shipDto.Description,
-                Hulls = ((HullMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.Hull)).ModelListToEntity(shipDto.HullDtos)
+                Hulls = ((HullMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Hull)).ModelListToEntity(shipDto.HullDtos)
             };
             return Entity;
         }
@@ -54,7 +56,7 @@ namespace DAL.Mappers.Fleets
                 CombatSpeed = shipEntity.CombatSpeed,
                 StructurePoints = shipEntity.StructurePoints,
                 TravelSpeed = shipEntity.TravelSpeed,
-                HullDtos = ((HullMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.Hull)).EntityListToModel(shipEntity.Hulls),
+                HullDtos = ((HullMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Hull)).EntityListToModel(shipEntity.Hulls),
                 EngineRadius = shipEntity.EngineRadius,
                 TotalArmor = shipEntity.TotalArmor,
                 TotalShields = shipEntity.TotalShields

@@ -27,8 +27,6 @@ namespace BLL.Information
             _email = email;
         }
 
-        
-
         public void Dispose()
         {
             if (_disposed) return;

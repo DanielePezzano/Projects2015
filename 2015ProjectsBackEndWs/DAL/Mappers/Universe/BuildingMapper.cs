@@ -5,8 +5,8 @@ using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
 using DAL.Mappers.Universe.Enums;
 using DAL.Mappers.Universe.IstanceFactory;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Buildings;
 using SharedDto.Interfaces;
@@ -17,7 +17,7 @@ namespace DAL.Mappers.Universe
     public class BuildingMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
 
-        public BuildingMapper(string connectionString,BaseOperations operations,bool isTest=false):base(isTest,connectionString,operations)
+        public BuildingMapper(string connectionString,OpFactory operations):base(connectionString,operations)
         {
             
         }
@@ -28,7 +28,7 @@ namespace DAL.Mappers.Universe
 
             Entity= new Building()
             {
-                BuildingSpecs =((BuildingSpecsMapper)MapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UniverseMapperTypes.BuildingSpecs)).ModelListToEntity(buildingDto.Details),
+                BuildingSpecs =((BuildingSpecsMapper)MapperFactory.RetrieveMapper(ConnectionString,Operations,UniverseMapperTypes.BuildingSpecs)).ModelListToEntity(buildingDto.Details),
                 BuildingType = buildingDto.BuildingType,
                 Description = buildingDto.Description,
                 Id = buildingDto.Id,
@@ -53,7 +53,7 @@ namespace DAL.Mappers.Universe
             {
                 BuildingType = buildingEntity.BuildingType,
                 Description = buildingEntity.Description,
-                Details = ((BuildingSpecsMapper)MapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UniverseMapperTypes.BuildingSpecs)).EntityListToModel(buildingEntity.BuildingSpecs),
+                Details = ((BuildingSpecsMapper)MapperFactory.RetrieveMapper(ConnectionString,Operations,UniverseMapperTypes.BuildingSpecs)).EntityListToModel(buildingEntity.BuildingSpecs),
                 Id = buildingEntity.Id,
                 MoneyCost = buildingEntity.MoneyCost,
                 MoneyMaintenanceCost = buildingEntity.MoneyMaintenanceCost,
@@ -70,7 +70,9 @@ namespace DAL.Mappers.Universe
         public override bool ExistsEntity()
         {
             var cacheKey = $"COUNTBUILDING{Entity.Id}";
-            return Operations.Any(MappedRepositories.BuildingRepository, Entity.Id, cacheKey);
+             return
+                Operations.SetOperation(MappedRepositories.BuildingRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
 

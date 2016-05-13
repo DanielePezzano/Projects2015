@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Tech;
 using Models.Tech.Enum;
@@ -15,14 +15,16 @@ namespace DAL.Mappers.User
 {
     public class TechRequisiteMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public TechRequisiteMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
+        public TechRequisiteMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
         {
         }
 
         public override bool ExistsEntity()
         {
             var cacheKey = $"TECHREQ{Entity.Id}";
-            return Operations.Any(MappedRepositories.TechNodesRepository, Entity.Id, cacheKey);
+             return
+                Operations.SetOperation(MappedRepositories.TechNodesRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
         public BaseEntity MapToEntity(IDto dto)

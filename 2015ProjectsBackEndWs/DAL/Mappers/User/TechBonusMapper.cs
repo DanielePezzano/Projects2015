@@ -2,8 +2,8 @@
 using System.Linq;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Tech;
 using SharedDto.Interfaces;
@@ -13,14 +13,16 @@ namespace DAL.Mappers.User
 {
     public class TechBonusMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public TechBonusMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
+        public TechBonusMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
         {
         }
 
         public override bool ExistsEntity()
         {
-              var cacheKey = $"TECHBONUS{Entity.Id}";
-            return Operations.Any(MappedRepositories.TechBonusRepository, Entity.Id, cacheKey);
+             var cacheKey = $"TECHBONUS{Entity.Id}";
+             return
+                Operations.SetOperation(MappedRepositories.TechBonusRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
         public BaseEntity MapToEntity(IDto dto)

@@ -4,8 +4,8 @@ using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Fleets.Enums;
 using DAL.Mappers.Fleets.IstanceFactory;
 using DAL.Mappers.Interfaces;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Fleets;
 using SharedDto.Interfaces;
@@ -15,14 +15,16 @@ namespace DAL.Mappers.Fleets
 {
     public class FleetMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public FleetMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
+        public FleetMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
         {
         }
 
         public override bool ExistsEntity()
         {
             var cacheKey = $"Fleet{Entity.Id}";
-            return Operations.Any(MappedRepositories.FleetRepository, Entity.Id, cacheKey);
+             return
+                Operations.SetOperation(MappedRepositories.FleetRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
         public BaseEntity MapToEntity(IDto dto)
@@ -36,7 +38,7 @@ namespace DAL.Mappers.Fleets
                 AtBay = fleetDto.AtBay,
                 Position = fleetDto.Position,
                 AtBayPlanetId = fleetDto.AtBayPlanetId,
-                ShipClasses = ((ShipClassMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.Ship)).ModelListToEntity(fleetDto.ShipClassDtos)
+                ShipClasses = ((ShipClassMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Ship)).ModelListToEntity(fleetDto.ShipClassDtos)
             };
             return Entity;
         }
@@ -58,7 +60,7 @@ namespace DAL.Mappers.Fleets
                 TravelSpeed = fleetEntity.TravelSpeed,
                 Position = fleetEntity.Position,
                 AtBay = fleetEntity.AtBay,
-                ShipClassDtos = ((ShipClassMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.Ship)).EntityListToModel(fleetEntity.ShipClasses)
+                ShipClassDtos = ((ShipClassMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Ship)).EntityListToModel(fleetEntity.ShipClasses)
             };
         }
 

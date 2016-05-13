@@ -5,8 +5,8 @@ using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
 using DAL.Mappers.Universe.Enums;
 using DAL.Mappers.Universe.IstanceFactory;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Universe;
 using SharedDto.Interfaces;
@@ -16,7 +16,7 @@ namespace DAL.Mappers.Universe
 {
     public class PlanetMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public PlanetMapper(string connectionString,BaseOperations operations,bool isTest=false):base(isTest,connectionString,operations)
+        public PlanetMapper(string connectionString,OpFactory operations):base(connectionString,operations)
         {
             
         }
@@ -82,7 +82,7 @@ namespace DAL.Mappers.Universe
                 UpdatedAt = DateTime.Now,
                 SurfaceTemp = planetDto.SurfaceTemp,
                 SatelliteStatus = planetDto.Status,
-                Buildings = ((BuildingMapper)MapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UniverseMapperTypes.Buildings)).ModelListToEntity(planetDto.Buildings),
+                Buildings = ((BuildingMapper)MapperFactory.RetrieveMapper(ConnectionString,Operations,UniverseMapperTypes.Buildings)).ModelListToEntity(planetDto.Buildings),
             };
 
             return Entity;
@@ -97,7 +97,7 @@ namespace DAL.Mappers.Universe
                 ActivePopOnOreProduction = planetEntity.SatelliteProduction.ActivePopOnOreProduction,
                 ActivePopOnResProduction = planetEntity.SatelliteProduction.ActivePopOnResProduction,
                 AtmospherePresent = planetEntity.AtmospherePresent,
-                Buildings = ((BuildingMapper)MapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UniverseMapperTypes.Buildings)).EntityListToModel(planetEntity.Buildings),
+                Buildings = ((BuildingMapper)MapperFactory.RetrieveMapper(ConnectionString,Operations,UniverseMapperTypes.Buildings)).EntityListToModel(planetEntity.Buildings),
                 DistanceR = planetEntity.Orbit.DistanceR,
                 Eccentricity = planetEntity.Orbit.Eccentricity,
                 FoodProduction = planetEntity.SatelliteProduction.FoodProduction,
@@ -149,7 +149,9 @@ namespace DAL.Mappers.Universe
         public override bool ExistsEntity()
         {
             var cacheKey = $"COUNTPLANET{Entity.Id}";
-            return Operations.Any(MappedRepositories.PlanetRepository, Entity.Id, cacheKey);
+             return
+                Operations.SetOperation(MappedRepositories.PlanetRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
         public List<PlanetDto> EntityListToModel(ICollection<Planet> entityList)

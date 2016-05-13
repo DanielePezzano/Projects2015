@@ -2,6 +2,7 @@
 using BLL.Generation.StarSystem.Builders;
 using BLL.Utilities.Structs;
 using SharedDto.Universe.Stars;
+using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace BLL.Generation.StarSystem
 {
@@ -24,41 +25,10 @@ namespace BLL.Generation.StarSystem
             _rangeX = rangeX;
             _rangeY = rangeY;
         }
-
-        //private static void AssociateSystemToGalaxy(MainUow uow, int galaxyId, Star generatedStar)
-        //{
-        //    var toAssociate = uow.GalaxyRepository.GetByKey(galaxyId, "");
-        //    if (toAssociate != null) generatedStar.Galaxy = toAssociate;
-        //}
-
-        public StarDto Generate(Random rnd, string cacheKey)
+        
+        public StarDto Generate(Random rnd, string cacheKey,IUnitOfWork uow=null)
         {
-           return _solarSystemFactory.Constuct(_starGenerator, _starPlacer, _rangeX, _rangeY);
+           return _solarSystemFactory.Constuct(_starGenerator, _starPlacer, _rangeX, _rangeY,uow);
         }
-
-        //public bool WriteToRepository(MainUow uow, Star generatedStarSystem, int galaxyId)
-        //{
-        //    var result = false;
-        //    try
-        //    {
-        //        AssociateSystemToGalaxy(uow, galaxyId, generatedStarSystem);
-        //        uow.StarRepository.Add(generatedStarSystem);
-        //        foreach (var planet in generatedStarSystem.Planets)
-        //        {
-        //            uow.PlanetRepository.Add(planet);
-        //            foreach (var satellite in planet.Satellites)
-        //            {
-        //                uow.SatelliteRepository.Add(satellite);
-        //            }
-        //        }
-        //        uow.Save();
-        //        result = true;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e);
-        //    }
-        //    return result;
-        //}
     }
 }

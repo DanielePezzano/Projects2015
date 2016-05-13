@@ -1,9 +1,9 @@
 ﻿using System;
 using BLL.Generation.StarSystem.Builders;
 using BLL.Utilities.Structs;
+using DAL.Operations.IstanceFactory;
 using SharedDto.Universe.Stars;
 using SharedDto.UtilityDto;
-using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace BLL.Generation.StarSystem.IstanceFactory
 {
@@ -29,9 +29,9 @@ namespace BLL.Generation.StarSystem.IstanceFactory
             return new SatelliteBuilder();
         }
 
-        public static StarPlacer RetrieveStarPlacer(IUnitOfWork uow,bool isTest)
+        public static StarPlacer RetrieveStarPlacer(OpFactory opFactory)
         {
-            return new StarPlacer(uow,isTest);
+            return new StarPlacer(opFactory);
         }
         [Obsolete]
         public static PlanetCustomConditions RetrieveConditions(bool water, bool foodRich, bool foodPoor, bool mineralPoor, bool mineralRich, bool mostlyWater, bool forceLiving)
@@ -45,17 +45,17 @@ namespace BLL.Generation.StarSystem.IstanceFactory
             return new PlanetCustomConditions(false, false, false, false, false, false, false);
         }
 
-        public static StarSystemGenerator RetrieveStarSystemGenerator(Random rnd, IUnitOfWork uow, SystemGenerationDto systemGenerationDto,bool isTest=false)
+        public static StarSystemGenerator RetrieveStarSystemGenerator(Random rnd, SystemGenerationDto systemGenerationDto, OpFactory opFactory)
         {
             return new StarSystemGenerator(
                 RetrieveNewFactory(systemGenerationDto, rnd),
                 RetrieveStarBuilder(),
-                RetrieveStarPlacer(uow, isTest),
+                RetrieveStarPlacer(opFactory),
                 UtilitiesFactory.RetrieveRange(systemGenerationDto.MinX,systemGenerationDto.MaxX),
                 UtilitiesFactory.RetrieveRange(systemGenerationDto.MinY,systemGenerationDto.MaxY));
         }
 
-        public static OrbitGenerator RetrieOrbitGenerator(StarDto star, DoubleRange closeRange, SystemGenerationDto conditions)
+        public static OrbitGenerator RetrieveOrbitGenerator(StarDto star, DoubleRange closeRange, SystemGenerationDto conditions)
         {
             return new OrbitGenerator(star, closeRange, conditions);
         }

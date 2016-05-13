@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Buildings;
 using SharedDto.Interfaces;
@@ -13,14 +13,16 @@ namespace DAL.Mappers.Universe
 {
     public class BuildingSpecsMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public BuildingSpecsMapper(string connectionString,BaseOperations operations,bool isTest=false):base(isTest,connectionString,operations)
+        public BuildingSpecsMapper(string connectionString,OpFactory operations):base(connectionString,operations)
         {
         }
 
         public override bool ExistsEntity()
         {
             var cacheKey = $"COUNTBUILDINGSPECS{Entity.Id}";
-            return Operations.Any(MappedRepositories.BuildingSpecRepository, Entity.Id, cacheKey);
+            return
+                Operations.SetOperation(MappedRepositories.BuildingSpecRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
         public BaseEntity MapToEntity(IDto dto)

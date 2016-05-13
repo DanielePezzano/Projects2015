@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using BLL.Utilities;
 using SharedDto.Universe.Sector;
-using UnitOfWork.Interfaces.UnitOfWork;
 using System.Linq;
 using BLL.Generation.StarSystem.IstanceFactory;
+using DAL.Operations.IstanceFactory;
 using SharedDto.Universe.Stars;
 using SharedDto.UtilityDto;
 
@@ -13,19 +13,19 @@ namespace BLL.Generation.Sector
     public class GenerateSector
     {
         private readonly int _alreadyPresentStars;
-        private IUnitOfWork _uow;
         private readonly Random _rnd;
         private SystemGenerationDto _systemGenerationDto;
         private int _generatedStars;
         private int _generatedPlanets;
         private int _habitabilePlanets;
+        private OpFactory _opFactory;
 
-        public GenerateSector(int alreadyPresentStars, IUnitOfWork uow, Random rnd,SystemGenerationDto systemGenerationDto)
+        public GenerateSector(int alreadyPresentStars, Random rnd, SystemGenerationDto systemGenerationDto, OpFactory opFactory)
         {
             _alreadyPresentStars = alreadyPresentStars;
             _systemGenerationDto = systemGenerationDto;
-            _uow = uow;
             _rnd = rnd;
+            _opFactory = opFactory;
         }
 
         #region Private Methods
@@ -69,11 +69,10 @@ namespace BLL.Generation.Sector
 
             for (var i = 0; i < starToGenerate; i++)
             {
-                var systemGenerator = FactoryGenerator.RetrieveStarSystemGenerator(_rnd, _uow, _systemGenerationDto);
+                var systemGenerator = FactoryGenerator.RetrieveStarSystemGenerator(_rnd, _systemGenerationDto, _opFactory);
                 var starToAdd = systemGenerator.Generate(_rnd, "");
                 if (starToAdd == null) continue;
 
-                //if (!isTest) systemGenerator.WriteToRepository((MainUow)_uow, starToAdd, _galaxyId);
                 generatedStars.Add(starToAdd);
                 _generatedPlanets += starToAdd.Planets.Count;
                 _habitabilePlanets += starToAdd.Planets.Count(c => c.HabitableSpaces>0);

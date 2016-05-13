@@ -5,8 +5,8 @@ using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
 using DAL.Mappers.Universe.Enums;
 using DAL.Mappers.Universe.IstanceFactory;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Universe;
 using Models.Universe.Enum;
@@ -18,7 +18,7 @@ namespace DAL.Mappers.Universe
     public class StarMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
 
-        public StarMapper(string connectionString,BaseOperations operations,bool isTest=false):base(isTest,connectionString,operations)
+        public StarMapper(string connectionString,OpFactory operations):base(connectionString,operations)
         {
             
         }
@@ -26,7 +26,9 @@ namespace DAL.Mappers.Universe
         public override bool ExistsEntity()
         {
             var cacheKey = $"COUNTSTAR{Entity.Id}";
-            return Operations.Any(MappedRepositories.StarRepository, Entity.Id, cacheKey);
+             return
+                Operations.SetOperation(MappedRepositories.StarRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
         public BaseEntity MapToEntity(IDto dto)
@@ -35,7 +37,7 @@ namespace DAL.Mappers.Universe
             Entity =new Star()
             {
                 Id = starDto.Id,
-                Planets = ((PlanetMapper)MapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UniverseMapperTypes.Planets)).ModelListToEntity(starDto.Planets),
+                Planets = ((PlanetMapper)MapperFactory.RetrieveMapper(ConnectionString,Operations,UniverseMapperTypes.Planets)).ModelListToEntity(starDto.Planets),
                 CoordinateX = starDto.PositionX,
                 CoordinateY = starDto.PositionY,
                 Mass = starDto.Mass,
@@ -58,7 +60,7 @@ namespace DAL.Mappers.Universe
                 GalaxyId = starEntity.Galaxy.Id,
                 Mass = starEntity.Mass,
                 Name = starEntity.Name,
-                Planets = ((PlanetMapper)MapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UniverseMapperTypes.Planets)).EntityListToModel(starEntity.Planets),
+                Planets = ((PlanetMapper)MapperFactory.RetrieveMapper(ConnectionString,Operations,UniverseMapperTypes.Planets)).EntityListToModel(starEntity.Planets),
                 PositionY = starEntity.CoordinateY,
                 PositionX = starEntity.CoordinateX,
                 RadiationLevel = starEntity.RadiationLevel,

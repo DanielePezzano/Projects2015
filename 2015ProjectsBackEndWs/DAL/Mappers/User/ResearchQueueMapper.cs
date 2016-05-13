@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Queues;
 using Models.Queues.Enum;
@@ -15,14 +15,16 @@ namespace DAL.Mappers.User
 {
     public class ResearchQueueMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public ResearchQueueMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
+        public ResearchQueueMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
         {
         }
 
         public override bool ExistsEntity()
         {
              var cacheKey = $"ResearchQueue{Entity.Id}";
-            return Operations.Any(MappedRepositories.ResearchQueueRepository, Entity.Id, cacheKey);
+             return
+                Operations.SetOperation(MappedRepositories.ResearchQueueRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
         public BaseEntity MapToEntity(IDto dto)

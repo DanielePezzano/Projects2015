@@ -2,8 +2,8 @@
 using System.Linq;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Fleets.ShipClasses.Armors;
 using SharedDto.Interfaces;
@@ -13,14 +13,16 @@ namespace DAL.Mappers.Fleets
 {
     public class ArmorMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public ArmorMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
+        public ArmorMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
         {
         }
 
         public override bool ExistsEntity()
         {
             var cacheKey = $"ARMOR{Entity.Id}";
-            return Operations.Any(MappedRepositories.ArmorRepository, Entity.Id, cacheKey);
+             return
+                Operations.SetOperation(MappedRepositories.ArmorRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
 

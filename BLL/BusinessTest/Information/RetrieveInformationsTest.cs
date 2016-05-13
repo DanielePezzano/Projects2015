@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BLL.Information;
 using BLL.Utilities.Structs;
+using DAL.Operations.IstanceFactory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
 using Moq;
@@ -60,8 +61,8 @@ namespace BusinessTest.Information
         [TestMethod]
         public void TestStarsInRange()
         {
-            var retrieve = new RetrieveInformations(_uow, new IntRange(20, 50), new IntRange(0, 100), true);
-            var stars = retrieve.StarsInRange(string.Empty);
+            var retrieve = new RetrieveInformations(new IntRange(20, 50), new IntRange(0, 100), IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
+            var stars = retrieve.StarsInRange(string.Empty, _uow);
             Assert.AreEqual(2, stars.Count);
         }
     }

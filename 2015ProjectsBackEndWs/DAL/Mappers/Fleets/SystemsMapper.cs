@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Fleets.ShipClasses.Enums;
 using Models.Fleets.ShipClasses.System;
@@ -15,14 +15,16 @@ namespace DAL.Mappers.Fleets
 {
     public class SystemsMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public SystemsMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
+        public SystemsMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
         {
         }
 
         public override bool ExistsEntity()
         {
            var cacheKey = $"SHIPSYSTEMS{Entity.Id}";
-            return Operations.Any(MappedRepositories.ShipSystemRepository, Entity.Id, cacheKey);
+           return
+                Operations.SetOperation(MappedRepositories.ShipSystemRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
         public BaseEntity MapToEntity(IDto dto)

@@ -1,5 +1,6 @@
 ﻿using Models.Base;
 using SharedDto.Interfaces;
+using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace DAL.Operations.BaseClasses
 {
@@ -8,6 +9,7 @@ namespace DAL.Operations.BaseClasses
         public bool CheckResult;
         public BaseEntity Entity;
         public IDto ResultDto;
-        public object ListResult;
+        public object RawResult;
+        public IUnitOfWork UsedUnitOfWork;
     }
 }

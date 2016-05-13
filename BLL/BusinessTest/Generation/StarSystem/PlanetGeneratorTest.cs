@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BLL.Generation.StarSystem.IstanceFactory;
+using DAL.Operations.IstanceFactory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
 using Moq;
@@ -65,7 +66,7 @@ namespace BusinessTest.Generation.StarSystem
                         uow.StarRepository.CustomDbset(new List<Star>());
 
                         var generator = FactoryGenerator.RetrieveStarSystemGenerator(
-                            OrbitGeneratorTest.Rnd, uow, 
+                            OrbitGeneratorTest.Rnd,  
                             new SystemGenerationDto()
                             {
                                 FoodPoor = false,
@@ -77,9 +78,9 @@ namespace BusinessTest.Generation.StarSystem
                                 MineralPoor = false,
                                 MinX = 0,MaxX = 10,MinY = 0,MaxY = 10
 
-                            }, true);
+                            }, IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
 
-                        var star = generator.Generate(OrbitGeneratorTest.Rnd,  "");
+                        var star = generator.Generate(OrbitGeneratorTest.Rnd,  "",uow);
 
                         if (star.Planets.Count <= 0) return;
                         var generatedPlanets = star.Planets.ToList();
@@ -107,7 +108,7 @@ namespace BusinessTest.Generation.StarSystem
                         uow.StarRepository.CustomDbset(new List<Star>());
 
                         var generator = FactoryGenerator.RetrieveStarSystemGenerator(
-                            OrbitGeneratorTest.Rnd, uow, new SystemGenerationDto()
+                            OrbitGeneratorTest.Rnd, new SystemGenerationDto()
                             {
                                 FoodPoor = false,
                                 FoodRich = false,
@@ -121,9 +122,9 @@ namespace BusinessTest.Generation.StarSystem
                                 MinY = 0,
                                 MaxY = 10
 
-                            },true);
+                            }, IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
 
-                        var star = generator.Generate(OrbitGeneratorTest.Rnd,  "");
+                        var star = generator.Generate(OrbitGeneratorTest.Rnd, "", uow);
 
                         var generatedPlanets = star.Planets.ToList();
                         Assert.IsTrue(generatedPlanets.Count(c => c.IsHabitable) >= 1);
@@ -148,7 +149,7 @@ namespace BusinessTest.Generation.StarSystem
                         uow.StarRepository.CustomDbset(new List<Star>());
 
                         var generator = FactoryGenerator.RetrieveStarSystemGenerator(
-                            OrbitGeneratorTest.Rnd, uow, new SystemGenerationDto()
+                            OrbitGeneratorTest.Rnd, new SystemGenerationDto()
                             {
                                 FoodPoor = false,
                                 FoodRich = false,
@@ -162,9 +163,9 @@ namespace BusinessTest.Generation.StarSystem
                                 MinY = 0,
                                 MaxY = 10
 
-                            }, true);
+                            }, IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
 
-                        var star = generator.Generate(OrbitGeneratorTest.Rnd, "");
+                        var star = generator.Generate(OrbitGeneratorTest.Rnd, "", uow);
 
                         var generatedPlanets = star.Planets.ToList();
                         Console.WriteLine(@"pianeti " + generatedPlanets.Count(c => c.WaterSpaces + c.WaterRadiatedSpaces > c.GroundSpaces));

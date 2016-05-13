@@ -1,44 +1,35 @@
 ﻿using System;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Fleets.Enums;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.IstanceFactory;
 
 namespace DAL.Mappers.Fleets.IstanceFactory
 {
     public static class FleetMapperFactory
     {
         
-        public static BaseMapper RetrieveMapper(bool isTest, string connectionString, BaseOperations operations,FleetMapperTypes mapperSelector)
+        public static BaseMapper RetrieveMapper(string connectionString, OpFactory operations,FleetMapperTypes mapperSelector)
         {
             switch (mapperSelector)
             {
                 case FleetMapperTypes.AntiplanetWeapons:
-                    return new AntiPlanetWeaponMapper(isTest, connectionString, operations);
-                    break;
+                    return new AntiPlanetWeaponMapper(connectionString, operations);
                 case FleetMapperTypes.AntishipWeapons:
-                    return new AntiShipWeaponMapper(isTest, connectionString, operations);
-                    break;
+                    return new AntiShipWeaponMapper(connectionString, operations);
                 case FleetMapperTypes.Armor:
-                    return new ArmorMapper(isTest, connectionString, operations);
-                    break;
+                    return new ArmorMapper(connectionString, operations);
                 case FleetMapperTypes.Engine:
-                    return new EngineMapper(isTest, connectionString, operations);
-                    break;
+                    return new EngineMapper(connectionString, operations);
                 case FleetMapperTypes.Fleet:
-                    return new FleetMapper(isTest,connectionString,operations);
-                    break;
+                    return new FleetMapper(connectionString,operations);
                 case FleetMapperTypes.Hull:
-                    return new HullMapper(isTest, connectionString, operations);
-                    break;
+                    return new HullMapper(connectionString, operations);
                 case FleetMapperTypes.Shield:
-                    return new ShieldMapper(isTest, connectionString, operations);
-                    break;
+                    return new ShieldMapper(connectionString, operations);
                 case FleetMapperTypes.Ship:
-                    return new ShipClassMapper(isTest, connectionString, operations);
-                    break;
+                    return new ShipClassMapper(connectionString, operations);
                 case FleetMapperTypes.Systems:
-                    return new SystemsMapper(isTest, connectionString, operations);
-                    break;
+                    return new SystemsMapper(connectionString, operations);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mapperSelector), mapperSelector, null);
             }

@@ -5,8 +5,8 @@ using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
 using DAL.Mappers.User.Enums;
 using DAL.Mappers.User.IstanceFactory;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Tech;
 using Models.Tech.Enum;
@@ -17,14 +17,16 @@ namespace DAL.Mappers.User
 {
     public class TechMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public TechMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
+        public TechMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
         {
         }
 
         public override bool ExistsEntity()
         {
              var cacheKey = $"TECH{Entity.Id}";
-            return Operations.Any(MappedRepositories.TechnologyRepository, Entity.Id, cacheKey);
+             return
+                Operations.SetOperation(MappedRepositories.TechnologyRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
         public BaseEntity MapToEntity(IDto dto)
@@ -41,9 +43,9 @@ namespace DAL.Mappers.User
                 ResearchPoints = techDto.ResearchPoints,
                 SpaceNeeded = techDto.SpacesNeeded, 
                 SubField = (TechnologySubField)Enum.Parse(typeof(TechnologySubField),techDto.SubField),
-                TechBonuses = ((TechBonusMapper)UserMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UserMapperTypes.TechBonus)).ModelListToEntity(techDto.TechnologyBonuses),
-                TechRequisites = ((TechRequisiteMapper)UserMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UserMapperTypes.TechRequisites)).ModelListToEntity(techDto.NeededTechnologies),
-                ResearchQueues = ((ResearchQueueMapper)UserMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UserMapperTypes.ResearchQueue)).ModelListToEntity(techDto.ResearchDtos)
+                TechBonuses = ((TechBonusMapper)UserMapperFactory.RetrieveMapper(ConnectionString,Operations,UserMapperTypes.TechBonus)).ModelListToEntity(techDto.TechnologyBonuses),
+                TechRequisites = ((TechRequisiteMapper)UserMapperFactory.RetrieveMapper(ConnectionString,Operations,UserMapperTypes.TechRequisites)).ModelListToEntity(techDto.NeededTechnologies),
+                ResearchQueues = ((ResearchQueueMapper)UserMapperFactory.RetrieveMapper(ConnectionString,Operations,UserMapperTypes.ResearchQueue)).ModelListToEntity(techDto.ResearchDtos)
             };
             return Entity;
         }
@@ -61,9 +63,9 @@ namespace DAL.Mappers.User
                 SpacesNeeded = techEntity.SpaceNeeded,
                 SubField = techEntity.SubField.ToString(),
                 ResearchPoints = techEntity.ResearchPoints,
-                TechnologyBonuses = ((TechBonusMapper)UserMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UserMapperTypes.TechBonus)).EntityListToModel(techEntity.TechBonuses),
+                TechnologyBonuses = ((TechBonusMapper)UserMapperFactory.RetrieveMapper(ConnectionString,Operations,UserMapperTypes.TechBonus)).EntityListToModel(techEntity.TechBonuses),
                 Field = techEntity.Field.ToString(),
-                NeededTechnologies = ((TechRequisiteMapper)UserMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,UserMapperTypes.TechRequisites)).EntityListToModel(techEntity.TechRequisites)
+                NeededTechnologies = ((TechRequisiteMapper)UserMapperFactory.RetrieveMapper(ConnectionString,Operations,UserMapperTypes.TechRequisites)).EntityListToModel(techEntity.TechRequisites)
             };
         }
 

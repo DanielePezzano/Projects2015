@@ -5,8 +5,8 @@ using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Fleets.Enums;
 using DAL.Mappers.Fleets.IstanceFactory;
 using DAL.Mappers.Interfaces;
-using DAL.Operations;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.Enums;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 using Models.Fleets.ShipClasses.Enums;
 using Models.Fleets.ShipClasses.Hulls;
@@ -17,14 +17,16 @@ namespace DAL.Mappers.Fleets
 {
     public class HullMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public HullMapper(bool isTest, string connectionString, BaseOperations operations) : base(isTest, connectionString, operations)
+        public HullMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
         {
         }
 
         public override bool ExistsEntity()
         {
            var cacheKey = $"HULL{Entity.Id}";
-            return Operations.Any(MappedRepositories.HullRepository, Entity.Id, cacheKey);
+           return
+                Operations.SetOperation(MappedRepositories.HullRepository, MappedOperations.Any, cacheKey,
+                    Entity.Id).CheckResult;
         }
 
         public BaseEntity MapToEntity(IDto dto)
@@ -35,14 +37,14 @@ namespace DAL.Mappers.Fleets
                 Id = hullDto.Id,
                 Name = hullDto.Name,
                 Description = hullDto.Description,
-                AntiPlanetWeapons = ((AntiPlanetWeaponMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.AntiplanetWeapons)).ModelListToEntity(hullDto.AntiPlanetWeaponDtos),
-                AntiShipWeapons = ((AntiShipWeaponMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.AntishipWeapons)).ModelListToEntity(hullDto.AntishioShipWeaponDtos),
-                Armors =((ArmorMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.Armor)).ModelListToEntity(hullDto.ArmorDtos),
-                Engines = ((EngineMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.Engine)).ModelListToEntity(hullDto.EngineDtos),
+                AntiPlanetWeapons = ((AntiPlanetWeaponMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.AntiplanetWeapons)).ModelListToEntity(hullDto.AntiPlanetWeaponDtos),
+                AntiShipWeapons = ((AntiShipWeaponMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.AntishipWeapons)).ModelListToEntity(hullDto.AntishioShipWeaponDtos),
+                Armors =((ArmorMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Armor)).ModelListToEntity(hullDto.ArmorDtos),
+                Engines = ((EngineMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Engine)).ModelListToEntity(hullDto.EngineDtos),
                 HullType = (HullType)Enum.Parse(typeof(HullType),hullDto.HullType),
-                Shields = ((ShieldMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.Shield)).ModelListToEntity(hullDto.ShieldDtos),
+                Shields = ((ShieldMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Shield)).ModelListToEntity(hullDto.ShieldDtos),
                 StructurePoints = hullDto.StructurePoints,
-                SubSystems = ((SystemsMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.Systems)).ModelListToEntity(hullDto.SystemsDtos),
+                SubSystems = ((SystemsMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Systems)).ModelListToEntity(hullDto.SystemsDtos),
                 TotalSpaces = hullDto.TotalSpaces
             };
             return Entity;
@@ -56,14 +58,14 @@ namespace DAL.Mappers.Fleets
                 Id = hullEntity.Id,
                 Name = hullEntity.Name,
                 Description = hullEntity.Description,
-                AntiPlanetWeaponDtos = ((AntiPlanetWeaponMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.AntiplanetWeapons)).EntityListToModel(hullEntity.AntiPlanetWeapons),
-                AntishioShipWeaponDtos = ((AntiShipWeaponMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.AntishipWeapons)).EntityListToModel(hullEntity.AntiShipWeapons),
-                ArmorDtos = ((ArmorMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.Armor)).EntityListToModel(hullEntity.Armors),
-                EngineDtos = ((EngineMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.Engine)).EntityListToModel(hullEntity.Engines),
+                AntiPlanetWeaponDtos = ((AntiPlanetWeaponMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.AntiplanetWeapons)).EntityListToModel(hullEntity.AntiPlanetWeapons),
+                AntishioShipWeaponDtos = ((AntiShipWeaponMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.AntishipWeapons)).EntityListToModel(hullEntity.AntiShipWeapons),
+                ArmorDtos = ((ArmorMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Armor)).EntityListToModel(hullEntity.Armors),
+                EngineDtos = ((EngineMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Engine)).EntityListToModel(hullEntity.Engines),
                 HullType = hullEntity.ToString(),
-                ShieldDtos = ((ShieldMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.Shield)).EntityListToModel(hullEntity.Shields),
+                ShieldDtos = ((ShieldMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Shield)).EntityListToModel(hullEntity.Shields),
                 StructurePoints = hullEntity.StructurePoints,
-                SystemsDtos = ((SystemsMapper)FleetMapperFactory.RetrieveMapper(IsTest,ConnectionString,Operations,FleetMapperTypes.Systems)).EntityListToModel(hullEntity.SubSystems),
+                SystemsDtos = ((SystemsMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Systems)).EntityListToModel(hullEntity.SubSystems),
                 TotalSpaces = hullEntity.TotalSpaces
             };
         }

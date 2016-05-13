@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using BLL.Information;
 using BLL.Utilities.Structs;
 using Models.Universe;
-using SharedDto;
 using SharedDto.Form.Universe;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Stars;
@@ -52,17 +49,17 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
         public GalaxyList RetrieveGalaxyList()
         {
             var result = new GalaxyList {Galaxies = new List<GalaxyForm>()};
-            using (var retriever = new RetrieveInformations(_mainUow))
-            {
-                foreach (var toAdd in retriever.GetUniverseList().Select(item => new GalaxyForm
-                {
-                    GalaxyId = item.ItemId,
-                    Name = item.ItemName
-                }))
-                {
-                    result.Galaxies.Add(toAdd);
-                }
-            }
+            //using (var retriever = new RetrieveInformations())
+            //{
+            //    foreach (var toAdd in retriever.GetUniverseList().Select(item => new GalaxyForm
+            //    {
+            //        GalaxyId = item.ItemId,
+            //        Name = item.ItemName
+            //    }))
+            //    {
+            //        result.Galaxies.Add(toAdd);
+            //    }
+            //}
             return result;
         }
 
@@ -115,13 +112,13 @@ namespace _2015ProjectsBackEndWs.ServiceLogic
         /// <returns></returns>
         private List<Star> RetrieveInformation(ref IntRange rangeX, ref IntRange rangeY)
         {
-            List<Star> starEntities;
-            using (var retrieve = new RetrieveInformations(_mainUow, rangeX, rangeY))
-            {
-                var cacheKey = rangeX.Min + CallSeparators.CoordX + rangeX.Max + CallSeparators.OtherSeparator +
-                                  rangeY.Min + CallSeparators.CoordY + rangeY.Max;
-                starEntities = retrieve.StarsInRange(cacheKey);
-            }
+            var starEntities = new List<Star>();
+            //using (var retrieve = new RetrieveInformations(_mainUow, rangeX, rangeY))
+            //{
+            //    var cacheKey = rangeX.Min + CallSeparators.CoordX + rangeX.Max + CallSeparators.OtherSeparator +
+            //                      rangeY.Min + CallSeparators.CoordY + rangeY.Max;
+            //    starEntities = retrieve.StarsInRange(cacheKey);
+            //}
             return starEntities;
         }
     }

@@ -1,22 +1,20 @@
 ﻿using System;
-using DAL.Operations.BaseClasses;
+using DAL.Operations.IstanceFactory;
 using Models.Base;
 
 namespace DAL.Mappers.BaseClasses
 {
     public abstract class BaseMapper
     {
-        protected BaseOperations Operations { get; set; }
+        protected OpFactory Operations { get; set; }
         public bool ExsistEntity;
-        protected bool IsTest;
         protected BaseEntity Entity;
         protected string ConnectionString;
 
-        protected BaseMapper(bool isTest, string connectionString, BaseOperations operations)
+        protected BaseMapper(string connectionString, OpFactory operations)
         {
             if (operations == null) throw new ArgumentNullException(nameof(operations));
             Operations = operations;
-            IsTest = isTest;
             ConnectionString = connectionString;
         }
 
