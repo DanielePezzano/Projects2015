@@ -15,7 +15,7 @@ namespace DAL.Mappers.User
 {
     public class TechRequisiteMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public TechRequisiteMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
+        public TechRequisiteMapper(OpFactory operations) : base(operations)
         {
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Models.Buildings.Enums;
 using SharedDto.Interfaces;
@@ -34,5 +35,7 @@ namespace SharedDto.Universe.Building
         public int UsedSpaces { get; set; }
         [DataMember]
         public List<BuildingSpecsDto> Details { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; }
     }
 }

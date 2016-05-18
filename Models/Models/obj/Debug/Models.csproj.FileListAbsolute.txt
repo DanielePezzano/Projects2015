@@ -20,3 +20,8 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Debug\Models.R
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Debug\Models.csproj.GenerateResource.Cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Debug\Models.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Debug\Models.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Debug\Models.dll.config
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Debug\EntityFramework.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Debug\EntityFramework.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Debug\EntityFramework.SqlServer.xml

@@ -111,11 +111,11 @@ namespace BLL.Generation.StarSystem
             return _generatedPlanets;
         }
 
-        public StarDto Constuct(StarBuilder starGenerator, StarPlacer starPlacer, IntRange rangeX, IntRange rangeY, IUnitOfWork uow = null)
+        public StarDto Constuct(StarBuilder starGenerator, StarPlacer starPlacer, IntRange rangeX, IntRange rangeY,int galaxyId, IUnitOfWork uow = null)
         {
             if (_conditions == null) throw new NullReferenceException("_Conditions must have a value");
 
-            _associatedStar = starGenerator.CreateBrandNewStar();
+            _associatedStar = starGenerator.CreateBrandNewStar(galaxyId);
             _orbitGenerator = FactoryGenerator.RetrieveOrbitGenerator(_associatedStar, _closeRange, _conditions);
 
             starPlacer.Place(_associatedStar, rangeX, rangeY, _rnd, uow);

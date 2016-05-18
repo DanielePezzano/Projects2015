@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using SharedDto.BaseClasses;
 using SharedDto.Interfaces;
@@ -31,5 +32,8 @@ namespace SharedDto.Universe.Technology
         public List<ResearchDto> ResearchDtos { get; set; }
         [DataMember]
         public int SpacesNeeded { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; } 
+
     }
 }

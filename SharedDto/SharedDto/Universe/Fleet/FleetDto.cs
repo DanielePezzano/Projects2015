@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Models.Universe.Strcut;
 using SharedDto.BaseClasses;
@@ -33,5 +34,7 @@ namespace SharedDto.Universe.Fleet
         public Coordinates Position { get; set; }
         [DataMember]
         public List<ShipClassDto> ShipClassDtos { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; }
     }
 }

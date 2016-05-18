@@ -29,12 +29,11 @@ namespace BLL.Utilities
             return Math.Truncate((rnd.NextDouble() * (max - min) + min)*100)/100;
         }
 
-        public static string RandomString(int length)
+        public static string RandomString(int length, Random rnd)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var random = new Random();
             return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
+              .Select(s => s[rnd.Next(s.Length)]).ToArray());
         }
     }
 }

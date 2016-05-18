@@ -14,7 +14,7 @@ namespace DAL.Mappers.Fleets
 {
     public class AntiPlanetWeaponMapper : BaseMapper, IMapToDto,IMapToEntity
     {
-        public AntiPlanetWeaponMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
+        public AntiPlanetWeaponMapper(OpFactory operations) : base(operations)
         {
         }
 
@@ -43,7 +43,8 @@ namespace DAL.Mappers.Fleets
                 Damage = apWeapon.Damage,
                 RadiationHazard = apWeapon.RadiationHazard,
                 RateOfFire = apWeapon.RateOfFire,
-                SpacesNeeded = apWeapon.SpacesNeeded
+                SpacesNeeded = apWeapon.SpacesNeeded,
+                CreatedAt = apWeapon.CreatedAt
             };
             return Entity;
         }
@@ -64,7 +65,8 @@ namespace DAL.Mappers.Fleets
                 MoneyCost = apEntity.MoneyCost,
                 MoneyMaintenanceCost = apEntity.MoneyMaintenanceCost,
                 OreMaintenanceCost = apEntity.OreMaintenanceCost,
-                SpacesNeeded = apEntity.SpacesNeeded
+                SpacesNeeded = apEntity.SpacesNeeded,
+                CreatedAt = apEntity.CreatedAt
             };
         }
         public List<AntiPlanetWeaponDto> EntityListToModel(ICollection<AntiPlanetWeapon> entityList)

@@ -9,31 +9,40 @@ namespace DAL.Operations.IstanceFactory
 {
     public class OpFactory
     {
-        private readonly string _connectionString;
+        public string ConnectionString;
         public bool IsTest { get; set; }
         
 
         public OpFactory(string connectionString, bool isTest = false)
         {
-            _connectionString = connectionString;
+            ConnectionString = connectionString;
             IsTest = isTest;
         }
 
         public OperationResult SetOperation(MappedRepositories selectedRepositories, MappedOperations desiredOperation, string cacheKey, int entityId)
         {
-            var operation = IstancesCreator.SelectOperator(selectedRepositories, IsTest, _connectionString);
+            var operation = IstancesCreator.SelectOperator(selectedRepositories, IsTest, ConnectionString);
             operation.EntityId = entityId;
             operation.CacheKey = cacheKey;
             operation.Perform(desiredOperation);
             return operation.OperationResult;
         }
 
-        public OperationResult SetOperation<T>(MappedRepositories selectedRepositories, MappedOperations desiredOperation, string cacheKey, Expression<Func<T, bool>> predicate,IUnitOfWork uow=null) where T : BaseEntity
+        public OperationResult SetOperation(MappedRepositories selectedRepositories, MappedOperations desiredOperation, string cacheKey, dynamic predicate,IUnitOfWork uow=null)
         {
-            var operation = IstancesCreator.SelectOperator(selectedRepositories, IsTest, _connectionString, uow);
+            var operation = IstancesCreator.SelectOperator(selectedRepositories, IsTest, ConnectionString, uow);
             if (!IsTest && uow != null) operation.Uow = uow;
             operation.CacheKey = cacheKey;
             operation.Perform(desiredOperation,predicate);
+            return operation.OperationResult;
+        }
+
+        public OperationResult SetOperation<T>(MappedRepositories selectedRepositories, MappedOperations desiredOperation, string cacheKey, Expression<Func<T, bool>> predicate, IUnitOfWork uow = null) where T : BaseEntity
+        {
+            var operation = IstancesCreator.SelectOperator(selectedRepositories, IsTest, ConnectionString, uow);
+            if (!IsTest && uow != null) operation.Uow = uow;
+            operation.CacheKey = cacheKey;
+            operation.Perform(desiredOperation, predicate);
             return operation.OperationResult;
         }
     }

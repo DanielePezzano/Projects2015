@@ -15,7 +15,7 @@ namespace DAL.Mappers.Fleets
 {
     public class SystemsMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public SystemsMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
+        public SystemsMapper(OpFactory operations) : base(operations)
         {
         }
 
@@ -49,7 +49,8 @@ namespace DAL.Mappers.Fleets
                 SpaceBonus = sysDto.SpaceBonus,
                 SystemType = (SystemType)Enum.Parse(typeof(SystemType),sysDto.SystemType),
                 ToHitBonus = sysDto.ToHitBonus,
-                TravelSpeedBonus = sysDto.TravelSpeedBonus
+                TravelSpeedBonus = sysDto.TravelSpeedBonus,
+                CreatedAt = sysDto.CreatedAt
 
             };
             return Entity;
@@ -76,7 +77,8 @@ namespace DAL.Mappers.Fleets
              ScannerRelevationBonus = systemEntity.ScannerRelevationBonus,
              SpaceBonus = systemEntity.ScannerRelevationBonus,
              ToHitBonus = systemEntity.ToHitBonus,
-             TravelSpeedBonus = systemEntity.TravelSpeedBonus
+             TravelSpeedBonus = systemEntity.TravelSpeedBonus,
+                CreatedAt = systemEntity.CreatedAt
             };
         }
 

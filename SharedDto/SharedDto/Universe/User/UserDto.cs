@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using SharedDto.Interfaces;
 using SharedDto.Universe.Fleet;
@@ -41,5 +42,7 @@ namespace SharedDto.Universe.User
         public List<FleetDto> Fleets { get; set; }
         [DataMember]
         public List<ShipClassDto> ShipClasses { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; }
     }
 }

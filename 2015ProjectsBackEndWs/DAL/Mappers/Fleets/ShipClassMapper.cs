@@ -15,7 +15,7 @@ namespace DAL.Mappers.Fleets
 {
     public class ShipClassMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public ShipClassMapper( string connectionString, OpFactory operations) : base(connectionString, operations)
+        public ShipClassMapper(OpFactory operations) : base(operations)
         {
         }
 
@@ -35,7 +35,8 @@ namespace DAL.Mappers.Fleets
                 Id = shipDto.Id,
                 Name = shipDto.Name,
                 Description = shipDto.Description,
-                Hulls = ((HullMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Hull)).ModelListToEntity(shipDto.HullDtos)
+                Hulls = ((HullMapper)FleetMapperFactory.RetrieveMapper(Operations,FleetMapperTypes.Hull)).ModelListToEntity(shipDto.HullDtos),
+                CreatedAt = shipDto.CreatedAt
             };
             return Entity;
         }
@@ -56,10 +57,11 @@ namespace DAL.Mappers.Fleets
                 CombatSpeed = shipEntity.CombatSpeed,
                 StructurePoints = shipEntity.StructurePoints,
                 TravelSpeed = shipEntity.TravelSpeed,
-                HullDtos = ((HullMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Hull)).EntityListToModel(shipEntity.Hulls),
+                HullDtos = ((HullMapper)FleetMapperFactory.RetrieveMapper(Operations,FleetMapperTypes.Hull)).EntityListToModel(shipEntity.Hulls),
                 EngineRadius = shipEntity.EngineRadius,
                 TotalArmor = shipEntity.TotalArmor,
-                TotalShields = shipEntity.TotalShields
+                TotalShields = shipEntity.TotalShields,
+                CreatedAt = shipEntity.CreatedAt
             };
         }
           public List<ShipClassDto> EntityListToModel(ICollection<ShipClass> entityList)

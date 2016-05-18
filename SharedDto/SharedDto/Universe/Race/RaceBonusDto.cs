@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Models.Races.Enums;
 using SharedDto.BaseClasses;
@@ -17,5 +18,7 @@ namespace SharedDto.Universe.Race
         public RaceTraitsType TraitType { get; set; }
         [DataMember]
         public int Value { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; }
     }
 }

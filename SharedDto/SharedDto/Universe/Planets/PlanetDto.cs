@@ -115,5 +115,7 @@ namespace SharedDto.Universe.Planets
         public List<FleetDto> OrbitingFleetDtos { get; set; }
         [DataMember]
         public List<PlanetDto> Satellites { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; }
     }
 }

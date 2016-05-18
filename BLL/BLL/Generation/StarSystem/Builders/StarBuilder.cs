@@ -59,13 +59,16 @@ namespace BLL.Generation.StarSystem.Builders
         /// It creates a bran new star without placing it and without any satellites
         /// </summary>
         /// <returns></returns>
-        public StarDto CreateBrandNewStar()
+        public StarDto CreateBrandNewStar(int galaxyId=-1)
         {
             var result = new StarDto
             {
-                Name = "NS-" + RandomNumbers.RandomString(7),
+                Name = "NS-" + RandomNumbers.RandomString(7,_rnd),
                 StarColor = StarProperties.DetermineStarColor(_rnd.Next(StarProperties.MinBaseRange, 100)),
-                Planets = new List<PlanetDto>()
+                Planets = new List<PlanetDto>(),
+                Id = -1,
+                GalaxyId = galaxyId,
+                CreatedAt = DateTime.Now
             };
             AssignType(result);
             AssignSurfaceTemp(result);

@@ -64,7 +64,7 @@ namespace BLL.Generation.StarSystem.Builders
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
                 Planet = null,
-                Name = "STL - " +RandomNumbers.RandomString(7),
+                //Name = "STL - " +RandomNumbers.RandomString(rnd,7),
                 Buildings = new List<Building>(),
                 SatelliteSocial = new SatelliteSocials { Population = 0, TaxLevel = TaxLevel.Normal },
                 User = null,

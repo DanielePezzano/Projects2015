@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using SharedDto.BaseClasses;
 using SharedDto.Interfaces;
@@ -41,5 +42,8 @@ namespace SharedDto.Universe.Stars
 
         [DataMember]
         public List<PlanetDto> Planets { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; }  
+
     }
 }

@@ -18,7 +18,7 @@ namespace DAL.Mappers.Universe
     public class StarMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
 
-        public StarMapper(string connectionString,OpFactory operations):base(connectionString,operations)
+        public StarMapper(OpFactory operations):base(operations)
         {
             
         }
@@ -37,7 +37,7 @@ namespace DAL.Mappers.Universe
             Entity =new Star()
             {
                 Id = starDto.Id,
-                Planets = ((PlanetMapper)MapperFactory.RetrieveMapper(ConnectionString,Operations,UniverseMapperTypes.Planets)).ModelListToEntity(starDto.Planets),
+                Planets = ((PlanetMapper)MapperFactory.RetrieveMapper(Operations,UniverseMapperTypes.Planets)).ModelListToEntity(starDto.Planets),
                 CoordinateX = starDto.PositionX,
                 CoordinateY = starDto.PositionY,
                 Mass = starDto.Mass,
@@ -47,8 +47,13 @@ namespace DAL.Mappers.Universe
                 StarColor = (StarColor)Enum.Parse(typeof(StarColor), starDto.StarColor),
                 StarType = (StarType)Enum.Parse(typeof(StarType), starDto.StarType),
                 SurfaceTemp = starDto.SurfaceTemp,
-                UpdatedAt = DateTime.Now
+                UpdatedAt = DateTime.Now,
+                CreatedAt = starDto.CreatedAt
             };
+            ((Star) Entity).Galaxy =
+                    (Galaxy)
+                        Operations.SetOperation<Galaxy>(MappedRepositories.GalaxyRepository, MappedOperations.FindBy, "",
+                            c => c.Id == starDto.GalaxyId).Entity;
             return Entity;
         }
 
@@ -60,7 +65,7 @@ namespace DAL.Mappers.Universe
                 GalaxyId = starEntity.Galaxy.Id,
                 Mass = starEntity.Mass,
                 Name = starEntity.Name,
-                Planets = ((PlanetMapper)MapperFactory.RetrieveMapper(ConnectionString,Operations,UniverseMapperTypes.Planets)).EntityListToModel(starEntity.Planets),
+                Planets = ((PlanetMapper)MapperFactory.RetrieveMapper(Operations,UniverseMapperTypes.Planets)).EntityListToModel(starEntity.Planets),
                 PositionY = starEntity.CoordinateY,
                 PositionX = starEntity.CoordinateX,
                 RadiationLevel = starEntity.RadiationLevel,
@@ -68,7 +73,8 @@ namespace DAL.Mappers.Universe
                 StarColor = starEntity.StarColor.ToString(),
                 StarType = starEntity.StarType.ToString(),
                 SurfaceTemp = starEntity.SurfaceTemp,
-                Id = entity.Id
+                Id = entity.Id,
+                CreatedAt = starEntity.CreatedAt
             };
         }
 

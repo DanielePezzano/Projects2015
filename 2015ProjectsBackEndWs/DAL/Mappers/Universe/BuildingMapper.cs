@@ -17,7 +17,7 @@ namespace DAL.Mappers.Universe
     public class BuildingMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
 
-        public BuildingMapper(string connectionString,OpFactory operations):base(connectionString,operations)
+        public BuildingMapper(OpFactory operations):base(operations)
         {
             
         }
@@ -28,7 +28,7 @@ namespace DAL.Mappers.Universe
 
             Entity= new Building()
             {
-                BuildingSpecs =((BuildingSpecsMapper)MapperFactory.RetrieveMapper(ConnectionString,Operations,UniverseMapperTypes.BuildingSpecs)).ModelListToEntity(buildingDto.Details),
+                BuildingSpecs =((BuildingSpecsMapper)MapperFactory.RetrieveMapper(Operations,UniverseMapperTypes.BuildingSpecs)).ModelListToEntity(buildingDto.Details),
                 BuildingType = buildingDto.BuildingType,
                 Description = buildingDto.Description,
                 Id = buildingDto.Id,
@@ -53,7 +53,7 @@ namespace DAL.Mappers.Universe
             {
                 BuildingType = buildingEntity.BuildingType,
                 Description = buildingEntity.Description,
-                Details = ((BuildingSpecsMapper)MapperFactory.RetrieveMapper(ConnectionString,Operations,UniverseMapperTypes.BuildingSpecs)).EntityListToModel(buildingEntity.BuildingSpecs),
+                Details = ((BuildingSpecsMapper)MapperFactory.RetrieveMapper(Operations,UniverseMapperTypes.BuildingSpecs)).EntityListToModel(buildingEntity.BuildingSpecs),
                 Id = buildingEntity.Id,
                 MoneyCost = buildingEntity.MoneyCost,
                 MoneyMaintenanceCost = buildingEntity.MoneyMaintenanceCost,

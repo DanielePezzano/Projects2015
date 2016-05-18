@@ -1,4 +1,5 @@
 using System;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using Models.Universe;
 using UnitOfWork.Implementations.Context;
@@ -10,8 +11,9 @@ namespace UnitOfWork.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            
         }
-
+        
         protected override void Seed(ProductionContext context)
         {
             var seed = new Galaxy
@@ -21,7 +23,8 @@ namespace UnitOfWork.Migrations
                 Name = "Galaxy Seed"
             };
             Console.WriteLine(@"Sono arrivato");
-            context.Galaxys.AddOrUpdate(seed);
+            context.Galaxys.Add(seed);
+            context.SaveChanges();
         }
     }
 }

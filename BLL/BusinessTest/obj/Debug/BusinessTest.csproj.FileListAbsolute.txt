@@ -49,3 +49,4 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Share
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\SharedDto.pdb
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\DAL.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\DAL.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\BLL\BusinessTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll

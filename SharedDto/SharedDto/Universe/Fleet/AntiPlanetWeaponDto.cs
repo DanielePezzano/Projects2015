@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using SharedDto.BaseClasses;
 using SharedDto.Interfaces;
 
@@ -30,5 +31,7 @@ namespace SharedDto.Universe.Fleet
         public int MoneyMaintenanceCost { get; set; }
         [DataMember]
         public int SpacesNeeded { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; }
     }
 }

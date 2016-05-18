@@ -4,7 +4,12 @@ using BLL.Utilities;
 using SharedDto.Universe.Sector;
 using System.Linq;
 using BLL.Generation.StarSystem.IstanceFactory;
+using DAL.Mappers.Universe;
+using DAL.Mappers.Universe.Enums;
+using DAL.Mappers.Universe.IstanceFactory;
+using DAL.Operations.Enums;
 using DAL.Operations.IstanceFactory;
+using Models.Universe;
 using SharedDto.Universe.Stars;
 using SharedDto.UtilityDto;
 
@@ -70,7 +75,7 @@ namespace BLL.Generation.Sector
             for (var i = 0; i < starToGenerate; i++)
             {
                 var systemGenerator = FactoryGenerator.RetrieveStarSystemGenerator(_rnd, _systemGenerationDto, _opFactory);
-                var starToAdd = systemGenerator.Generate(_rnd, "");
+                var starToAdd = systemGenerator.Generate(_systemGenerationDto.GalaxyId, "");
                 if (starToAdd == null) continue;
 
                 generatedStars.Add(starToAdd);
@@ -82,7 +87,15 @@ namespace BLL.Generation.Sector
         } 
         #endregion
 
-        public SectorGenerationDto Generate(bool isTest=false)
+        public List<StarDto> SaveResult(List<StarDto> starToSave)
+        {
+            var listSaved = ((StarMapper) MapperFactory.RetrieveMapper(_opFactory, UniverseMapperTypes.stars)).ModelListToEntity(starToSave).Select(starEntity => _opFactory.SetOperation(MappedRepositories.StarRepository, MappedOperations.SaveEntity, "", starEntity)).Select(result => (Star) result.Entity).ToList();
+            return
+                ((StarMapper) MapperFactory.RetrieveMapper(_opFactory, UniverseMapperTypes.stars)).EntityListToModel(
+                    listSaved);
+        }
+
+        public SectorGenerationDto Generate()
         {
             ResetCounters();
             var whereAmI = SectorProperties.WhereAmI(_systemGenerationDto.MaxX,_systemGenerationDto.MaxY);

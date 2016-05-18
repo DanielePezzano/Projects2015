@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using SharedDto.Interfaces;
 
 namespace SharedDto.Universe.Mails
@@ -13,5 +14,7 @@ namespace SharedDto.Universe.Mails
         public int SenderId { get; set; }
         [DataMember]
         public int ReceiverId { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; }
     }
 }

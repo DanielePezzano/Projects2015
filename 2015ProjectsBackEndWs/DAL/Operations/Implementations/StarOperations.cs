@@ -59,7 +59,7 @@ namespace DAL.Operations.Implementations
             if (repository == null) return;
             repository.Add((Star)OperationResult.Entity);
             Uow.Save();
-            OperationResult.RawResult = entity.Id;
+            OperationResult.RawResult = entity?.Id;
         }
 
         protected override void Any()

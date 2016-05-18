@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using SharedDto.BaseClasses;
 using SharedDto.Interfaces;
@@ -36,5 +37,7 @@ namespace SharedDto.Universe.Fleet
         public int OreMaintenanceCost { get; set; }
         [DataMember]
         public List<HullDto> HullDtos { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; }
     }
 }

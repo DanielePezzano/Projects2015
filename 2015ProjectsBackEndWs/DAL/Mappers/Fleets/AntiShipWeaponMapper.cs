@@ -14,7 +14,7 @@ namespace DAL.Mappers.Fleets
 {
     public class AntiShipWeaponMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public AntiShipWeaponMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
+        public AntiShipWeaponMapper(OpFactory operations) : base(operations)
         {
         }
 
@@ -44,7 +44,8 @@ namespace DAL.Mappers.Fleets
                 IsBeamWeapon = asWeapon.IsBeamWeapon,
                 RateOfFire = asWeapon.RateOfFire,
                 SpacesNeeded = asWeapon.SpacesNeeded,
-                RayOfFire = asWeapon.RayOfFire
+                RayOfFire = asWeapon.RayOfFire,
+                CreatedAt = asWeapon.CreatedAt
             };
             return Entity;
         }
@@ -66,7 +67,8 @@ namespace DAL.Mappers.Fleets
                 IsBeamWeapon = apEntity.IsBeamWeapon,
                 RateOfFire = apEntity.RateOfFire,
                 SpacesNeeded = apEntity.SpacesNeeded,
-                RayOfFire = apEntity.RayOfFire
+                RayOfFire = apEntity.RayOfFire,
+                CreatedAt = apEntity.CreatedAt
             };
         }
         public List<AntiShipWeaponDto> EntityListToModel(ICollection<AntiShipWeapon> entityList)

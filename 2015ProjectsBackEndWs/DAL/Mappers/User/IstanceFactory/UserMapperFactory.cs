@@ -7,22 +7,22 @@ namespace DAL.Mappers.User.IstanceFactory
 {
     public static class UserMapperFactory
     {
-        public static BaseMapper RetrieveMapper(string connectionString, OpFactory operations, UserMapperTypes mapperSelector)
+        public static BaseMapper RetrieveMapper(OpFactory operations, UserMapperTypes mapperSelector)
         {
             switch (mapperSelector)
             {
                 case UserMapperTypes.RaceBonus:
-                    return new RaceBonusMapper(connectionString, operations);
+                    return new RaceBonusMapper(operations);
                 case UserMapperTypes.UserType:
-                    return new UserMapper(connectionString, operations);
+                    return new UserMapper( operations);
                 case UserMapperTypes.ResearchQueue:
-                    return new TechRequisiteMapper(connectionString, operations);
+                    return new TechRequisiteMapper( operations);
                 case UserMapperTypes.Technologies:
-                    return new TechMapper(connectionString, operations);
+                    return new TechMapper( operations);
                 case UserMapperTypes.TechBonus:
-                    return new TechBonusMapper(connectionString, operations);
+                    return new TechBonusMapper( operations);
                 case UserMapperTypes.TechRequisites:
-                    return new TechRequisiteMapper(connectionString, operations);
+                    return new TechRequisiteMapper( operations);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mapperSelector), mapperSelector, null);
             }

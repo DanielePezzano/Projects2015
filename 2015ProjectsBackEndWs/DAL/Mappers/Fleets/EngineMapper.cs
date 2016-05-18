@@ -13,7 +13,7 @@ namespace DAL.Mappers.Fleets
 {
     public class EngineMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public EngineMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
+        public EngineMapper(OpFactory operations) : base(operations)
         {
         }
 
@@ -40,7 +40,8 @@ namespace DAL.Mappers.Fleets
                 MoneyMaintenanceCost = engineDto.MoneyMaintenanceCost,
                 OreMaintenanceCost = engineDto.OreMaintenanceCost,
                 SpacesNeeded = engineDto.SpacesNeeded,
-                TravelSpeed = engineDto.TravelSpeed
+                TravelSpeed = engineDto.TravelSpeed,
+                CreatedAt = engineDto.CreatedAt,
             };
             return Entity;
         }
@@ -60,7 +61,8 @@ namespace DAL.Mappers.Fleets
                 MoneyMaintenanceCost = engineEntity.MoneyMaintenanceCost,
                 OreMaintenanceCost = engineEntity.OreMaintenanceCost,
                 SpacesNeeded = engineEntity.SpacesNeeded,
-                TravelSpeed = engineEntity.TravelSpeed
+                TravelSpeed = engineEntity.TravelSpeed,
+                CreatedAt = engineEntity.CreatedAt
             };
         }
 

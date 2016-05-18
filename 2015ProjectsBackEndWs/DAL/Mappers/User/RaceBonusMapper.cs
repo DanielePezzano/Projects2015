@@ -14,7 +14,7 @@ namespace DAL.Mappers.User
 {
     public class RaceBonusMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public RaceBonusMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
+        public RaceBonusMapper(OpFactory operations) : base(operations)
         {
         }
 

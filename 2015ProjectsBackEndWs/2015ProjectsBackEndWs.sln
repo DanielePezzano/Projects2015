@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2015ProjectsBackEndWs", "2015ProjectsBackEndWs\2015ProjectsBackEndWs.csproj", "{B2E59672-00DF-4205-A3AF-7AC235BB6B2B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6B7F077F-B59A-4A7F-A81B-52FD8A1F6992}"
@@ -25,6 +27,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfCommCrypto", "..\WcfCommCrypto\WcfCommCrypto\WcfCommCrypto.csproj", "{C29F4C65-DA83-4AE5-BCE9-6629904D8775}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{1A98821E-8D32-4CBC-A377-81921780ABAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApplication", "TestConsoleApplication\TestConsoleApplication.csproj", "{4CE4A6BC-5B6A-49B2-AE28-00DCE1404BBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +72,10 @@ Global
 		{1A98821E-8D32-4CBC-A377-81921780ABAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A98821E-8D32-4CBC-A377-81921780ABAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A98821E-8D32-4CBC-A377-81921780ABAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CE4A6BC-5B6A-49B2-AE28-00DCE1404BBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CE4A6BC-5B6A-49B2-AE28-00DCE1404BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CE4A6BC-5B6A-49B2-AE28-00DCE1404BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CE4A6BC-5B6A-49B2-AE28-00DCE1404BBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

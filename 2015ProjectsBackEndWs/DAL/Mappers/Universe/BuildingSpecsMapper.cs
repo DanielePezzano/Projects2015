@@ -13,7 +13,7 @@ namespace DAL.Mappers.Universe
 {
     public class BuildingSpecsMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public BuildingSpecsMapper(string connectionString,OpFactory operations):base(connectionString,operations)
+        public BuildingSpecsMapper(OpFactory operations):base(operations)
         {
         }
 

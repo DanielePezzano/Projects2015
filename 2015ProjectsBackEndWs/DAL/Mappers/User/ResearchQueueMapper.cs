@@ -15,7 +15,7 @@ namespace DAL.Mappers.User
 {
     public class ResearchQueueMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public ResearchQueueMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
+        public ResearchQueueMapper(OpFactory operations) : base(operations)
         {
         }
 

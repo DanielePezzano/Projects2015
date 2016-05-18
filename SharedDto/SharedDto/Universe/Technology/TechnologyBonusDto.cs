@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Models.Tech.Enum;
 using SharedDto.BaseClasses;
@@ -14,5 +15,7 @@ namespace SharedDto.Universe.Technology
         public BonusType Bonus { get; set; }
         [DataMember]
         public int Value { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; }
     }
 }

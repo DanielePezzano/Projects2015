@@ -13,7 +13,7 @@ namespace DAL.Mappers.Fleets
 {
     public class ArmorMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public ArmorMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
+        public ArmorMapper(OpFactory operations) : base(operations)
         {
         }
 
@@ -41,7 +41,8 @@ namespace DAL.Mappers.Fleets
                 PercCombatSpeedMalus = armorDto.PercCombatSpeedMalus,
                 PercTravelSpeedMalus = armorDto.PercTravelSpeedMalus,
                 Protection = armorDto.Protection,
-                SpacesNeeded = armorDto.SpacesNeeded
+                SpacesNeeded = armorDto.SpacesNeeded,
+                CreatedAt = armorDto.CreatedAt
             };
             return Entity;
         }
@@ -61,7 +62,8 @@ namespace DAL.Mappers.Fleets
                 PercCombatSpeedMalus = armorEntity.PercCombatSpeedMalus,
                 PercTravelSpeedMalus = armorEntity.PercTravelSpeedMalus,
                 Protection = armorEntity.Protection,
-                SpacesNeeded = armorEntity.SpacesNeeded
+                SpacesNeeded = armorEntity.SpacesNeeded,
+                CreatedAt = armorEntity.CreatedAt
             };
         }
 

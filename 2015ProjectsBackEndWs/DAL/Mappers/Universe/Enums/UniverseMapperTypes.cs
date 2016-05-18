@@ -2,6 +2,7 @@
 {
     public enum UniverseMapperTypes
     {
+        stars,
         Planets,
         Buildings,
         BuildingSpecs

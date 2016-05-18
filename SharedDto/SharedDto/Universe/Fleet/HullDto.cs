@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using SharedDto.BaseClasses;
@@ -33,5 +34,7 @@ namespace SharedDto.Universe.Fleet
         public List<ShieldDto> ShieldDtos { get; set; }
         [DataMember]
         public List<SystemsDto> SystemsDtos { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; }
     }
 }

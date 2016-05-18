@@ -51,6 +51,12 @@ namespace UnitOfWork.Implementations.Context
 
         }
 
+        public ProductionContext()
+            : base("name=UniverseConnection")
+        {
+            
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Galaxy>().Property(e => e.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);

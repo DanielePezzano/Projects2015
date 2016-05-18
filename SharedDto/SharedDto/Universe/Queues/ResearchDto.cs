@@ -19,5 +19,7 @@ namespace SharedDto.Universe.Queues
         public string Status { get; set; }
         [DataMember]
         public DateTime FinishDateTime { get; set; }
+        [DataMember]
+        public DateTime CreatedAt { get; set; }
     }
 }

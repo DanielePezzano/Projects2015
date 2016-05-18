@@ -13,7 +13,7 @@ namespace DAL.Mappers.Fleets
 {
     public class ShieldMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public ShieldMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
+        public ShieldMapper(OpFactory operations) : base(operations)
         {
         }
 
@@ -39,7 +39,8 @@ namespace DAL.Mappers.Fleets
                 OreMaintenanceCost = shieldDto.OreMaintenanceCost,
                 Protection = shieldDto.Protection,
                 RequiredEnergy = shieldDto.RequiredEnergy,
-                SpacesNeeded = shieldDto.SpacesNeeded
+                SpacesNeeded = shieldDto.SpacesNeeded,
+                CreatedAt = shieldDto.CreatedAt
             };
             return Entity;
         }
@@ -58,7 +59,8 @@ namespace DAL.Mappers.Fleets
                 OreMaintenanceCost = shieldEntity.OreMaintenanceCost,
                 Protection = shieldEntity.Protection,
                 RequiredEnergy = shieldEntity.RequiredEnergy,
-                SpacesNeeded = shieldEntity.SpacesNeeded
+                SpacesNeeded = shieldEntity.SpacesNeeded,
+                CreatedAt = shieldEntity.CreatedAt
             };
         }
 

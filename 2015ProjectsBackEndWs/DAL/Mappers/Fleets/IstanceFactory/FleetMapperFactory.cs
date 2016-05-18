@@ -7,29 +7,29 @@ namespace DAL.Mappers.Fleets.IstanceFactory
 {
     public static class FleetMapperFactory
     {
-        
-        public static BaseMapper RetrieveMapper(string connectionString, OpFactory operations,FleetMapperTypes mapperSelector)
+
+        public static BaseMapper RetrieveMapper(OpFactory operations, FleetMapperTypes mapperSelector)
         {
             switch (mapperSelector)
             {
                 case FleetMapperTypes.AntiplanetWeapons:
-                    return new AntiPlanetWeaponMapper(connectionString, operations);
+                    return new AntiPlanetWeaponMapper(operations);
                 case FleetMapperTypes.AntishipWeapons:
-                    return new AntiShipWeaponMapper(connectionString, operations);
+                    return new AntiShipWeaponMapper(operations);
                 case FleetMapperTypes.Armor:
-                    return new ArmorMapper(connectionString, operations);
+                    return new ArmorMapper(operations);
                 case FleetMapperTypes.Engine:
-                    return new EngineMapper(connectionString, operations);
+                    return new EngineMapper(operations);
                 case FleetMapperTypes.Fleet:
-                    return new FleetMapper(connectionString,operations);
+                    return new FleetMapper(operations);
                 case FleetMapperTypes.Hull:
-                    return new HullMapper(connectionString, operations);
+                    return new HullMapper(operations);
                 case FleetMapperTypes.Shield:
-                    return new ShieldMapper(connectionString, operations);
+                    return new ShieldMapper(operations);
                 case FleetMapperTypes.Ship:
-                    return new ShipClassMapper(connectionString, operations);
+                    return new ShipClassMapper(operations);
                 case FleetMapperTypes.Systems:
-                    return new SystemsMapper(connectionString, operations);
+                    return new SystemsMapper(operations);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mapperSelector), mapperSelector, null);
             }

@@ -16,7 +16,7 @@ namespace BusinessTest.Generation.Sector
                 BLL.Generation.StarSystem.IstanceFactory.FactoryGenerator.RetrieveSystemGenerationDto(
                     false, false, false, false, false, false, false, 0, 40, 0, 50), IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
             
-            var result = generator.Generate(true);
+            var result = generator.Generate();
             Assert.IsInstanceOfType(result,typeof(SectorGenerationDto));
             Assert.AreEqual(0,result.StarsGenerated);
             Assert.AreEqual(SectorGenerationResult.MaxStarReached, result.GenerationResult);

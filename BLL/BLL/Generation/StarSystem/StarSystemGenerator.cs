@@ -1,5 +1,4 @@
-﻿using System;
-using BLL.Generation.StarSystem.Builders;
+﻿using BLL.Generation.StarSystem.Builders;
 using BLL.Utilities.Structs;
 using SharedDto.Universe.Stars;
 using UnitOfWork.Interfaces.UnitOfWork;
@@ -26,9 +25,9 @@ namespace BLL.Generation.StarSystem
             _rangeY = rangeY;
         }
         
-        public StarDto Generate(Random rnd, string cacheKey,IUnitOfWork uow=null)
+        public StarDto Generate(int galaxyId, string cacheKey,IUnitOfWork uow=null)
         {
-           return _solarSystemFactory.Constuct(_starGenerator, _starPlacer, _rangeX, _rangeY,uow);
+           return _solarSystemFactory.Constuct(_starGenerator, _starPlacer, _rangeX, _rangeY, galaxyId, uow);
         }
     }
 }

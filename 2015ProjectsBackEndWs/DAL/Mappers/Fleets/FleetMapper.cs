@@ -15,7 +15,7 @@ namespace DAL.Mappers.Fleets
 {
     public class FleetMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public FleetMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
+        public FleetMapper(OpFactory operations) : base(operations)
         {
         }
 
@@ -38,7 +38,8 @@ namespace DAL.Mappers.Fleets
                 AtBay = fleetDto.AtBay,
                 Position = fleetDto.Position,
                 AtBayPlanetId = fleetDto.AtBayPlanetId,
-                ShipClasses = ((ShipClassMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Ship)).ModelListToEntity(fleetDto.ShipClassDtos)
+                ShipClasses = ((ShipClassMapper)FleetMapperFactory.RetrieveMapper(Operations,FleetMapperTypes.Ship)).ModelListToEntity(fleetDto.ShipClassDtos),
+                CreatedAt = fleetDto.CreatedAt
             };
             return Entity;
         }
@@ -60,7 +61,8 @@ namespace DAL.Mappers.Fleets
                 TravelSpeed = fleetEntity.TravelSpeed,
                 Position = fleetEntity.Position,
                 AtBay = fleetEntity.AtBay,
-                ShipClassDtos = ((ShipClassMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Ship)).EntityListToModel(fleetEntity.ShipClasses)
+                ShipClassDtos = ((ShipClassMapper)FleetMapperFactory.RetrieveMapper(Operations,FleetMapperTypes.Ship)).EntityListToModel(fleetEntity.ShipClasses),
+                CreatedAt = fleetEntity.CreatedAt
             };
         }
 

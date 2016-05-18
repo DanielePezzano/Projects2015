@@ -1,27 +1,25 @@
 ﻿using System;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Universe.Enums;
-using DAL.Operations.BaseClasses;
 using DAL.Operations.IstanceFactory;
 
 namespace DAL.Mappers.Universe.IstanceFactory
 {
     public static class MapperFactory
     {
-        public static BaseMapper RetrieveMapper(string connectionString, OpFactory operations,
+        public static BaseMapper RetrieveMapper(OpFactory operations,
             UniverseMapperTypes mapperSelector)
         {
             switch (mapperSelector)
             {
+                case UniverseMapperTypes.stars:
+                    return new StarMapper(operations);
                 case UniverseMapperTypes.Planets:
-                    return new PlanetMapper(connectionString, operations);
-                    break;
+                    return new PlanetMapper(operations);
                 case UniverseMapperTypes.Buildings:
-                    return new BuildingMapper(connectionString, operations);
-                    break;
+                    return new BuildingMapper(operations);
                 case UniverseMapperTypes.BuildingSpecs:
-                    return new BuildingSpecsMapper(connectionString, operations);
-                    break;
+                    return new BuildingSpecsMapper(operations);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mapperSelector), mapperSelector, null);
             }

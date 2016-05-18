@@ -27,12 +27,14 @@ namespace BLL.Generation.StarSystem.Builders
         {
             _resultPlanet = new PlanetDto()
             {
-                Name = _star.Name+"-"+ RandomNumbers.RandomString(7),
+                Name = _star.Name+"-"+ RandomNumbers.RandomString(7,_rnd),
                 Buildings = new List<BuildingDto>(),
                 Satellites = new List<PlanetDto>(),
                 RingsPresent = RandomNumbers.RandomInt(0, 100, _rnd) == 0,
                 Population = 0,
-                TaxLevel = TaxLevel.Normal
+                TaxLevel = TaxLevel.Normal,
+                Id = -1,
+                CreatedAt = DateTime.Now
             };
         }
 
@@ -247,11 +249,12 @@ namespace BLL.Generation.StarSystem.Builders
             _resultPlanet.FoodProduction = production.FoodProduction;
             _resultPlanet.OreProduction = production.OreProduction;
             _resultPlanet.ResearchPointProduction = production.ResearchPointProduction;
-            _resultPlanet.LastUpdateOreProduction = production.LastOreUpdateTime;
-            _resultPlanet.LastIncomeRevenueTime = production.LastIncomeRevenueTime;
-            _resultPlanet.LastMaintenanceDateTime = production.LastMaintenanceUpdateTime;
-            _resultPlanet.LastUpdateFoodProduction = production.LastFoodUpDateTime;
-            _resultPlanet.LastUpdateOreProduction = production.LastOreUpdateTime;
+            _resultPlanet.LastUpdateOreProduction = DateTime.Now;
+            _resultPlanet.LastIncomeRevenueTime = DateTime.Now;
+            _resultPlanet.LastMaintenanceDateTime = DateTime.Now;
+            _resultPlanet.LastUpdateFoodProduction = DateTime.Now;
+            _resultPlanet.LastUpdateOreProduction = DateTime.Now;
+            _resultPlanet.LastUpdateResearcDateTime = DateTime.Now;
             _resultPlanet.LastUpdatePopDateTime = DateTime.Now;
             _resultPlanet.StoredFood = production.StoredFood;
             _resultPlanet.StoredOre = production.StoredOre;

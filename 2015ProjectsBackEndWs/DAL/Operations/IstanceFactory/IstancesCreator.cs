@@ -96,7 +96,7 @@ namespace DAL.Operations.IstanceFactory
                 case MappedRepositories.StarRepository:
                     return (isTest) ? new StarOperations(uow, connectionString) : new StarOperations(connectionString);
                 case MappedRepositories.GalaxyRepository:
-                    break;
+                    return (isTest) ? new GalaxyOperations(uow, connectionString) : new GalaxyOperations(connectionString);
                 case MappedRepositories.UserRepository:
                     return (isTest) ? new UserOperations(uow, connectionString) : new UserOperations(connectionString);
                 default:

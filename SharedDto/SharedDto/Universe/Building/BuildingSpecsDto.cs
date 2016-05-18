@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using Models.Tech.Enum;
 using SharedDto.Interfaces;
 
@@ -11,6 +12,7 @@ namespace SharedDto.Universe.Building
         public BonusType Bonus { get; set; }
         [DataMember]
         public int Value { get; set; }
-
+        [DataMember]
+        public DateTime CreatedAt { get; set; }
     }
 }

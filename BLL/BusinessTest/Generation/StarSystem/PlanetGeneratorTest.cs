@@ -80,7 +80,7 @@ namespace BusinessTest.Generation.StarSystem
 
                             }, IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
 
-                        var star = generator.Generate(OrbitGeneratorTest.Rnd,  "",uow);
+                        var star = generator.Generate(1,  "",uow);
 
                         if (star.Planets.Count <= 0) return;
                         var generatedPlanets = star.Planets.ToList();
@@ -124,7 +124,7 @@ namespace BusinessTest.Generation.StarSystem
 
                             }, IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
 
-                        var star = generator.Generate(OrbitGeneratorTest.Rnd, "", uow);
+                        var star = generator.Generate(1, "", uow);
 
                         var generatedPlanets = star.Planets.ToList();
                         Assert.IsTrue(generatedPlanets.Count(c => c.IsHabitable) >= 1);
@@ -165,7 +165,7 @@ namespace BusinessTest.Generation.StarSystem
 
                             }, IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
 
-                        var star = generator.Generate(OrbitGeneratorTest.Rnd, "", uow);
+                        var star = generator.Generate(1, "", uow);
 
                         var generatedPlanets = star.Planets.ToList();
                         Console.WriteLine(@"pianeti " + generatedPlanets.Count(c => c.WaterSpaces + c.WaterRadiatedSpaces > c.GroundSpaces));

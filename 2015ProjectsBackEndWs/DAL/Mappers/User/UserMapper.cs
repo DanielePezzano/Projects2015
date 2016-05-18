@@ -21,8 +21,8 @@ namespace DAL.Mappers.User
 {
    public class UserMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public UserMapper(string connectionString, OpFactory operations)
-            : base(connectionString, operations)
+        public UserMapper(OpFactory operations)
+            : base(operations)
         {
         }
 
@@ -39,7 +39,7 @@ namespace DAL.Mappers.User
             var userDto = (UserDto) dto;
             var planetMapper =
                 ((PlanetMapper)
-                    MapperFactory.RetrieveMapper(ConnectionString, Operations, UniverseMapperTypes.Planets));
+                    MapperFactory.RetrieveMapper(Operations, UniverseMapperTypes.Planets));
             Entity = new Models.Users.User()
             {
                 Id = userDto.Id,
@@ -52,11 +52,11 @@ namespace DAL.Mappers.User
                 UserName = userDto.Username,
                 Planets = planetMapper.ModelListToEntity(userDto.Planets),
                 Satellites = planetMapper.ModelListToSatellites(userDto.Satellites),
-                RaceBonuses = ((RaceBonusMapper)UserMapperFactory.RetrieveMapper(ConnectionString,Operations,UserMapperTypes.RaceBonus)).ModelListToEntity(userDto.Race.RaceBonuses),
-                Fleets = ((FleetMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Fleet)).ModelListToEntity(userDto.Fleets),
-                ShipClasses = ((ShipClassMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Ship)).ModelListToEntity(userDto.ShipClasses),
-                Technologies = ((TechMapper)UserMapperFactory.RetrieveMapper(ConnectionString,Operations,UserMapperTypes.Technologies)).ModelListToEntity(userDto.Technologies),
-                Researches = ((ResearchQueueMapper)UserMapperFactory.RetrieveMapper(ConnectionString,Operations,UserMapperTypes.ResearchQueue)).ModelListToEntity(userDto.Researches)
+                RaceBonuses = ((RaceBonusMapper)UserMapperFactory.RetrieveMapper(Operations,UserMapperTypes.RaceBonus)).ModelListToEntity(userDto.Race.RaceBonuses),
+                Fleets = ((FleetMapper)FleetMapperFactory.RetrieveMapper(Operations,FleetMapperTypes.Fleet)).ModelListToEntity(userDto.Fleets),
+                ShipClasses = ((ShipClassMapper)FleetMapperFactory.RetrieveMapper(Operations,FleetMapperTypes.Ship)).ModelListToEntity(userDto.ShipClasses),
+                Technologies = ((TechMapper)UserMapperFactory.RetrieveMapper(Operations,UserMapperTypes.Technologies)).ModelListToEntity(userDto.Technologies),
+                Researches = ((ResearchQueueMapper)UserMapperFactory.RetrieveMapper(Operations,UserMapperTypes.ResearchQueue)).ModelListToEntity(userDto.Researches)
             };
 
             return Entity;
@@ -67,7 +67,7 @@ namespace DAL.Mappers.User
             var userEntity = (Models.Users.User) entity;
             var planetMapper =
                 ((PlanetMapper)
-                    MapperFactory.RetrieveMapper(ConnectionString, Operations, UniverseMapperTypes.Planets));
+                    MapperFactory.RetrieveMapper( Operations, UniverseMapperTypes.Planets));
             return new UserDto()
             {
                 Id = userEntity.Id,
@@ -76,18 +76,18 @@ namespace DAL.Mappers.User
                 Status = userEntity.Status.ToString(),
                 Race = new RaceDto()
                 {
-                    RaceBonuses =  ((RaceBonusMapper)UserMapperFactory.RetrieveMapper(ConnectionString,Operations,UserMapperTypes.RaceBonus)).EntityListToModel(userEntity.RaceBonuses),
+                    RaceBonuses =  ((RaceBonusMapper)UserMapperFactory.RetrieveMapper(Operations,UserMapperTypes.RaceBonus)).EntityListToModel(userEntity.RaceBonuses),
                     RaceName = userEntity.RaceName,
                     RacePointsUsed = userEntity.RacePointsUsed,
                     RacePointsLeft = userEntity.RacePointsLeft
                 },
-                Researches = ((ResearchQueueMapper)UserMapperFactory.RetrieveMapper(ConnectionString,Operations,UserMapperTypes.ResearchQueue)).EntityListToModel(userEntity.Researches),
+                Researches = ((ResearchQueueMapper)UserMapperFactory.RetrieveMapper(Operations,UserMapperTypes.ResearchQueue)).EntityListToModel(userEntity.Researches),
                 Email = userEntity.Email,
-                Fleets = ((FleetMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Fleet)).EntityListToModel(userEntity.Fleets),
+                Fleets = ((FleetMapper)FleetMapperFactory.RetrieveMapper(Operations,FleetMapperTypes.Fleet)).EntityListToModel(userEntity.Fleets),
                 Photo = userEntity.Photo,
-                ShipClasses = ((ShipClassMapper)FleetMapperFactory.RetrieveMapper(ConnectionString,Operations,FleetMapperTypes.Ship)).EntityListToModel(userEntity.ShipClasses),
+                ShipClasses = ((ShipClassMapper)FleetMapperFactory.RetrieveMapper(Operations,FleetMapperTypes.Ship)).EntityListToModel(userEntity.ShipClasses),
                 Username = userEntity.UserName,
-                Technologies = ((TechMapper)UserMapperFactory.RetrieveMapper(ConnectionString,Operations,UserMapperTypes.Technologies)).EntityListToModel(userEntity.Technologies)
+                Technologies = ((TechMapper)UserMapperFactory.RetrieveMapper(Operations,UserMapperTypes.Technologies)).EntityListToModel(userEntity.Technologies)
             };
         }
     }

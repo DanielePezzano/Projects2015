@@ -13,7 +13,7 @@ namespace DAL.Mappers.User
 {
     public class TechBonusMapper : BaseMapper,  IMapToDto,IMapToEntity
     {
-        public TechBonusMapper(string connectionString, OpFactory operations) : base(connectionString, operations)
+        public TechBonusMapper(OpFactory operations) : base(operations)
         {
         }
 

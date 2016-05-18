@@ -7,3 +7,8 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\Debug\WcfCommCrypto.pdb
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\obj\Debug\WcfCommCrypto.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\obj\Debug\WcfCommCrypto.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\Debug\WcfCommCrypto.dll.config
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\Debug\EntityFramework.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\Debug\EntityFramework.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\Debug\EntityFramework.SqlServer.xml
