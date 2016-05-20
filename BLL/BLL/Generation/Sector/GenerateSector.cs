@@ -9,6 +9,7 @@ using DAL.Mappers.Universe.Enums;
 using DAL.Mappers.Universe.IstanceFactory;
 using DAL.Operations.Enums;
 using DAL.Operations.IstanceFactory;
+using Models.Base;
 using Models.Universe;
 using SharedDto.Universe.Stars;
 using SharedDto.UtilityDto;
@@ -84,15 +85,38 @@ namespace BLL.Generation.Sector
             }
 
             return generatedStars;
-        } 
+        }
+
+        private BaseEntity RetrieveGalaxy(int galaxyId)
+        {
+            var cacheKey = $"FndGlxById->{galaxyId}";
+            return
+                _opFactory.SetOperation<Galaxy>(MappedRepositories.GalaxyRepository, MappedOperations.FindBy, cacheKey,
+                    c => c.Id == galaxyId).Entity;
+        }
+
+        //private void AssociateStarsToGalaxy(List<Star> )
         #endregion
 
         public List<StarDto> SaveResult(List<StarDto> starToSave)
         {
-            var listSaved = ((StarMapper) MapperFactory.RetrieveMapper(_opFactory, UniverseMapperTypes.stars)).ModelListToEntity(starToSave).Select(starEntity => _opFactory.SetOperation(MappedRepositories.StarRepository, MappedOperations.SaveEntity, "", starEntity)).Select(result => (Star) result.Entity).ToList();
-            return
-                ((StarMapper) MapperFactory.RetrieveMapper(_opFactory, UniverseMapperTypes.stars)).EntityListToModel(
-                    listSaved);
+            if (starToSave != null && starToSave.Count > 0 && starToSave[0].GalaxyId != 0)
+            {
+                var listSaved =
+                    ((StarMapper) MapperFactory.RetrieveMapper(_opFactory, UniverseMapperTypes.stars)).ModelListToEntity
+                        (starToSave)
+                        .Select(
+                            starEntity =>
+                                _opFactory.SetOperation(MappedRepositories.StarRepository, MappedOperations.SaveEntity,
+                                    "", starEntity))
+                        .Select(result => (Star) result.Entity)
+                        .ToList();
+                return
+                    ((StarMapper) MapperFactory.RetrieveMapper(_opFactory, UniverseMapperTypes.stars)).EntityListToModel
+                        (
+                            listSaved);
+            }
+            else return starToSave;
         }
 
         public SectorGenerationDto Generate()

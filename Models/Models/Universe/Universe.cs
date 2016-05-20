@@ -13,9 +13,5 @@ namespace Models.Universe
         [Display(Name = "Name", ResourceType = typeof(Resources))]
         [DataMember]
         public string Name { get; set; }
-        [DataMember]
-        public virtual ICollection<Star> Stars { get; set; }
-        [DataMember]
-        public virtual ICollection<User> Users { get; set; }
     }
 }

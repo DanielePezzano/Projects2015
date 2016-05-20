@@ -59,7 +59,9 @@ namespace Models.Universe
         [DataMember]
         public virtual ICollection<Planet> Planets { get; set; }
 
+        [Required]
         [DataMember]
-        public virtual Galaxy Galaxy { get; set; }
+        public int GalaxyID { get; set; }
+
     }
 }

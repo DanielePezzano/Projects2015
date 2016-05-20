@@ -80,8 +80,6 @@ namespace Models.Users
 
         [DataMember]
         public virtual ICollection<RaceBonus> RaceBonuses { get; set; }
-
-        [DataMember]
-        public virtual Galaxy Universe { get; set; }
+        
     }
 }

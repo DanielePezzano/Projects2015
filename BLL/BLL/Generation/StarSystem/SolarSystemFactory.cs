@@ -95,6 +95,7 @@ namespace BLL.Generation.StarSystem
             _conditions.MineralPoor = false;
             _conditions.MineralRich = false;
             _conditions.MostlyWater = false;
+            _conditions.IsHomePlanet = false;
         }
 
         private void CalculateNumberOfPlanets(StarBuilder starGenerator)

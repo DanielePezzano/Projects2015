@@ -48,12 +48,9 @@ namespace DAL.Mappers.Universe
                 StarType = (StarType)Enum.Parse(typeof(StarType), starDto.StarType),
                 SurfaceTemp = starDto.SurfaceTemp,
                 UpdatedAt = DateTime.Now,
-                CreatedAt = starDto.CreatedAt
+                CreatedAt = starDto.CreatedAt,
+                GalaxyID = starDto.GalaxyId
             };
-            ((Star) Entity).Galaxy =
-                    (Galaxy)
-                        Operations.SetOperation<Galaxy>(MappedRepositories.GalaxyRepository, MappedOperations.FindBy, "",
-                            c => c.Id == starDto.GalaxyId).Entity;
             return Entity;
         }
 
@@ -62,7 +59,7 @@ namespace DAL.Mappers.Universe
             var starEntity = (Star) entity;
             return new StarDto()
             {
-                GalaxyId = starEntity.Galaxy.Id,
+                GalaxyId = starEntity.GalaxyID,
                 Mass = starEntity.Mass,
                 Name = starEntity.Name,
                 Planets = ((PlanetMapper)MapperFactory.RetrieveMapper(Operations,UniverseMapperTypes.Planets)).EntityListToModel(starEntity.Planets),

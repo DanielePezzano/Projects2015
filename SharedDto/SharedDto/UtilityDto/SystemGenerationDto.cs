@@ -39,7 +39,8 @@ namespace SharedDto.UtilityDto
 
         [DataMember]
         public bool MostlyWater { get; set; }
-
+        [DataMember]
+        public bool IsHomePlanet { get; set; }
         #endregion
 
     }

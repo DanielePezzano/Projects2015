@@ -96,6 +96,7 @@
     <Compile Include="Universe\Fleet\ShieldDto.cs" />
     <Compile Include="Universe\Fleet\ShipClassDto.cs" />
     <Compile Include="Universe\Fleet\SystemsDto.cs" />
+    <Compile Include="Universe\GalaxyDto.cs" />
     <Compile Include="Universe\Mails\MailDto.cs" />
     <Compile Include="Universe\Planets\PlanetDto.cs" />
     <Compile Include="Universe\Queues\ResearchDto.cs" />

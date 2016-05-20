@@ -1,4 +1,5 @@
-﻿using BLL.Generation.StarSystem.IstanceFactory;
+﻿using System;
+using BLL.Generation.StarSystem.IstanceFactory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Universe;
 using SharedDto.Universe.Stars;
@@ -11,7 +12,7 @@ namespace BusinessTest.Generation.StarSystem
         [TestMethod]
         public void CreateBrandNewStarTest()
         {
-            var generator = FactoryGenerator.RetrieveStarBuilder();
+            var generator = FactoryGenerator.RetrieveStarBuilder(new Random());
             Assert.IsInstanceOfType(generator.CreateBrandNewStar(), typeof(StarDto));
         }
     }

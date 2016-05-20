@@ -14,9 +14,9 @@ namespace BLL.Generation.StarSystem.IstanceFactory
             return new SolarSystemFactory(systemGenerationDto, rnd);
         }
 
-        public static StarBuilder RetrieveStarBuilder()
+        public static StarBuilder RetrieveStarBuilder(Random rnd)
         {
-            return new StarBuilder();
+            return new StarBuilder(rnd);
         }
 
         public static PlanetBuilder RetrievePlanetBuilder()
@@ -49,7 +49,7 @@ namespace BLL.Generation.StarSystem.IstanceFactory
         {
             return new StarSystemGenerator(
                 RetrieveNewFactory(systemGenerationDto, rnd),
-                RetrieveStarBuilder(),
+                RetrieveStarBuilder(rnd),
                 RetrieveStarPlacer(opFactory),
                 UtilitiesFactory.RetrieveRange(systemGenerationDto.MinX,systemGenerationDto.MaxX),
                 UtilitiesFactory.RetrieveRange(systemGenerationDto.MinY,systemGenerationDto.MaxY));

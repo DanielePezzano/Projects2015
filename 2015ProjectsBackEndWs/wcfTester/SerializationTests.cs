@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
@@ -19,7 +20,8 @@ namespace wcfTester
             {
                 Name = "testStar",
                 GalaxyId = 1,
-                Planets = new List<PlanetDto>()
+                Planets = new List<PlanetDto>(),
+                CreatedAt = DateTime.Now
             };
             
             var stream = new MemoryStream();
@@ -48,14 +50,16 @@ namespace wcfTester
             {
                 Bonus = RaceTraitsBonuses.OreProduction,
                 TraitType = RaceTraitsType.Social,
-                Value = 30
+                Value = 30,
+                CreatedAt = DateTime.Now
             };
 
             var bonusB = new RaceBonusDto()
             {
                 Bonus = RaceTraitsBonuses.FoodConsumption,
                 TraitType = RaceTraitsType.Cultural,
-                Value = -20
+                Value = -20,
+                CreatedAt = DateTime.Now
             };
 
             raceDto.RaceBonuses.Add(bonusA);

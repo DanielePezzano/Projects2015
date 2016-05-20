@@ -272,6 +272,7 @@ namespace BLL.Generation.StarSystem.Builders
         {
             _resultPlanet.IsGaseous = _isGasseous;
             _resultPlanet.IsHabitable = _resultPlanet.AtmospherePresent && !_isGasseous;
+            _resultPlanet.IsHomePlanet = _conditions.IsHomePlanet;
         }
 
         #endregion
@@ -281,7 +282,7 @@ namespace BLL.Generation.StarSystem.Builders
             _star = star;
             _conditions = conditions;
             _rnd = rnd;
-
+            if (_conditions.IsHomePlanet && !_conditions.ForceLiving) _conditions.ForceLiving = true;
             BasePlanet();
             AssignOrbit(generator);
             AssignAtmoshpere(_resultPlanet.DistanceR, rnd);

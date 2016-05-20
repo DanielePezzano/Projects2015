@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BLL.Information;
+﻿using BLL.Information;
 using BLL.Utilities.Structs;
 using DAL.Operations.IstanceFactory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,11 +27,10 @@ namespace BusinessTest.Information
         public void MyTestInitialize()
         {
             _repo = new MockRepository(MockBehavior.Default);
-            _galaxy = _repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
-            _star1 = _repo.Create<Star>().SetupProperty(x => x.Galaxy, _galaxy.Object);
-            _star2 = _repo.Create<Star>().SetupProperty(x => x.Galaxy, _galaxy.Object);
-            _star3 = _repo.Create<Star>().SetupProperty(x => x.Galaxy, _galaxy.Object);
-            _star4 = _repo.Create<Star>().SetupProperty(x => x.Galaxy, _galaxy.Object);
+            _star1 = _repo.Create<Star>();
+            _star2 = _repo.Create<Star>();
+            _star3 = _repo.Create<Star>();
+            _star4 = _repo.Create<Star>();
 
             _star1.Object.CoordinateX = 50; // = new Coordinates(50, 50);
             _star1.Object.CoordinateY = 50;
@@ -43,8 +41,7 @@ namespace BusinessTest.Information
             _star4.Object.CoordinateX = 0; // = new Coordinates(0, 0);
             _star4.Object.CoordinateY = 0;
 
-            _galaxy.SetupProperty(x => x.Stars,
-                new List<Star> {_star2.Object, _star3.Object, _star1.Object, _star4.Object});
+           
             _contextFactory = new ContextFactory("UniverseConnection", true);
             var context = _contextFactory.Retrieve();
             var cache = new DalCache();

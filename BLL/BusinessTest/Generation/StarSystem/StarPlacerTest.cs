@@ -57,7 +57,7 @@ namespace BusinessTest.Generation.StarSystem
                         uow.StarRepository.CustomDbset(new List<Star>());
                         var repo = new MockRepository(MockBehavior.Default);
 
-                        repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
+                        //repo.Create<Galaxy>().SetupProperty(x => x.Id, 12);
                         var placer = new StarPlacer(IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
                         var coord = placer.GenerateRandomCoordinatesTest(230, 400, 230, 400, _rnd);
                         Assert.IsTrue(placer.ValidPlace(coord,uow));
@@ -82,12 +82,12 @@ namespace BusinessTest.Generation.StarSystem
 
                         uow.StarRepository.CustomDbset(new List<Star>());
                         var repo = new MockRepository(MockBehavior.Default);
-                        var galaxy = repo.Create<Galaxy>().SetupProperty(x => x.Stars, new List<Star>());
+                        //var galaxy = repo.Create<Galaxy>().SetupProperty(x => x.Id, 1);
 
-                        var star1 = repo.Create<Star>().SetupProperty(x => x.Galaxy, galaxy.Object);
-                        var star2 = repo.Create<Star>().SetupProperty(x => x.Galaxy, galaxy.Object);
-                        var star3 = repo.Create<Star>().SetupProperty(x => x.Galaxy, galaxy.Object);
-                        var star4 = repo.Create<Star>().SetupProperty(x => x.Galaxy, galaxy.Object);
+                        var star1 = repo.Create<Star>();
+                        var star2 = repo.Create<Star>();
+                        var star3 = repo.Create<Star>();
+                        var star4 = repo.Create<Star>();
 
                         star1.Object.CoordinateX = 50; // = new Coordinates(50, 50);
                         star1.Object.CoordinateY = 50;
@@ -98,13 +98,12 @@ namespace BusinessTest.Generation.StarSystem
                         star4.Object.CoordinateX = 0; // = new Coordinates(0, 0);
                         star4.Object.CoordinateY = 0;
 
-                        galaxy.SetupProperty(x => x.Stars,
-                            new List<Star> {star1.Object, star2.Object, star3.Object, star4.Object});
+                        
                         uow.StarRepository.Add(star1.Object);
                         uow.StarRepository.Add(star2.Object);
                         uow.StarRepository.Add(star3.Object);
                         uow.StarRepository.Add(star4.Object);
-                        var generator = new StarBuilder();
+                        var generator = new StarBuilder(_rnd);
                         var generated = generator.CreateBrandNewStar();
 
                         #endregion

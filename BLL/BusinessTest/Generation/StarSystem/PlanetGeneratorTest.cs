@@ -94,6 +94,48 @@ namespace BusinessTest.Generation.StarSystem
         }
 
         [TestMethod]
+        public void TestOnlyOneHomePlanet()
+        {
+            using (var cf = new ContextFactory("UniverseConnection", true))
+            {
+                var context = cf.Retrieve();
+                var cache = new DalCache();
+                var repos = new UowRepositories();
+                using (var repoFactories = new UowRepositoryFactories(context, cache, repos))
+                {
+                    using (var uow = new TestUow(context, repoFactories))
+                    {
+                        uow.StarRepository.CustomDbset(new List<Star>());
+
+                        var generator = FactoryGenerator.RetrieveStarSystemGenerator(
+                            OrbitGeneratorTest.Rnd, new SystemGenerationDto()
+                            {
+                                FoodPoor = false,
+                                FoodRich = false,
+                                ForceWater = false,
+                                ForceLiving = true,
+                                MostlyWater = false,
+                                MineralRich = false,
+                                MineralPoor = false,
+                                MinX = 0,
+                                MaxX = 10,
+                                MinY = 0,
+                                MaxY = 10,
+                                IsHomePlanet = true,
+
+                            }, IstancesCreator.RetrieveOpFactory("UniverseConnection", true));
+
+                        var star = generator.Generate(1, "", uow);
+
+                        var generatedPlanets = star.Planets.ToList();
+                        Assert.IsTrue(generatedPlanets.Count(c => c.IsHabitable) >= 1);
+                        Assert.IsTrue(generatedPlanets.Count(c=>c.IsHomePlanet)==1);
+                    }
+                }
+            }
+        }
+
+        [TestMethod]
         public void TestOneLivingPlanet()
         {
             using (var cf = new ContextFactory("UniverseConnection", true))

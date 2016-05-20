@@ -70,6 +70,7 @@
     <Compile Include="Mappers\Universe\BuildingMapper.cs" />
     <Compile Include="Mappers\Universe\BuildingSpecsMapper.cs" />
     <Compile Include="Mappers\Universe\Enums\UniverseMapperTypes.cs" />
+    <Compile Include="Mappers\Universe\GalaxyMapper.cs" />
     <Compile Include="Mappers\Universe\IstanceFactory\MapperFactory.cs" />
     <Compile Include="Mappers\Universe\PlanetMapper.cs" />
     <Compile Include="Mappers\Universe\StarMapper.cs" />

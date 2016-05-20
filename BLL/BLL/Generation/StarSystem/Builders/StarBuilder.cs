@@ -13,9 +13,9 @@ namespace BLL.Generation.StarSystem.Builders
         private static Random _rnd;
         private bool _disposed;
 
-        public StarBuilder()
+        public StarBuilder(Random rnd)
         {
-            _rnd = new Random();
+            _rnd = rnd;
         }
 
         #region Private Methods
