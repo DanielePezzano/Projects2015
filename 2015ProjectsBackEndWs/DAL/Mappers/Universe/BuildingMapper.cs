@@ -78,12 +78,12 @@ namespace DAL.Mappers.Universe
 
         public List<BuildingDto> EntityListToModel(ICollection<Building> entityList)
         {
-            return entityList.Select(MapToDto).Select(dto => dto).Cast<BuildingDto>().ToList();
+            return entityList?.Select(MapToDto).Select(dto => dto).Cast<BuildingDto>().ToList() ?? new List<BuildingDto>();
         }
 
         public List<Building> ModelListToEntity(List<BuildingDto> entityList)
         {
-            return entityList.Select(MapToEntity).Select(dto => dto).Cast<Building>().ToList();
+            return entityList?.Select(MapToEntity).Select(dto => dto).Cast<Building>().ToList() ?? new List<Building>();
         }
     }
 }

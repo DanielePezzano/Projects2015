@@ -58,7 +58,8 @@ namespace BLL.Generation.StarSystem
             var nos = CalculateNumberOfSatellite(planet.Mass, _rnd);
             for (var i = 0; i < nos; i++)
             {
-                _mySatBuilder = FactoryGenerator.RetrievePlanetBuilder();
+                //_mySatBuilder = FactoryGenerator.RetrievePlanetBuilder();
+                _mySatBuilder = FactoryGenerator.RetrieveSatelliteBuilder();
                 var toAdd =
                     _mySatBuilder.Build(_associatedStar,
                         FactoryGenerator.RetrieveSystemGenerationDto(false, false, false, false, false, false, false, 0,

@@ -279,22 +279,22 @@ namespace DAL.Mappers.Universe
 
         public List<PlanetDto> EntityListToModel(ICollection<Planet> entityList)
         {
-            return entityList.Select(MapToDto).Select(dto => dto).Cast<PlanetDto>().ToList();
+            return entityList?.Select(MapToDto).Select(dto => dto).Cast<PlanetDto>().ToList() ?? new List<PlanetDto>();
         }
 
         public List<Planet> ModelListToEntity(List<PlanetDto> entityList)
         {
-            return entityList.Select(MapToEntity).Select(dto => dto).Cast<Planet>().ToList();
+            return entityList?.Select(MapToEntity).Select(dto => dto).Cast<Planet>().ToList() ?? new List<Planet>();
         }
 
         public List<Satellite> ModelListToSatellites(List<PlanetDto> entityList)
         {
-            return entityList.Select(MapSatelliteToEntity).Select(dto => dto).Cast<Satellite>().ToList();
+            return entityList?.Select(MapSatelliteToEntity).Select(dto => dto).Cast<Satellite>().ToList() ?? new List<Satellite>();
         }
 
         public List<PlanetDto> EntityListToSatelliteModel(ICollection<Satellite> entityList)
         {
-            return entityList.Select(MapSatelliteToDto).Select(dto => dto).Cast<PlanetDto>().ToList();
+            return entityList?.Select(MapSatelliteToDto).Select(dto => dto).Cast<PlanetDto>().ToList() ?? new List<PlanetDto>();
         }
     }
 }

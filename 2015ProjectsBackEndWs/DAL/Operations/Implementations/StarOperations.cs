@@ -19,7 +19,7 @@ namespace DAL.Operations.Implementations
         }
 
         public StarOperations(IUnitOfWork uow, string connectionString)
-            : base(true,connectionString)
+            : base(true, connectionString)
         {
             Uow = uow;
         }
@@ -51,7 +51,7 @@ namespace DAL.Operations.Implementations
             OperationResult.CheckResult = list != null && list.Count <= 0;
         }
 
-        protected override  void SaveEntity(BaseEntity entity)
+        protected override void SaveEntity(BaseEntity entity)
         {
             OperationResult.Entity = entity;
             if (OperationResult.Entity == null || (Star) OperationResult.Entity == null) return;
@@ -80,10 +80,19 @@ namespace DAL.Operations.Implementations
             if (repository != null) OperationResult.RawResult = repository.Get(CacheKey, predicate);
         }
 
+        protected override void GetAll()
+        {
+            var repository = RetrieveUow();
+            if (repository != null) OperationResult.RawResult = repository.Get(CacheKey);
+        }
+
         public override void Perform(MappedOperations desiredOperation, dynamic predicate = null)
         {
             switch (desiredOperation)
             {
+                case MappedOperations.GetAll:
+                    GetAll();
+                    break;
                 case MappedOperations.SaveEntity:
                     SaveEntity(predicate);
                     break;

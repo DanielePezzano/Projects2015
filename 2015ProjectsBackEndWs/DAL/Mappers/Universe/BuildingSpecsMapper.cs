@@ -51,12 +51,12 @@ namespace DAL.Mappers.Universe
 
         public List<BuildingSpecsDto> EntityListToModel(ICollection<BuildingSpec> entityList)
         {
-            return entityList.Select(MapToDto).Select(dto => dto).Cast<BuildingSpecsDto>().ToList();
+            return entityList?.Select(MapToDto).Select(dto => dto).Cast<BuildingSpecsDto>().ToList() ?? new List<BuildingSpecsDto>();
         }
 
         public List<BuildingSpec> ModelListToEntity(List<BuildingSpecsDto> entityList)
         {
-            return entityList.Select(MapToEntity).Select(dto => dto).Cast<BuildingSpec>().ToList();
+            return entityList?.Select(MapToEntity).Select(dto => dto).Cast<BuildingSpec>().ToList() ?? new List<BuildingSpec>();
         }
     }
 }

@@ -66,13 +66,13 @@ namespace DAL.Mappers.Fleets
         }
           public List<ShipClassDto> EntityListToModel(ICollection<ShipClass> entityList)
         {
-            return entityList.Select(MapToDto).Select(dto => dto).Cast<ShipClassDto>().ToList();
+            return entityList?.Select(MapToDto).Select(dto => dto).Cast<ShipClassDto>().ToList() ?? new List<ShipClassDto>();
         }
 
         
         public List<ShipClass> ModelListToEntity(List<ShipClassDto> entityList)
         {
-            return entityList.Select(MapToEntity).Select(dto => dto).Cast<ShipClass>().ToList();
+            return entityList?.Select(MapToEntity).Select(dto => dto).Cast<ShipClass>().ToList() ?? new List<ShipClass>();
         }
 
     }

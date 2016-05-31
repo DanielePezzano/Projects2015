@@ -77,13 +77,13 @@ namespace DAL.Mappers.Universe
 
         public List<StarDto> EntityListToModel(ICollection<Star> entityList)
         {
-            return entityList.Select(MapToDto).Select(dto => dto).Cast<StarDto>().ToList();
+            return entityList?.Select(MapToDto).Select(dto => dto).Cast<StarDto>().ToList() ?? new List<StarDto>();
         }
 
         
         public List<Star> ModelListToEntity(List<StarDto> entityList)
         {
-            return entityList.Select(MapToEntity).Select(dto => dto).Cast<Star>().ToList();
+            return entityList?.Select(MapToEntity).Select(dto => dto).Cast<Star>().ToList() ?? new List<Star>();
         }
     }
 }

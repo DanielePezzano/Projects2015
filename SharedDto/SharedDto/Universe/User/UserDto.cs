@@ -12,6 +12,11 @@ using SharedDto.Universe.Technology;
 namespace SharedDto.Universe.User
 {
     [DataContract]
+    [KnownType(typeof(PlanetDto))]
+    [KnownType(typeof(TechnologyDto))]
+    [KnownType(typeof(ResearchDto))]
+    [KnownType(typeof(FleetDto))]
+    [KnownType(typeof(ShipClassDto))]
     public class UserDto : IDto
     {
         [DataMember]

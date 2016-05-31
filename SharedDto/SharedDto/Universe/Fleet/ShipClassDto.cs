@@ -7,6 +7,7 @@ using SharedDto.Interfaces;
 namespace SharedDto.Universe.Fleet
 {
     [DataContract]
+    [KnownType(typeof(HullDto))]
     public class ShipClassDto : BaseDto, IDto, ICosts, IMaintenanceCost
     {
         [DataMember]

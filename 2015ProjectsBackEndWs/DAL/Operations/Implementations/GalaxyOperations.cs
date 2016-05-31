@@ -75,10 +75,19 @@ namespace DAL.Operations.Implementations
                 OperationResult.RawResult = ((List<Galaxy>) repository.Get(CacheKey, predicate)).OrderBy(c => c.Id);
         }
 
+        protected override void GetAll()
+        {
+            var repository = RetrieveUow();
+            if (repository != null) OperationResult.RawResult = repository.Get(CacheKey);
+        }
+
         public override void Perform(MappedOperations desiredOperation, dynamic predicate = null)
         {
             switch (desiredOperation)
             {
+                case MappedOperations.GetAll:
+                    GetAll();
+                    break;
                 case MappedOperations.SaveEntity:
                     SaveEntity(predicate);
                     break;
@@ -105,6 +114,5 @@ namespace DAL.Operations.Implementations
                     throw new ArgumentOutOfRangeException(nameof(desiredOperation), desiredOperation, null);
             }
         }
-        
     }
 }

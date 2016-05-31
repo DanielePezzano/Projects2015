@@ -23,7 +23,7 @@ namespace BLL.Generation.StarSystem.IstanceFactory
         {
             return new PlanetBuilder();
         }
-        [Obsolete]
+
         public static SatelliteBuilder RetrieveSatelliteBuilder()
         {
             return new SatelliteBuilder();

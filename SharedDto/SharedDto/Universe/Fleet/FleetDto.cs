@@ -8,6 +8,7 @@ using SharedDto.Interfaces;
 namespace SharedDto.Universe.Fleet
 {
     [DataContract]
+    [KnownType(typeof(ShipClassDto))]
     public class FleetDto : BaseDto,IDto
     {
         [DataMember]

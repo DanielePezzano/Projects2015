@@ -79,10 +79,19 @@ namespace DAL.Operations.Implementations
                                           (OperationResult.RawResult as List<User>).Count > 0;
         }
 
+        protected override void GetAll()
+        {
+            var repository = RetrieveUow();
+            if (repository != null) OperationResult.RawResult = repository.Get(CacheKey);
+        }
+
         public override void Perform(MappedOperations desiredOperation, dynamic predicate = null)
         {
             switch (desiredOperation)
             {
+                    case MappedOperations.GetAll:
+                    GetAll();
+                    break;
                 case MappedOperations.SaveEntity:
                     SaveEntity(predicate);
                     break;

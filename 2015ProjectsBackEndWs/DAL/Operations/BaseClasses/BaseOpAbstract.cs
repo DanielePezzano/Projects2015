@@ -30,6 +30,7 @@ namespace DAL.Operations.BaseClasses
             Uow?.Save();
         }
 
+        protected abstract void GetAll();
         protected abstract void SaveEntity(BaseEntity entity);
         protected abstract void Any();
         protected abstract void GetById();

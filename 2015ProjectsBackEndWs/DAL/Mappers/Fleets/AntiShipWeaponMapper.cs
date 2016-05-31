@@ -73,13 +73,13 @@ namespace DAL.Mappers.Fleets
         }
         public List<AntiShipWeaponDto> EntityListToModel(ICollection<AntiShipWeapon> entityList)
         {
-            return entityList.Select(MapToDto).Select(dto => dto).Cast<AntiShipWeaponDto>().ToList();
+            return entityList?.Select(MapToDto).Select(dto => dto).Cast<AntiShipWeaponDto>().ToList() ?? new List<AntiShipWeaponDto>();
         }
 
         
         public List<AntiShipWeapon> ModelListToEntity(List<AntiShipWeaponDto> entityList)
         {
-            return entityList.Select(MapToEntity).Select(dto => dto).Cast<AntiShipWeapon>().ToList();
+            return entityList?.Select(MapToEntity).Select(dto => dto).Cast<AntiShipWeapon>().ToList() ?? new List<AntiShipWeapon>();
         }
     }
 }

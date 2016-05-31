@@ -1,39 +1,35 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using BLL.Generation.StarSystem.Interfaces;
 using BLL.Utilities;
 using BLL.Utilities.Structs;
-using Models.Base;
 using Models.Base.Enum;
-using Models.Buildings;
 using Models.Universe;
 using Models.Universe.Enum;
+using SharedDto.Universe.Building;
 using SharedDto.Universe.Planets;
 using SharedDto.Universe.Stars;
 using SharedDto.UtilityDto;
 
 namespace BLL.Generation.StarSystem.Builders
 {
-    [Obsolete]
+
     public class SatelliteBuilder : IBuilder
     {
         private SystemGenerationDto _conditions;
-        private double _mediumDensity; //densità media terrestre --> se densità calcolata <=3 probabilmente è gassoso   
-        private Star _star;
+        private double _mediumDensity = BasicConstants.EarthDensity; //densità media terrestre --> se densità calcolata <=3 probabilmente è gassoso   
+        private StarDto _star;
         private Random _rnd;
-        private Satellite _resultSat;
+        private PlanetDto _resultSat;
         private bool _isGasseous;
-        private readonly DoubleRange _satelliteCloseRange = new DoubleRange(PlanetProperties.MinSatelliteDistance,
-            PlanetProperties.MaxSatelliteDistance);
+        private readonly DoubleRange _satelliteCloseRange = new DoubleRange(PlanetProperties.MinSatelliteDistance, PlanetProperties.MaxSatelliteDistance);
 
         #region Private Methods
         private bool IsAtmospherePresent(double distance, Random rnd)
         {
-            if (_conditions.ForceLiving) return true;
             if (distance >= BasicConstants.MinAtmosphereDistance)
             {
-                return RandomNumbers.RandomInt(0, 100, rnd) <= 30;
+                return RandomNumbers.RandomInt(0, 100, rnd) <= 5;
             }
             return false;
         }
@@ -57,18 +53,18 @@ namespace BLL.Generation.StarSystem.Builders
             return RandomNumbers.RandomInt(0, 100, rnd) <= 1;
         }
 
-        private void CreateSatellite()
+        private void BaseSatellite()
         {
-            _resultSat = new Satellite
+            _resultSat = new PlanetDto()
             {
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                Planet = null,
-                //Name = "STL - " +RandomNumbers.RandomString(rnd,7),
-                Buildings = new List<Building>(),
-                SatelliteSocial = new SatelliteSocials { Population = 0, TaxLevel = TaxLevel.Normal },
-                User = null,
-                RingsPresent = false
+                Name = _star.Name + "-" + RandomNumbers.RandomString(7, _rnd),
+                Buildings = new List<BuildingDto>(),
+                Satellites = new List<PlanetDto>(),
+                RingsPresent = false,
+                Population = 0,
+                TaxLevel = TaxLevel.Normal,
+                Id = -1,
+                CreatedAt = DateTime.Now
             };
         }
 
@@ -86,22 +82,6 @@ namespace BLL.Generation.StarSystem.Builders
             }
             if ((int)result > 250) return 250;
             return (int)result;
-        }
-
-        private static int CalculateRadiationLevel(bool atmospherePresent, int starRadiation, double distance, bool forceLiving, double fixedDistance)
-        {
-            if (forceLiving) return 1;
-            var result = 1;
-            if (distance <= fixedDistance)
-            {
-                result += starRadiation - (int)(starRadiation * (fixedDistance - distance));
-            }
-            else
-            {
-                var temp = starRadiation - (int)(starRadiation * (distance - fixedDistance));
-                result += temp > 0 ? temp : 3;
-            }
-            return atmospherePresent ? result / 2 : result;
         }
 
         private static double ConvertScale(double distance, DoubleRange closeRange, double scaleMaxMed, double scaleMaxGreatest, double scaleMaxClose)
@@ -126,6 +106,7 @@ namespace BLL.Generation.StarSystem.Builders
 
         private static int CalculateSurfaceTemperature(double distance, bool atmpspherePresent, int starTemperature, Random rnd)
         {
+            if (rnd == null) throw new ArgumentNullException(nameof(rnd));
             int result;
             var delta = (-14 - 73.15) * (starTemperature / 5700.00);
             var t = 14 + 1.25 * (delta * (1 - distance) / -0.5);
@@ -144,33 +125,21 @@ namespace BLL.Generation.StarSystem.Builders
 
         private void AssignOrbit(OrbitGenerator generator)
         {
-            _resultSat.Orbit = generator.GenerateSatellite(_rnd);
-        }
-
-        private void AssignRadiationLevel()
-        {
-            _resultSat.RadiationLevel = CalculateRadiationLevel(_resultSat.AtmospherePresent, _star.RadiationLevel,
-                _resultSat.Orbit.DistanceR, false, BasicConstants.EarthDistance);
-        }
-
-        private void AssignAtmosphere()
-        {
-            _resultSat.AtmospherePresent = IsAtmospherePresent(_resultSat.Orbit.DistanceR, _rnd);
+            var orbit = generator.Generate(_rnd);
+            _resultSat.DistanceR = orbit.DistanceR;
+            _resultSat.Eccentricity = orbit.Eccentricity;
+            _resultSat.PeriodOfRevolution = orbit.PeriodOfRevolution;
+            _resultSat.PeriodOfRotation = orbit.PeriodOfRotation;
+            _resultSat.TetaZero = orbit.TetaZero;
         }
 
         private void AssignMass()
         {
-            _resultSat.Mass = CalculateMass(_resultSat.Orbit.DistanceR, _satelliteCloseRange,
+            _resultSat.Mass = CalculateMass(_resultSat.DistanceR, _satelliteCloseRange,
                 _conditions.ForceLiving, BasicConstants.SatelliteMinCloseScale,
                 BasicConstants.SatelliteMedCloseScale, BasicConstants.SatelliteMaxCloseScale, _rnd);
         }
-
-        private void AssignSurfaceTemperature(Star star)
-        {
-            _resultSat.SurfaceTemp = CalculateSurfaceTemperature(_resultSat.Orbit.DistanceR,
-                _resultSat.AtmospherePresent, star.SurfaceTemp, _rnd);
-        }
-
+        
         private void AssignRadius()
         {
             _resultSat.Radius = CalculateRadius(_resultSat.Mass);
@@ -178,27 +147,58 @@ namespace BLL.Generation.StarSystem.Builders
 
         private void AssignPeriodOfRotation(OrbitGenerator generator)
         {
-            _resultSat.Orbit.PeriodOfRotation = generator.CalculatePeriodOfRotation(_resultSat.Orbit.DistanceR,
-                _resultSat.Orbit.PeriodOfRevolution, _mediumDensity, _rnd);
+            _resultSat.PeriodOfRotation = generator.CalculatePeriodOfRotation(_resultSat.DistanceR,
+                _resultSat.PeriodOfRevolution, _mediumDensity, _rnd);
         }
 
         private void AssignTotalSpaces()
         {
             IsGasseous(_mediumDensity, _rnd, _resultSat.AtmospherePresent);
 
-            _resultSat.Spaces = PlanetProperties.CalculateSpaces(
+            var spaces = PlanetProperties.CalculateSpaces(
                 CalculateTotalSpaces(_resultSat.Mass, _isGasseous),
                 _resultSat.RadiationLevel,
                 _conditions,
-                IsWaterPresent(_resultSat.AtmospherePresent, _conditions.ForceWater, _rnd),
+                IsWaterPresent(_resultSat.AtmospherePresent,false,_rnd),
                 _resultSat.AtmospherePresent,
                 _rnd);
+
+            _resultSat.GroundRadiatedSpaces = spaces.GroundRadiatedSpaces;
+            _resultSat.GroundSpaces = spaces.GroundSpaces;
+            _resultSat.GroundSpacesLeft = spaces.GroundSpacesLeft;
+            _resultSat.GroundUsedSpaces = spaces.GroundUsedSpaces;
+
+            _resultSat.WaterRadiatedSpaces = spaces.WaterRadiatedSpaces;
+            _resultSat.WaterSpaces = spaces.WaterSpaces;
+            _resultSat.WaterSpacesLeft = spaces.WaterSpacesLeft;
+            _resultSat.WaterUsedSpaces = spaces.WaterUsedSpaces;
+
+            _resultSat.HabitableSpaces = spaces.HabitableSpaces;
+            _resultSat.Totalspaces = spaces.Totalspaces;
+            _resultSat.MaxPopulation = spaces.HabitableSpaces;
         }
 
         private void AssignProduction()
         {
-            //_resultSat.SatelliteProduction = PlanetProperties.CalculateProduction(_resultSat.Spaces, _mediumDensity,
-            //    BasicConstants.EarthDensity, _conditions);
+            var production = PlanetProperties.CalculateProduction(_resultSat, _mediumDensity,
+                BasicConstants.EarthDensity, _conditions);
+
+            _resultSat.ActivePopOnResProduction = production.ActivePopOnResProduction;
+            _resultSat.ActivePopOnFoodProduction = production.ActivePopOnFoodProduction;
+            _resultSat.ActivePopOnOreProduction = production.ActivePopOnOreProduction;
+            _resultSat.FoodProduction = production.FoodProduction;
+            _resultSat.OreProduction = production.OreProduction;
+            _resultSat.ResearchPointProduction = production.ResearchPointProduction;
+            _resultSat.LastUpdateOreProduction = DateTime.Now;
+            _resultSat.LastIncomeRevenueTime = DateTime.Now;
+            _resultSat.LastMaintenanceDateTime = DateTime.Now;
+            _resultSat.LastUpdateFoodProduction = DateTime.Now;
+            _resultSat.LastUpdateOreProduction = DateTime.Now;
+            _resultSat.LastUpdateResearcDateTime = DateTime.Now;
+            _resultSat.LastUpdatePopDateTime = DateTime.Now;
+            _resultSat.StoredFood = production.StoredFood;
+            _resultSat.StoredOre = production.StoredOre;
+            _resultSat.PlanetIncomeBalance = production.TotalIncome;
         }
 
         private void CheckConditionRichness()
@@ -212,44 +212,75 @@ namespace BLL.Generation.StarSystem.Builders
 
         private void AssignStatus()
         {
-            _resultSat.SatelliteStatus = _resultSat.Spaces.Totalspaces > 0 ? SatelliteStatus.Uncolonized : SatelliteStatus.Uncolonizable;
+            _resultSat.Status = _isGasseous || _resultSat.Totalspaces == 0
+                ? SatelliteStatus.Uncolonizable
+                : SatelliteStatus.Uncolonized;
         }
 
         private void CompleteGeneration()
         {
             _resultSat.IsGaseous = _isGasseous;
             _resultSat.IsHabitable = _resultSat.AtmospherePresent && !_isGasseous;
+            _resultSat.IsHomePlanet = false;
         }
+
+        private void AssignAtmoshpere(double distance, Random rnd)
+        {
+            _resultSat.AtmospherePresent = IsAtmospherePresent(distance, rnd);
+        }
+
+        private void AssignRadiation(int radiationLevelStar)
+        {
+            _resultSat.RadiationLevel = CalculateRadiationLevel(_resultSat.AtmospherePresent, radiationLevelStar, _resultSat.DistanceR, BasicConstants.EarthDistance);
+        }
+
+        private int CalculateRadiationLevel(bool atmospherePresent, int starRadiation, double distance, double fixedDistance)
+        {
+            var result = 1;
+            if (distance <= fixedDistance)
+            {
+                result += starRadiation - (int)(starRadiation * (fixedDistance - distance));
+            }
+            else
+            {
+                var temp = starRadiation - (int)(starRadiation * (distance - fixedDistance));
+                result += temp > 0 ? temp : 3;
+            }
+            return atmospherePresent ? result / 2 : result;
+        }
+
+        private void AssignSurfaceTemperature(StarDto star)
+        {
+            _resultSat.SurfaceTemp = CalculateSurfaceTemperature(_resultSat.DistanceR,
+                _resultSat.AtmospherePresent, star.SurfaceTemp, _rnd);
+        }
+
         #endregion
 
-        //public BaseEntity Build(StarDto star, SystemGenerationDto conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange)
-        //{
-        //    _star = star;
-        //    _conditions = conditions;
-        //    _rnd = rnd;
-        //    _mediumDensity = 5.5;
-
-        //    CreateSatellite();
-        //    AssignOrbit(generator);
-        //    AssignAtmosphere();
-        //    AssignRadiationLevel();
-        //    AssignMass();
-        //    AssignSurfaceTemperature(star);
-        //    AssignRadius();
-        //    AssignPeriodOfRotation(generator);
-        //    AssignTotalSpaces();
-
-        //    CheckConditionRichness();
-        //    AssignProduction();
-        //    AssignStatus();
-        //    CompleteGeneration();
-
-        //    return _resultSat;
-        //}
 
         public PlanetDto Build(StarDto star, SystemGenerationDto conditions, Random rnd, OrbitGenerator generator, DoubleRange closeRange)
         {
-            throw new NotImplementedException();
+            _star = star;
+            _conditions = conditions;
+            _rnd = rnd;
+            if (_conditions.IsHomePlanet && !_conditions.ForceLiving) _conditions.ForceLiving = true;
+            BaseSatellite();
+            AssignOrbit(generator);
+            AssignAtmoshpere(_resultSat.DistanceR, rnd);
+            AssignRadiation(_star.RadiationLevel);
+            AssignMass();
+            AssignSurfaceTemperature(star);
+            AssignRadius();
+            AssignPeriodOfRotation(generator);
+            AssignTotalSpaces();
+
+            CheckConditionRichness();
+
+            AssignProduction();
+            AssignStatus();
+            CompleteGeneration();
+
+            return _resultSat;
         }
     }
 }

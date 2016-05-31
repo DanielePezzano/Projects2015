@@ -8,6 +8,12 @@ using SharedDto.Interfaces;
 namespace SharedDto.Universe.Fleet
 {
     [DataContract]
+    [KnownType(typeof(AntiPlanetWeaponDto))]
+    [KnownType(typeof(AntiShipWeaponDto))]
+    [KnownType(typeof(EngineDto))]
+    [KnownType(typeof(ArmorDto))]
+    [KnownType(typeof(ShieldDto))]
+    [KnownType(typeof(SystemsDto))]
     public class HullDto :BaseDto, IDto
     {
         [DataMember]

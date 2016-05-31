@@ -8,6 +8,9 @@ using SharedDto.Universe.Queues;
 namespace SharedDto.Universe.Technology
 {
     [DataContract]
+    [KnownType(typeof(TechnologyRequisiteDto))]
+    [KnownType(typeof(ResearchDto))]
+    [KnownType(typeof(TechnologyBonusDto))]
     public class TechnologyDto : BaseDto, IDto, ICosts, ISpaces
     {
         [DataMember]

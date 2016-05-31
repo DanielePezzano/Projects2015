@@ -71,13 +71,13 @@ namespace DAL.Mappers.Fleets
         }
         public List<AntiPlanetWeaponDto> EntityListToModel(ICollection<AntiPlanetWeapon> entityList)
         {
-            return entityList.Select(MapToDto).Select(dto => dto).Cast<AntiPlanetWeaponDto>().ToList();
+            return entityList?.Select(MapToDto).Select(dto => dto).Cast<AntiPlanetWeaponDto>().ToList() ?? new List<AntiPlanetWeaponDto>();
         }
 
         
         public List<AntiPlanetWeapon> ModelListToEntity(List<AntiPlanetWeaponDto> entityList)
         {
-            return entityList.Select(MapToEntity).Select(dto => dto).Cast<AntiPlanetWeapon>().ToList();
+            return entityList?.Select(MapToEntity).Select(dto => dto).Cast<AntiPlanetWeapon>().ToList() ?? new List<AntiPlanetWeapon>();
         }
 
     }

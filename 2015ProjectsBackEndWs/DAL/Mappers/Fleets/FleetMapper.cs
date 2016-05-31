@@ -68,13 +68,13 @@ namespace DAL.Mappers.Fleets
 
         public List<FleetDto> EntityListToModel(ICollection<Fleet> entityList)
         {
-            return entityList.Select(MapToDto).Select(dto => dto).Cast<FleetDto>().ToList();
+            return entityList?.Select(MapToDto).Select(dto => dto).Cast<FleetDto>().ToList() ?? new List<FleetDto>();
         }
 
         
         public List<Fleet> ModelListToEntity(List<FleetDto> entityList)
         {
-            return entityList.Select(MapToEntity).Select(dto => dto).Cast<Fleet>().ToList();
+            return entityList?.Select(MapToEntity).Select(dto => dto).Cast<Fleet>().ToList() ?? new List<Fleet>();
         }
     }
 }

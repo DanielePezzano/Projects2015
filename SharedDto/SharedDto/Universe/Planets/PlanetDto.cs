@@ -10,7 +10,8 @@ using SharedDto.Universe.Fleet;
 
 namespace SharedDto.Universe.Planets
 {
-    [DataContract]
+    [KnownType(typeof(BuildingDto))]
+    [KnownType(typeof(FleetDto))]
     public class PlanetDto : BaseDto,IDto
     {
         [DataMember]
