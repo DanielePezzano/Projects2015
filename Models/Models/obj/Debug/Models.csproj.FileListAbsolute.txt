@@ -26,3 +26,5 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Debug\EntityFr
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Debug\EntityFramework.xml
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Debug\BaseModels.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\Models\Models\bin\Debug\BaseModels.pdb

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Models.Base;
+using BaseModels;
 using UnitOfWork.Cache;
 using UnitOfWork.Cache.Enum;
 using UnitOfWork.Implementations.Context;

@@ -16,3 +16,5 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\DAL\bin\De
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\DAL\obj\Debug\DAL.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\DAL\obj\Debug\DAL.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\DAL\bin\Debug\BaseModels.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\DAL\bin\Debug\BaseModels.pdb

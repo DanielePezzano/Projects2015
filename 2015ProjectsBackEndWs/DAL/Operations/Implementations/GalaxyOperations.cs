@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BaseModels;
 using DAL.Operations.BaseClasses;
 using DAL.Operations.Enums;
 using DAL.Operations.Extensions;
-using Models.Base;
 using Models.Universe;
 using UnitOfWork.Implementations.Uows;
 using UnitOfWork.Interfaces.Repository;

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Models.Base;
 using System.Runtime.Serialization;
+using BaseModels;
 using Models.Tech.Enum;
 
 namespace Models.Tech

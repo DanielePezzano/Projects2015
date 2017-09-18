@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
+using BaseModels;
 using Models.Buildings;
 using Models.Universe;
 using Models.Universe.Enum;

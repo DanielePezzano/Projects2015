@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using BaseModels;
 using Models.Queues;
 using Models.Queues.Enum;
 

@@ -1,4 +1,4 @@
-﻿using Models.Base;
+﻿using BaseModels;
 using SharedDto.Interfaces;
 
 namespace DAL.Mappers.Interfaces

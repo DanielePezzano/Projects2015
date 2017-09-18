@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BaseModels;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
 using DAL.Operations.Enums;
 using DAL.Operations.IstanceFactory;
-using Models.Base;
 using Models.Queues;
 using Models.Queues.Enum;
 using SharedDto.Interfaces;

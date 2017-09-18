@@ -1,7 +1,7 @@
-﻿using Models.Base;
-using Models.Fleets.ShipClasses.Hulls;
+﻿using Models.Fleets.ShipClasses.Hulls;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using BaseModels;
 
 namespace Models.Fleets.ShipClasses.Base
 {

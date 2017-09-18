@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
-using Models.Base;
+using BaseModels;
 using Models.Buildings;
 using Models.Fleets.ShipClasses.Armors;
 using Models.Fleets.ShipClasses.Engines;

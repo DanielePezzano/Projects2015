@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Runtime.InteropServices;
+using BaseModels;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Interfaces;
 using DAL.Operations.Enums;
 using DAL.Operations.IstanceFactory;
-using Models.Base;
 using Models.Universe;
 using SharedDto.Interfaces;
 using SharedDto.Universe;

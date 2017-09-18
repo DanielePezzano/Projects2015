@@ -1,7 +1,7 @@
-﻿using Models.Base;
-using Models.Tech.Enum;
+﻿using Models.Tech.Enum;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using BaseModels;
 
 namespace Models.Tech
 {

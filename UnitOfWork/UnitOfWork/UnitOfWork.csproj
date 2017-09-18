@@ -91,6 +91,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\2015ProjectsBackEndWs\BaseModels\BaseModels.csproj">
+      <Project>{dab0c504-b696-4eb5-8466-8d1dbb59af06}</Project>
+      <Name>BaseModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Models\Models\Models.csproj">
       <Project>{0309e052-c6a1-4c0f-adfd-6fd8b4c1cd2a}</Project>
       <Name>Models</Name>

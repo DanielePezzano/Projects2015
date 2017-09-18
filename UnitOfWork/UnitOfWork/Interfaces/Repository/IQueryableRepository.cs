@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using Models.Base;
+using BaseModels;
 
 namespace UnitOfWork.Interfaces.Repository
 {

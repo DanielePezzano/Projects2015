@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseBuildingEntity.cs" />
-    <Compile Include="Base\BaseEntity.cs" />
     <Compile Include="Base\BaseSatellite.cs" />
     <Compile Include="Base\Enum\TaxLevel.cs" />
     <Compile Include="Base\Production.cs" />
@@ -129,6 +128,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\2015ProjectsBackEndWs\BaseModels\BaseModels.csproj">
+      <Project>{dab0c504-b696-4eb5-8466-8d1dbb59af06}</Project>
+      <Name>BaseModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

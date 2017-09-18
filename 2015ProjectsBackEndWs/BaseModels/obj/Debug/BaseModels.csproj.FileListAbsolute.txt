@@ -1,0 +1,9 @@
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\BaseModels\bin\Debug\BaseModels.dll.config
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\BaseModels\bin\Debug\BaseModels.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\BaseModels\bin\Debug\BaseModels.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\BaseModels\bin\Debug\EntityFramework.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\BaseModels\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\BaseModels\bin\Debug\EntityFramework.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\BaseModels\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\BaseModels\obj\Debug\BaseModels.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\BaseModels\obj\Debug\BaseModels.pdb

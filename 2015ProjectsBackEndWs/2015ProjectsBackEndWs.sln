@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2015ProjectsBackEndWs", "2015ProjectsBackEndWs\2015ProjectsBackEndWs.csproj", "{B2E59672-00DF-4205-A3AF-7AC235BB6B2B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6B7F077F-B59A-4A7F-A81B-52FD8A1F6992}"
@@ -15,20 +13,43 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wcfTester", "wcfTester\wcfTester.csproj", "{09DA85D6-FE7E-4275-A6AB-45BDA44720A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "..\BLL\BLL\BLL.csproj", "{21205F33-94CB-4686-BC35-93111E3A9067}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DAB0C504-B696-4EB5-8466-8D1DBB59AF06} = {DAB0C504-B696-4EB5-8466-8D1DBB59AF06}
+		{CAA9935B-DFBC-414D-A81C-AC4D6657ECC8} = {CAA9935B-DFBC-414D-A81C-AC4D6657ECC8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessTest", "..\BLL\BusinessTest\BusinessTest.csproj", "{BAA15F10-125A-43BC-A37F-66A406D80D46}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "..\Models\Models\Models.csproj", "{0309E052-C6A1-4C0F-ADFD-6FD8B4C1CD2A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DAB0C504-B696-4EB5-8466-8D1DBB59AF06} = {DAB0C504-B696-4EB5-8466-8D1DBB59AF06}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedDto", "..\SharedDto\SharedDto\SharedDto.csproj", "{CD2DBEFF-0A8A-4082-A9A9-DB91FD3EC6EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitOfWork", "..\UnitOfWork\UnitOfWork\UnitOfWork.csproj", "{1542D9FB-7FDE-4127-9014-562BC47A7EA7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DAB0C504-B696-4EB5-8466-8D1DBB59AF06} = {DAB0C504-B696-4EB5-8466-8D1DBB59AF06}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfCommCrypto", "..\WcfCommCrypto\WcfCommCrypto\WcfCommCrypto.csproj", "{C29F4C65-DA83-4AE5-BCE9-6629904D8775}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{1A98821E-8D32-4CBC-A377-81921780ABAD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DAB0C504-B696-4EB5-8466-8D1DBB59AF06} = {DAB0C504-B696-4EB5-8466-8D1DBB59AF06}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApplication", "TestConsoleApplication\TestConsoleApplication.csproj", "{4CE4A6BC-5B6A-49B2-AE28-00DCE1404BBF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserAdmin", "UserAdmin", "{52B5665A-D1D2-4979-8F7C-9BBE72880F66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAdminModels", "UserAdminModels\UserAdminModels.csproj", "{CE595B19-557B-4031-AC2B-23EA71783F65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaseProjects", "BaseProjects", "{99C08B89-EEB3-41F1-A64B-95FD2ECBE233}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseUnitOfWork", "BaseUnitOfWork\BaseUnitOfWork.csproj", "{CAA9935B-DFBC-414D-A81C-AC4D6657ECC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseModels", "BaseModels\BaseModels.csproj", "{DAB0C504-B696-4EB5-8466-8D1DBB59AF06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,8 +97,25 @@ Global
 		{4CE4A6BC-5B6A-49B2-AE28-00DCE1404BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CE4A6BC-5B6A-49B2-AE28-00DCE1404BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CE4A6BC-5B6A-49B2-AE28-00DCE1404BBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE595B19-557B-4031-AC2B-23EA71783F65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE595B19-557B-4031-AC2B-23EA71783F65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE595B19-557B-4031-AC2B-23EA71783F65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE595B19-557B-4031-AC2B-23EA71783F65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAA9935B-DFBC-414D-A81C-AC4D6657ECC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAA9935B-DFBC-414D-A81C-AC4D6657ECC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAA9935B-DFBC-414D-A81C-AC4D6657ECC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAA9935B-DFBC-414D-A81C-AC4D6657ECC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAB0C504-B696-4EB5-8466-8D1DBB59AF06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAB0C504-B696-4EB5-8466-8D1DBB59AF06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAB0C504-B696-4EB5-8466-8D1DBB59AF06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAB0C504-B696-4EB5-8466-8D1DBB59AF06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CE595B19-557B-4031-AC2B-23EA71783F65} = {52B5665A-D1D2-4979-8F7C-9BBE72880F66}
+		{CAA9935B-DFBC-414D-A81C-AC4D6657ECC8} = {99C08B89-EEB3-41F1-A64B-95FD2ECBE233}
+		{DAB0C504-B696-4EB5-8466-8D1DBB59AF06} = {99C08B89-EEB3-41F1-A64B-95FD2ECBE233}
 	EndGlobalSection
 EndGlobal

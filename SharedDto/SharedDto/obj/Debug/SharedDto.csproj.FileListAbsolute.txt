@@ -26,3 +26,5 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Debug\Sh
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Debug\SharedDto.csproj.GenerateResource.Cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Debug\SharedDto.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\obj\Debug\SharedDto.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Debug\BaseModels.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\SharedDto\SharedDto\bin\Debug\BaseModels.pdb

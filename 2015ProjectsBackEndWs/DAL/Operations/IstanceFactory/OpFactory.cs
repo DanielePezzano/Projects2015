@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq.Expressions;
+using BaseModels;
 using DAL.Operations.BaseClasses;
 using DAL.Operations.Enums;
-using Models.Base;
 using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace DAL.Operations.IstanceFactory

@@ -12,4 +12,3 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\Debug\EntityFramework.xml
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Pezzanod\Documents\GitHub\Projects2015\WcfCommCrypto\WcfCommCrypto\obj\Debug\WcfCommCrypto.csprojResolveAssemblyReference.cache

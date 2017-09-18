@@ -1,4 +1,4 @@
-﻿using Models.Base;
+﻿using BaseModels;
 using UnitOfWork.Cache;
 using UnitOfWork.Implementations.Context;
 using UnitOfWork.Implementations.Repository.BaseRepository;

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using BLL.Utilities;
 using SharedDto.Universe.Sector;
 using System.Linq;
+using BaseModels;
 using BLL.Generation.StarSystem.IstanceFactory;
 using DAL.Mappers.Universe;
 using DAL.Mappers.Universe.Enums;
 using DAL.Mappers.Universe.IstanceFactory;
 using DAL.Operations.Enums;
 using DAL.Operations.IstanceFactory;
-using Models.Base;
 using Models.Universe;
 using SharedDto.Universe.Stars;
 using SharedDto.UtilityDto;
@@ -112,11 +112,9 @@ namespace BLL.Generation.Sector
                         .Select(result => (Star) result.Entity)
                         .ToList();
                 return
-                    ((StarMapper) MapperFactory.RetrieveMapper(_opFactory, UniverseMapperTypes.stars)).EntityListToModel
-                        (
-                            listSaved);
+                    ((StarMapper) MapperFactory.RetrieveMapper(_opFactory, UniverseMapperTypes.stars)).EntityListToModel(listSaved);
             }
-            else return starToSave;
+            return starToSave;
         }
 
         public SectorGenerationDto Generate()

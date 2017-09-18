@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Models.Base;
+using BaseModels;
 
 namespace UnitOfWork.Interfaces.Repository
 {

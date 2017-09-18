@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using BaseModels;
 using DAL.Operations.BaseClasses;
 using DAL.Operations.Enums;
 using DAL.Operations.Extensions;
-using Models.Base;
 using Models.Universe;
 using UnitOfWork.Implementations.Uows;
 using UnitOfWork.Interfaces.Repository;

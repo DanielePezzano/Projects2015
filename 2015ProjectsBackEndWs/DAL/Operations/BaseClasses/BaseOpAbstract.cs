@@ -1,5 +1,5 @@
-﻿using DAL.Operations.Enums;
-using Models.Base;
+﻿using BaseModels;
+using DAL.Operations.Enums;
 using UnitOfWork.Interfaces.UnitOfWork;
 
 namespace DAL.Operations.BaseClasses

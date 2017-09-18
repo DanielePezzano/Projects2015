@@ -123,6 +123,14 @@
     <Folder Include="Utilities\Enum\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\2015ProjectsBackEndWs\BaseModels\BaseModels.csproj">
+      <Project>{dab0c504-b696-4eb5-8466-8d1dbb59af06}</Project>
+      <Name>BaseModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\2015ProjectsBackEndWs\BaseUnitOfWork\BaseUnitOfWork.csproj">
+      <Project>{caa9935b-dfbc-414d-a81c-ac4d6657ecc8}</Project>
+      <Name>BaseUnitOfWork</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\2015ProjectsBackEndWs\DAL\DAL.csproj">
       <Project>{1a98821e-8d32-4cbc-a377-81921780abad}</Project>
       <Name>DAL</Name>

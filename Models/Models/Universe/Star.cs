@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-using Models.Base;
+using BaseModels;
 using Models.Universe.Enum;
 
 namespace Models.Universe

@@ -1,6 +1,6 @@
 ﻿using System;
+using BaseModels;
 using DAL.Operations.IstanceFactory;
-using Models.Base;
 
 namespace DAL.Mappers.BaseClasses
 {

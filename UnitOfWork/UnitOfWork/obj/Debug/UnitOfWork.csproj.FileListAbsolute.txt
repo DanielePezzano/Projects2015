@@ -32,3 +32,5 @@ C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Debug\UnitOfWork.csprojResolveAssemblyReference.cache
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Debug\UnitOfWork.dll
 C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\obj\Debug\UnitOfWork.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\BaseModels.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\UnitOfWork\UnitOfWork\bin\Debug\BaseModels.pdb

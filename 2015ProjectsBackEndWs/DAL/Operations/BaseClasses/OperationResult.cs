@@ -1,4 +1,4 @@
-﻿using Models.Base;
+﻿using BaseModels;
 using SharedDto.Interfaces;
 using UnitOfWork.Interfaces.UnitOfWork;
 

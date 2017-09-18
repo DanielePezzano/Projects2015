@@ -112,6 +112,10 @@
       <Project>{1542d9fb-7fde-4127-9014-562bc47a7ea7}</Project>
       <Name>UnitOfWork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BaseModels\BaseModels.csproj">
+      <Project>{dab0c504-b696-4eb5-8466-8d1dbb59af06}</Project>
+      <Name>BaseModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappers\Fleets\BaseClass\" />

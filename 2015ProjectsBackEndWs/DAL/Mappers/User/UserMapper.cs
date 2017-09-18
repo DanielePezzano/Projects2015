@@ -1,4 +1,5 @@
 ﻿using System;
+using BaseModels;
 using DAL.Mappers.BaseClasses;
 using DAL.Mappers.Fleets;
 using DAL.Mappers.Fleets.Enums;
@@ -11,7 +12,6 @@ using DAL.Mappers.User.Enums;
 using DAL.Mappers.User.IstanceFactory;
 using DAL.Operations.Enums;
 using DAL.Operations.IstanceFactory;
-using Models.Base;
 using Models.Users.Enum;
 using SharedDto.Interfaces;
 using SharedDto.Universe.Race;

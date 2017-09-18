@@ -1,8 +1,8 @@
-﻿using Models.Base;
-using Models.Races.Enums;
+﻿using Models.Races.Enums;
 using Models.Users;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using BaseModels;
 
 namespace Models.Races
 {

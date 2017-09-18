@@ -2,6 +2,7 @@
 using Models.Buildings.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using BaseModels;
 
 namespace Models.Base
 {

@@ -1,0 +1,9 @@
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\UserAdminModels\bin\Debug\UserAdminModels.dll.config
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\UserAdminModels\bin\Debug\UserAdminModels.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\UserAdminModels\bin\Debug\UserAdminModels.pdb
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\UserAdminModels\bin\Debug\EntityFramework.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\UserAdminModels\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\UserAdminModels\bin\Debug\EntityFramework.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\UserAdminModels\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\UserAdminModels\obj\Debug\UserAdminModels.dll
+C:\Users\Pezzanod\Documents\GitHub\Projects2015\2015ProjectsBackEndWs\UserAdminModels\obj\Debug\UserAdminModels.pdb
